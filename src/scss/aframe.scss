@@ -1,22 +1,30 @@
-//html.a-fullscreen .a-canvas {
-//  position: absolute !important;
-//}
-//
-//a-scene {
-//  display: block;
-//  position: absolute;
-//  height: 100%;
-//  width: 100%;
-//  top: 0;
-//  right: 0;
-//  left: 0;
-//  bottom: 0;
-//}
-//
-//.card-content {
-//  z-index: 1;
-//}
-//
-//.a-enter-vr-button {
-//  display: none !important;
-//}
+html.a-fullscreen {
+  position: static !important;
+}
+
+html.a-fullscreen body {
+  overflow: auto !important;
+}
+
+html.a-fullscreen .a-canvas {
+  position: absolute !important;
+}
+
+a-scene {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.card-content {
+  z-index: 1;
+}
+
+.a-enter-vr-button {
+  display: none !important;
+}
