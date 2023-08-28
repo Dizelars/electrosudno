@@ -1,0 +1,237 @@
+//.vectary {
+//  position: relative;
+//  display: none;
+//  //height: 800px;
+//  height: 0;
+//  opacity: 0;
+//  transition: all .4s;
+//}
+
+//.vectary {
+//  position: relative;
+//  width: 100%;
+//  height: 100%;
+//  overflow: hidden;
+//  //transition: all .4s;
+//  &.tech_speck {
+//    position: absolute;
+//    display: flex;
+//    left: 80px;
+//    bottom: 62px;
+//    border-radius: 20px;
+//    border: 2px solid #b9b8c4;
+//    background: linear-gradient(290deg, rgba(161, 159, 174, 0.80) 0%, rgba(172, 170, 186, 0.80) 100%);
+//    backdrop-filter: blur(10px);
+//    &.tech_speck-info {
+//      padding: 32px 50px 32px 30px;
+//      &p {
+//        font-family: "MoscowSans", sans-serif;
+//        font-size: 20px;
+//        line-height: 26px;
+//        color: #FFF;
+//        margin: 0;
+//        &.tech_speck-title {
+//          font-weight: 300;
+//        }
+//        &.tech_speck-text {
+//          font-weight: 800;
+//        }
+//      }
+//      &:not(:last-child):before,
+//      &:not(:last-child):after {
+//        content: '';
+//        position: absolute;
+//        width: 5px;
+//        height: 5px;
+//        border-radius: 50%;
+//        background-color: #FFFFFF;
+//        right: -3px;
+//      }
+//      &:not(:last-child):before {
+//        top: -2px;
+//      }
+//      :not(:last-child):after {
+//        bottom: -2px;
+//      }
+//    }
+//  }
+//  &.interior_button {
+//    position: absolute;
+//    bottom: 82px;
+//    right: 80px;
+//    padding: 30px;
+//    border: none;
+//    border-radius: 10px;
+//    background: rgba(0, 0, 0, 0.70);
+//    display: flex;
+//    align-items: center;
+//    font-family: "MoscowSans", sans-serif;
+//    font-size: 15px;
+//    font-weight: 500;
+//    color: #FFF;
+//    cursor: pointer;
+//    transition: 0.7s;
+//    &img {
+//      margin-right: 8px;
+//      transition: transform 0.7s ease;
+//    }
+//    &:hover img {
+//      transform: rotate(-30deg) translateZ(0);
+//    }
+//  }
+//}
+
+.vectary {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  //transition: all .4s;
+}
+
+// Второй вариант кнопок
+
+.vectary .tech_speck {
+  position: absolute;
+  display: flex;
+  left: 80px;
+  bottom: 62px;
+  border-radius: 20px;
+  border: 2px solid #b9b8c4;
+  background: linear-gradient(290deg, rgba(161, 159, 174, 0.80) 0%, rgba(172, 170, 186, 0.80) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.vectary .tech_speck div[class^="tech_speck-"] {
+  padding: 32px 50px 32px 30px;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"] p {
+  font-family: "MoscowSans", sans-serif;
+  font-size: 20px;
+  line-height: 26px;
+  color: #FFF;
+  margin: 0;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"] p.tech_speck-title {
+  font-weight: 300;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"] p.tech_speck-text {
+  font-weight: 800;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"]:not(:last-child) {
+  border-right: 1px solid #b9b8c4;
+  position: relative;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"]:not(:last-child):before,
+.vectary .tech_speck div[class^="tech_speck-"]:not(:last-child):after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  right: -3px;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"]:not(:last-child):before {
+  top: -2px;
+}
+
+.vectary .tech_speck div[class^="tech_speck-"]:not(:last-child):after {
+  bottom: -2px;
+}
+
+
+.vectary .interior_button {
+  position: absolute;
+  bottom: 82px;
+  right: 80px;
+  padding: 30px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.70);
+  display: flex;
+  align-items: center;
+  font-family: "MoscowSans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #FFF;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+.vectary .interior_button img {
+  margin-right: 8px;
+  transition: transform 0.7s ease;
+}
+
+.vectary .interior_button:hover {
+  background: url('/public/images/sepia.png'), #000000;
+}
+
+.vectary .interior_button:hover img {
+  transform: rotate(-30deg) translateZ(0);
+}
+
+
+
+
+
+@media (max-width: 1440px) {
+  .vectary .tech_speck {
+    left: 40px;
+    bottom: 31px;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"] {
+    padding: 20px 30px 20px 20px;
+  }
+
+  .vectary .interior_button {
+    bottom: 41px;
+    right: 40px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  //.vectary .tech_speck {
+  //  left: 40px;
+  //  bottom: 31px;
+  //}
+
+  .vectary .tech_speck div[class^="tech_speck-"] {
+    padding: 14px 20px 14px 14px;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"] p {
+    font-size: 16px;
+  }
+
+  .vectary .interior_button {
+    padding: 14px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

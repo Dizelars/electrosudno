@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,20 +22,581 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <title>Причалы</title>
+</head>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <div id="main" class="bord">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    <div class="video_content">
+<!--      data-info-text="Квадрат увеличился в размере"-->
+      <video class="bg-video js-number-block active" autoplay muted loop data-number="1" data-info-text>
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop data-number="2" data-info-text>
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop data-number="3" data-info-text>
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop data-number="4" data-info-text>
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop data-number="5" data-info-text>
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop data-number="6" data-info-text>
+      </video>
+      
+      <div class="mouse_prev">
+        <div class="mouse_prev-wrapper">
+          <div class="mouse_prev_arrow">
+            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">
+          </div>
+          <div class="mouse_prev_dot"></div>
+        </div>
+      </div>
+
+<!--      <div class="info_block info_text" data-number="2">-->
+<!--        Квадрат увеличился в размере-->
+<!--      </div>-->
+
+      <div class="info_block snow" data-number="2">
+        <div class="card">
+          <div class="card_marker">
+            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/snow.svg" alt="snow">
+          </div>
+          <div class="card_descr">
+            <p class="card_descr-text">Возможность использования</p>
+            <p class="card_descr-title">Круглый год</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info_block ejection" data-number="3">
+        <div class="card">
+          <div class="card_marker">
+            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/ejection.svg" alt="ejection">
+          </div>
+          <div class="card_descr">
+            <p class="card_descr-text">Выброс вредных веществ</p>
+            <p class="card_descr-title">0%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info_block capacity" data-number="4">
+        <div class="card">
+          <div class="card_marker">
+            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/capacity.svg" alt="capacity">
+          </div>
+          <div class="card_descr">
+            <p class="card_descr-text">Вместимость</p>
+            <p class="card_descr-title">50 комфортных мест</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info_block moorings" data-number="6">
+        <div class="card">
+          <div class="card_marker">
+            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/moorings.svg" alt="moorings">
+          </div>
+          <div class="card_descr">
+            <p class="card_descr-text">Колличество причалов</p>
+            <p class="card_descr-title">23 штуки</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--    <div class="background_block js-number-block" data-number="4">-->
+
+<!--    </div>-->
+
+    <div class="site_content js-number-block" data-number="7">
+<!--      data-number="4"-->
+<!--      class="js-number-block"-->
+      <section id="pier-description" class="bg-grey">
+        <div class="container grid-12 col-gap-10 pt-100 pb-100 d-flex-col-tab gap10-tab">
+          <div class="col-6">
+            <div class="grid-12-rows row-gap-10 col-gap-10 d-flex-col-mob gap10-mob">
+              <div class="col-6 row-6">
+                <div class="card card-sm bg-grey-grad sepia-grey-grad">
+                  <h3 class="text-uppercase">Комфортная зона<br>ожидания</h3>
+                  <p class="card-body">Защита от&nbsp;солнца и&nbsp;ветра, а&nbsp;также комфортные диваны. Что может быть лучше?</p>
+                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/sofa.png" alt="sofa">
+                </div>
+              </div>
+              <div class="col-6 row-6">
+                <div class="card card-sm bg-grey-grad sepia-grey-grad">
+                  <h3 class="text-uppercase">Кофе-<br>машина</h3>
+                  <p>Скрасить ожидание посадки вам поможет ароматная чашечка кофе</p>
+                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/coffee.png" alt="coffee">
+                </div>
+              </div>
+              <div class="col-6 row-6">
+                <div class="card card-sm bg-grey-grad sepia-grey-grad">
+                  <h3 class="text-uppercase">Оплата картой<br>«Тройка»</h3>
+                  <p>Билет на&nbsp;транспорт всегда с&nbsp;вами. Но&nbsp;кассы на&nbsp;месте тоже работают</p>
+                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/troyka.png" alt="troyka">
+                </div>
+              </div>
+              <div class="col-6 row-6">
+                <div class="card card-sm bg-grey-grad sepia-grey-grad">
+                  <h3 class="text-uppercase">Комната матери<br>и&nbsp;ребенка</h3>
+                  <p>Для мамочек с самыми юными пассажиров здесь предусмотрена специальная комната</p>
+                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/bathroom.png" alt="bathroom">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card card-large bg-pier">
+              <div class="card-content bg-grey-grad05">
+                <h3 class="text-uppercase">Посетите виртуальную экскурсию по причалу</h3>
+                <p class="mb-50-tab">Рассмотрите все удобства собственными глазами на примере причала на станции Киевская</p>
+                <a href="#" class="vue_button btn btn-link sepia-black">
+                  <img class="rotation-icon" src="%PUBLIC_URL%/images/icons/360.svg" alt="360">
+                  Осмотреть
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sinichka_fixed" id="sinichka-section">
+<!--        <div class="proximity">-->
+<!--          <div class="door_1"></div>-->
+<!--&lt;!&ndash;          <button class="model_wue">&ndash;&gt;-->
+<!--&lt;!&ndash;            <img class="model_img" src="%PUBLIC_URL%/images/icons/model_wue.svg" alt="Экскурсия">&ndash;&gt;-->
+<!--&lt;!&ndash;          </button>&ndash;&gt;-->
+<!--          <img class="model_img" src="%PUBLIC_URL%/images/icons/model_wue.svg" alt="Экскурсия">-->
+<!--          <div class="door_2"></div>-->
+<!--        </div>-->
+
+
+
+        <div class="vectary">
+<!--          <iframe src="https://app.vectary.com/p/2MhThwkU2zqEJvnw0qupN5/" width="100%" height="100%"></iframe>-->
+          <iframe src="https://app.vectary.com/p/6YGTFqmzg1ssFGNU2tCHY1" width="100%" height="100%"></iframe>
+<!--          <button class="leave_button">-->
+<!--            <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
+<!--            ВЫЙТИ-->
+<!--          </button>-->
+<!--          <button class="interier_button">-->
+<!--            <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
+<!--            Интерьер-->
+<!--          </button>-->
+          <div class="tech_speck">
+            <div class="tech_speck-1 tech_speck-info">
+              <p class="tech_speck-title">Класс судна:</p>
+              <p class="tech_speck-text">ледовый</p>
+            </div>
+            <div class="tech_speck-2 tech_speck-info">
+              <p class="tech_speck-title">Скорость движения</p>
+              <p class="tech_speck-text">15 км/ч</p>
+            </div>
+            <div class="tech_speck-3 tech_speck-info">
+              <p class="tech_speck-title">Время автономной работы:</p>
+              <p class="tech_speck-text">5 часов</p>
+            </div>
+            <div class="tech_speck-4 tech_speck-info">
+              <p class="tech_speck-title">Вместимость:</p>
+              <p class="tech_speck-text">50 человек</p>
+            </div>
+          </div>
+          <button class="interior_button sepia-black">
+            <img class="leave_button_img" src="%PUBLIC_URL%/images/icons/360.svg" alt="ВЫЙТИ">
+            осмотреть салон
+          </button>
+        </div>
+      </section>
+
+      <!-- Секция с двумя маршрутами -->
+      <!-- <section id="pier-routes" class="bg-grey pos-rel">
+        <div class="container pb-100">
+          <h1 class="h1 text-uppercase mb-40">Маршруты</h1>
+          <div class="card-flex-wrapper">
+            <div class="card bg-grey-grad">
+              <p class="route-number mt-0 mb-10">№1</p>
+              <h3 class="text-uppercase">Киевский — Сердце столицы</h3>
+              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg alt="kievsky route"">
+              <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
+            </div>
+            <div class="card bg-grey-grad card-disabled">
+              <p class="route-number mt-0 mb-10">№2</p>
+              <h3 class="text-uppercase cursor-pointer">Автозаводский Мост — Печатники</h3>
+              <img class="card-img img-responsive d-block d-none-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg">
+              <img class="card-img img-responsive d-none d-block-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg">
+              <p>Раньше через Южный речной вокзал и прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у москвичей. Открытие нового маршрута состоится до конца года.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="fullimage" class="fullimage fullimage-disabled">
+          <div class="fullimage-wrapper"></div>
+        </div>
+      </section> -->
+
+      <!-- Секция с одним маршрутом -->
+      <section id="pier-routes" class="bg-grey pos-rel pt-100">
+        <div class="container pb-100">
+          <h1 class="h1 text-uppercase mb-40">Маршруты</h1>
+
+          <!-- desktop, horizTab -->
+          <div class="card-flex-wrapper d-none-tab">
+            <div class="card bg-grey-grad">
+              <div class="grid-12 width-1 align-center">
+                <div class="col-6 d-flex-col max-width-400">
+                  <p class="route-number mt-0 mb-10">№1</p>
+                  <h2 class="text-uppercase fs-125-tab">Киевский — Сердце столицы</h2>
+                  <p class="flex-11auto mt-30">Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
+                  <a data-route="kievsky" href="#" class="btn btn-link align-self-fs">
+                    Посмотреть
+                    <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
+                  </a>
+                </div>
+                <img class="col-6 card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
+              </div>
+            </div>
+          </div>
+
+          <!-- vertTab, mobile -->
+          <div class="card-flex-wrapper d-none d-flex-tab">
+            <div class="card bg-grey-grad">
+              <p class="route-number mt-0 mb-10">№1</p>
+              <h3 class="text-uppercase">Киевский — Сердце столицы</h3>
+              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
+              <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
+            </div>
+          </div>
+        </div>
+        <!-- Отображение маршрута по клику -->
+        <div id="fullimage" class="fullimage fullimage-disabled">
+          <div class="fullimage-wrapper"></div>
+        </div>
+      </section>
+
+      <section id="pier-faq" class="bg-grey">
+        <div class="container pb-100">
+          <h1 class="h1 text-uppercase mb-40">Справочная информация</h1>
+          <div class="card-flex-wrapper">
+            <div class="card card-faq bg-grey-grad sepia-grey-grad">
+              <h3 class="text-uppercase">Расписание</h3>
+              <p class="fg-1">Электросуда работают ежедневно.<br>Расписание можно посмотреть на едином транспортном портале</p>
+              <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/calendar.png" alt="calendar">
+              <a href="#" class="btn btn-link align-self-fs">
+                Посмотреть
+                <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
+              </a>
+            </div>
+            <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">
+              <h3 class="text-uppercase">Стоимость проезда</h3>
+              <div class="d-flex-col card-body-active">
+                <p class="fg-1">Посмотрите подробную информацию о стоимости проезда</p>
+                <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/bill.png" alt="calendar">
+                <a href="#" class="btn btn-link align-self-fs">
+                  Посмотреть
+                  <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
+                </a>
+              </div>
+              <div class="d-flex-col card-body-disabled justify-center">
+                <div class="grid-12 mt-40 mb-40 mt-10-descsemi mb-10-descsemi">
+                  <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Рабочие дни</p>
+                  <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">150 рублей</p>
+                  <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Выходные и праздничные дни</p>
+                  <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">300 рублей</p>
+                  <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Дети до 7 лет</p>
+                  <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">Бесплатно</p>
+                  <p class="col-8 mt-0 mb-0 col-6-descsemi">Провоз велосипеда</p>
+                  <p class="col-4 text-right mt-0 mb-0 col-6-descsemi">Бесплатно</p>
+                </div>
+                <hr class="width-1 mt-0 mb-0">
+                <p class="mt-10-descsemi mb-10-descsemi">С сентября стоимость поездки составит 150&nbsp;рублей в день</p>
+                <p class="mt-0 mb-0">Речные маршруты включены в зону действия билетов «Единый» без лимита поездок на&nbsp;90 и&nbsp;365 дней</p>
+              </div>
+            </div>
+            <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">
+              <h3 class="text-uppercase">Как оплачивать</h3>
+              <div class="d-flex-col card-body-active">
+                <p class="fg-1">Пассажиры могут оплачивать проезд привычным для них способом</p>
+                <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/card.png" alt="calendar">
+                <a href="#" class="btn btn-link align-self-fs">
+                  Посмотреть
+                  <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
+                </a>
+              </div>
+              <div class="d-flex-col card-body-disabled justify-center">
+                <p>Картой</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="bg-dark-grey">
+        <div class="container pt-50 pb-50">
+          <div class="grid-12 d-flex-tab d-flex-col-mob pt-30-mob px-30-mob">
+            <div class="col-4 mb-40-mob">
+              <div class="logos-flex-wrapper mb-30">
+                <img src="%PUBLIC_URL%/images/icons/logo-river.svg" alt="river transport logo">
+                <img src="%PUBLIC_URL%/images/icons/logo-IC.svg" alt="innovation center logo">
+              </div>
+              <a href="#" class="btn btn-link btn-link-footer align-self-fs sepia-grey">
+                <img src="%PUBLIC_URL%/images/icons/boat.svg" alt="boat">
+                О речном транспорте
+              </a>
+            </div>
+            <div class="col-4 footer-links-wrapper">
+              <p class="bold mt-0 fs-1125">Речной транспорт</p>
+              <ul class="footer-list">
+                <li class="footer-list-item"><a class="footer-link" href="#">Причал</a></li>
+                <li class="footer-list-item"><a class="footer-link" href="#">Электросудно</a></li>
+                <li class="footer-list-item"><a class="footer-link" href="#">Маршруты</a></li>
+                <li class="footer-list-item"><a class="footer-link" href="#">Справка</a></li>
+              </ul>
+            </div>
+            <div class="col-4 footer-contacts">
+              <p class="bold mt-0 mb-30 fs-1125 fs-1-tab mb-20-mob">Контакт-центр<br>«Московский транспорт»</p>
+              <a class="footer-link fs-15 fs-1125-tab" href="tel:+74955395454">+7 495 539-54-54</a>
+              <a class="footer-link" href="tel:3210"><span class="fs-15 fs-1125-tab">3210</span> (с мобильного телефона)</a>
+            </div>
+          </div>
+          <div class="footer-links-wrapper-tab mt-60 mt-50-mob">
+            <a class="footer-link fs-0875-tab" href="#">Причал</a>
+            <a class="footer-link fs-0875-tab" href="#">Электросудно</a>
+            <a class="footer-link fs-0875-tab" href="#">Маршруты</a>
+            <a class="footer-link fs-0875-tab" href="#">Справка</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+<!--    <div class="js-number-block" data-number="4">-->
+<!--      <section id="pier-description" class="bg-grey">-->
+<!--        <div class="container grid-12 col-gap-10 pt-100 pb-100 d-flex-col-tab gap10-tab">-->
+<!--          <div class="col-6">-->
+<!--            <div class="grid-12-rows row-gap-10 col-gap-10 d-flex-col-mob gap10-mob">-->
+<!--              <div class="col-6 row-6">-->
+<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
+<!--                  <h3 class="text-uppercase">Комфортная зона<br>ожидания</h3>-->
+<!--                  <p class="card-body">Защита от&nbsp;солнца и&nbsp;ветра, а&nbsp;также комфортные диваны. Что может быть лучше?</p>-->
+<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/sofa.png" alt="sofa">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-6 row-6">-->
+<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
+<!--                  <h3 class="text-uppercase">Кофе-<br>машина</h3>-->
+<!--                  <p>Скрасить ожидание посадки вам поможет ароматная чашечка кофе</p>-->
+<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/coffee.png" alt="coffee">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-6 row-6">-->
+<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
+<!--                  <h3 class="text-uppercase">Оплата картой<br>«Тройка»</h3>-->
+<!--                  <p>Билет на&nbsp;транспорт всегда с&nbsp;вами. Но&nbsp;кассы на&nbsp;месте тоже работают</p>-->
+<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/troyka.png" alt="troyka">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-6 row-6">-->
+<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
+<!--                  <h3 class="text-uppercase">Комната матери<br>и&nbsp;ребенка</h3>-->
+<!--                  <p>Для мамочек с самыми юными пассажиров здесь предусмотрена специальная комната</p>-->
+<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/bathroom.png" alt="bathroom">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-6">-->
+<!--            <div class="card card-large bg-pier">-->
+<!--              <div class="card-content bg-grey-grad05">-->
+<!--                <h3 class="text-uppercase">Посетите виртуальную экскурсию по причалу</h3>-->
+<!--                <p class="mb-50-tab">Рассмотрите все удобства собственными глазами на примере причала на станции Киевская</p>-->
+<!--                <a href="#" class="vue_button btn btn-link sepia-black">-->
+<!--                  <img class="rotation-icon" src="%PUBLIC_URL%/images/icons/360.svg" alt="360">-->
+<!--                  Осмотреть-->
+<!--                </a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Секция с двумя маршрутами &ndash;&gt;-->
+<!--    &lt;!&ndash; <section id="pier-routes" class="bg-grey pos-rel">-->
+<!--      <div class="container pb-100">-->
+<!--        <h1 class="h1 text-uppercase mb-40">Маршруты</h1>-->
+<!--        <div class="card-flex-wrapper">-->
+<!--          <div class="card bg-grey-grad">-->
+<!--            <p class="route-number mt-0 mb-10">№1</p>-->
+<!--            <h3 class="text-uppercase">Киевский — Сердце столицы</h3>-->
+<!--            <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg alt="kievsky route"">-->
+<!--            <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
+<!--          </div>-->
+<!--          <div class="card bg-grey-grad card-disabled">-->
+<!--            <p class="route-number mt-0 mb-10">№2</p>-->
+<!--            <h3 class="text-uppercase cursor-pointer">Автозаводский Мост — Печатники</h3>-->
+<!--            <img class="card-img img-responsive d-block d-none-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg">-->
+<!--            <img class="card-img img-responsive d-none d-block-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg">-->
+<!--            <p>Раньше через Южный речной вокзал и прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у москвичей. Открытие нового маршрута состоится до конца года.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div id="fullimage" class="fullimage fullimage-disabled">-->
+<!--        <div class="fullimage-wrapper"></div>-->
+<!--      </div>-->
+<!--    </section> &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Секция с одним маршрутом &ndash;&gt;-->
+<!--    <section id="pier-routes" class="bg-grey pos-rel">-->
+<!--      <div class="container pb-100">-->
+<!--        <h1 class="h1 text-uppercase mb-40">Маршруты</h1>-->
+
+<!--        &lt;!&ndash; desktop, horizTab &ndash;&gt;-->
+<!--        <div class="card-flex-wrapper d-none-tab">-->
+<!--          <div class="card bg-grey-grad">-->
+<!--            <div class="grid-12 width-1 align-center">-->
+<!--              <div class="col-6 d-flex-col max-width-400">-->
+<!--                <p class="route-number mt-0 mb-10">№1</p>-->
+<!--                <h2 class="text-uppercase fs-125-tab">Киевский — Сердце столицы</h2>-->
+<!--                <p class="flex-11auto mt-30">Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
+<!--                <a data-route="kievsky" href="#" class="btn btn-link align-self-fs">-->
+<!--                  Посмотреть-->
+<!--                  <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
+<!--                </a>-->
+<!--              </div>-->
+<!--              <img class="col-6 card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; vertTab, mobile &ndash;&gt;-->
+<!--        <div class="card-flex-wrapper d-none d-flex-tab">-->
+<!--          <div class="card bg-grey-grad">-->
+<!--            <p class="route-number mt-0 mb-10">№1</p>-->
+<!--            <h3 class="text-uppercase">Киевский — Сердце столицы</h3>-->
+<!--            <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">-->
+<!--            <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; Отображение маршрута по клику &ndash;&gt;-->
+<!--      <div id="fullimage" class="fullimage fullimage-disabled">-->
+<!--        <div class="fullimage-wrapper"></div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+<!--    <section id="pier-faq" class="bg-grey">-->
+<!--      <div class="container pb-100">-->
+<!--        <h1 class="h1 text-uppercase mb-40">Справочная информация</h1>-->
+<!--        <div class="card-flex-wrapper">-->
+<!--          <div class="card card-faq bg-grey-grad sepia-grey-grad">-->
+<!--            <h3 class="text-uppercase">Расписание</h3>-->
+<!--            <p class="fg-1">Электросуда работают ежедневно.<br>Расписание можно посмотреть на едином транспортном портале</p>-->
+<!--            <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/calendar.png" alt="calendar">-->
+<!--            <a href="#" class="btn btn-link align-self-fs">-->
+<!--              Посмотреть-->
+<!--              <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">-->
+<!--            <h3 class="text-uppercase">Стоимость проезда</h3>-->
+<!--            <div class="d-flex-col card-body-active">-->
+<!--              <p class="fg-1">Посмотрите подробную информацию о стоимости проезда</p>-->
+<!--              <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/bill.png" alt="calendar">-->
+<!--              <a href="#" class="btn btn-link align-self-fs">-->
+<!--                Посмотреть-->
+<!--                <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
+<!--              </a>-->
+<!--            </div>-->
+<!--            <div class="d-flex-col card-body-disabled justify-center">-->
+<!--              <div class="grid-12 mt-40 mb-40 mt-10-descsemi mb-10-descsemi">-->
+<!--                <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Рабочие дни</p>-->
+<!--                <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">150 рублей</p>-->
+<!--                <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Выходные и праздничные дни</p>-->
+<!--                <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">300 рублей</p>-->
+<!--                <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Дети до 7 лет</p>-->
+<!--                <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">Бесплатно</p>-->
+<!--                <p class="col-8 mt-0 mb-0 col-6-descsemi">Провоз велосипеда</p>-->
+<!--                <p class="col-4 text-right mt-0 mb-0 col-6-descsemi">Бесплатно</p>-->
+<!--              </div>-->
+<!--              <hr class="width-1 mt-0 mb-0">-->
+<!--              <p class="mt-10-descsemi mb-10-descsemi">С сентября стоимость поездки составит 150&nbsp;рублей в день</p>-->
+<!--              <p class="mt-0 mb-0">Речные маршруты включены в зону действия билетов «Единый» без лимита поездок на&nbsp;90 и&nbsp;365 дней</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">-->
+<!--            <h3 class="text-uppercase">Как оплачивать</h3>-->
+<!--            <div class="d-flex-col card-body-active">-->
+<!--              <p class="fg-1">Пассажиры могут оплачивать проезд привычным для них способом</p>-->
+<!--              <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/card.png" alt="calendar">-->
+<!--              <a href="#" class="btn btn-link align-self-fs">-->
+<!--                Посмотреть-->
+<!--                <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
+<!--              </a>-->
+<!--            </div>-->
+<!--            <div class="d-flex-col card-body-disabled justify-center">-->
+<!--              <p>Картой</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+<!--    <footer class="bg-dark-grey">-->
+<!--      <div class="container pt-50 pb-50">-->
+<!--        <div class="grid-12 d-flex-tab d-flex-col-mob pt-30-mob px-30-mob">-->
+<!--          <div class="col-4 mb-40-mob">-->
+<!--            <div class="logos-flex-wrapper mb-30">-->
+<!--              <img src="%PUBLIC_URL%/images/icons/logo-river.svg" alt="river transport logo">-->
+<!--              <img src="%PUBLIC_URL%/images/icons/logo-IC.svg" alt="innovation center logo">-->
+<!--            </div>-->
+<!--            <a href="#" class="btn btn-link btn-link-footer align-self-fs sepia-grey">-->
+<!--              <img src="%PUBLIC_URL%/images/icons/boat.svg" alt="boat">-->
+<!--              О речном транспорте-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="col-4 footer-links-wrapper">-->
+<!--            <p class="bold mt-0 fs-1125">Речной транспорт</p>-->
+<!--            <ul class="footer-list">-->
+<!--              <li class="footer-list-item"><a class="footer-link" href="#">Причал</a></li>-->
+<!--              <li class="footer-list-item"><a class="footer-link" href="#">Электросудно</a></li>-->
+<!--              <li class="footer-list-item"><a class="footer-link" href="#">Маршруты</a></li>-->
+<!--              <li class="footer-list-item"><a class="footer-link" href="#">Справка</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--          <div class="col-4 footer-contacts">-->
+<!--            <p class="bold mt-0 mb-30 fs-1125 fs-1-tab mb-20-mob">Контакт-центр<br>«Московский транспорт»</p>-->
+<!--            <a class="footer-link fs-15 fs-1125-tab" href="tel:+74955395454">+7 495 539-54-54</a>-->
+<!--            <a class="footer-link" href="tel:3210"><span class="fs-15 fs-1125-tab">3210</span> (с мобильного телефона)</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="footer-links-wrapper-tab mt-60 mt-50-mob">-->
+<!--          <a class="footer-link fs-0875-tab" href="#">Причал</a>-->
+<!--          <a class="footer-link fs-0875-tab" href="#">Электросудно</a>-->
+<!--          <a class="footer-link fs-0875-tab" href="#">Маршруты</a>-->
+<!--          <a class="footer-link fs-0875-tab" href="#">Справка</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </footer>-->
+  </div>
+  <!--    width="100%" height="100%"-->
+
+<!--  <div class="vectary">-->
+<!--    <iframe src="https://app.vectary.com/p/2MhThwkU2zqEJvnw0qupN5/" width="100%" height="100%"></iframe>-->
+<!--    <button class="leave_button">-->
+<!--      <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
+<!--      ВЫЙТИ-->
+<!--    </button>-->
+<!--    <button class="interier_button">-->
+<!--      <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
+<!--      Интерьер-->
+<!--    </button>-->
+<!--  </div>-->
+</body>
+
 </html>

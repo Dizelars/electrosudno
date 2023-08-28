@@ -1,0 +1,245 @@
+@font-face {
+  font-family: "MoscowSans";
+  src: url("../fonts/moscowsansregular.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: map-get($colors, white);
+  font-family: "MoscowSans", sans-serif;
+}
+
+h1 {
+  margin: 0;
+  width: 100%;
+  font-size: 5rem;
+  line-height: 5rem;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0;
+  width: 100%;
+  font-size: 2.25rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+h3 {
+  margin: 0;
+  width: 100%;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+p {
+  width: 100%;
+  font-size: 1.125em;
+  line-height: 1.3rem;
+}
+
+.d-block {
+  display: block;
+}
+
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.align-self-fs {
+  align-self: flex-start;
+}
+
+.row-gap-10 {
+  row-gap: 10px;
+}
+
+.col-gap-10 {
+  column-gap: 10px;
+}
+
+.bg-grey-grad {
+  background: linear-gradient(287.08deg, #A19FAE 11.76%, #ACAABA 90.75%);
+}
+
+.bg-grey-grad05 {
+  background: linear-gradient(287.08deg, rgba(161, 159, 174, 0.5) 11.76%, rgba(172, 170, 186, 0.5) 90.75%);
+}
+
+.fg-1 {
+  flex-grow: 1;
+}
+
+.fs-15 {
+  font-size: 1.5rem;
+  line-height: 1.95rem;
+}
+
+.fs-1125 {
+  font-size: 1.125rem;
+  line-height: 1.45rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+@mixin mx($mr: 0, $ml: 0) {
+  margin-right: $mr;
+  margin-left: $ml;
+}
+
+@mixin my($mt: 0, $md: 0) {
+  margin-top: $mt;
+  margin-bottom: $md;
+}
+
+@mixin px($pr: 0, $pl: 0) {
+  padding-right: $pr;
+  padding-left: $pl;
+}
+
+@mixin py($pt: 0, $pb: 0) {
+  padding-top: $pt;
+  padding-bottom: $pb;
+}
+
+@for $i from 0 through 10 {
+  $step: $i * 10;
+
+  .mt-#{$step} {
+    margin-top: $step * 1px;
+  }
+
+  .mr-#{$step} {
+    margin-right: $step * 1px;
+  }
+
+  .mb-#{$step} {
+    margin-bottom: $step * 1px;
+  }
+
+  .ml-#{$step} {
+    margin-left: $step * 1px;
+  }
+
+  .pt-#{$step} {
+    padding-top: $step * 1px;
+  }
+
+  .pr-#{$step} {
+    padding-right: $step * 1px;
+  }
+
+  .pb-#{$step} {
+    padding-bottom: $step * 1px;
+  }
+
+  .pl-#{$step} {
+    padding-left: $step * 1px;
+  }
+}
+
+@mixin text-color($color-name, $color-value) {
+  .text-#{"" + $color-name} {
+    color: $color-value;
+  }
+}
+
+@mixin btn-color($color-name, $color-value) {
+  .btn-#{"" + $color-name} {
+    background-color: $color-value;
+  }
+}
+
+@mixin bg-color($color-name, $color-value) {
+  .bg-#{"" + $color-name} {
+    background-color: $color-value;
+  }
+}
+
+@mixin bg-image($url) {
+  background-image: url($url);
+  // background-position: center;
+  // background-size: cover;
+}
+
+@each $color-name, $color-value in $colors {
+  @include text-color($color-name, $color-value);
+  @include btn-color($color-name, $color-value);
+  @include bg-color($color-name, $color-value);
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: span $i;
+  }
+}
+
+@for $i from 1 through 12 {
+  .row-#{$i} {
+    grid-row: span $i;
+  }
+}
+
+@media (max-width: map-get($breakpoints, horizTab)) {
+  p {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (max-width: map-get($breakpoints, vertTab)) {
+  h1 {
+    font-size: 3.75rem;
+    line-height: 3.75rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+  }
+
+  .fs-125-tab {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+  }
+
+  .fs-1-tab {
+    font-size: 1rem;
+    line-height: 1.3rem;
+  }
+
+  .fs-1125-tab {
+    font-size: 1.125rem;
+    line-height: 1.45rem;
+  }
+
+  .fs-0875-tab {
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+  }
+
+  @media (max-width: 440px) {
+    h1 {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+
+    .p-30-mob {
+      padding: 30px;
+    }
+  }
+}
