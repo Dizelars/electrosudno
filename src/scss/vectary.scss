@@ -200,11 +200,6 @@
 }
 
 @media (max-width: 1200px) {
-  //.vectary .tech_speck {
-  //  left: 40px;
-  //  bottom: 31px;
-  //}
-
   .vectary .tech_speck div[class^="tech_speck-"] {
     padding: 14px 20px 14px 14px;
   }
@@ -220,7 +215,29 @@
 }
 
 
+@media (max-width: 1024px) {
+  //.vectary .tech_speck {
+  //  left: 24px;
+  //  top: 30px;
+  //}
 
+  .vectary .tech_speck div[class^="tech_speck-"] {
+    padding: 32px 50px 32px 30px;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"] p {
+    font-size: 20px;
+  }
+
+  .vectary .interior_button {
+    padding: 24px 30px;
+    font-size: 15px;
+    left: 24px;
+    top: 30px;
+    bottom: unset;
+    right: unset;
+  }
+}
 
 
 

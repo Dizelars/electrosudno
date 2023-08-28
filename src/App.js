@@ -79,20 +79,40 @@ function App() {
         nextVideo.classList.add("active");
 
         if (nextVideo.hasAttribute("data-info-text")) {
+          // добавить проверку на дата атрибуты и показывать один блок с разным контентом из атрибутов
           infoElem.classList.add("active");
           infoElem.innerHTML = nextVideo.getAttribute("data-info-text");
         } else {
           infoElem.classList.remove("active");
         }
+        if (nextVideo.hasAttribute("data-transit")) {
+          // nextVideo.removeAttribute('loop');
+          onVideoEndListener = () => {
+            console.log('hello')
+            // Удаляем слушатель
+            nextVideo.removeEventListener("ended", onVideoEndListener);
+            onVideoEndListener = null;
+
+            // Возвращаем атрибут цикличности после завершения и ставим на старт
+
+            // switchHandler(direction);
+            doSwitch();
+          };
+          nextVideo.addEventListener("ended", onVideoEndListener);
+        }
+        // добавить логику вызов switchHandler() если след видео имеет датат атрибут data-transit
       };
 
       // Если текущий активный блок - видео, то убираем цикличность для ожидания завершения
+      // добавить условие И если видео не завершено
       if (activeBlock.tagName === "VIDEO") {
         // Удаляем у активного блока цикличность чтобы дождаться события его завершения
         activeBlock.removeAttribute("loop");
+        console.log('VIDEO')
 
         // Слушатель события завершения видео
         onVideoEndListener = () => {
+          console.log('завершения видео')
           // Удаляем слушатель
           activeBlock.removeEventListener("ended", onVideoEndListener);
           onVideoEndListener = null;
