@@ -46,6 +46,10 @@ function App() {
 
     // Обработчик для переключения видеофрагментов
     const switchHandler = (direction) => {
+      // TODO: Избавиться от direction вовсе
+      if (direction === 'prev') {
+        return;
+      }
       if (onVideoEndListener) {
         return;
       }
@@ -358,12 +362,20 @@ function App() {
 
 
   // Плавное переключение секций на весь экран при движении колеса мыши
+  let sectionVideoEndListener = null;
   const sections = document.querySelectorAll('section, footer');
   let currentSectionIndex = 0;
   let isScrolling = false;
 
 // Ожидание события "wheel" (прокрутка колеса мыши)
   document.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (sectionVideoEndListener) {
+      return;
+    }
+
     if (!isScrolling) {
       isScrolling = true;
 
@@ -377,15 +389,17 @@ function App() {
         currentSectionIndex--;
       }
 
+      const currentSection = sections[currentSectionIndex];
+
       // Вызов функции для плавной анимированной прокрутки
-      scrollToSection(sections[currentSectionIndex]);
+      scrollToSection(currentSection);
 
       // Установка таймера для предотвращения множественных срабатываний
       setTimeout(() => {
         isScrolling = false;
       }, 1000); // Здесь задержка, чтобы избежать множественных срабатываний
     }
-  });
+  }, { passive: false });
 
 // Функция для анимированной прокрутки к указанной секции
   function scrollToSection(section) {
@@ -405,6 +419,22 @@ function App() {
       // Продолжение анимации, если не достигнут конец анимации
       if (currentTime < duration) {
         requestAnimationFrame(step);
+        return;
+      }
+
+      const video = section.querySelector('.section-video');
+
+      if (video) {
+        video.currentTime = 0;
+        video.classList.add('section-video_active');
+  
+        sectionVideoEndListener = () => {
+          video.classList.remove('section-video_active');
+          video.removeEventListener("ended", sectionVideoEndListener);
+          sectionVideoEndListener = null;
+        };
+  
+        video.addEventListener("ended", sectionVideoEndListener);
       }
     }
 
