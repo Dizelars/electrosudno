@@ -1443,19 +1443,12 @@ a-scene {
   .vectary .interior_button {
     bottom: 41px;
     right: 40px;
-    padding: 20px;
+    padding: 22px;
   }
 }
 @media (max-width: 1200px) {
-  .vectary .tech_speck div[class^=tech_speck-] {
-    padding: 14px 20px 14px 14px;
-  }
   .vectary .tech_speck div[class^=tech_speck-] p {
     font-size: 16px;
-  }
-  .vectary .interior_button {
-    padding: 14px;
-    font-size: 14px;
   }
 }
 @media (max-width: 1024px) {
@@ -1464,10 +1457,7 @@ a-scene {
     bottom: 30px;
   }
   .vectary .tech_speck div[class^=tech_speck-] {
-    padding: 32px 50px 32px 30px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-] p {
-    font-size: 20px;
+    padding: 30px;
   }
   .vectary .interior_button {
     padding: 24px 30px;
@@ -1476,6 +1466,59 @@ a-scene {
     top: 30px;
     bottom: unset;
     right: unset;
+  }
+}
+@media (max-width: 840px) {
+  .vectary .tech_speck div[class^=tech_speck-] {
+    padding: 14px;
+  }
+  .vectary .tech_speck div[class^=tech_speck-] p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 640px) {
+  .vectary .interior_button {
+    padding: 10px 30px;
+    font-size: 14px;
+  }
+  .vectary .tech_speck {
+    max-width: 580px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: unset;
+    border: none;
+    background: none;
+    backdrop-filter: none;
+  }
+  .vectary .tech_speck div[class^=tech_speck-] {
+    background: linear-gradient(290deg, rgba(161, 159, 174, 0.8) 0%, rgba(172, 170, 186, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    max-width: 210px;
+    width: 100%;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) {
+    border-radius: 20px 0 0 20px;
+    border-right: 2px solid #b9b8c4;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(1),
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2) {
+    border-bottom: 2px solid #b9b8c4;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(even) {
+    border-radius: 0 20px 20px 0;
+  }
+  .vectary .tech_speck div[class^=tech_speck-] p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 440px) {
+  .vectary .interior_button {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 .video_content {
