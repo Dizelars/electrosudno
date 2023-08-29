@@ -1,61 +1,74 @@
-//.video_content {
-//  display: none;
-//}
-//
-//.site_content {
-//  display: block;
-//}
+.video_content {
+  display: none;
+}
+
+.site_content {
+  display: block;
+}
 
 section {
-  height: 100vh;
-  width: 100%;
   scroll-snap-align: start;
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
 }
 
-.background_block {
-  width: 100%;
+section#pier-description,
+section#sinichka-section {
   height: 100vh;
-  //background: url("../../public/images/section_prev.jpg") no-repeat center/cover;
-  background-color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
+@media (max-width: 900px) {
+  section#pier-description, {
+    height: auto;
+    width: 100%;
+    display: block;
+  }
+}
+
+
+//.background_block {
+//  width: 100%;
+//  height: 100vh;
+//  //background: url("../../public/images/section_prev.jpg") no-repeat center/cover;
+//  background-color: black;
+//}
 
 .sinichka_fixed {
   height: 100vh;
   width: 100%;
   position: sticky;
   //top: 0;
-  z-index: 15;
+  //z-index: 15;
 }
 
-.proximity {
-  position: relative;
-  background-color: #9794a6;
-  width: 100%;
-  height: 100%;
-}
-
-.proximity .door_1,
-.proximity .door_2 {
-  position: absolute;
-  width: 30%;
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(68, 69, 74, 0.88);
-  z-index: 1;
-}
-
-.proximity .door_1 {
-  right: 20%;
-}
-
-.proximity .door_2 {
-  left: 20%;
-}
-
+//.proximity {
+//  position: relative;
+//  background-color: #9794a6;
+//  width: 100%;
+//  height: 100%;
+//}
+//
+//.proximity .door_1,
+//.proximity .door_2 {
+//  position: absolute;
+//  width: 30%;
+//  height: 100vh;
+//  top: 0;
+//  bottom: 0;
+//  background-color: rgba(68, 69, 74, 0.88);
+//  z-index: 1;
+//}
+//
+//.proximity .door_1 {
+//  right: 20%;
+//}
+//
+//.proximity .door_2 {
+//  left: 20%;
+//}
 
 //.proximity .model_wue {
 //  position: relative;
@@ -64,12 +77,12 @@ section {
 //  border-radius: 35px;
 //}
 //
-.proximity .model_img {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
+//.proximity .model_img {
+//  position: absolute;
+//  display: inline-block;
+//  top: 50%;
+//  left: 50%;
+//  transform: translate(-50%, -50%);
+//  cursor: pointer;
+//}
 

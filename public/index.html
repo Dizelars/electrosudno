@@ -105,13 +105,13 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+
   <div id="main" class="bord">
 
     <div class="video_content">
 <!--      data-info-text="Квадрат увеличился в размере"-->
       <video class="bg-video js-number-block active" autoplay muted loop data-number="1" data-info-text-numder='2'>
       </video>
-
 
 <!--      loop-->
       <video class="bg-video js-number-block" autoplay muted data-number="2" data-info-text data-transit>
@@ -128,7 +128,7 @@
 
       <video class="bg-video js-number-block" autoplay muted loop data-number="6" data-info-text>
       </video>
-      
+
       <div class="mouse_prev">
         <div class="mouse_prev-wrapper">
           <div class="mouse_prev_arrow">
@@ -242,223 +242,225 @@
                   Осмотреть
                 </a>
               </div>
-              <a-scene>
-                <a-assets>
-                  <script id="flatShader" type="x-shader/x-fragment">
-          varying vec2 vUv;
-          void main() {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-          }
-        </script>
+<!--              <div class="aframe_wrapper">-->
+<!--                <a-scene>-->
+<!--                  <a-assets>-->
+<!--                    <script id="flatShader" type="x-shader/x-fragment">-->
+<!--          varying vec2 vUv;-->
+<!--          void main() {-->
+<!--            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);-->
+<!--          }-->
+<!--        </script>-->
 
-                  <img
-                          id="room1"
-                          src="https://coddmac.store/THREE/360/amarok/Interior.jpg"
-                          crossorigin="anonymous"
-                          importance="high"
-                  />
-                  <img
-                          id="room2"
-                          src="https://coddmac.store/THREE/360/largus/Interior.jpg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
-                  <img
-                          id="room3"
-                          src="https://coddmac.store/BKL/360/Varshavskaya/3.jpg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
-                  <img
-                          id="room4"
-                          src="https://coddmac.store/BKL/360/Varshavskaya/4.jpg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
-                  <img
-                          id="room5"
-                          src="https://coddmac.store/BKL/360/Varshavskaya/5.jpg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
-                  <img
-                          id="hotspot"
-                          src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg"
-                          crossorigin="anonymous"
-                  />
+<!--                    <img-->
+<!--                            id="room1"-->
+<!--                            src="https://coddmac.store/THREE/360/amarok/Interior.jpg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="high"-->
+<!--                    />-->
+<!--                    <img-->
+<!--                            id="room2"-->
+<!--                            src="https://coddmac.store/THREE/360/largus/Interior.jpg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
+<!--                    <img-->
+<!--                            id="room3"-->
+<!--                            src="https://coddmac.store/BKL/360/Varshavskaya/3.jpg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
+<!--                    <img-->
+<!--                            id="room4"-->
+<!--                            src="https://coddmac.store/BKL/360/Varshavskaya/4.jpg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
+<!--                    <img-->
+<!--                            id="room5"-->
+<!--                            src="https://coddmac.store/BKL/360/Varshavskaya/5.jpg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
+<!--                    <img-->
+<!--                            id="hotspot"-->
+<!--                            src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                    />-->
 
-                  <img
-                          id="crossIcon"
-                          src="https://coddmac.store/THREE/360/cross-icon.svg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
+<!--                    <img-->
+<!--                            id="crossIcon"-->
+<!--                            src="https://coddmac.store/THREE/360/cross-icon.svg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
 
-                  <img
-                          id="text-01"
-                          src="https://coddmac.store/THREE/360/text/text-01.svg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
+<!--                    <img-->
+<!--                            id="text-01"-->
+<!--                            src="https://coddmac.store/THREE/360/text/text-01.svg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
 
-                  <img
-                          id="text-02"
-                          src="https://coddmac.store/THREE/360/text/text-02.svg"
-                          crossorigin="anonymous"
-                          importance="low"
-                  />
+<!--                    <img-->
+<!--                            id="text-02"-->
+<!--                            src="https://coddmac.store/THREE/360/text/text-02.svg"-->
+<!--                            crossorigin="anonymous"-->
+<!--                            importance="low"-->
+<!--                    />-->
 
-                  <a-mixin
-                          id="info-sphere"
-                          geometry="primitive: sphere; radius: 0.4;"
-                          material="color: #ff0000;"
-                  ></a-mixin>
+<!--                    <a-mixin-->
+<!--                            id="info-sphere"-->
+<!--                            geometry="primitive: sphere; radius: 0.4;"-->
+<!--                            material="color: #ff0000;"-->
+<!--                    ></a-mixin>-->
 
-                  <template id="infoPanel1">
-                    <a-plane
-                            color="black"
-                            material="shader: flat"
-                            height="2"
-                            width="4"
-                            position="0 0 0"
-                            rounded="2.8"
-                    >
-                      <a-image
-                              position="0 0 0.1"
-                              src="#text-02"
-                              width="4"
-                              height="1"
-                              height="0.3"
-                      ></a-image>
-                      <a-image
-                              position="1.7 0.7 0.1"
-                              src="#crossIcon"
-                              width="0.33"
-                              height="0.33"
-                      ></a-image>
-                    </a-plane>
-                  </template>
+<!--                    <template id="infoPanel1">-->
+<!--                      <a-plane-->
+<!--                              color="black"-->
+<!--                              material="shader: flat"-->
+<!--                              height="2"-->
+<!--                              width="4"-->
+<!--                              position="0 0 0"-->
+<!--                              rounded="2.8"-->
+<!--                      >-->
+<!--                        <a-image-->
+<!--                                position="0 0 0.1"-->
+<!--                                src="#text-02"-->
+<!--                                width="4"-->
+<!--                                height="1"-->
+<!--                                height="0.3"-->
+<!--                        ></a-image>-->
+<!--                        <a-image-->
+<!--                                position="1.7 0.7 0.1"-->
+<!--                                src="#crossIcon"-->
+<!--                                width="0.33"-->
+<!--                                height="0.33"-->
+<!--                        ></a-image>-->
+<!--                      </a-plane>-->
+<!--                    </template>-->
 
-                  <template id="infoPanel2">
-                    <a-plane
-                            color="black"
-                            material="shader: flat"
-                            height="2"
-                            width="4"
-                            position="0 0 0"
-                            rounded="2.8"
-                    >
-                      <a-image
-                              position="0 0 0.1"
-                              src="#text-01"
-                              width="4"
-                              height="1"
-                              height="0.3"
-                      ></a-image>
-                      <a-image
-                              position="1.7 0.7 0.1"
-                              src="#crossIcon"
-                              width="0.33"
-                              height="0.33"
-                      ></a-image>
-                    </a-plane>
-                  </template>
-                </a-assets>
+<!--                    <template id="infoPanel2">-->
+<!--                      <a-plane-->
+<!--                              color="black"-->
+<!--                              material="shader: flat"-->
+<!--                              height="2"-->
+<!--                              width="4"-->
+<!--                              position="0 0 0"-->
+<!--                              rounded="2.8"-->
+<!--                      >-->
+<!--                        <a-image-->
+<!--                                position="0 0 0.1"-->
+<!--                                src="#text-01"-->
+<!--                                width="4"-->
+<!--                                height="1"-->
+<!--                                height="0.3"-->
+<!--                        ></a-image>-->
+<!--                        <a-image-->
+<!--                                position="1.7 0.7 0.1"-->
+<!--                                src="#crossIcon"-->
+<!--                                width="0.33"-->
+<!--                                height="0.33"-->
+<!--                        ></a-image>-->
+<!--                      </a-plane>-->
+<!--                    </template>-->
+<!--                  </a-assets>-->
 
-                <!-- room teleport hotspots -->
+<!--                  &lt;!&ndash; room teleport hotspots &ndash;&gt;-->
 
-                <a-entity id="spots" hotspots="">
-                  <a-entity id="group-room1">
-                    <a-image
-                            src="#hotspot"
-                            spot="linkto:#room2;spotgroup:group-room2;phiStart:0"
-                            position="0 -2 8"
-                            look-at
-                    ></a-image>
+<!--                  <a-entity id="spots" hotspots="">-->
+<!--                    <a-entity id="group-room1">-->
+<!--                      <a-image-->
+<!--                              src="#hotspot"-->
+<!--                              spot="linkto:#room2;spotgroup:group-room2;phiStart:0"-->
+<!--                              position="0 -2 8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
 
-                    <a-entity position="0 1 6" look-at rotation="180 0 180">
-                      <a-entity mixin="info-sphere" id="sphere1"> </a-entity>
-                      <a-entity id="infoPanelContainer1"></a-entity>
-                    </a-entity>
+<!--                      <a-entity position="0 1 6" look-at rotation="180 0 180">-->
+<!--                        <a-entity mixin="info-sphere" id="sphere1"> </a-entity>-->
+<!--                        <a-entity id="infoPanelContainer1"></a-entity>-->
+<!--                      </a-entity>-->
 
-                    <a-entity position="-4.5 -1.75 -8" look-at>
-                      <a-entity mixin="info-sphere" id="sphere2"> </a-entity>
-                      <a-entity id="infoPanelContainer2"></a-entity>
-                    </a-entity>
-                  </a-entity>
+<!--                      <a-entity position="-4.5 -1.75 -8" look-at>-->
+<!--                        <a-entity mixin="info-sphere" id="sphere2"> </a-entity>-->
+<!--                        <a-entity id="infoPanelContainer2"></a-entity>-->
+<!--                      </a-entity>-->
+<!--                    </a-entity>-->
 
-                  <a-entity id="group-room2" scale="0 0 0">
-                    <a-image
-                            spot="linkto:#room1;spotgroup:group-room1;phiStart:175"
-                            src="#hotspot"
-                            position="0 1 8"
-                            look-at
-                    ></a-image>
-                  </a-entity>
+<!--                    <a-entity id="group-room2" scale="0 0 0">-->
+<!--                      <a-image-->
+<!--                              spot="linkto:#room1;spotgroup:group-room1;phiStart:175"-->
+<!--                              src="#hotspot"-->
+<!--                              position="0 1 8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
+<!--                    </a-entity>-->
 
-                  <a-entity id="group-room3" scale="0 0 0">
-                    <a-image
-                            spot="linkto:#room2;spotgroup:group-room2;phiStart:146"
-                            src="#hotspot"
-                            position="0 1 8"
-                            look-at
-                    ></a-image>
-                    <a-image
-                            spot="linkto:#room4;spotgroup:group-room4;phiStart:90"
-                            src="#hotspot"
-                            position="0 1 -8"
-                            look-at
-                    ></a-image>
-                  </a-entity>
+<!--                    <a-entity id="group-room3" scale="0 0 0">-->
+<!--                      <a-image-->
+<!--                              spot="linkto:#room2;spotgroup:group-room2;phiStart:146"-->
+<!--                              src="#hotspot"-->
+<!--                              position="0 1 8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
+<!--                      <a-image-->
+<!--                              spot="linkto:#room4;spotgroup:group-room4;phiStart:90"-->
+<!--                              src="#hotspot"-->
+<!--                              position="0 1 -8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
+<!--                    </a-entity>-->
 
-                  <a-entity id="group-room4" scale="0 0 0">
-                    <a-image
-                            spot="linkto:#room3;spotgroup:group-room3;phiStart:120"
-                            src="#hotspot"
-                            position="0 1 8"
-                            look-at
-                    ></a-image>
-                    <a-image
-                            spot="linkto:#room5;spotgroup:group-room5;phiStart:90"
-                            src="#hotspot"
-                            position="0 1 8"
-                            look-at
-                    ></a-image>
-                  </a-entity>
+<!--                    <a-entity id="group-room4" scale="0 0 0">-->
+<!--                      <a-image-->
+<!--                              spot="linkto:#room3;spotgroup:group-room3;phiStart:120"-->
+<!--                              src="#hotspot"-->
+<!--                              position="0 1 8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
+<!--                      <a-image-->
+<!--                              spot="linkto:#room5;spotgroup:group-room5;phiStart:90"-->
+<!--                              src="#hotspot"-->
+<!--                              position="0 1 8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
+<!--                    </a-entity>-->
 
-                  <a-entity id="group-room5" scale="0 0 0">
-                    <a-image
-                            spot="linkto:#room4;spotgroup:group-room4;phiStart:90"
-                            src="#hotspot"
-                            position="0 1 8"
-                            look-at
-                    ></a-image>
-                  </a-entity>
-                </a-entity>
+<!--                    <a-entity id="group-room5" scale="0 0 0">-->
+<!--                      <a-image-->
+<!--                              spot="linkto:#room4;spotgroup:group-room4;phiStart:90"-->
+<!--                              src="#hotspot"-->
+<!--                              position="0 1 8"-->
+<!--                              look-at-->
+<!--                      ></a-image>-->
+<!--                    </a-entity>-->
+<!--                  </a-entity>-->
 
-                <a-entity
-                        id="cam"
-                        camera="fov:80"
-                        position="0 1.6 0"
-                        look-controls
-                        cursor="rayOrigin: mouse"
-                        animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;"
-                        animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;"
-                >
-                  <a-plane
-                          id="camfadeplane"
-                          rotation="10 0.5 0"
-                          position="0 0 -0.5"
-                          material="color:#000000;transparent:true;opacity:0"
-                          width="0"
-                          height="0"
-                          animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn"
-                          animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut"
-                  ></a-plane>
-                </a-entity>
+<!--                  <a-entity-->
+<!--                          id="cam"-->
+<!--                          camera="fov:80"-->
+<!--                          position="0 1.6 0"-->
+<!--                          look-controls-->
+<!--                          cursor="rayOrigin: mouse"-->
+<!--                          animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;"-->
+<!--                          animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;"-->
+<!--                  >-->
+<!--                    <a-plane-->
+<!--                            id="camfadeplane"-->
+<!--                            rotation="10 0.5 0"-->
+<!--                            position="0 0 -0.5"-->
+<!--                            material="color:#000000;transparent:true;opacity:0"-->
+<!--                            width="0"-->
+<!--                            height="0"-->
+<!--                            animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn"-->
+<!--                            animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut"-->
+<!--                    ></a-plane>-->
+<!--                  </a-entity>-->
 
-                <a-sky id="skybox" src="#room1" rotation="0 0 0" phi-start="175"></a-sky>
-              </a-scene>
+<!--                  <a-sky id="skybox" src="#room1" rotation="0 0 0" phi-start="175"></a-sky>-->
+<!--                </a-scene>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
@@ -469,7 +471,7 @@
           <source
             src="/3video.mp4"
             type="video/mp4" />
-          <source>
+<!--          <source src="">-->
         </video>
 <!--        <div class="proximity">-->
 <!--          <div class="door_1"></div>-->
@@ -483,16 +485,7 @@
 
 
         <div class="vectary">
-<!--          <iframe src="https://app.vectary.com/p/2MhThwkU2zqEJvnw0qupN5/" width="100%" height="100%"></iframe>-->
           <iframe src="https://app.vectary.com/p/6YGTFqmzg1ssFGNU2tCHY1" width="100%" height="100%"></iframe>
-<!--          <button class="leave_button">-->
-<!--            <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
-<!--            ВЫЙТИ-->
-<!--          </button>-->
-<!--          <button class="interier_button">-->
-<!--            <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
-<!--            Интерьер-->
-<!--          </button>-->
           <div class="tech_speck">
             <div class="tech_speck-1 tech_speck-info">
               <p class="tech_speck-title">Класс судна:</p>
@@ -512,7 +505,7 @@
             </div>
           </div>
           <button class="interior_button sepia-black">
-            <img class="leave_button_img" src="%PUBLIC_URL%/images/icons/360.svg" alt="ВЫЙТИ">
+            <img class="leave_button_img" src="%PUBLIC_URL%/images/icons/360.svg" alt="осмотреть салон">
             осмотреть салон
           </button>
         </div>
@@ -677,264 +670,285 @@
       </footer>
     </div>
 
-<!--    <div class="js-number-block" data-number="4">-->
-<!--      <section id="pier-description" class="bg-grey">-->
-<!--        <div class="container grid-12 col-gap-10 pt-100 pb-100 d-flex-col-tab gap10-tab">-->
-<!--          <div class="col-6">-->
-<!--            <div class="grid-12-rows row-gap-10 col-gap-10 d-flex-col-mob gap10-mob">-->
-<!--              <div class="col-6 row-6">-->
-<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
-<!--                  <h3 class="text-uppercase">Комфортная зона<br>ожидания</h3>-->
-<!--                  <p class="card-body">Защита от&nbsp;солнца и&nbsp;ветра, а&nbsp;также комфортные диваны. Что может быть лучше?</p>-->
-<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/sofa.png" alt="sofa">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-6 row-6">-->
-<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
-<!--                  <h3 class="text-uppercase">Кофе-<br>машина</h3>-->
-<!--                  <p>Скрасить ожидание посадки вам поможет ароматная чашечка кофе</p>-->
-<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/coffee.png" alt="coffee">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-6 row-6">-->
-<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
-<!--                  <h3 class="text-uppercase">Оплата картой<br>«Тройка»</h3>-->
-<!--                  <p>Билет на&nbsp;транспорт всегда с&nbsp;вами. Но&nbsp;кассы на&nbsp;месте тоже работают</p>-->
-<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/troyka.png" alt="troyka">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-6 row-6">-->
-<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
-<!--                  <h3 class="text-uppercase">Комната матери<br>и&nbsp;ребенка</h3>-->
-<!--                  <p>Для мамочек с самыми юными пассажиров здесь предусмотрена специальная комната</p>-->
-<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/bathroom.png" alt="bathroom">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-6">-->
-<!--            <div class="card card-large bg-pier">-->
-<!--              <div class="card-content bg-grey-grad05">-->
-<!--                <h3 class="text-uppercase">Посетите виртуальную экскурсию по причалу</h3>-->
-<!--                <p class="mb-50-tab">Рассмотрите все удобства собственными глазами на примере причала на станции Киевская</p>-->
-<!--                <a href="#" class="vue_button btn btn-link sepia-black">-->
-<!--                  <img class="rotation-icon" src="%PUBLIC_URL%/images/icons/360.svg" alt="360">-->
-<!--                  Осмотреть-->
-<!--                </a>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </section>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Секция с двумя маршрутами &ndash;&gt;-->
-<!--    &lt;!&ndash; <section id="pier-routes" class="bg-grey pos-rel">-->
-<!--      <div class="container pb-100">-->
-<!--        <h1 class="h1 text-uppercase mb-40">Маршруты</h1>-->
-<!--        <div class="card-flex-wrapper">-->
-<!--          <div class="card bg-grey-grad">-->
-<!--            <p class="route-number mt-0 mb-10">№1</p>-->
-<!--            <h3 class="text-uppercase">Киевский — Сердце столицы</h3>-->
-<!--            <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg alt="kievsky route"">-->
-<!--            <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
-<!--          </div>-->
-<!--          <div class="card bg-grey-grad card-disabled">-->
-<!--            <p class="route-number mt-0 mb-10">№2</p>-->
-<!--            <h3 class="text-uppercase cursor-pointer">Автозаводский Мост — Печатники</h3>-->
-<!--            <img class="card-img img-responsive d-block d-none-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg">-->
-<!--            <img class="card-img img-responsive d-none d-block-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg">-->
-<!--            <p>Раньше через Южный речной вокзал и прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у москвичей. Открытие нового маршрута состоится до конца года.</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div id="fullimage" class="fullimage fullimage-disabled">-->
-<!--        <div class="fullimage-wrapper"></div>-->
-<!--      </div>-->
-<!--    </section> &ndash;&gt;-->
-
-<!--    &lt;!&ndash; Секция с одним маршрутом &ndash;&gt;-->
-<!--    <section id="pier-routes" class="bg-grey pos-rel">-->
-<!--      <div class="container pb-100">-->
-<!--        <h1 class="h1 text-uppercase mb-40">Маршруты</h1>-->
-
-<!--        &lt;!&ndash; desktop, horizTab &ndash;&gt;-->
-<!--        <div class="card-flex-wrapper d-none-tab">-->
-<!--          <div class="card bg-grey-grad">-->
-<!--            <div class="grid-12 width-1 align-center">-->
-<!--              <div class="col-6 d-flex-col max-width-400">-->
-<!--                <p class="route-number mt-0 mb-10">№1</p>-->
-<!--                <h2 class="text-uppercase fs-125-tab">Киевский — Сердце столицы</h2>-->
-<!--                <p class="flex-11auto mt-30">Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
-<!--                <a data-route="kievsky" href="#" class="btn btn-link align-self-fs">-->
-<!--                  Посмотреть-->
-<!--                  <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
-<!--                </a>-->
-<!--              </div>-->
-<!--              <img class="col-6 card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; vertTab, mobile &ndash;&gt;-->
-<!--        <div class="card-flex-wrapper d-none d-flex-tab">-->
-<!--          <div class="card bg-grey-grad">-->
-<!--            <p class="route-number mt-0 mb-10">№1</p>-->
-<!--            <h3 class="text-uppercase">Киевский — Сердце столицы</h3>-->
-<!--            <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">-->
-<!--            <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; Отображение маршрута по клику &ndash;&gt;-->
-<!--      <div id="fullimage" class="fullimage fullimage-disabled">-->
-<!--        <div class="fullimage-wrapper"></div>-->
-<!--      </div>-->
-<!--    </section>-->
-
-<!--    <section id="pier-faq" class="bg-grey">-->
-<!--      <div class="container pb-100">-->
-<!--        <h1 class="h1 text-uppercase mb-40">Справочная информация</h1>-->
-<!--        <div class="card-flex-wrapper">-->
-<!--          <div class="card card-faq bg-grey-grad sepia-grey-grad">-->
-<!--            <h3 class="text-uppercase">Расписание</h3>-->
-<!--            <p class="fg-1">Электросуда работают ежедневно.<br>Расписание можно посмотреть на едином транспортном портале</p>-->
-<!--            <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/calendar.png" alt="calendar">-->
-<!--            <a href="#" class="btn btn-link align-self-fs">-->
-<!--              Посмотреть-->
-<!--              <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
-<!--            </a>-->
-<!--          </div>-->
-<!--          <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">-->
-<!--            <h3 class="text-uppercase">Стоимость проезда</h3>-->
-<!--            <div class="d-flex-col card-body-active">-->
-<!--              <p class="fg-1">Посмотрите подробную информацию о стоимости проезда</p>-->
-<!--              <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/bill.png" alt="calendar">-->
-<!--              <a href="#" class="btn btn-link align-self-fs">-->
-<!--                Посмотреть-->
-<!--                <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div class="d-flex-col card-body-disabled justify-center">-->
-<!--              <div class="grid-12 mt-40 mb-40 mt-10-descsemi mb-10-descsemi">-->
-<!--                <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Рабочие дни</p>-->
-<!--                <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">150 рублей</p>-->
-<!--                <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Выходные и праздничные дни</p>-->
-<!--                <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">300 рублей</p>-->
-<!--                <p class="col-8 mt-0 mb-10-descsemi col-6-descsemi">Дети до 7 лет</p>-->
-<!--                <p class="col-4 text-right mt-0 mb-10-descsemi col-6-descsemi">Бесплатно</p>-->
-<!--                <p class="col-8 mt-0 mb-0 col-6-descsemi">Провоз велосипеда</p>-->
-<!--                <p class="col-4 text-right mt-0 mb-0 col-6-descsemi">Бесплатно</p>-->
-<!--              </div>-->
-<!--              <hr class="width-1 mt-0 mb-0">-->
-<!--              <p class="mt-10-descsemi mb-10-descsemi">С сентября стоимость поездки составит 150&nbsp;рублей в день</p>-->
-<!--              <p class="mt-0 mb-0">Речные маршруты включены в зону действия билетов «Единый» без лимита поездок на&nbsp;90 и&nbsp;365 дней</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">-->
-<!--            <h3 class="text-uppercase">Как оплачивать</h3>-->
-<!--            <div class="d-flex-col card-body-active">-->
-<!--              <p class="fg-1">Пассажиры могут оплачивать проезд привычным для них способом</p>-->
-<!--              <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/card.png" alt="calendar">-->
-<!--              <a href="#" class="btn btn-link align-self-fs">-->
-<!--                Посмотреть-->
-<!--                <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
-<!--              </a>-->
-<!--            </div>-->
-<!--            <div class="d-flex-col card-body-disabled justify-center">-->
-<!--              <p>Картой</p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </section>-->
-<!--    <footer class="bg-dark-grey">-->
-<!--      <div class="container pt-50 pb-50">-->
-<!--        <div class="grid-12 d-flex-tab d-flex-col-mob pt-30-mob px-30-mob">-->
-<!--          <div class="col-4 mb-40-mob">-->
-<!--            <div class="logos-flex-wrapper mb-30">-->
-<!--              <img src="%PUBLIC_URL%/images/icons/logo-river.svg" alt="river transport logo">-->
-<!--              <img src="%PUBLIC_URL%/images/icons/logo-IC.svg" alt="innovation center logo">-->
-<!--            </div>-->
-<!--            <a href="#" class="btn btn-link btn-link-footer align-self-fs sepia-grey">-->
-<!--              <img src="%PUBLIC_URL%/images/icons/boat.svg" alt="boat">-->
-<!--              О речном транспорте-->
-<!--            </a>-->
-<!--          </div>-->
-<!--          <div class="col-4 footer-links-wrapper">-->
-<!--            <p class="bold mt-0 fs-1125">Речной транспорт</p>-->
-<!--            <ul class="footer-list">-->
-<!--              <li class="footer-list-item"><a class="footer-link" href="#">Причал</a></li>-->
-<!--              <li class="footer-list-item"><a class="footer-link" href="#">Электросудно</a></li>-->
-<!--              <li class="footer-list-item"><a class="footer-link" href="#">Маршруты</a></li>-->
-<!--              <li class="footer-list-item"><a class="footer-link" href="#">Справка</a></li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--          <div class="col-4 footer-contacts">-->
-<!--            <p class="bold mt-0 mb-30 fs-1125 fs-1-tab mb-20-mob">Контакт-центр<br>«Московский транспорт»</p>-->
-<!--            <a class="footer-link fs-15 fs-1125-tab" href="tel:+74955395454">+7 495 539-54-54</a>-->
-<!--            <a class="footer-link" href="tel:3210"><span class="fs-15 fs-1125-tab">3210</span> (с мобильного телефона)</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="footer-links-wrapper-tab mt-60 mt-50-mob">-->
-<!--          <a class="footer-link fs-0875-tab" href="#">Причал</a>-->
-<!--          <a class="footer-link fs-0875-tab" href="#">Электросудно</a>-->
-<!--          <a class="footer-link fs-0875-tab" href="#">Маршруты</a>-->
-<!--          <a class="footer-link fs-0875-tab" href="#">Справка</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </footer>-->
   </div>
-  <!--    width="100%" height="100%"-->
 
-<!--  <div class="vectary">-->
-<!--    <iframe src="https://app.vectary.com/p/2MhThwkU2zqEJvnw0qupN5/" width="100%" height="100%"></iframe>-->
-<!--    <button class="leave_button">-->
-<!--      <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
-<!--      ВЫЙТИ-->
-<!--    </button>-->
-<!--    <button class="interier_button">-->
-<!--      <img class="leave_button_img" src="%PUBLIC_URL%/leave_arrow.svg" alt="ВЫЙТИ">-->
-<!--      Интерьер-->
-<!--    </button>-->
+<!--  <div class="aframe_wrapper">-->
+
 <!--  </div>-->
+
+  <a-scene id="scene" renderer="antialias: true;
+                     sortObjects: true;
+                     maxCanvasWidth: 3000;
+                     maxCanvasHeight: 3000;
+                     precision: low;
+                     toneMapping:  ‘ACESFilmic’;"
+  >
+    <a-assets>
+      <script id="flatShader" type="x-shader/x-fragment">
+          varying vec2 vUv;
+          void main() {
+            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+          }
+        </script>
+
+      <img
+              id="room1"
+              src="https://coddmac.store/THREE/360/amarok/Interior.jpg"
+              crossorigin="anonymous"
+              importance="high"
+      />
+      <img
+              id="room2"
+              src="https://coddmac.store/THREE/360/largus/Interior.jpg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+      <img
+              id="room3"
+              src="https://coddmac.store/BKL/360/Varshavskaya/3.jpg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+      <img
+              id="room4"
+              src="https://coddmac.store/BKL/360/Varshavskaya/4.jpg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+      <img
+              id="room5"
+              src="https://coddmac.store/BKL/360/Varshavskaya/5.jpg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+      <img
+              id="hotspot"
+              src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg"
+              crossorigin="anonymous"
+      />
+
+      <img
+              id="crossIcon"
+              src="https://coddmac.store/THREE/360/cross-icon.svg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+
+      <img
+              id="text-01"
+              src="https://coddmac.store/THREE/360/text/text-01.svg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+
+      <img
+              id="text-02"
+              src="https://coddmac.store/THREE/360/text/text-02.svg"
+              crossorigin="anonymous"
+              importance="low"
+      />
+
+      <a-mixin
+              id="info-sphere"
+              geometry="primitive: sphere; radius: 0.4;"
+              material="color: #ff0000;"
+      ></a-mixin>
+
+      <template id="infoPanel1">
+        <a-plane
+                color="black"
+                material="shader: flat"
+                height="2"
+                width="4"
+                position="0 0 0"
+                rounded="2.8"
+        >
+          <a-image
+                  position="0 0 0.1"
+                  src="#text-02"
+                  width="4"
+                  height="1"
+                  height="0.3"
+          ></a-image>
+          <a-image
+                  position="1.7 0.7 0.1"
+                  src="#crossIcon"
+                  width="0.33"
+                  height="0.33"
+          ></a-image>
+        </a-plane>
+      </template>
+
+      <template id="infoPanel2">
+        <a-plane
+                color="black"
+                material="shader: flat"
+                height="2"
+                width="4"
+                position="0 0 0"
+                rounded="2.8"
+        >
+          <a-image
+                  position="0 0 0.1"
+                  src="#text-01"
+                  width="4"
+                  height="1"
+                  height="0.3"
+          ></a-image>
+          <a-image
+                  position="1.7 0.7 0.1"
+                  src="#crossIcon"
+                  width="0.33"
+                  height="0.33"
+          ></a-image>
+        </a-plane>
+      </template>
+    </a-assets>
+
+    <!-- room teleport hotspots -->
+
+    <a-entity id="spots" hotspots="">
+      <a-entity id="group-room1">
+        <a-image
+                src="#hotspot"
+                spot="linkto:#room2;spotgroup:group-room2;phiStart:0"
+                position="0 -2 8"
+                look-at
+        ></a-image>
+
+        <a-entity position="0 1 6" look-at rotation="180 0 180">
+          <a-entity mixin="info-sphere" id="sphere1"> </a-entity>
+          <a-entity id="infoPanelContainer1"></a-entity>
+        </a-entity>
+
+        <a-entity position="-4.5 -1.75 -8" look-at>
+          <a-entity mixin="info-sphere" id="sphere2"> </a-entity>
+          <a-entity id="infoPanelContainer2"></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <a-entity id="group-room2" scale="0 0 0">
+        <a-image
+                spot="linkto:#room1;spotgroup:group-room1;phiStart:175"
+                src="#hotspot"
+                position="0 1 8"
+                look-at
+        ></a-image>
+      </a-entity>
+
+      <a-entity id="group-room3" scale="0 0 0">
+        <a-image
+                spot="linkto:#room2;spotgroup:group-room2;phiStart:146"
+                src="#hotspot"
+                position="0 1 8"
+                look-at
+        ></a-image>
+        <a-image
+                spot="linkto:#room4;spotgroup:group-room4;phiStart:90"
+                src="#hotspot"
+                position="0 1 -8"
+                look-at
+        ></a-image>
+      </a-entity>
+
+      <a-entity id="group-room4" scale="0 0 0">
+        <a-image
+                spot="linkto:#room3;spotgroup:group-room3;phiStart:120"
+                src="#hotspot"
+                position="0 1 8"
+                look-at
+        ></a-image>
+        <a-image
+                spot="linkto:#room5;spotgroup:group-room5;phiStart:90"
+                src="#hotspot"
+                position="0 1 8"
+                look-at
+        ></a-image>
+      </a-entity>
+
+      <a-entity id="group-room5" scale="0 0 0">
+        <a-image
+                spot="linkto:#room4;spotgroup:group-room4;phiStart:90"
+                src="#hotspot"
+                position="0 1 8"
+                look-at
+        ></a-image>
+      </a-entity>
+    </a-entity>
+
+    <a-entity
+            id="cam"
+            camera="fov:80"
+            position="0 1.6 0"
+            look-controls
+            cursor="rayOrigin: mouse"
+            animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;"
+            animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;"
+    >
+      <a-plane
+              id="camfadeplane"
+              rotation="10 0.5 0"
+              position="0 0 -0.5"
+              material="color:#000000;transparent:true;opacity:0"
+              width="0"
+              height="0"
+              animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn"
+              animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut"
+      ></a-plane>
+    </a-entity>
+
+    <a-sky id="skybox" src="#room1" rotation="0 0 0" phi-start="175"></a-sky>
+  </a-scene>
+
 
 
   <script>
-    addEventListener("DOMContentLoaded", () => {
+
+    // Изменение размеров canvas для a-frame
+    window.addEventListener("DOMContentLoaded", () => {
       const myCanvas = document.querySelector('.a-canvas');
-      const parentBlock = document.querySelector('.card-aframe');
-      const gl = myCanvas.getContext("webgl");
-      console.log(myCanvas);
-      console.log(parentBlock);
-      console.log(gl);
 
+      // Получаем текущие размеры области видимости браузера
       function resizeCanvasToDisplaySize(canvas) {
-        // Lookup the size the browser is displaying the canvas in CSS pixels.
-        const displayWidth  = parentBlock.clientWidth;
-        const displayHeight = parentBlock.clientHeight;
-        console.log(canvas.clientWidth)
-        console.log(canvas.clientHeight)
-        console.log(displayWidth)
-        console.log(displayHeight)
+        const devicePixelRatio = window.devicePixelRatio || 1;
 
+        // Устанавливаем размеры канваса в размеры области видимости умноженные на devicePixelRatio
+        const width = canvas.clientWidth * devicePixelRatio;
+        const height = canvas.clientHeight * devicePixelRatio;
 
-        // Check if the canvas is not the same size.
-        const needResize = canvas.width  !== displayWidth ||
-                canvas.height !== displayHeight;
-
-        if (needResize) {
-          // Make the canvas the same size
-          canvas.width  = displayWidth;
-          canvas.height = displayHeight;
-        }
-
-        return needResize;
+        // Устанавливаем физические размеры канваса
+        canvas.width = width;
+        canvas.height = height;
       }
 
-      resizeCanvasToDisplaySize(myCanvas);
+      // Обновляем размеры канваса
+      function updateCanvas() {
+        resizeCanvasToDisplaySize(myCanvas);
+        requestAnimationFrame(updateCanvas);
+      }
+      updateCanvas();
+
+      // Клик на кнопку ОСМОТРЕТЬ 360
+      const tour_360 = document.querySelector('#pier-description a.vue_button');
+      const mainContent = document.querySelector('#main');
+      const htmlAframe = document.querySelector('html.a-fullscreen');
+
+      tour_360.addEventListener('click', () => {
+        // После клика на кнопку находим тег сцены канвас a-scene через id
+        let aframeContent = document.querySelector('#scene');
+        setTimeout(() => {
+          // Обязательно через отложеннное время вызываем на сцене метод resize для обновления ее размеров под текущую область втдимости.
+          // Данного метода НЕТ в оффициальной документации a-frame. (но работает по совету из GitHub)
+          aframeContent.resize();
+          console.log("aframeContent resize!");
+        }, 100);
+        aframeContent.style.opacity = '1';
+        aframeContent.style.pointerEvents = 'auto';
+        mainContent.style.display = 'none';
+        htmlAframe.classList.add('position');
+      });
     });
+
 
 
     setTimeout(() => {

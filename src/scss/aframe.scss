@@ -2,23 +2,39 @@ html.a-fullscreen {
   position: static !important;
 }
 
+//html.a-fullscreen {
+//  position: fixed !important;
+//}
+
+html.a-fullscreen.position {
+  position: fixed !important;
+}
+
 html.a-fullscreen body {
   overflow: auto !important;
 }
+//
+//html.a-fullscreen .a-canvas {
+//  position: absolute !important;
+//}
 
-html.a-fullscreen .a-canvas {
-  position: absolute !important;
-}
+//a-scene {
+//  display: block;
+//  position: absolute;
+//  height: 100%;
+//  width: 100%;
+//  top: 0;
+//  right: 0;
+//  left: 0;
+//  bottom: 0;
+//}
 
 a-scene {
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  opacity: 0;
+  //height: 100%;
+  //width: 100%;
+  pointer-events: none;
+  transition: all .5s;
 }
 
 .card-content {
@@ -28,3 +44,32 @@ a-scene {
 .a-enter-vr-button {
   display: none !important;
 }
+
+// если афрейм в блоке карточки
+//.aframe_wrapper {
+//  width: 100%;
+//  height: 100%;
+//}
+
+// если афрейм скрыт на весь экран
+//.aframe_wrapper {
+//  display: none;
+//  position: absolute;
+//  width: 100%;
+//  height: 100vh;
+//  //opacity: 0;
+//  top: 0;
+//  left: 0;
+//  right: 0;
+//  bottom: 0;
+//  //pointer-events: none;
+//  //transition: all .5s;
+//}
+//
+//.aframe_wrapper.visible {
+//  display: block;
+//  opacity: 1;
+//  pointer-events: all;
+//  position: absolute;
+//  z-index: 20;
+//}

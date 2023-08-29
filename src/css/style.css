@@ -1294,27 +1294,41 @@ p {
     top: 5px;
   }
 }
+.section-video {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-video_active {
+  display: block;
+}
+
 html.a-fullscreen {
   position: static !important;
+}
+
+html.a-fullscreen.position {
+  position: fixed !important;
 }
 
 html.a-fullscreen body {
   overflow: auto !important;
 }
 
-html.a-fullscreen .a-canvas {
-  position: absolute !important;
-}
-
 a-scene {
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s;
 }
 
 .card-content {
@@ -1445,6 +1459,10 @@ a-scene {
   }
 }
 @media (max-width: 1024px) {
+  .vectary .tech_speck {
+    left: 30px;
+    bottom: 30px;
+  }
   .vectary .tech_speck div[class^=tech_speck-] {
     padding: 32px 50px 32px 30px;
   }
@@ -1460,58 +1478,38 @@ a-scene {
     right: unset;
   }
 }
+.video_content {
+  display: none;
+}
+
+.site_content {
+  display: block;
+}
+
 section {
-  height: 100vh;
-  width: 100%;
   scroll-snap-align: start;
 }
 
-.background_block {
-  width: 100%;
+section#pier-description,
+section#sinichka-section {
   height: 100vh;
-  background-color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+@media (max-width: 900px) {
+  section#pier-description {
+    height: auto;
+    width: 100%;
+    display: block;
+  }
+}
 .sinichka_fixed {
   height: 100vh;
   width: 100%;
   position: sticky;
-  z-index: 15;
-}
-
-.proximity {
-  position: relative;
-  background-color: #9794a6;
-  width: 100%;
-  height: 100%;
-}
-
-.proximity .door_1,
-.proximity .door_2 {
-  position: absolute;
-  width: 30%;
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(68, 69, 74, 0.88);
-  z-index: 1;
-}
-
-.proximity .door_1 {
-  right: 20%;
-}
-
-.proximity .door_2 {
-  left: 20%;
-}
-
-.proximity .model_img {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

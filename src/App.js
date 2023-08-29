@@ -353,17 +353,12 @@ function App() {
 //     door2.style.left = newDoor2Left;
 //   });
 
-  // console.log(currentDoor1Right);
-  // console.log(currentDoor2Left);
-  // console.log(newDoor1Right);
-  // console.log(newDoor2Left);
-
 
 
 
   // Плавное переключение секций на весь экран при движении колеса мыши
   let sectionVideoEndListener = null;
-  const sections = document.querySelectorAll('section, footer');
+  const sections = document.querySelectorAll('section');
   let currentSectionIndex = 0;
   let isScrolling = false;
 
@@ -418,24 +413,40 @@ function App() {
 
       // Продолжение анимации, если не достигнут конец анимации
       if (currentTime < duration) {
+
+        const video = section.querySelector('.section-video');
+
+        if (video) {
+          video.currentTime = 0;
+          video.classList.add('section-video_active');
+
+          sectionVideoEndListener = () => {
+            video.classList.remove('section-video_active');
+            video.removeEventListener("ended", sectionVideoEndListener);
+            sectionVideoEndListener = null;
+          };
+
+          video.addEventListener("ended", sectionVideoEndListener);
+        }
+
         requestAnimationFrame(step);
-        return;
+        // return;
       }
 
-      const video = section.querySelector('.section-video');
-
-      if (video) {
-        video.currentTime = 0;
-        video.classList.add('section-video_active');
-  
-        sectionVideoEndListener = () => {
-          video.classList.remove('section-video_active');
-          video.removeEventListener("ended", sectionVideoEndListener);
-          sectionVideoEndListener = null;
-        };
-  
-        video.addEventListener("ended", sectionVideoEndListener);
-      }
+      // const video = section.querySelector('.section-video');
+      //
+      // if (video) {
+      //   video.currentTime = 0;
+      //   video.classList.add('section-video_active');
+      //
+      //   sectionVideoEndListener = () => {
+      //     video.classList.remove('section-video_active');
+      //     video.removeEventListener("ended", sectionVideoEndListener);
+      //     sectionVideoEndListener = null;
+      //   };
+      //
+      //   video.addEventListener("ended", sectionVideoEndListener);
+      // }
     }
 
     // Запуск анимации
@@ -446,10 +457,6 @@ function App() {
   function easeInOutQuad(t) {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
-
-
-
-
 
 
   return <></>;
