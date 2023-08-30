@@ -36,6 +36,7 @@ const initVideos = () => {
 function App() {
   useEffect(() => {
     let onVideoEndListener = null;
+    // let onVideoEndListener2 = null;
     let touchstartY = 0;
 
     const infoElem = document.querySelector(".info_block");
@@ -50,9 +51,13 @@ function App() {
       if (direction === 'prev') {
         return;
       }
+      // debugger
       if (onVideoEndListener) {
         return;
       }
+      // if (onVideoEndListener2) {
+      //   return;
+      // }
       const activeBlock = document.querySelector(".js-number-block.active");
       const activeNumber = Number(activeBlock.getAttribute("data-number"));
 
@@ -69,10 +74,10 @@ function App() {
 
 
       // Проверка на наличие атрибута data-transit
-      if (activeBlock.hasAttribute("data-transit")) {
-        console.log('ОН ТУТ');
-        return;
-      }
+      // if (activeBlock.hasAttribute("data-transit")) {
+      //   console.log('ОН ТУТ');
+      //   return;
+      // }
 
 
 
@@ -83,6 +88,7 @@ function App() {
       // Нижний край
       if (!nextVideo) {
         // document.body.style.overflow = 'auto';
+        // activeBlock.addEventListener("ended", onVideoEndListener);
         videoContent.style.display = 'none';
         siteContent.style.display = 'block';
         return;
@@ -119,9 +125,10 @@ function App() {
       // Если текущий активный блок - видео, то убираем цикличность для ожидания завершения
       // добавить условие И если видео не завершено
       if (activeBlock.tagName === "VIDEO") {
+
         // Удаляем у активного блока цикличность чтобы дождаться события его завершения
         activeBlock.removeAttribute("loop");
-        console.log('VIDEO');
+        console.log('ПО СТАРОМУ');
 
         // Слушатель события завершения видео
         onVideoEndListener = () => {
@@ -140,6 +147,44 @@ function App() {
 
         // Ждем завершения
         activeBlock.addEventListener("ended", onVideoEndListener);
+
+        // if (!activeBlock.hasAttribute("data-transit")) {
+        //
+        //   // Удаляем у активного блока цикличность чтобы дождаться события его завершения
+        //   activeBlock.removeAttribute("loop");
+        //   console.log('ПО СТАРОМУ');
+        //
+        //   // Слушатель события завершения видео
+        //   onVideoEndListener = () => {
+        //     console.log('завершение видео')
+        //
+        //     // Удаляем слушатель
+        //     activeBlock.removeEventListener("ended", onVideoEndListener);
+        //     onVideoEndListener = null;
+        //
+        //     // Возвращаем атрибут цикличности после завершения и ставим на старт
+        //     activeBlock.setAttribute("loop", "true");
+        //     activeBlock.currentTime = 0;
+        //
+        //     doSwitch();
+        //   };
+        //
+        //   // Ждем завершения
+        //   activeBlock.addEventListener("ended", onVideoEndListener);
+        // }
+        // else if (activeBlock.hasAttribute("data-transit")) {
+        //   console.log('ПО НОВОМУ');
+        //   onVideoEndListener2 = () => {
+        //     console.log('завершение видео 2')
+        //     // Удаляем слушатель
+        //     activeBlock.removeEventListener("ended", onVideoEndListener2);
+        //     onVideoEndListener2 = null;
+        //     doSwitch();
+        //   };
+        //
+        //   // Ждем завершения
+        //   activeBlock.addEventListener("ended", onVideoEndListener2);
+        // }
       }
       else {
         doSwitch();
@@ -179,12 +224,36 @@ function App() {
         {
           // Проверка на наличие атрибута data-transit
           const activeBlock = document.querySelector(".js-number-block.active");
+          // debugger
           if (!activeBlock.hasAttribute("data-transit")) {
             console.log('ЕГО ТУТ НЕТ');
             switchHandler(e.deltaY > 0 ? "next" : "prev");
           }
+          // else if (activeBlock.hasAttribute("data-transit")) {
+          //   switchHandler("next");
+          // }
         }
     );
+
+    function processActiveBlocks() {
+      const activeBlock2 = document.querySelectorAll(".js-number-block");
+      activeBlock2.forEach((e) => {
+        if (e.hasAttribute("data-transit") && e.classList.contains("active")) {
+          console.log(e);
+          switchHandler("next");
+        }
+      });
+    }
+
+// Вызывать функцию, пока videoContent не станет невидимым
+    const intervalId = setInterval(() => {
+      if (getComputedStyle(videoContent).display === 'none') {
+        clearInterval(intervalId); // Остановить вызов функции
+      } else {
+        processActiveBlocks();
+      }
+    }, 3000); // Вызывать каждую секунду (можете изменить интервал по желанию)
+
     document.addEventListener("touchstart", function (e) {
       touchstartY = e.touches[0].clientY;
     });
@@ -194,6 +263,14 @@ function App() {
         ? switchHandler("next")
         : switchHandler("prev");
     });
+
+
+
+
+
+
+
+
 
 
 
