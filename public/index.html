@@ -114,20 +114,37 @@
       </video>
 
 <!--      loop-->
-      <video class="bg-video js-number-block" autoplay muted data-number="2" data-info-text data-transit>
+
+      <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit>
       </video>
 
-      <video class="bg-video js-number-block" autoplay muted loop data-number="3" data-info-text>
+      <video class="bg-video js-number-block" autoplay muted
+             data-number="3"
+             data-info-src="%PUBLIC_URL%/images/icons/snow.svg"
+             data-info-text="Возможность использования"
+             data-info-title="Круглый год">
       </video>
 
-      <video class="bg-video js-number-block" autoplay muted data-number="4" data-info-text data-transit>
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted loop-->
+<!--             data-number="4"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"-->
+<!--             data-info-text="Выброс вредных веществ"-->
+<!--             data-info-title="0%">-->
+<!--      </video>-->
 
-      <video class="bg-video js-number-block" autoplay muted loop data-number="5" data-info-text>
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted-->
+<!--             data-number="5"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"-->
+<!--             data-info-text="Вместимость"-->
+<!--             data-info-title="50 комфортных мест">-->
+<!--      </video>-->
 
-      <video class="bg-video js-number-block" autoplay muted loop data-number="6" data-info-text>
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted loop-->
+<!--             data-number="6"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/moorings.svg"-->
+<!--             data-info-text="Колличество причалов"-->
+<!--             data-info-title="23 штуки">-->
+<!--      </video>-->
 
       <div class="mouse_prev">
         <div class="mouse_prev-wrapper">
@@ -138,64 +155,19 @@
         </div>
       </div>
 
-<!--      <div class="info_block info_text" data-number="2">-->
-<!--        Квадрат увеличился в размере-->
-<!--      </div>-->
-
-      <div class="info_block snow js-number-block" data-number="2">
-        <div class="card">
-          <div class="card_marker">
-            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/snow.svg" alt="snow">
-          </div>
-          <div class="card_descr">
-            <p class="card_descr-text">Возможность использования</p>
-            <p class="card_descr-title">Круглый год</p>
-          </div>
-        </div>
+      <div class="leave_button">
+        <button>Причалить</button>
+        <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
       </div>
 
-      <div class="info_block ejection js-number-block" data-number="3">
-        <div class="card">
-          <div class="card_marker">
-            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/ejection.svg" alt="ejection">
-          </div>
-          <div class="card_descr">
-            <p class="card_descr-text">Выброс вредных веществ</p>
-            <p class="card_descr-title">0%</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="info_block capacity js-number-block" data-number="4">
-        <div class="card">
-          <div class="card_marker">
-            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/capacity.svg" alt="capacity">
-          </div>
-          <div class="card_descr">
-            <p class="card_descr-text">Вместимость</p>
-            <p class="card_descr-title">50 комфортных мест</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="info_block moorings" data-number="6">
-        <div class="card">
-          <div class="card_marker">
-            <img class="card_marker-img" src="%PUBLIC_URL%/images/icons/moorings.svg" alt="moorings">
-          </div>
-          <div class="card_descr">
-            <p class="card_descr-text">Колличество причалов</p>
-            <p class="card_descr-title">23 штуки</p>
-          </div>
-        </div>
-      </div>
+      <div class="info_block js-number-block"></div>
     </div>
 
 <!--    <div class="background_block js-number-block" data-number="4">-->
 
 <!--    </div>-->
 
-    <div class="site_content js-number-block" data-number="7">
+    <div class="site_content js-number-block" data-number="4">
 <!--      data-number="4"-->
 <!--      class="js-number-block"-->
       <section id="pier-description" class="bg-grey">
@@ -469,7 +441,7 @@
       <section class="sinichka_fixed" id="sinichka-section">
         <video class="section-video" autoplay muted>
           <source
-            src="/3video.mp4"
+            src="/doors.mp4"
             type="video/mp4" />
 <!--          <source src="">-->
         </video>
@@ -669,7 +641,6 @@
         </div>
       </footer>
     </div>
-
   </div>
 
 <!--  <div class="aframe_wrapper">-->
