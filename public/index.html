@@ -654,6 +654,7 @@
                      precision: low;
                      toneMapping:  ‘ACESFilmic’;"
   >
+    <button id="aframe_rollup" class="dock_leave">Свернуть</button>
     <a-assets>
       <script id="flatShader" type="x-shader/x-fragment">
           varying vec2 vUv;
@@ -899,8 +900,9 @@
       }
       updateCanvas();
 
-      // Клик на кнопку ОСМОТРЕТЬ 360
+      // Клик на кнопку ОСМОТРЕТЬ 360 и выход из сцена кнопкой СВЕРНУТЬ
       const tour_360 = document.querySelector('#pier-description a.vue_button');
+      const rollup_360 = document.querySelector('#aframe_rollup');
       const mainContent = document.querySelector('#main');
       const htmlAframe = document.querySelector('html.a-fullscreen');
 
@@ -916,7 +918,17 @@
         aframeContent.style.opacity = '1';
         aframeContent.style.pointerEvents = 'auto';
         mainContent.style.display = 'none';
+        rollup_360.style.display = 'block';
         htmlAframe.classList.add('position');
+      });
+
+      rollup_360.addEventListener('click', () => {
+        let aframeContent = document.querySelector('#scene');
+        aframeContent.style.opacity = '0';
+        aframeContent.style.pointerEvents = 'none';
+        mainContent.style.display = 'block';
+        htmlAframe.classList.remove('position');
+        rollup_360.style.display = 'none';
       });
     });
 

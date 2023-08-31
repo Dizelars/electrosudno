@@ -2,13 +2,17 @@ html.a-fullscreen {
   position: static !important;
 }
 
-//html.a-fullscreen {
-//  position: fixed !important;
-//}
-
 html.a-fullscreen.position {
   position: fixed !important;
 }
+
+//html.a-fullscreen {
+//  position: fixed !important;
+//}
+//
+//html.a-fullscreen.position {
+//  position: static !important;
+//}
 
 html.a-fullscreen body {
   overflow: auto !important;
@@ -35,6 +39,26 @@ a-scene {
   //width: 100%;
   pointer-events: none;
   transition: all .5s;
+  position: relative;
+}
+
+#aframe_rollup {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  padding: 24px 30px;
+  background: rgba(26, 27, 29, 0.70);
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  //font-family: "MoscowSans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .card-content {

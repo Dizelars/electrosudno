@@ -234,7 +234,18 @@ function App() {
           // }
         }
     );
+    document.addEventListener("touchstart", function (e) {
+      touchstartY = e.touches[0].clientY;
+    });
+    document.addEventListener("touchend", function (e) {
+      const touchEndY = e.changedTouches[0].clientY;
+      touchEndY - touchstartY < 0
+          ? switchHandler("next")
+          : switchHandler("prev");
+    });
 
+
+    // Костыль для переключения видео (не зацикленных)
     function processActiveBlocks() {
       const activeBlock2 = document.querySelectorAll(".js-number-block");
       activeBlock2.forEach((e) => {
@@ -244,7 +255,6 @@ function App() {
         }
       });
     }
-
 // Вызывать функцию, пока videoContent не станет невидимым
     const intervalId = setInterval(() => {
       if (getComputedStyle(videoContent).display === 'none') {
@@ -252,23 +262,7 @@ function App() {
       } else {
         processActiveBlocks();
       }
-    }, 3000); // Вызывать каждую секунду (можете изменить интервал по желанию)
-
-    document.addEventListener("touchstart", function (e) {
-      touchstartY = e.touches[0].clientY;
-    });
-    document.addEventListener("touchend", function (e) {
-      const touchEndY = e.changedTouches[0].clientY;
-      touchEndY - touchstartY < 0
-        ? switchHandler("next")
-        : switchHandler("prev");
-    });
-
-
-
-
-
-
+    }, 3000);
 
 
 
@@ -276,13 +270,15 @@ function App() {
 
 
     // Пропустить превью с видео
-
     const leavePrev = document.querySelector('.video_content .leave_button');
 
     leavePrev.addEventListener('click', () => {
       videoContent.style.display = 'none';
       siteContent.style.display = 'block';
     });
+
+
+
 
     // Логика страницы после блоков видео
 
@@ -411,7 +407,6 @@ function App() {
 
 
 // Движение блоков дверей по скроллу
-
 // Получаем ссылки на элементы дверей
 // const door1 = document.querySelector('.door_1');
 // const door2 = document.querySelector('.door_2');
@@ -547,6 +542,7 @@ function App() {
     function easeInOutQuad(t) {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     }
+
 
   }, []);
   return <></>;
