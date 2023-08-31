@@ -22,7 +22,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>Причалы</title>
+  <title>Причал</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
   <script>
@@ -109,55 +109,58 @@
   <div id="main" class="bord">
 
     <div class="video_content">
-      <video class="bg-video js-number-block active" autoplay muted loop data-number="1" data-info-text-numder='2'>
-      </video>
+<!--      https://assets.codepen.io/39255/output_960.mp4-->
+      <video src="%PUBLIC_URL%/1video.mp4" playsinline="true" webkit-playsinline="true" preload="auto" muted="muted" class="video-background"></video>
 
-      <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit>
-      </video>
+<!--      <video class="bg-video js-number-block active" autoplay muted loop data-number="1" data-info-text-numder='2'>-->
+<!--      </video>-->
 
-      <video class="bg-video js-number-block" autoplay muted loop
-             data-number="3"
-             data-info-src="%PUBLIC_URL%/images/icons/snow.svg"
-             data-info-text="Возможность использования"
-             data-info-title="Круглый год">
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit>-->
+<!--      </video>-->
 
-      <video class="bg-video js-number-block" autoplay muted data-transit
-             data-number="4"
-             data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"
-             data-info-text="Выброс вредных веществ"
-             data-info-title="0%">
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted loop-->
+<!--             data-number="3"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/snow.svg"-->
+<!--             data-info-text="Возможность использования"-->
+<!--             data-info-title="Круглый год">-->
+<!--      </video>-->
 
-      <video class="bg-video js-number-block" autoplay muted data-transit
-             data-number="5"
-             data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"
-             data-info-text="Вместимость"
-             data-info-title="50 комфортных мест">
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted data-transit-->
+<!--             data-number="4"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"-->
+<!--             data-info-text="Выброс вредных веществ"-->
+<!--             data-info-title="0%">-->
+<!--      </video>-->
 
-      <video class="bg-video js-number-block" autoplay muted data-transit
-             data-number="6"
-             data-info-src="%PUBLIC_URL%/images/icons/moorings.svg"
-             data-info-text="Колличество причалов"
-             data-info-title="23 штуки">
-      </video>
+<!--      <video class="bg-video js-number-block" autoplay muted data-transit-->
+<!--             data-number="5"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"-->
+<!--             data-info-text="Вместимость"-->
+<!--             data-info-title="50 комфортных мест">-->
+<!--      </video>-->
 
-      <div class="mouse_prev">
-        <div class="mouse_prev-wrapper">
-          <div class="mouse_prev_arrow">
-            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">
-          </div>
-          <div class="mouse_prev_dot"></div>
-        </div>
-      </div>
+<!--      <video class="bg-video js-number-block" autoplay muted data-transit-->
+<!--             data-number="6"-->
+<!--             data-info-src="%PUBLIC_URL%/images/icons/moorings.svg"-->
+<!--             data-info-text="Колличество причалов"-->
+<!--             data-info-title="23 штуки">-->
+<!--      </video>-->
 
-      <div class="leave_button">
-        <button>Причалить</button>
-        <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
-      </div>
+<!--      <div class="mouse_prev">-->
+<!--        <div class="mouse_prev-wrapper">-->
+<!--          <div class="mouse_prev_arrow">-->
+<!--            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">-->
+<!--          </div>-->
+<!--          <div class="mouse_prev_dot"></div>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <div class="info_block js-number-block"></div>
+<!--      <div class="leave_button">-->
+<!--        <button>Причалить</button>-->
+<!--        <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">-->
+<!--      </div>-->
+
+<!--      <div class="info_block js-number-block"></div>-->
     </div>
 
     <div class="site_content js-number-block">
@@ -633,6 +636,106 @@
   </a-scene>
 
 
+<!-- Библиотека GSAP для последующего воспроизведения видео по скроллу -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Воспроизведения видео по скроллу-->
+  <script>
+    // При прокрутке колесом мыши, видео воспроизводится и моментально ставится на паузу.
+    // Таким образом создается эффект регулирования переключения.
+    // Получается, чем медленнее видео, тем создается более плавный эффект перемещения видео.
+
+    // console.clear();
+    /* Кодировка здесь очень важна, чтобы обеспечить покадровое перемещение. */
+    // ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p output.mp4
+    // ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -vf scale=960:-1 -movflags faststart -vcodec libx264 -crf 20 -g 1 -pix_fmt yuv420p output_960.mp4
+
+    // Получение элемента видео
+    const video = document.querySelector(".video_content .video-background");
+    const src = video.currentSrc || video.src;
+    console.log(video, src);
+
+    /* Проверка, что видео "активировано" на iOS */
+    // В данном случае, когда происходит первое касание на странице (событие "touchstart"), видео воспроизводится и сразу же приостанавливается. Это используется для активации возможности воспроизведения видео на устройствах iOS.
+    const once = (el, event, fn, opts) => {
+      const onceFn = (e) => {
+        el.removeEventListener(event, onceFn);
+        fn(e);
+      };
+      el.addEventListener(event, onceFn, opts);
+      return onceFn;
+    };
+
+    // Воспроизведение и приостановка видео при первом касании на iOS
+    once(document.documentElement, "touchstart", () => {
+      video.play();
+      video.pause();
+    });
+
+    /* Управление анимацией при скролле с использованием GSAP и ScrollTrigger */
+    // Анимация начинается, когда элемент с id "container" появляется в видимой части окна и продолжается до тех пор, пока он не исчезнет из виду.
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      defaults: { duration: 1 },
+      scrollTrigger: {
+        trigger: "#container",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true  // Позволяет плавно анимировать свойства объекта при скролле.
+      }
+    });
+
+    // Запуск анимации при загрузке метаданных видео
+    once(video, "loadedmetadata", () => {
+      tl.fromTo(
+              video,
+              { currentTime: 0 },
+              { currentTime: video.duration || 1 }
+      );
+    });
+
+    /* При первом кодировании Blobbing был важен для того, чтобы браузер не сбрасывал ранее воспроизведенные сегменты, но сейчас, похоже, это не является проблемой. Возможно, это связано с доступностью памяти? */
+    // setTimeout(function () {
+    //   if (window["fetch"]) {
+    //     fetch(src)
+    //             .then((response) => response.blob())
+    //             .then((response) => {
+    //               let blobURL = URL.createObjectURL(response);
+    //
+    //               let t = video.currentTime;
+    //               once(document.documentElement, "touchstart", function (e) {
+    //                 video.play();
+    //                 video.pause();
+    //               });
+    //
+    //               video.setAttribute("src", blobURL);
+    //               video.currentTime = t + 0.01;
+    //             });
+    //   }
+    // }, 1000);
+
+    async function fetchAndInitializeVideo() {
+      try {
+        const response = await fetch(src);
+        const blob = await response.blob();
+        const blobURL = URL.createObjectURL(blob);
+
+        const t = video.currentTime;
+        once(document.documentElement, "touchstart", () => {
+          video.play();
+          video.pause();
+        });
+
+        video.setAttribute("src", blobURL);
+        video.currentTime = t + 0.01;
+      } catch (error) {
+        console.error("Error fetching video:", error);
+      }
+    }
+    setTimeout(fetchAndInitializeVideo, 1000);
+  </script>
 
   <script>
 

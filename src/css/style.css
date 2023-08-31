@@ -1180,7 +1180,16 @@ p {
   }
 }
 .video_content {
-  position: relative;
+  height: 1000vh;
+}
+
+.video_content .video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
 }
 
 .video_content .mouse_prev .mouse_prev-wrapper {
@@ -1321,8 +1330,7 @@ p {
 
 .section-video {
   display: none;
-  /*position: absolute;*/
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -1352,6 +1360,7 @@ html.a-fullscreen body {
 }
 
 a-scene {
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
   transition: all 0.5s;
@@ -1638,6 +1647,10 @@ section#sinichka-section {
 
 .site_content {
   position: relative;
+}
+
+.section-video {
+  position: fixed !important;
 }
 
 .sinichka_fixed {

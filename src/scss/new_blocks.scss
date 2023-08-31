@@ -12,7 +12,12 @@ section#sinichka-section {
 }
 
 .site_content {
+  //display: none;
   position: relative;
+}
+
+.section-video {
+  position: fixed !important;
 }
 
 .sinichka_fixed {

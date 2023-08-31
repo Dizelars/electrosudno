@@ -1,5 +1,18 @@
+//.video_content {
+//  position: relative;
+//}
+
 .video_content {
-  position: relative;
+  height: 1000vh;
+}
+
+.video_content .video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
 }
 
 // Колесо прокрутеи
