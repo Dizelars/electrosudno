@@ -109,11 +109,8 @@
   <div id="main" class="bord">
 
     <div class="video_content">
-<!--      data-info-text="Квадрат увеличился в размере"-->
       <video class="bg-video js-number-block active" autoplay muted loop data-number="1" data-info-text-numder='2'>
       </video>
-
-<!--      loop-->
 
       <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit>
       </video>
@@ -163,10 +160,6 @@
       <div class="info_block js-number-block"></div>
     </div>
 
-<!--    <div class="background_block js-number-block" data-number="4">-->
-
-<!--    </div>-->
-
     <div class="site_content js-number-block">
 <!--      data-number="4"-->
 <!--      class="js-number-block"-->
@@ -214,225 +207,6 @@
                   Осмотреть
                 </a>
               </div>
-<!--              <div class="aframe_wrapper">-->
-<!--                <a-scene>-->
-<!--                  <a-assets>-->
-<!--                    <script id="flatShader" type="x-shader/x-fragment">-->
-<!--          varying vec2 vUv;-->
-<!--          void main() {-->
-<!--            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);-->
-<!--          }-->
-<!--        </script>-->
-
-<!--                    <img-->
-<!--                            id="room1"-->
-<!--                            src="https://coddmac.store/THREE/360/amarok/Interior.jpg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="high"-->
-<!--                    />-->
-<!--                    <img-->
-<!--                            id="room2"-->
-<!--                            src="https://coddmac.store/THREE/360/largus/Interior.jpg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-<!--                    <img-->
-<!--                            id="room3"-->
-<!--                            src="https://coddmac.store/BKL/360/Varshavskaya/3.jpg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-<!--                    <img-->
-<!--                            id="room4"-->
-<!--                            src="https://coddmac.store/BKL/360/Varshavskaya/4.jpg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-<!--                    <img-->
-<!--                            id="room5"-->
-<!--                            src="https://coddmac.store/BKL/360/Varshavskaya/5.jpg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-<!--                    <img-->
-<!--                            id="hotspot"-->
-<!--                            src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                    />-->
-
-<!--                    <img-->
-<!--                            id="crossIcon"-->
-<!--                            src="https://coddmac.store/THREE/360/cross-icon.svg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-
-<!--                    <img-->
-<!--                            id="text-01"-->
-<!--                            src="https://coddmac.store/THREE/360/text/text-01.svg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-
-<!--                    <img-->
-<!--                            id="text-02"-->
-<!--                            src="https://coddmac.store/THREE/360/text/text-02.svg"-->
-<!--                            crossorigin="anonymous"-->
-<!--                            importance="low"-->
-<!--                    />-->
-
-<!--                    <a-mixin-->
-<!--                            id="info-sphere"-->
-<!--                            geometry="primitive: sphere; radius: 0.4;"-->
-<!--                            material="color: #ff0000;"-->
-<!--                    ></a-mixin>-->
-
-<!--                    <template id="infoPanel1">-->
-<!--                      <a-plane-->
-<!--                              color="black"-->
-<!--                              material="shader: flat"-->
-<!--                              height="2"-->
-<!--                              width="4"-->
-<!--                              position="0 0 0"-->
-<!--                              rounded="2.8"-->
-<!--                      >-->
-<!--                        <a-image-->
-<!--                                position="0 0 0.1"-->
-<!--                                src="#text-02"-->
-<!--                                width="4"-->
-<!--                                height="1"-->
-<!--                                height="0.3"-->
-<!--                        ></a-image>-->
-<!--                        <a-image-->
-<!--                                position="1.7 0.7 0.1"-->
-<!--                                src="#crossIcon"-->
-<!--                                width="0.33"-->
-<!--                                height="0.33"-->
-<!--                        ></a-image>-->
-<!--                      </a-plane>-->
-<!--                    </template>-->
-
-<!--                    <template id="infoPanel2">-->
-<!--                      <a-plane-->
-<!--                              color="black"-->
-<!--                              material="shader: flat"-->
-<!--                              height="2"-->
-<!--                              width="4"-->
-<!--                              position="0 0 0"-->
-<!--                              rounded="2.8"-->
-<!--                      >-->
-<!--                        <a-image-->
-<!--                                position="0 0 0.1"-->
-<!--                                src="#text-01"-->
-<!--                                width="4"-->
-<!--                                height="1"-->
-<!--                                height="0.3"-->
-<!--                        ></a-image>-->
-<!--                        <a-image-->
-<!--                                position="1.7 0.7 0.1"-->
-<!--                                src="#crossIcon"-->
-<!--                                width="0.33"-->
-<!--                                height="0.33"-->
-<!--                        ></a-image>-->
-<!--                      </a-plane>-->
-<!--                    </template>-->
-<!--                  </a-assets>-->
-
-<!--                  &lt;!&ndash; room teleport hotspots &ndash;&gt;-->
-
-<!--                  <a-entity id="spots" hotspots="">-->
-<!--                    <a-entity id="group-room1">-->
-<!--                      <a-image-->
-<!--                              src="#hotspot"-->
-<!--                              spot="linkto:#room2;spotgroup:group-room2;phiStart:0"-->
-<!--                              position="0 -2 8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-
-<!--                      <a-entity position="0 1 6" look-at rotation="180 0 180">-->
-<!--                        <a-entity mixin="info-sphere" id="sphere1"> </a-entity>-->
-<!--                        <a-entity id="infoPanelContainer1"></a-entity>-->
-<!--                      </a-entity>-->
-
-<!--                      <a-entity position="-4.5 -1.75 -8" look-at>-->
-<!--                        <a-entity mixin="info-sphere" id="sphere2"> </a-entity>-->
-<!--                        <a-entity id="infoPanelContainer2"></a-entity>-->
-<!--                      </a-entity>-->
-<!--                    </a-entity>-->
-
-<!--                    <a-entity id="group-room2" scale="0 0 0">-->
-<!--                      <a-image-->
-<!--                              spot="linkto:#room1;spotgroup:group-room1;phiStart:175"-->
-<!--                              src="#hotspot"-->
-<!--                              position="0 1 8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-<!--                    </a-entity>-->
-
-<!--                    <a-entity id="group-room3" scale="0 0 0">-->
-<!--                      <a-image-->
-<!--                              spot="linkto:#room2;spotgroup:group-room2;phiStart:146"-->
-<!--                              src="#hotspot"-->
-<!--                              position="0 1 8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-<!--                      <a-image-->
-<!--                              spot="linkto:#room4;spotgroup:group-room4;phiStart:90"-->
-<!--                              src="#hotspot"-->
-<!--                              position="0 1 -8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-<!--                    </a-entity>-->
-
-<!--                    <a-entity id="group-room4" scale="0 0 0">-->
-<!--                      <a-image-->
-<!--                              spot="linkto:#room3;spotgroup:group-room3;phiStart:120"-->
-<!--                              src="#hotspot"-->
-<!--                              position="0 1 8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-<!--                      <a-image-->
-<!--                              spot="linkto:#room5;spotgroup:group-room5;phiStart:90"-->
-<!--                              src="#hotspot"-->
-<!--                              position="0 1 8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-<!--                    </a-entity>-->
-
-<!--                    <a-entity id="group-room5" scale="0 0 0">-->
-<!--                      <a-image-->
-<!--                              spot="linkto:#room4;spotgroup:group-room4;phiStart:90"-->
-<!--                              src="#hotspot"-->
-<!--                              position="0 1 8"-->
-<!--                              look-at-->
-<!--                      ></a-image>-->
-<!--                    </a-entity>-->
-<!--                  </a-entity>-->
-
-<!--                  <a-entity-->
-<!--                          id="cam"-->
-<!--                          camera="fov:80"-->
-<!--                          position="0 1.6 0"-->
-<!--                          look-controls-->
-<!--                          cursor="rayOrigin: mouse"-->
-<!--                          animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;"-->
-<!--                          animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;"-->
-<!--                  >-->
-<!--                    <a-plane-->
-<!--                            id="camfadeplane"-->
-<!--                            rotation="10 0.5 0"-->
-<!--                            position="0 0 -0.5"-->
-<!--                            material="color:#000000;transparent:true;opacity:0"-->
-<!--                            width="0"-->
-<!--                            height="0"-->
-<!--                            animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn"-->
-<!--                            animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut"-->
-<!--                    ></a-plane>-->
-<!--                  </a-entity>-->
-
-<!--                  <a-sky id="skybox" src="#room1" rotation="0 0 0" phi-start="175"></a-sky>-->
-<!--                </a-scene>-->
-<!--              </div>-->
             </div>
           </div>
         </div>
@@ -442,18 +216,8 @@
         <video class="section-video" autoplay muted>
           <source
             src="/doors.mp4"
-            type="video/mp4" />
-<!--          <source src="">-->
+            type="video/mp4"/>
         </video>
-<!--        <div class="proximity">-->
-<!--          <div class="door_1"></div>-->
-<!--&lt;!&ndash;          <button class="model_wue">&ndash;&gt;-->
-<!--&lt;!&ndash;            <img class="model_img" src="%PUBLIC_URL%/images/icons/model_wue.svg" alt="Экскурсия">&ndash;&gt;-->
-<!--&lt;!&ndash;          </button>&ndash;&gt;-->
-<!--          <img class="model_img" src="%PUBLIC_URL%/images/icons/model_wue.svg" alt="Экскурсия">-->
-<!--          <div class="door_2"></div>-->
-<!--        </div>-->
-
 
 
         <div class="vectary">
@@ -642,10 +406,6 @@
       </footer>
     </div>
   </div>
-
-<!--  <div class="aframe_wrapper">-->
-
-<!--  </div>-->
 
   <a-scene id="scene" renderer="antialias: true;
                      sortObjects: true;
@@ -962,6 +722,19 @@
                   const allInfoPanelContainerElements = document.querySelectorAll(
                           "[id^=infoPanelContainer]"
                   );
+
+                  let aframeContent = document.querySelector('#scene');
+                  const rollup_360 = document.querySelector('#aframe_rollup');
+                  const mainContent = document.querySelector('#main');
+                  const htmlAframe = document.querySelector('html.a-fullscreen');
+                  // const sinichka = document.querySelector('#sinichka-section');
+
+                  aframeContent.style.opacity = '0';
+                  aframeContent.style.pointerEvents = 'none';
+                  mainContent.style.display = 'block';
+                  htmlAframe.classList.remove('position');
+                  rollup_360.style.display = 'none';
+                  // scrollToSection(sinichka);
 
                   document
                           .querySelectorAll('[src="#crossIcon"]')

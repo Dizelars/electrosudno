@@ -406,41 +406,6 @@ function App() {
 
 
 
-// Движение блоков дверей по скроллу
-// Получаем ссылки на элементы дверей
-// const door1 = document.querySelector('.door_1');
-// const door2 = document.querySelector('.door_2');
-//
-// // Получаем ссылку на секцию "sinichka-section"
-//   const sinichkaSection = document.getElementById('sinichka-section');
-//
-// // Добавляем слушатель события колеса мыши (wheel)
-//   sinichkaSection.addEventListener('wheel', (event) => {
-//     // Получаем значение deltaY для определения направления прокрутки
-//     const deltaY = event.deltaY;
-//
-//     // Вычисляем значения стилей для дверей в зависимости от направления прокрутки
-//     const step = 0.5; // Множитель для определения скорости движения
-//
-//     // Получаем текущие значения right и left в числовом формате
-//     const currentDoor1Right = parseFloat(getComputedStyle(door1).right);
-//     const currentDoor2Left = parseFloat(getComputedStyle(door2).left);
-//
-//     // Получаем ширину секции в числовом формате
-//     const sectionWidth = sinichkaSection.offsetWidth;
-//
-//     // Вычисляем новые значения стилей с учетом ограничений
-//     const newDoor1Right = `${Math.min(Math.max(currentDoor1Right - deltaY * step, 0), sectionWidth * 0.2)}px`;
-//     const newDoor2Left = `${Math.min(Math.max(currentDoor2Left - deltaY * step, 0), sectionWidth * 0.2)}px`;
-//
-//     // Применяем новые значения стилей к элементам дверей
-//     door1.style.right = newDoor1Right;
-//     door2.style.left = newDoor2Left;
-//   });
-
-
-
-
     // Плавное переключение секций на весь экран при движении колеса мыши
     let sectionVideoEndListener = null;
     const sections = document.querySelectorAll('section');

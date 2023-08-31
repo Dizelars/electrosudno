@@ -14,10 +14,6 @@
   background-color: black;
   border: 2px solid white;
   border-radius: 20px;
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
 }
 
 .video_content .mouse_prev .mouse_prev-wrapper .mouse_prev_arrow {
@@ -56,7 +52,6 @@
     top: 5px;
   }
 }
-
 
 // Кнопка причалить
 
@@ -113,30 +108,6 @@
   left: 50%;
   transform: translateX(-50%);
 }
-
-//.video_content .info_block.snow .card {
-//  bottom: 144px;
-//  left: 50%;
-//  transform: translateX(-50%);
-//}
-//
-//.video_content .info_block.ejection .card {
-//  left: 25%;
-//  transform: translateX(-75%);
-//  bottom: 144px;
-//}
-//
-//.video_content .info_block.capacity .card {
-//  bottom: 240px;
-//  left: 50%;
-//  transform: translateX(-50%);
-//}
-//
-//.video_content .info_block.moorings .card {
-//  top: 120px;
-//  left: 75%;
-//  transform: translateX(-25%);
-//}
 
 .video_content .info_block .card .card_marker {
   position: relative;
