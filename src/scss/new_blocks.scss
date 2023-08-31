@@ -11,6 +11,16 @@ section#sinichka-section {
   justify-content: center;
 }
 
+.site_content {
+  position: relative;
+}
+
+.sinichka_fixed {
+  height: 100vh;
+  width: 100%;
+  position: sticky;
+  z-index: 15;
+}
 
 @media (max-width: 900px) {
   section#pier-description, {
@@ -19,12 +29,5 @@ section#sinichka-section {
     display: block;
   }
 }
-
-.sinichka_fixed {
-  height: 100vh;
-  width: 100%;
-  position: sticky;
-}
-
 
 

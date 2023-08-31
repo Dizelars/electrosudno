@@ -332,8 +332,22 @@ function App() {
     let currentSectionIndex = 0;
     let isScrolling = false;
 
+    let aframeDot = document.querySelectorAll('[mixin="info-sphere"]');
+    aframeDot.forEach((sphere) => {
+      sphere.addEventListener("click", function () {
+        currentSectionIndex = 1;
+      });
+    });
+
 // Ожидание события "wheel" (прокрутка колеса мыши)
     document.addEventListener('wheel', (event) => {
+      const siteContent = document.querySelector('.site_content');
+      const isSiteContentVisible = window.getComputedStyle(siteContent).display === 'block';
+
+      if (!isSiteContentVisible) {
+        return; // Если стиль не соответствует, не выполняем код ниже
+      }
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -353,6 +367,8 @@ function App() {
         } else if (delta < 0 && currentSectionIndex > 0) {
           currentSectionIndex--;
         }
+
+        console.log(delta, currentSectionIndex);
 
         const currentSection = sections[currentSectionIndex];
 
@@ -385,6 +401,7 @@ function App() {
         if (currentTime < duration) {
 
           const video = section.querySelector('.section-video');
+          // const video = document.querySelector('.section-video');
 
           if (video) {
             video.currentTime = 0;
@@ -398,27 +415,9 @@ function App() {
 
             video.addEventListener("ended", sectionVideoEndListener);
           }
-
           requestAnimationFrame(step);
-          // return;
         }
-
-        // const video = section.querySelector('.section-video');
-        //
-        // if (video) {
-        //   video.currentTime = 0;
-        //   video.classList.add('section-video_active');
-        //
-        //   sectionVideoEndListener = () => {
-        //     video.classList.remove('section-video_active');
-        //     video.removeEventListener("ended", sectionVideoEndListener);
-        //     sectionVideoEndListener = null;
-        //   };
-        //
-        //   video.addEventListener("ended", sectionVideoEndListener);
-        // }
       }
-
       // Запуск анимации
       requestAnimationFrame(step);
     }

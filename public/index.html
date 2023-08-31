@@ -129,7 +129,7 @@
              data-info-title="0%">
       </video>
 
-      <video class="bg-video js-number-block" autoplay muted loop
+      <video class="bg-video js-number-block" autoplay muted data-transit
              data-number="5"
              data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"
              data-info-text="Вместимость"
@@ -754,27 +754,9 @@
 
                           video.addEventListener("ended", sectionVideoEndListener);
                         }
-
                         requestAnimationFrame(step);
-                        // return;
                       }
-
-                      // const video = section.querySelector('.section-video');
-                      //
-                      // if (video) {
-                      //   video.currentTime = 0;
-                      //   video.classList.add('section-video_active');
-                      //
-                      //   sectionVideoEndListener = () => {
-                      //     video.classList.remove('section-video_active');
-                      //     video.removeEventListener("ended", sectionVideoEndListener);
-                      //     sectionVideoEndListener = null;
-                      //   };
-                      //
-                      //   video.addEventListener("ended", sectionVideoEndListener);
-                      // }
                     }
-
                     // Запуск анимации
                     requestAnimationFrame(step);
                   }
@@ -789,13 +771,13 @@
                   const mainContent = document.querySelector('#main');
                   const htmlAframe = document.querySelector('html.a-fullscreen');
                   const sinichka = document.querySelector('#sinichka-section');
-
+                  mainContent.style.display = 'block';
+                  scrollToSection(sinichka);
                   aframeContent.style.opacity = '0';
                   aframeContent.style.pointerEvents = 'none';
-                  mainContent.style.display = 'block';
                   htmlAframe.classList.remove('position');
                   rollup_360.style.display = 'none';
-                  scrollToSection(sinichka);
+
 
                   document
                           .querySelectorAll('[src="#crossIcon"]')

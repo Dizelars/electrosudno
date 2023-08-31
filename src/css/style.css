@@ -1321,7 +1321,8 @@ p {
 
 .section-video {
   display: none;
-  position: absolute;
+  /*position: absolute;*/
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -1635,17 +1636,23 @@ section#sinichka-section {
   justify-content: center;
 }
 
+.site_content {
+  position: relative;
+}
+
+.sinichka_fixed {
+  height: 100vh;
+  width: 100%;
+  position: sticky;
+  z-index: 15;
+}
+
 @media (max-width: 900px) {
   section#pier-description {
     height: auto;
     width: 100%;
     display: block;
   }
-}
-.sinichka_fixed {
-  height: 100vh;
-  width: 100%;
-  position: sticky;
 }
 
 /*# sourceMappingURL=style.css.map */
