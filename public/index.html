@@ -122,7 +122,7 @@
              data-info-title="Круглый год">
       </video>
 
-      <video class="bg-video js-number-block" autoplay muted loop
+      <video class="bg-video js-number-block" autoplay muted data-transit
              data-number="4"
              data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"
              data-info-text="Выброс вредных веществ"
@@ -723,18 +723,79 @@
                           "[id^=infoPanelContainer]"
                   );
 
+                  function scrollToSection(section) {
+                    const targetPosition = section.offsetTop; // Позиция верхней границы секции
+                    const currentPosition = window.scrollY; // Текущая позиция прокрутки
+                    const distance = targetPosition - currentPosition; // Расстояние до цели
+                    const startTime = performance.now(); // Время начала анимации
+                    const duration = 1000; // Длительность анимации в миллисекундах
+
+                    // Функция для анимации, использующая requestAnimationFrame
+                    function step(timestamp) {
+                      const currentTime = timestamp - startTime; // Прошедшее время
+                      const progress = Math.min(currentTime / duration, 1); // Прогресс анимации (0-1)
+                      const easing = easeInOutQuad(progress); // Функция для сглаживания анимации
+                      window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+
+                      // Продолжение анимации, если не достигнут конец анимации
+                      if (currentTime < duration) {
+
+                        const video = section.querySelector('.section-video');
+
+                        if (video) {
+                          video.currentTime = 0;
+                          video.classList.add('section-video_active');
+
+                          sectionVideoEndListener = () => {
+                            video.classList.remove('section-video_active');
+                            video.removeEventListener("ended", sectionVideoEndListener);
+                            sectionVideoEndListener = null;
+                          };
+
+                          video.addEventListener("ended", sectionVideoEndListener);
+                        }
+
+                        requestAnimationFrame(step);
+                        // return;
+                      }
+
+                      // const video = section.querySelector('.section-video');
+                      //
+                      // if (video) {
+                      //   video.currentTime = 0;
+                      //   video.classList.add('section-video_active');
+                      //
+                      //   sectionVideoEndListener = () => {
+                      //     video.classList.remove('section-video_active');
+                      //     video.removeEventListener("ended", sectionVideoEndListener);
+                      //     sectionVideoEndListener = null;
+                      //   };
+                      //
+                      //   video.addEventListener("ended", sectionVideoEndListener);
+                      // }
+                    }
+
+                    // Запуск анимации
+                    requestAnimationFrame(step);
+                  }
+
+                  // Функция для сглаживания анимации прокрутки (функция easing)
+                  function easeInOutQuad(t) {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                  }
+
                   let aframeContent = document.querySelector('#scene');
                   const rollup_360 = document.querySelector('#aframe_rollup');
                   const mainContent = document.querySelector('#main');
                   const htmlAframe = document.querySelector('html.a-fullscreen');
-                  // const sinichka = document.querySelector('#sinichka-section');
+                  const sinichka = document.querySelector('#sinichka-section');
 
                   aframeContent.style.opacity = '0';
                   aframeContent.style.pointerEvents = 'none';
                   mainContent.style.display = 'block';
                   htmlAframe.classList.remove('position');
                   rollup_360.style.display = 'none';
-                  // scrollToSection(sinichka);
+                  scrollToSection(sinichka);
 
                   document
                           .querySelectorAll('[src="#crossIcon"]')
