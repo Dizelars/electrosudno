@@ -110,9 +110,14 @@
 
     <div class="video_content">
 <!--      https://assets.codepen.io/39255/output_960.mp4-->
-      <video src="%PUBLIC_URL%/1video.mp4" playsinline="true" webkit-playsinline="true" preload="auto" muted="muted" class="video-background"></video>
+<!--      src="%PUBLIC_URL%/1video.mp4"-->
+      <video playsinline preload muted class="video-background"></video>
 
-<!--      <video class="bg-video js-number-block active" autoplay muted loop data-number="1" data-info-text-numder='2'>-->
+<!--      <video src="%PUBLIC_URL%/2video.mp4" playsinline preload muted class="video-background"></video>-->
+
+<!--      <video src="%PUBLIC_URL%/3video.mp4" playsinline preload muted class="video-background"></video>-->
+
+<!--      <video class="bg-video js-number-block active" autoplay muted loop data-number="1">-->
 <!--      </video>-->
 
 <!--      <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit>-->
@@ -155,12 +160,15 @@
 <!--        </div>-->
 <!--      </div>-->
 
-<!--      <div class="leave_button">-->
-<!--        <button>Причалить</button>-->
-<!--        <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">-->
-<!--      </div>-->
+      <div class="leave_button">
+        <button>Причалить</button>
+        <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
+      </div>
 
-<!--      <div class="info_block js-number-block"></div>-->
+      <div class="info_block js-number-block">
+<!--        <div class="card">-->
+<!--        </div>-->
+      </div>
     </div>
 
     <div class="site_content js-number-block">
@@ -251,21 +259,21 @@
       </section>
 
       <!-- Секция с двумя маршрутами -->
-      <!-- <section id="pier-routes" class="bg-grey pos-rel">
+      <section id="pier-routes" class="bg-grey pos-rel">
         <div class="container pb-100">
           <h1 class="h1 text-uppercase mb-40">Маршруты</h1>
           <div class="card-flex-wrapper">
             <div class="card bg-grey-grad">
               <p class="route-number mt-0 mb-10">№1</p>
               <h3 class="text-uppercase">Киевский — Сердце столицы</h3>
-              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg alt="kievsky route"">
+              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
               <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
             </div>
             <div class="card bg-grey-grad card-disabled">
               <p class="route-number mt-0 mb-10">№2</p>
               <h3 class="text-uppercase cursor-pointer">Автозаводский Мост — Печатники</h3>
-              <img class="card-img img-responsive d-block d-none-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg">
-              <img class="card-img img-responsive d-none d-block-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg">
+              <img class="card-img img-responsive d-block d-none-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg" alt="kievsky route">
+              <img class="card-img img-responsive d-none d-block-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg" alt="kievsky route">
               <p>Раньше через Южный речной вокзал и прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у москвичей. Открытие нового маршрута состоится до конца года.</p>
             </div>
           </div>
@@ -274,46 +282,46 @@
         <div id="fullimage" class="fullimage fullimage-disabled">
           <div class="fullimage-wrapper"></div>
         </div>
-      </section> -->
+      </section>
 
       <!-- Секция с одним маршрутом -->
-      <section id="pier-routes" class="bg-grey pos-rel pt-100">
-        <div class="container pb-100">
-          <h1 class="h1 text-uppercase mb-40">Маршруты</h1>
+<!--      <section id="pier-routes" class="bg-grey pos-rel pt-100">-->
+<!--        <div class="container pb-100">-->
+<!--          <h1 class="h1 text-uppercase mb-40">Маршруты</h1>-->
 
-          <!-- desktop, horizTab -->
-          <div class="card-flex-wrapper d-none-tab">
-            <div class="card bg-grey-grad">
-              <div class="grid-12 width-1 align-center">
-                <div class="col-6 d-flex-col max-width-400">
-                  <p class="route-number mt-0 mb-10">№1</p>
-                  <h2 class="text-uppercase fs-125-tab">Киевский — Сердце столицы</h2>
-                  <p class="flex-11auto mt-30">Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
-                  <a data-route="kievsky" href="#" class="btn btn-link align-self-fs">
-                    Посмотреть
-                    <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
-                  </a>
-                </div>
-                <img class="col-6 card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
-              </div>
-            </div>
-          </div>
+<!--          &lt;!&ndash; desktop, horizTab &ndash;&gt;-->
+<!--          <div class="card-flex-wrapper d-none-tab">-->
+<!--            <div class="card bg-grey-grad">-->
+<!--              <div class="grid-12 width-1 align-center">-->
+<!--                <div class="col-6 d-flex-col max-width-400">-->
+<!--                  <p class="route-number mt-0 mb-10">№1</p>-->
+<!--                  <h2 class="text-uppercase fs-125-tab">Киевский — Сердце столицы</h2>-->
+<!--                  <p class="flex-11auto mt-30">Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
+<!--                  <a data-route="kievsky" href="#" class="btn btn-link align-self-fs">-->
+<!--                    Посмотреть-->
+<!--                    <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--                <img class="col-6 card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <!-- vertTab, mobile -->
-          <div class="card-flex-wrapper d-none d-flex-tab">
-            <div class="card bg-grey-grad">
-              <p class="route-number mt-0 mb-10">№1</p>
-              <h3 class="text-uppercase">Киевский — Сердце столицы</h3>
-              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
-              <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
-            </div>
-          </div>
-        </div>
-        <!-- Отображение маршрута по клику -->
-        <div id="fullimage" class="fullimage fullimage-disabled">
-          <div class="fullimage-wrapper"></div>
-        </div>
-      </section>
+<!--          &lt;!&ndash; vertTab, mobile &ndash;&gt;-->
+<!--          <div class="card-flex-wrapper d-none d-flex-tab">-->
+<!--            <div class="card bg-grey-grad">-->
+<!--              <p class="route-number mt-0 mb-10">№1</p>-->
+<!--              <h3 class="text-uppercase">Киевский — Сердце столицы</h3>-->
+<!--              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">-->
+<!--              <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Отображение маршрута по клику &ndash;&gt;-->
+<!--        <div id="fullimage" class="fullimage fullimage-disabled">-->
+<!--          <div class="fullimage-wrapper"></div>-->
+<!--        </div>-->
+<!--      </section>-->
 
       <section id="pier-faq" class="bg-grey">
         <div class="container pb-100">
@@ -323,7 +331,7 @@
               <h3 class="text-uppercase">Расписание</h3>
               <p class="fg-1">Электросуда работают ежедневно.<br>Расписание можно посмотреть на едином транспортном портале</p>
               <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/calendar.png" alt="calendar">
-              <a href="#" class="btn btn-link align-self-fs">
+              <a href="https://transport.mos.ru/reka/routes" class="btn btn-link align-self-fs" target="_blank">
                 Посмотреть
                 <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
               </a>
@@ -333,7 +341,7 @@
               <div class="d-flex-col card-body-active">
                 <p class="fg-1">Посмотрите подробную информацию о стоимости проезда</p>
                 <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/bill.png" alt="calendar">
-                <a href="#" class="btn btn-link align-self-fs">
+                <a href="https://transport.mos.ru/reka/regular_river_routes" class="btn btn-link align-self-fs" target="_blank">
                   Посмотреть
                   <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
                 </a>
@@ -359,7 +367,7 @@
               <div class="d-flex-col card-body-active">
                 <p class="fg-1">Пассажиры могут оплачивать проезд привычным для них способом</p>
                 <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/card.png" alt="calendar">
-                <a href="#" class="btn btn-link align-self-fs">
+                <a href="https://transport.mos.ru/reka/regular_river_routes" class="btn btn-link align-self-fs" target="_blank">
                   Посмотреть
                   <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
                 </a>
@@ -650,11 +658,35 @@
     /* Кодировка здесь очень важна, чтобы обеспечить покадровое перемещение. */
     // ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p output.mp4
     // ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -vf scale=960:-1 -movflags faststart -vcodec libx264 -crf 20 -g 1 -pix_fmt yuv420p output_960.mp4
+    // Получение элементов
 
-    // Получение элемента видео
+    const infoElem = document.querySelector(".info_block");
+
+    const infoElemContent = {
+      snow: {
+        src: "%PUBLIC_URL%/images/icons/snow.svg",
+        text: "Возможность использования",
+        title: "Круглый год",
+      },
+      ejection: {
+        src: "%PUBLIC_URL%/images/icons/ejection.svg",
+        text: "Выброс вредных веществ",
+        title: "0%",
+      },
+      capacity: {
+        src: "%PUBLIC_URL%/images/icons/capacity.svg",
+        text: "Вместимость",
+        title: "50 комфортных мест",
+      },
+      moorings: {
+        src: "%PUBLIC_URL%/images/icons/moorings.svg",
+        text: "Колличество причалов",
+        title: "23 штуки",
+      }
+    }
+
     const video = document.querySelector(".video_content .video-background");
     const src = video.currentSrc || video.src;
-    console.log(video, src);
 
     /* Проверка, что видео "активировано" на iOS */
     // В данном случае, когда происходит первое касание на странице (событие "touchstart"), видео воспроизводится и сразу же приостанавливается. Это используется для активации возможности воспроизведения видео на устройствах iOS.
@@ -683,9 +715,15 @@
         trigger: "#container",
         start: "top top",
         end: "bottom bottom",
-        scrub: true  // Позволяет плавно анимировать свойства объекта при скролле.
-      }
+        scrub: 0.1, // Плавное скольжение
+        toggleActions: "play pause resume reset" // Управление анимацией при скролле
+      },
+      // onEnter: () => {
+      //   video.play(); // Включение видео перед началом анимации при скролле
+      // }
     });
+
+
 
     // Запуск анимации при загрузке метаданных видео
     once(video, "loadedmetadata", () => {
@@ -696,45 +734,130 @@
       );
     });
 
-    /* При первом кодировании Blobbing был важен для того, чтобы браузер не сбрасывал ранее воспроизведенные сегменты, но сейчас, похоже, это не является проблемой. Возможно, это связано с доступностью памяти? */
-    // setTimeout(function () {
-    //   if (window["fetch"]) {
-    //     fetch(src)
-    //             .then((response) => response.blob())
-    //             .then((response) => {
-    //               let blobURL = URL.createObjectURL(response);
-    //
-    //               let t = video.currentTime;
-    //               once(document.documentElement, "touchstart", function (e) {
-    //                 video.play();
-    //                 video.pause();
-    //               });
-    //
-    //               video.setAttribute("src", blobURL);
-    //               video.currentTime = t + 0.01;
-    //             });
-    //   }
-    // }, 1000);
+    // Прикрепление контейнера видео к экрану
+    ScrollTrigger.create({
+      trigger: "#container",
+      pin: true,
+      start: "top top",
+      end: "bottom bottom",
+    });
 
-    async function fetchAndInitializeVideo() {
-      try {
-        const response = await fetch(src);
-        const blob = await response.blob();
-        const blobURL = URL.createObjectURL(blob);
+    let currentActiveContent = null;
 
-        const t = video.currentTime;
-        once(document.documentElement, "touchstart", () => {
-          video.play();
-          video.pause();
-        });
+    video.addEventListener("timeupdate", function() {
+      const currentTime = video.currentTime;
+      let newActiveContent = null;
 
-        video.setAttribute("src", blobURL);
-        video.currentTime = t + 0.01;
-      } catch (error) {
-        console.error("Error fetching video:", error);
+      if (currentTime >= 7 && currentTime < 12) {
+        newActiveContent = infoElemContent.ejection;
+      } else if (currentTime >= 13 && currentTime < 17) {
+        newActiveContent = infoElemContent.snow;
+      } else if (currentTime >= 18 && currentTime < 22) {
+        newActiveContent = infoElemContent.capacity;
+      } else if (currentTime >= 23 && currentTime < 26) {
+        newActiveContent = infoElemContent.moorings;
       }
+
+      if (newActiveContent !== currentActiveContent) {
+        if (newActiveContent) {
+          const { src, text, title } = newActiveContent;
+
+          // Анимация ухода текущего контента
+          if (currentActiveContent) {
+            const card = infoElem.querySelector('.card');
+            card.classList.remove('animateUp');
+            card.classList.add('animateDown');
+            setTimeout(() => {
+              updateInfoElement(src, text, title);
+              card.classList.remove('animateDown');
+              setTimeout(() => {
+                card.classList.add('animateUp');
+              }, 50);
+            }, 500);
+          } else {
+            // Первый контент (без анимации ухода)
+            updateInfoElement(src, text, title);
+            const card = infoElem.querySelector('.card');
+            card.classList.add('animateUp');
+          }
+        } else {
+          // Анимация ухода текущего контента при очистке
+          if (currentActiveContent) {
+            const card = infoElem.querySelector('.card');
+            card.classList.remove('animateUp');
+            card.classList.add('animateDown');
+            setTimeout(() => {
+              clearInfoElement();
+              card.classList.remove('animateDown');
+            }, 500);
+          } else {
+            clearInfoElement();
+          }
+        }
+        currentActiveContent = newActiveContent;
+      }
+    });
+
+    function updateInfoElement(src, text, title) {
+      infoElem.style.display = "block";
+      infoElem.innerHTML = `
+      <div class="card">
+        <div class="card_marker">
+          <img class="card_marker-img" src="${src}" alt="snow">
+        </div>
+        <div class="card_descr">
+          <p class="card_descr-text">${text}</p>
+          <p class="card_descr-title">${title}</p>
+        </div>
+      </div>
+    `;
     }
-    setTimeout(fetchAndInitializeVideo, 1000);
+
+    function clearInfoElement() {
+      // infoElem.innerHTML = "";
+      infoElem.style.display = "none";
+    }
+
+    // <div class="card_marker">
+    //   <img class="card_marker-img" src="${src}" alt="snow">
+    // </div>
+    // <div class="card_descr">
+    //   <p class="card_descr-text">${text}</p>
+    //   <p class="card_descr-title">${title}</p>
+    // </div>
+
+    // <div class="card">
+    //   <div class="card_marker">
+    //     <img class="card_marker-img" src="${src}" alt="snow">
+    //   </div>
+    //   <div class="card_descr">
+    //     <p class="card_descr-text">${text}</p>
+    //     <p class="card_descr-title">${title}</p>
+    //   </div>
+    // </div>
+
+
+    /* При первом кодировании Blobbing был важен для того, чтобы браузер не сбрасывал ранее воспроизведенные сегменты, но сейчас, похоже, это не является проблемой. Возможно, это связано с доступностью памяти? */
+    // async function fetchAndInitializeVideo() {
+    //   try {
+    //     const response = await fetch(src);
+    //     const blob = await response.blob();
+    //     const blobURL = URL.createObjectURL(blob);
+    //
+    //     const t = video.currentTime;
+    //     once(document.documentElement, "touchstart", () => {
+    //       video.play();
+    //       video.pause();
+    //     });
+    //
+    //     video.setAttribute("src", blobURL);
+    //     video.currentTime = t + 0.01;
+    //   } catch (error) {
+    //     console.error("Error fetching video:", error);
+    //   }
+    // }
+    // setTimeout(fetchAndInitializeVideo, 1000);
+
   </script>
 
   <script>

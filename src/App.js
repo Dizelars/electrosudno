@@ -13,6 +13,31 @@ const ROUTES = [
   }
 ];
 
+
+
+const initOneVideo = () => {
+
+  // Определяем, является ли устройство мобильным
+  const isMobile = window.innerWidth < 481;
+
+  // Для каждого элемента с классом "bg-video"
+  document.querySelectorAll(".video-background").forEach((el, i) => {
+    // Создаем элемент "source" и задаем атрибуты для видеофайла
+    const source = document.createElement("source");
+    source.setAttribute(
+      "src",
+      `/${i + 1}${isMobile ? "video" : "video"}.mp4`
+    );
+    source.setAttribute("type", "video/mp4");
+
+    // Добавляем элемент "source" внутрь видеоэлемента
+    el.appendChild(source);
+  });
+};
+
+initOneVideo();
+
+
 // const initVideos = () => {
 //
 //   // Определяем, является ли устройство мобильным
@@ -37,20 +62,20 @@ function App() {
   useEffect(() => {
     // let onVideoEndListener = null;
     // let touchstartY = 0;
-    // let isEndVideos = false;
-    //
+    let isEndVideos = false;
+
     // const infoElem = document.querySelector(".info_block");
-    // const videoContent = document.querySelector(".video_content");
-    // const siteContent = document.querySelector(".site_content");
-    //
+    const videoContent = document.querySelector(".video_content");
+    const siteContent = document.querySelector(".site_content");
+
     // initVideos();
-    //
-    // const finishVideosBlock = () => {
-    //   videoContent.style.display = "none";
-    //   siteContent.style.display = "block";
-    //   isEndVideos = true;
-    // }
-    //
+
+    const finishVideosBlock = () => {
+      videoContent.style.display = "none";
+      siteContent.style.display = "block";
+      isEndVideos = true;
+    }
+
     // // Обработчик для переключения видеофрагментов
     // const switchHandler = (direction) => {
     //   // TODO: Избавиться от direction вовсе
@@ -148,18 +173,18 @@ function App() {
     //     doSwitch();
     //   }
     // };
-    //
-    // // // Добавляем обработчик прокрутки на блок siteContent
-    // // siteContent.addEventListener("scroll", () => {
-    // //   // Если прокрутка дошла до верха блока siteContent
-    // //   if (siteContent.scrollTop === 0) {
-    // //     // Показываем блок с видео и скрываем блок site_content
-    // //     videoContent.style.display = "block";
-    // //     siteContent.style.display = "none";
-    // //   }
-    // // });
-    //
-    // // Добавляем обработчики для переключения видеофрагментов при прокрутке и событиях touch
+
+    // // Добавляем обработчик прокрутки на блок siteContent
+    // siteContent.addEventListener("scroll", () => {
+    //   // Если прокрутка дошла до верха блока siteContent
+    //   if (siteContent.scrollTop === 0) {
+    //     // Показываем блок с видео и скрываем блок site_content
+    //     videoContent.style.display = "block";
+    //     siteContent.style.display = "none";
+    //   }
+    // });
+
+    // Добавляем обработчики для переключения видеофрагментов при прокрутке и событиях touch
     // document.addEventListener("wheel", (e) => switchHandler("next"));
     // document.addEventListener("touchstart", function (e) {
     //   touchstartY = e.touches[0].clientY;
@@ -170,31 +195,31 @@ function App() {
     //       ? switchHandler("next")
     //       : switchHandler("prev");
     // });
-    //
-    // // Костыль для переключения видео (не зацикленных)
-    // // function processActiveBlocks() {
-    // //   const activeBlock2 = document.querySelectorAll(".js-number-block");
-    // //   activeBlock2.forEach((e) => {
-    // //     if (e.hasAttribute("data-transit") && e.classList.contains("active")) {
-    // //       console.log(e);
-    // //       switchHandler("next");
-    // //     }
-    // //   });
-    // // }
-    // // Вызывать функцию, пока videoContent не станет невидимым
-    // // const intervalId = setInterval(() => {
-    // //   if (getComputedStyle(videoContent).display === 'none') {
-    // //     clearInterval(intervalId); // Остановить вызов функции
-    // //   } else {
-    // //     processActiveBlocks();
-    // //   }
-    // // }, 3000);
+
+    // Костыль для переключения видео (не зацикленных)
+    // function processActiveBlocks() {
+    //   const activeBlock2 = document.querySelectorAll(".js-number-block");
+    //   activeBlock2.forEach((e) => {
+    //     if (e.hasAttribute("data-transit") && e.classList.contains("active")) {
+    //       console.log(e);
+    //       switchHandler("next");
+    //     }
+    //   });
+    // }
+    // Вызывать функцию, пока videoContent не станет невидимым
+    // const intervalId = setInterval(() => {
+    //   if (getComputedStyle(videoContent).display === 'none') {
+    //     clearInterval(intervalId); // Остановить вызов функции
+    //   } else {
+    //     processActiveBlocks();
+    //   }
+    // }, 3000);
     //
     // // Пропустить превью с видео
-    // const leavePrev = document.querySelector(".video_content .leave_button");
-    // leavePrev.addEventListener("click", () => {
-    //   finishVideosBlock();
-    // });
+    const leavePrev = document.querySelector(".video_content .leave_button");
+    leavePrev.addEventListener("click", () => {
+      finishVideosBlock();
+    });
 
 
 
@@ -202,110 +227,110 @@ function App() {
 
     // Логика страницы после блоков видео
 
-    const fullimageEl = document.querySelector('#fullimage');
-    const fullimageWrapper = document.querySelector('.fullimage-wrapper');
+    // const fullimageEl = document.querySelector('#fullimage');
+    // const fullimageWrapper = document.querySelector('.fullimage-wrapper');
+    //
+    // const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)')
+    // const routeBtn = document.querySelector('.btn[data-route]')
 
-    const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)')
-    const routeBtn = document.querySelector('.btn[data-route]')
-
-    const cardFaqs = document.querySelectorAll('.card-faq');
+    // const cardFaqs = document.querySelectorAll('.card-faq');
 
     // Листнер для закрытия fullimage
-    document.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      // клик на изображение маршрута
-      if (e.target.hasAttribute('data-route')) {
-        return;
-      }
-
-      // клик за край fullimage
-      if (!fullimageEl.contains(e.target)) {
-        fullimageEl.classList.remove('fullimage-active');
-        fullimageEl.classList.add('fullimage-disabled');
-      }
-    });
+    // document.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //
+    //   // клик на изображение маршрута
+    //   if (e.target.hasAttribute('data-route')) {
+    //     return;
+    //   }
+    //
+    //   // клик за край fullimage
+    //   if (!fullimageEl.contains(e.target)) {
+    //     fullimageEl.classList.remove('fullimage-active');
+    //     fullimageEl.classList.add('fullimage-disabled');
+    //   }
+    // });
 
     // добавление кружка-станции
-    const handleAddCircle = ({ bottom, right, hoverImgSrc }) => {
-      const isMobile = window.innerWidth <= 440;
-      const circleEl = document.createElement('div');
-      circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
-      circleEl.style.bottom = bottom;
-      circleEl.style.right = right;
-
-      const hoverImg = document.createElement('img');
-      hoverImg.classList.add('pos-abs', 'circle-hover-img');
-      hoverImg.src = hoverImgSrc;
-
-      hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
-      const hoverImgRight = isMobile ? `${right}` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
-      hoverImg.style.setProperty('right', hoverImgRight);
-      fullimageWrapper.appendChild(hoverImg);
-
-      circleEl.addEventListener('mouseover', (e) => {
-        e.preventDefault();
-        hoverImg.classList.add('opacity-1');
-      })
-
-      circleEl.addEventListener('mouseleave', (e) => {
-        e.preventDefault();
-        hoverImg.classList.remove('opacity-1');
-      })
-
-      fullimageWrapper.appendChild(circleEl);
-    }
+    // const handleAddCircle = ({ bottom, right, hoverImgSrc }) => {
+    //   const isMobile = window.innerWidth <= 440;
+    //   const circleEl = document.createElement('div');
+    //   circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
+    //   circleEl.style.bottom = bottom;
+    //   circleEl.style.right = right;
+    //
+    //   const hoverImg = document.createElement('img');
+    //   hoverImg.classList.add('pos-abs', 'circle-hover-img');
+    //   hoverImg.src = hoverImgSrc;
+    //
+    //   hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
+    //   const hoverImgRight = isMobile ? `${right}` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
+    //   hoverImg.style.setProperty('right', hoverImgRight);
+    //   fullimageWrapper.appendChild(hoverImg);
+    //
+    //   circleEl.addEventListener('mouseover', (e) => {
+    //     e.preventDefault();
+    //     hoverImg.classList.add('opacity-1');
+    //   })
+    //
+    //   circleEl.addEventListener('mouseleave', (e) => {
+    //     e.preventDefault();
+    //     hoverImg.classList.remove('opacity-1');
+    //   })
+    //
+    //   fullimageWrapper.appendChild(circleEl);
+    // }
 
     // добавление изображения маршрута
-    const handleOpenRoute = ({ src, routeName }) => {
-      fullimageWrapper.innerHTML = '';
-      fullimageEl.classList.remove('fullimage-disabled');
-      fullimageEl.classList.add('fullimage-active');
-
-      const routeImg = document.createElement('img');
-      routeImg.src = src;
-      routeImg.classList.add('img-responsive');
-      fullimageWrapper.appendChild(routeImg);
-      const currRoute = ROUTES.find((route) => route.name === routeName);
-      currRoute.circles.forEach((circle) => {
-        handleAddCircle(circle)
-      });
-    }
+    // const handleOpenRoute = ({ src, routeName }) => {
+    //   fullimageWrapper.innerHTML = '';
+    //   fullimageEl.classList.remove('fullimage-disabled');
+    //   fullimageEl.classList.add('fullimage-active');
+    //
+    //   const routeImg = document.createElement('img');
+    //   routeImg.src = src;
+    //   routeImg.classList.add('img-responsive');
+    //   fullimageWrapper.appendChild(routeImg);
+    //   const currRoute = ROUTES.find((route) => route.name === routeName);
+    //   currRoute.circles.forEach((circle) => {
+    //     handleAddCircle(circle)
+    //   });
+    // }
 
     // Листнеры на картинках с маршрутами
-    routeImages.forEach((routeEl) => {
-      routeEl.addEventListener('click', (e) => {
-        e.preventDefault();
-        handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
-      })
-    });
-
-    // Листнер на кнопке с маршрутами
-    routeBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const routeName = e.target.dataset.route;
-      const src = document.querySelector(`img[data-route='${routeName}'`).src;
-      handleOpenRoute({ src, routeName });
-    });
+    // routeImages.forEach((routeEl) => {
+    //   routeEl.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
+    //   })
+    // });
+    //
+    // // Листнер на кнопке с маршрутами
+    // routeBtn.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   const routeName = e.target.dataset.route;
+    //   const src = document.querySelector(`img[data-route='${routeName}'`).src;
+    //   handleOpenRoute({ src, routeName });
+    // });
 
     // Переворачивание карточки справочная информация
-    cardFaqs.forEach((cardFaq) => {
-      cardFaq.addEventListener('click', (e) => {
-        e.preventDefault();
-        const frontSide = cardFaq.querySelector('.card-body-active');
-        const backSide = cardFaq.querySelector('.card-body-disabled');
-
-        if (!backSide || !frontSide) {
-          return;
-        }
-
-        frontSide.classList.remove('card-body-active');
-        frontSide.classList.add('card-body-disabled');
-
-        backSide.classList.remove('card-body-disabled');
-        backSide.classList.add('card-body-active');
-      });
-    })
+    // cardFaqs.forEach((cardFaq) => {
+    //   cardFaq.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     const frontSide = cardFaq.querySelector('.card-body-active');
+    //     const backSide = cardFaq.querySelector('.card-body-disabled');
+    //
+    //     if (!backSide || !frontSide) {
+    //       return;
+    //     }
+    //
+    //     frontSide.classList.remove('card-body-active');
+    //     frontSide.classList.add('card-body-disabled');
+    //
+    //     backSide.classList.remove('card-body-disabled');
+    //     backSide.classList.add('card-body-active');
+    //   });
+    // })
 
 
     // const sinichkaVue = document.querySelector('.vue_button');
