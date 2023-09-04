@@ -15,7 +15,8 @@ html.a-fullscreen.position {
 //}
 
 html.a-fullscreen body {
-  overflow: auto !important;
+  //overflow: auto !important;
+  overflow: auto;
 }
 //
 //html.a-fullscreen .a-canvas {

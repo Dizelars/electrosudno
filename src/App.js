@@ -1,17 +1,17 @@
 import {useEffect} from "react";
 
-const IMAGE_WIDTH_OFFSET = 180;
-
-// Маршруты
-const ROUTES = [
-  { 
-    name: 'kievsky', 
-    circles: [
-      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskyPoint.svg' },
-      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/kievskyPoint.svg '},
-    ],
-  }
-];
+// const IMAGE_WIDTH_OFFSET = 180;
+//
+// // Маршруты
+// const ROUTES = [
+//   {
+//     name: 'kievsky',
+//     circles: [
+//       { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskyPoint.svg' },
+//       { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/kievskyPoint.svg '},
+//     ],
+//   }
+// ];
 
 
 
@@ -26,7 +26,7 @@ const initOneVideo = () => {
     const source = document.createElement("source");
     source.setAttribute(
       "src",
-      `/${i + 1}${isMobile ? "video" : "video"}.mp4`
+      `/${i + 1}${isMobile ? "mobile" : "video"}.mp4`
     );
     source.setAttribute("type", "video/mp4");
 
@@ -62,19 +62,24 @@ function App() {
   useEffect(() => {
     // let onVideoEndListener = null;
     // let touchstartY = 0;
-    let isEndVideos = false;
+    // let isEndVideos = false;
 
     // const infoElem = document.querySelector(".info_block");
-    const videoContent = document.querySelector(".video_content");
-    const siteContent = document.querySelector(".site_content");
+    // const videoContent = document.querySelector(".video_content");
+    // const siteContent = document.querySelector(".site_content");
+
+    // if (videoContent) {
+    //
+    // }
+
 
     // initVideos();
 
-    const finishVideosBlock = () => {
-      videoContent.style.display = "none";
-      siteContent.style.display = "block";
-      isEndVideos = true;
-    }
+    // const finishVideosBlock = () => {
+    //   videoContent.style.display = "none";
+    //   siteContent.style.display = "block";
+    //   isEndVideos = true;
+    // }
 
     // // Обработчик для переключения видеофрагментов
     // const switchHandler = (direction) => {
@@ -216,10 +221,10 @@ function App() {
     // }, 3000);
     //
     // // Пропустить превью с видео
-    const leavePrev = document.querySelector(".video_content .leave_button");
-    leavePrev.addEventListener("click", () => {
-      finishVideosBlock();
-    });
+    // const leavePrev = document.querySelector(".video_content .leave_button");
+    // leavePrev.addEventListener("click", () => {
+    //   finishVideosBlock();
+    // });
 
 
 
@@ -348,110 +353,108 @@ function App() {
     //   contentMain.style.display = 'block';
     // });
 
-
-
-
-    // Плавное переключение секций на весь экран при движении колеса мыши
-    let sectionVideoEndListener = null;
-    const sections = document.querySelectorAll('section');
-    let currentSectionIndex = 0;
-    let isScrolling = false;
-
-    let aframeDot = document.querySelectorAll('[mixin="info-sphere"]');
-    aframeDot.forEach((sphere) => {
-      sphere.addEventListener("click", function () {
-        currentSectionIndex = 1;
-      });
-    });
-
-// Ожидание события "wheel" (прокрутка колеса мыши)
-    document.addEventListener('wheel', (event) => {
-      const siteContent = document.querySelector('.site_content');
-      const isSiteContentVisible = window.getComputedStyle(siteContent).display === 'block';
-
-      if (!isSiteContentVisible) {
-        return; // Если стиль не соответствует, не выполняем код ниже
-      }
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      if (sectionVideoEndListener) {
-        return;
-      }
-
-      if (!isScrolling) {
-        isScrolling = true;
-
-        // Определение направления прокрутки
-        const delta = Math.sign(event.deltaY);
-
-        // Изменение индекса текущей секции в зависимости от направления
-        if (delta > 0 && currentSectionIndex < sections.length - 1) {
-          currentSectionIndex++;
-        } else if (delta < 0 && currentSectionIndex > 0) {
-          currentSectionIndex--;
-        }
-
-        console.log(delta, currentSectionIndex);
-
-        const currentSection = sections[currentSectionIndex];
-
-        // Вызов функции для плавной анимированной прокрутки
-        scrollToSection(currentSection);
-
-        // Установка таймера для предотвращения множественных срабатываний
-        setTimeout(() => {
-          isScrolling = false;
-        }, 1000); // Здесь задержка, чтобы избежать множественных срабатываний
-      }
-    }, { passive: false });
-
-// Функция для анимированной прокрутки к указанной секции
-    function scrollToSection(section) {
-      const targetPosition = section.offsetTop; // Позиция верхней границы секции
-      const currentPosition = window.scrollY; // Текущая позиция прокрутки
-      const distance = targetPosition - currentPosition; // Расстояние до цели
-      const startTime = performance.now(); // Время начала анимации
-      const duration = 1000; // Длительность анимации в миллисекундах
-
-      // Функция для анимации, использующая requestAnimationFrame
-      function step(timestamp) {
-        const currentTime = timestamp - startTime; // Прошедшее время
-        const progress = Math.min(currentTime / duration, 1); // Прогресс анимации (0-1)
-        const easing = easeInOutQuad(progress); // Функция для сглаживания анимации
-        window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
-
-        // Продолжение анимации, если не достигнут конец анимации
-        if (currentTime < duration) {
-
-          const video = section.querySelector('.section-video');
-          // const video = document.querySelector('.section-video');
-
-          if (video) {
-            video.currentTime = 0;
-            video.classList.add('section-video_active');
-
-            sectionVideoEndListener = () => {
-              video.classList.remove('section-video_active');
-              video.removeEventListener("ended", sectionVideoEndListener);
-              sectionVideoEndListener = null;
-            };
-
-            video.addEventListener("ended", sectionVideoEndListener);
-          }
-          requestAnimationFrame(step);
-        }
-      }
-      // Запуск анимации
-      requestAnimationFrame(step);
-    }
-
-// Функция для сглаживания анимации прокрутки (функция easing)
-    function easeInOutQuad(t) {
-      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    }
-
+//     function WheelContentSmooth() {
+//       // Плавное переключение секций на весь экран при движении колеса мыши
+//       let sectionVideoEndListener = null;
+//       const sections = document.querySelectorAll('section');
+//       let currentSectionIndex = 0;
+//       let isScrolling = false;
+//
+//       let aframeDot = document.querySelectorAll('[mixin="info-sphere"]');
+//       aframeDot.forEach((sphere) => {
+//         sphere.addEventListener("click", function () {
+//           currentSectionIndex = 1;
+//         });
+//       });
+//
+// // Ожидание события "wheel" (прокрутка колеса мыши)
+//       document.addEventListener('wheel', (event) => {
+//         const siteContent = document.querySelector('.site_content');
+//         const isSiteContentVisible = window.getComputedStyle(siteContent).display === 'block';
+//
+//         if (!isSiteContentVisible) {
+//           return; // Если стиль не соответствует, не выполняем код ниже
+//         }
+//
+//         event.preventDefault();
+//         event.stopPropagation();
+//
+//         if (sectionVideoEndListener) {
+//           return;
+//         }
+//
+//         if (!isScrolling) {
+//           isScrolling = true;
+//
+//           // Определение направления прокрутки
+//           const delta = Math.sign(event.deltaY);
+//
+//           // Изменение индекса текущей секции в зависимости от направления
+//           if (delta > 0 && currentSectionIndex < sections.length - 1) {
+//             currentSectionIndex++;
+//           } else if (delta < 0 && currentSectionIndex > 0) {
+//             currentSectionIndex--;
+//           }
+//
+//           console.log(delta, currentSectionIndex);
+//
+//           const currentSection = sections[currentSectionIndex];
+//
+//           // Вызов функции для плавной анимированной прокрутки
+//           scrollToSection(currentSection);
+//
+//           // Установка таймера для предотвращения множественных срабатываний
+//           setTimeout(() => {
+//             isScrolling = false;
+//           }, 1000); // Здесь задержка, чтобы избежать множественных срабатываний
+//         }
+//       }, { passive: false });
+//
+// // Функция для анимированной прокрутки к указанной секции
+//       function scrollToSection(section) {
+//         const targetPosition = section.offsetTop; // Позиция верхней границы секции
+//         const currentPosition = window.scrollY; // Текущая позиция прокрутки
+//         const distance = targetPosition - currentPosition; // Расстояние до цели
+//         const startTime = performance.now(); // Время начала анимации
+//         const duration = 1000; // Длительность анимации в миллисекундах
+//
+//         // Функция для анимации, использующая requestAnimationFrame
+//         function step(timestamp) {
+//           const currentTime = timestamp - startTime; // Прошедшее время
+//           const progress = Math.min(currentTime / duration, 1); // Прогресс анимации (0-1)
+//           const easing = easeInOutQuad(progress); // Функция для сглаживания анимации
+//           window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+//
+//           // Продолжение анимации, если не достигнут конец анимации
+//           if (currentTime < duration) {
+//
+//             const video = section.querySelector('.section-video');
+//             // const video = document.querySelector('.section-video');
+//
+//             if (video) {
+//               video.currentTime = 0;
+//               video.classList.add('section-video_active');
+//
+//               sectionVideoEndListener = () => {
+//                 video.classList.remove('section-video_active');
+//                 video.removeEventListener("ended", sectionVideoEndListener);
+//                 sectionVideoEndListener = null;
+//               };
+//
+//               video.addEventListener("ended", sectionVideoEndListener);
+//             }
+//             requestAnimationFrame(step);
+//           }
+//         }
+//         // Запуск анимации
+//         requestAnimationFrame(step);
+//       }
+//
+// // Функция для сглаживания анимации прокрутки (функция easing)
+//       function easeInOutQuad(t) {
+//         return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+//       }
+//     }
 
   }, []);
   return <></>;

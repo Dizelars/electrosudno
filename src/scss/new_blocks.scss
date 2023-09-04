@@ -11,6 +11,19 @@ section#sinichka-section {
   justify-content: center;
 }
 
+section#pier-faq.video_active,
+section#pier-routes.video_active,
+section#sinichka-section.video_active,
+footer#footer.video_active {
+  display: none;
+}
+
+section#pier-description.fixed {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
 .site_content {
   //display: none;
   position: relative;

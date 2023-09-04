@@ -1182,6 +1182,7 @@ p {
 }
 .video_content {
   height: 1000vh;
+  opacity: 1;
 }
 
 .video_content .video-background {
@@ -1387,7 +1388,7 @@ html.a-fullscreen.position {
 }
 
 html.a-fullscreen body {
-  overflow: auto !important;
+  overflow: auto;
 }
 
 a-scene {
@@ -1674,6 +1675,19 @@ section#sinichka-section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+section#pier-faq.video_active,
+section#pier-routes.video_active,
+section#sinichka-section.video_active,
+footer#footer.video_active {
+  display: none;
+}
+
+section#pier-description.fixed {
+  position: fixed;
+  top: 0;
+  z-index: -1;
 }
 
 .site_content {

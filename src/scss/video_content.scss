@@ -4,6 +4,10 @@
 
 .video_content {
   height: 1000vh;
+  opacity: 1;
+  //position: absolute;
+  //width: 100%;
+  //z-index: 16;
   //overflow: hidden; /* Скрыть видео, которые не воспроизводятся */
 }
 
