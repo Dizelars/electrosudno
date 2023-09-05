@@ -762,12 +762,16 @@
         newActiveContent = infoElemContent.capacity;
       } else if (currentTime >= 23 && currentTime < 26) {
         newActiveContent = infoElemContent.moorings;
-      }
-      else if (currentTime >= 30.5 && currentTime < 32) {
-        videoContent.style.opacity = 0;
-      }
-      else if (currentTime < 30.5) {
+      } else if (currentTime < 30.5) {
         videoContent.style.opacity = 1;
+      } else if (currentTime >= 30.5 && currentTime < 31) {
+        videoContent.style.opacity = 0.9;
+      } else if (currentTime >= 31 && currentTime < 31.5) {
+        videoContent.style.opacity = 0.6;
+      } else if (currentTime >= 31.5 && currentTime < 32) {
+        videoContent.style.opacity = 0.3;
+      } else if (currentTime >= 32) {
+        videoContent.style.opacity = 0;
       }
 
       if (newActiveContent !== currentActiveContent) {
@@ -832,16 +836,16 @@
 
     function onVideoEndListener() {
       setTimeout(() => {
-        WheelContentSmooth();
+        contentNone.forEach((section) => {
+          section.classList.remove('video_active');
+        });
       }, 100);
       video.removeEventListener("ended", onVideoEndListener);
       videoContent.style.display = "none";
       siteContent.style.display = "block";
       bodyOverflow.style.overflow = 'auto';
       firstSection.classList.remove('fixed');
-      contentNone.forEach((section) => {
-        section.classList.remove('video_active');
-      });
+      WheelContentSmooth();
     }
 
     const finishVideos = () => {
@@ -851,20 +855,6 @@
     };
 
     video.addEventListener("ended", onVideoEndListener);
-
-    // let onVideoEndListenerScroll = () => {
-    //   video.removeEventListener("ended", onVideoEndListenerScroll);
-    //   videoContent.style.display = "none";
-    //   siteContent.style.display = "block";
-    //   bodyOverflow.style.overflow = 'auto';
-    //   firstSection.classList.remove('fixed');
-    //   contentNone.forEach((section) => {
-    //     section.classList.remove('video_active');
-    //   });
-    //   WheelContentSmooth();
-    // };
-    //
-    // video.addEventListener("ended", onVideoEndListenerScroll);
 
     const leavePrev = document.querySelector(".video_content .leave_button");
     leavePrev.addEventListener("click", () => {

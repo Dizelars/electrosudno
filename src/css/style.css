@@ -1183,6 +1183,7 @@ p {
 .video_content {
   height: 1000vh;
   opacity: 1;
+  transition: opacity 0.5s;
 }
 
 .video_content .video-background {
