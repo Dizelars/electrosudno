@@ -224,7 +224,8 @@
       </section>
 
       <section class="sinichka_fixed video_active" id="sinichka-section">
-        <video class="section-video" autoplay muted>
+<!--        autoplay-->
+        <video class="section-video" muted>
           <source
             src="/doors.mp4"
             type="video/mp4"/>
@@ -835,17 +836,19 @@
     }
 
     function onVideoEndListener() {
-      setTimeout(() => {
-        contentNone.forEach((section) => {
-          section.classList.remove('video_active');
-        });
-      }, 100);
       video.removeEventListener("ended", onVideoEndListener);
       videoContent.style.display = "none";
       siteContent.style.display = "block";
       bodyOverflow.style.overflow = 'auto';
       firstSection.classList.remove('fixed');
-      WheelContentSmooth();
+      setTimeout(() => {
+        WheelContentSmooth();
+      }, 300);
+      setTimeout(() => {
+        contentNone.forEach((section) => {
+          section.classList.remove('video_active');
+        });
+      }, 400);
     }
 
     const finishVideos = () => {
@@ -927,6 +930,22 @@
         const distance = targetPosition - currentPosition; // Расстояние до цели
         const startTime = performance.now(); // Время начала анимации
         const duration = 1000; // Длительность анимации в миллисекундах
+        const video = section.querySelector('.section-video');
+        // const video = document.querySelector('.section-video');
+
+        if (video) {
+          video.currentTime = 0;
+          video.classList.add('section-video_active');
+          video.play();
+
+          sectionVideoEndListenerOne = () => {
+            video.classList.remove('section-video_active');
+            video.removeEventListener("ended", sectionVideoEndListenerOne);
+            // sectionVideoEndListenerOne = null;
+          };
+
+          video.addEventListener("ended", sectionVideoEndListenerOne);
+        }
 
         // Функция для анимации, использующая requestAnimationFrame
         function step(timestamp) {
@@ -937,22 +956,6 @@
 
           // Продолжение анимации, если не достигнут конец анимации
           if (currentTime < duration) {
-
-            const video = section.querySelector('.section-video');
-            // const video = document.querySelector('.section-video');
-
-            if (video) {
-              video.currentTime = 0;
-              video.classList.add('section-video_active');
-
-              sectionVideoEndListener = () => {
-                video.classList.remove('section-video_active');
-                video.removeEventListener("ended", sectionVideoEndListener);
-                sectionVideoEndListener = null;
-              };
-
-              video.addEventListener("ended", sectionVideoEndListener);
-            }
             requestAnimationFrame(step);
           }
         }
@@ -1120,14 +1123,15 @@
                         if (video) {
                           video.currentTime = 0;
                           video.classList.add('section-video_active');
+                          video.play();
 
-                          sectionVideoEndListener = () => {
+                          sectionVideoEndListenerTwo = () => {
                             video.classList.remove('section-video_active');
-                            video.removeEventListener("ended", sectionVideoEndListener);
-                            sectionVideoEndListener = null;
+                            video.removeEventListener("ended", sectionVideoEndListenerTwo);
+                            // sectionVideoEndListenerTwo = null;
                           };
 
-                          video.addEventListener("ended", sectionVideoEndListener);
+                          video.addEventListener("ended", sectionVideoEndListenerTwo);
                         }
                         requestAnimationFrame(step);
                       }
