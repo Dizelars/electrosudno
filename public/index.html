@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="smooth">
 
 <head>
   <meta charset="utf-8" />
@@ -157,14 +157,14 @@
       <!--             data-info-title="23 штуки">-->
       <!--      </video>-->
 
-      <!--      <div class="mouse_prev">-->
-      <!--        <div class="mouse_prev-wrapper">-->
-      <!--          <div class="mouse_prev_arrow">-->
-      <!--            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">-->
-      <!--          </div>-->
-      <!--          <div class="mouse_prev_dot"></div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <div class="mouse_prev">
+        <div class="mouse_prev-wrapper">
+          <div class="mouse_prev_arrow">
+            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">
+          </div>
+          <div class="mouse_prev_dot"></div>
+        </div>
+      </div>
 
       <div class="leave_button">
         <button>Причалить</button>
@@ -720,9 +720,11 @@
     const src = video.currentSrc || video.src;
     const videoContent = document.querySelector(".video_content");
     const siteContent = document.querySelector(".site_content");
+    const htmlSmooth = document.querySelector("html");
     const bodyOverflow = document.querySelector("body");
     const contentNone = document.querySelectorAll('.video_active, section#pier-routes, section#sinichka-section, footer#footer');
     const firstSection = document.querySelector('section#pier-description');
+    const mouseLogo = document.querySelector('.video_content .mouse_prev');
 
     /* Проверка, что видео "активировано" на iOS */
     // В данном случае, когда происходит первое касание на странице (событие "touchstart"), видео воспроизводится и сразу же приостанавливается. Это используется для активации возможности воспроизведения видео на устройствах iOS.
@@ -866,6 +868,7 @@
       siteContent.style.display = "block";
       bodyOverflow.style.overflow = 'auto';
       firstSection.classList.remove('fixed');
+      htmlSmooth.classList.remove('smooth');
       setTimeout(() => {
         WheelContentSmooth();
       }, 300);
@@ -878,6 +881,7 @@
 
     const finishVideos = () => {
       bodyOverflow.style.overflow = 'hidden';
+      mouseLogo.style.display = 'none';
       video.play();
       video.addEventListener("ended", onVideoEndListener);
     };

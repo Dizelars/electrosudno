@@ -3,12 +3,26 @@
   src: url("../fonts/moscowsansregular.ttf") format("truetype");
 }
 
+html.smooth {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-size: 16px;
   line-height: 1.5;
   color: map-get($colors, white);
   font-family: "MoscowSans", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  background-color: #9794A6;
+  width: 0.4em; /* Ширина полосы прокрутки (по желанию) */
+}
+
+body::-webkit-scrollbar-thumb {
+  //background-color: #585565; /* Цвет полосы прокрутки (по желанию) */
+  background-color: #7A768D; /* Цвет полосы прокрутки (по желанию) */
 }
 
 h1 {

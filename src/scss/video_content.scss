@@ -118,9 +118,11 @@
 
 .video_content .info_block .card {
   position: absolute;
+  max-width: 474px;
+  width: max-content;
   display: flex;
   flex-direction: initial;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 32px;
   border-radius: 20px;
@@ -203,9 +205,6 @@
   }
 }
 
-
-
-
 //Видео блок в контенте
 .section-video {
   display: none;
@@ -224,4 +223,50 @@
 
 .section-video_active {
   display: block;
+}
+
+@media (max-width: 520px) {
+  .video_content .info_block .card {
+    padding: 26px;
+  }
+
+  .video_content .info_block .card .card_marker {
+    margin-right: 16px;
+  }
+
+  .video_content .info_block .card .card_descr .card_descr-text {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .video_content .info_block .card .card_descr .card_descr-title {
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 440px) {
+  .video_content .info_block .card {
+    padding: 20px;
+  }
+
+  .video_content .info_block .card .card_marker {
+    margin-right: 14px;
+  }
+
+  .video_content .info_block .card .card_descr .card_descr-text,
+  .video_content .info_block .card .card_descr .card_descr-title {
+    max-width: 180px;
+  }
+
+  .video_content .info_block .card .card_descr .card_descr-text {
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 7px;
+  }
+
+  .video_content .info_block .card .card_descr .card_descr-title {
+    font-size: 22px;
+    line-height: 22px;
+  }
 }
