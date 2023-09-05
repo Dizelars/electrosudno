@@ -1,4 +1,35 @@
 @charset "UTF-8";
+#hellopreloader > p {
+  display: none;
+}
+
+#hellopreloader_preload {
+  display: block;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  background: #7A768D url(https://coddmac.store/Reka/oval.svg) center center no-repeat;
+  background-size: 76px;
+}
+
+#welcome-text {
+  font-family: "MoscowSans", sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  top: 72px;
+  height: 100%;
+}
+
 @font-face {
   font-family: "MoscowSans";
   src: url("../fonts/moscowsansregular.ttf") format("truetype");
@@ -634,8 +665,8 @@ p {
 }
 @media (max-width: 900px) {
   h1 {
-    font-size: 3.75rem;
-    line-height: 3.75rem;
+    font-size: 3.3rem;
+    line-height: 3.65rem;
   }
   p {
     font-size: 0.875rem;
@@ -660,8 +691,8 @@ p {
 }
 @media (max-width: 900px) and (max-width: 440px) {
   h1 {
-    font-size: 2.5rem;
-    line-height: 2.5rem;
+    font-size: 2.3rem;
+    line-height: 2.4rem;
   }
   .p-30-mob {
     padding: 30px;
@@ -1444,6 +1475,10 @@ a-scene {
   backdrop-filter: blur(10px);
 }
 
+.vectary .tech_speck .tech_speck-click {
+  display: none;
+}
+
 .vectary .tech_speck div[class^=tech_speck-] {
   padding: 32px 50px 32px 30px;
 }
@@ -1593,34 +1628,34 @@ a-scene {
   .vectary .tech_speck div[class^=tech_speck-]:not(:last-child) {
     border-right: unset;
   }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) {
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) + div[class^=tech_speck-] {
     border-radius: 20px 0 0 20px;
     border-right: 2px solid #b9b8c4;
   }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(1),
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2) {
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2),
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3) {
     border-bottom: 2px solid #b9b8c4;
   }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2):before {
-    content: none;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(1):after {
-    bottom: -3px;
-    left: 10px;
-  }
   .vectary .tech_speck div[class^=tech_speck-]:nth-child(3):before {
-    top: -4px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(1):before,
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3):before,
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3):after {
-    right: -4px;
+    content: none;
   }
   .vectary .tech_speck div[class^=tech_speck-]:nth-child(2):after {
     bottom: -3px;
+    left: 10px;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4):before {
+    top: -4px;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2):before,
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4):before,
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4):after {
+    right: -4px;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3):after {
+    bottom: -3px;
     right: 10px;
   }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(even) {
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(even) + div[class^=tech_speck-] {
     border-radius: 5px 20px 20px 5px;
   }
   .vectary .tech_speck div[class^=tech_speck-] p {
@@ -1628,10 +1663,25 @@ a-scene {
   }
 }
 @media (max-width: 540px) {
+  .vectary .tech_speck .tech_speck-click {
+    display: block;
+  }
+  .vectary .tech_speck {
+    transform: translate(-50%, 96%);
+    transition: all 0.5s ease;
+  }
+  .vectary .tech_speck.active {
+    transform: translate(-50%, 0);
+  }
   .vectary .tech_speck div[class^=tech_speck-] {
     max-width: unset;
     margin: 0 20px;
   }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) + div[class^=tech_speck-] {
+    border-right: unset;
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(even) + div[class^=tech_speck-],
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) + div[class^=tech_speck-],
   .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd),
   .vectary .tech_speck div[class^=tech_speck-]:nth-child(even) {
     border-radius: 20px;
@@ -1639,7 +1689,9 @@ a-scene {
   .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) {
     border-right: unset;
   }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3) {
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(1),
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3),
+  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4) {
     border-bottom: 2px solid #b9b8c4;
   }
   .vectary .tech_speck div[class^=tech_speck-]:not(:last-child):before,
@@ -1670,7 +1722,8 @@ section {
 }
 
 section#pier-description,
-section#sinichka-section {
+section#sinichka-section,
+section#pier-routes {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -1706,10 +1759,10 @@ section#pier-description.fixed {
   z-index: 15;
 }
 
-@media (max-width: 900px) {
-  section#pier-description {
+@media (max-width: 1200px) {
+  section#pier-description,
+  section#pier-routes {
     height: auto;
-    width: 100%;
     display: block;
   }
 }

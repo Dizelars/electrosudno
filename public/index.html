@@ -108,6 +108,12 @@
 
   <div id="main" class="bord">
 
+    <div id="hellopreloader">
+      <div id="hellopreloader_preload">
+        <p id="welcome-text">Готовимся к отправлению</p>
+      </div>
+    </div>
+
     <div class="video_content">
       <!--      https://assets.codepen.io/39255/output_960.mp4-->
       <!--      src="%PUBLIC_URL%/1video.mp4"-->
@@ -235,6 +241,9 @@
         <div class="vectary">
           <iframe src="https://app.vectary.com/p/6YGTFqmzg1ssFGNU2tCHY1" width="100%" height="100%"></iframe>
           <div class="tech_speck">
+            <div class="tech_speck-click">
+
+            </div>
             <div class="tech_speck-1 tech_speck-info">
               <p class="tech_speck-title">Класс судна:</p>
               <p class="tech_speck-text">ледовый</p>
@@ -261,7 +270,7 @@
 
       <!-- Секция с двумя маршрутами -->
       <section id="pier-routes" class="bg-grey pos-rel video_active">
-        <div class="container pb-100">
+        <div class="container pb-100 pt-100">
           <h1 class="h1 text-uppercase mb-40">Маршруты</h1>
           <div class="card-flex-wrapper">
             <div class="card bg-grey-grad">
@@ -651,11 +660,32 @@
 
 <!-- Воспроизведения видео по скроллу-->
   <script>
+
+    let hellopreloader = document.getElementById("hellopreloader_preload");
+
+    function fadeOutnojquery(el) {
+      el.style.opacity = 1;
+      let interhellopreloader = setInterval(function() {
+        el.style.opacity = el.style.opacity - 0.05;
+
+        if (el.style.opacity <= 0.05) {
+          clearInterval(interhellopreloader);
+          hellopreloader.style.display = "none";
+        }
+      }, 16);
+    }
+
+    window.onload = function() {
+      setTimeout(function() {
+        fadeOutnojquery(hellopreloader);
+      }, 1000);
+    };
+
+
     // При прокрутке колесом мыши, видео воспроизводится и моментально ставится на паузу.
     // Таким образом создается эффект регулирования переключения.
     // Получается, чем медленнее видео, тем создается более плавный эффект перемещения видео.
 
-    // console.clear();
     /* Кодировка здесь очень важна, чтобы обеспечить покадровое перемещение. */
     // ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p output.mp4
     // ffmpeg -i ~/Downloads/Toshiba\ video/original.mov -vf scale=960:-1 -movflags faststart -vcodec libx264 -crf 20 -g 1 -pix_fmt yuv420p output_960.mp4
@@ -1100,5 +1130,4 @@
     }, 1500);
   </script>
 </body>
-
 </html>

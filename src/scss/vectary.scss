@@ -28,6 +28,10 @@
   backdrop-filter: blur(10px);
 }
 
+.vectary .tech_speck .tech_speck-click {
+  display: none;
+}
+
 .vectary .tech_speck div[class^="tech_speck-"] {
   padding: 32px 50px 32px 30px;
 }
@@ -192,45 +196,45 @@
     line-height: 20.5px;
   }
 
-  .vectary .tech_speck div[class^=tech_speck-]:not(:last-child) {
+  .vectary .tech_speck div[class^="tech_speck-"]:not(:last-child) {
     border-right: unset;
   }
 
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(odd) {
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(odd) + div[class^="tech_speck-"] {
     border-radius: 20px 0 0 20px;
     border-right: 2px solid #b9b8c4;
   }
 
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(1),
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(2){
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(2),
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(3){
     border-bottom: 2px solid #b9b8c4;
   }
 
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(2):before {
-    content: none;
-  }
-
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(1):after {
-    bottom: -3px;
-    left: 10px;
-  }
-
   .vectary .tech_speck div[class^="tech_speck-"]:nth-child(3):before {
-    top: -4px;
-  }
-
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(1):before,
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(3):before,
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(3):after {
-    right: -4px;
+    content: none;
   }
 
   .vectary .tech_speck div[class^="tech_speck-"]:nth-child(2):after {
     bottom: -3px;
+    left: 10px;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(4):before {
+    top: -4px;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(2):before,
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(4):before,
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(4):after {
+    right: -4px;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(3):after {
+    bottom: -3px;
     right: 10px;
   }
 
-  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(even) {
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(even) + div[class^="tech_speck-"] {
     border-radius: 5px 20px 20px 5px;
     //z-index: -1;
   }
@@ -241,21 +245,42 @@
 }
 
 @media (max-width: 540px) {
+  .vectary .tech_speck .tech_speck-click {
+    display: block;
+  }
+
+  .vectary .tech_speck {
+    transform: translate(-50%, 96%);
+    transition: all .5s ease;
+  }
+
+  .vectary .tech_speck.active {
+    transform: translate(-50%, 0);
+  }
+
   .vectary .tech_speck div[class^="tech_speck-"] {
     max-width: unset;
     margin: 0 20px;
   }
 
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(odd) + div[class^="tech_speck-"] {
+    border-right: unset;
+  }
+
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(even) + div[class^="tech_speck-"],
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(odd) + div[class^="tech_speck-"],
   .vectary .tech_speck div[class^="tech_speck-"]:nth-child(odd),
   .vectary .tech_speck div[class^="tech_speck-"]:nth-child(even) {
     border-radius: 20px;
   }
 
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) {
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(odd) {
     border-right: unset;
   }
 
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3) {
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(1),
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(3),
+  .vectary .tech_speck div[class^="tech_speck-"]:nth-child(4) {
     border-bottom: 2px solid #b9b8c4;
   }
 

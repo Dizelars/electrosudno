@@ -1,17 +1,17 @@
 import {useEffect} from "react";
 
-// const IMAGE_WIDTH_OFFSET = 180;
-//
-// // Маршруты
-// const ROUTES = [
-//   {
-//     name: 'kievsky',
-//     circles: [
-//       { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskyPoint.svg' },
-//       { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/kievskyPoint.svg '},
-//     ],
-//   }
-// ];
+const IMAGE_WIDTH_OFFSET = 180;
+
+// Маршруты
+const ROUTES = [
+  {
+    name: 'kievsky',
+    circles: [
+      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskyPoint.svg' },
+      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/kievskyPoint.svg '},
+    ],
+  }
+];
 
 
 
@@ -232,91 +232,91 @@ function App() {
 
     // Логика страницы после блоков видео
 
-    // const fullimageEl = document.querySelector('#fullimage');
-    // const fullimageWrapper = document.querySelector('.fullimage-wrapper');
-    //
-    // const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)')
-    // const routeBtn = document.querySelector('.btn[data-route]')
-
+    const fullimageEl = document.querySelector('#fullimage');
+    const fullimageWrapper = document.querySelector('.fullimage-wrapper');
+    const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
+    // const routeBtn = document.querySelector('.btn[data-route]');
     // const cardFaqs = document.querySelectorAll('.card-faq');
 
     // Листнер для закрытия fullimage
-    // document.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //
-    //   // клик на изображение маршрута
-    //   if (e.target.hasAttribute('data-route')) {
-    //     return;
-    //   }
-    //
-    //   // клик за край fullimage
-    //   if (!fullimageEl.contains(e.target)) {
-    //     fullimageEl.classList.remove('fullimage-active');
-    //     fullimageEl.classList.add('fullimage-disabled');
-    //   }
-    // });
+    document.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // клик на изображение маршрута
+      if (e.target.hasAttribute('data-route')) {
+        return;
+      }
+
+      // клик за край fullimage
+      if (!fullimageEl.contains(e.target)) {
+        fullimageEl.classList.remove('fullimage-active');
+        fullimageEl.classList.add('fullimage-disabled');
+      }
+    });
 
     // добавление кружка-станции
-    // const handleAddCircle = ({ bottom, right, hoverImgSrc }) => {
-    //   const isMobile = window.innerWidth <= 440;
-    //   const circleEl = document.createElement('div');
-    //   circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
-    //   circleEl.style.bottom = bottom;
-    //   circleEl.style.right = right;
-    //
-    //   const hoverImg = document.createElement('img');
-    //   hoverImg.classList.add('pos-abs', 'circle-hover-img');
-    //   hoverImg.src = hoverImgSrc;
-    //
-    //   hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
-    //   const hoverImgRight = isMobile ? `${right}` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
-    //   hoverImg.style.setProperty('right', hoverImgRight);
-    //   fullimageWrapper.appendChild(hoverImg);
-    //
-    //   circleEl.addEventListener('mouseover', (e) => {
-    //     e.preventDefault();
-    //     hoverImg.classList.add('opacity-1');
-    //   })
-    //
-    //   circleEl.addEventListener('mouseleave', (e) => {
-    //     e.preventDefault();
-    //     hoverImg.classList.remove('opacity-1');
-    //   })
-    //
-    //   fullimageWrapper.appendChild(circleEl);
-    // }
+    const handleAddCircle = ({ bottom, right, hoverImgSrc }) => {
+      const isMobile = window.innerWidth <= 440;
+      const circleEl = document.createElement('div');
+      circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
+      circleEl.style.bottom = bottom;
+      circleEl.style.right = right;
+
+      const hoverImg = document.createElement('img');
+      hoverImg.classList.add('pos-abs', 'circle-hover-img');
+      hoverImg.src = hoverImgSrc;
+
+      hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
+      const hoverImgRight = isMobile ? `${right}` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
+      hoverImg.style.setProperty('right', hoverImgRight);
+      fullimageWrapper.appendChild(hoverImg);
+
+      circleEl.addEventListener('mouseover', (e) => {
+        e.preventDefault();
+        hoverImg.classList.add('opacity-1');
+      })
+
+      circleEl.addEventListener('mouseleave', (e) => {
+        e.preventDefault();
+        hoverImg.classList.remove('opacity-1');
+      })
+
+      fullimageWrapper.appendChild(circleEl);
+    }
 
     // добавление изображения маршрута
-    // const handleOpenRoute = ({ src, routeName }) => {
-    //   fullimageWrapper.innerHTML = '';
-    //   fullimageEl.classList.remove('fullimage-disabled');
-    //   fullimageEl.classList.add('fullimage-active');
-    //
-    //   const routeImg = document.createElement('img');
-    //   routeImg.src = src;
-    //   routeImg.classList.add('img-responsive');
-    //   fullimageWrapper.appendChild(routeImg);
-    //   const currRoute = ROUTES.find((route) => route.name === routeName);
-    //   currRoute.circles.forEach((circle) => {
-    //     handleAddCircle(circle)
-    //   });
-    // }
+    const handleOpenRoute = ({ src, routeName }) => {
+      fullimageWrapper.innerHTML = '';
+      fullimageEl.classList.remove('fullimage-disabled');
+      fullimageEl.classList.add('fullimage-active');
+
+      const routeImg = document.createElement('img');
+      routeImg.src = src;
+      routeImg.classList.add('img-responsive');
+      fullimageWrapper.appendChild(routeImg);
+      const currRoute = ROUTES.find((route) => route.name === routeName);
+      currRoute.circles.forEach((circle) => {
+        handleAddCircle(circle)
+      });
+    }
 
     // Листнеры на картинках с маршрутами
-    // routeImages.forEach((routeEl) => {
-    //   routeEl.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
-    //   })
-    // });
-    //
-    // // Листнер на кнопке с маршрутами
+    routeImages.forEach((routeEl) => {
+      routeEl.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
+      })
+    });
+
+    // Листнер на кнопке с маршрутами
     // routeBtn.addEventListener('click', (e) => {
     //   e.preventDefault();
     //   const routeName = e.target.dataset.route;
     //   const src = document.querySelector(`img[data-route='${routeName}'`).src;
     //   handleOpenRoute({ src, routeName });
     // });
+
+
 
     // Переворачивание карточки справочная информация
     // cardFaqs.forEach((cardFaq) => {
@@ -336,6 +336,16 @@ function App() {
     //     backSide.classList.add('card-body-active');
     //   });
     // })
+
+
+    // Выезжающее описание на синичке в вектари (на мобилке)
+    const specsBlock = document.querySelector('.vectary .tech_speck');
+    const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
+
+    specClick.addEventListener('click', () => {
+      specsBlock.classList.toggle('active');
+    });
+
 
 
     // const sinichkaVue = document.querySelector('.vue_button');

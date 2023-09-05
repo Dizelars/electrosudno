@@ -203,8 +203,8 @@ p {
 
 @media (max-width: map-get($breakpoints, vertTab)) {
   h1 {
-    font-size: 3.75rem;
-    line-height: 3.75rem;
+    font-size: 3.3rem;
+    line-height: 3.65rem;
   }
 
   p {
@@ -234,8 +234,8 @@ p {
 
   @media (max-width: 440px) {
     h1 {
-      font-size: 2.5rem;
-      line-height: 2.5rem;
+      font-size: 2.3rem;
+      line-height: 2.4rem;
     }
 
     .p-30-mob {

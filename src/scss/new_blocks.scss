@@ -3,7 +3,8 @@ section {
 }
 
 section#pier-description,
-section#sinichka-section {
+section#sinichka-section,
+section#pier-routes {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -40,10 +41,10 @@ section#pier-description.fixed {
   z-index: 15;
 }
 
-@media (max-width: 900px) {
-  section#pier-description, {
+@media (max-width: 1200px) {
+  section#pier-description,
+  section#pier-routes {
     height: auto;
-    width: 100%;
     display: block;
   }
 }
