@@ -34,10 +34,6 @@
   font-family: "MoscowSans";
   src: url("../fonts/moscowsansregular.ttf") format("truetype");
 }
-html.smooth {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   font-size: 16px;
@@ -1225,7 +1221,7 @@ p {
   }
 }
 .video_content {
-  height: 1000vh;
+  height: 2000vh;
   opacity: 1;
   transition: opacity 0.5s;
 }
@@ -1715,15 +1711,23 @@ a-scene {
   }
 }
 @media (max-width: 540px) {
-  .vectary .tech_speck .tech_speck-click {
-    display: block;
-  }
   .vectary .tech_speck {
-    transform: translate(-50%, 96%);
+    transform: translate(-50%, 94%);
     transition: all 0.5s ease;
   }
   .vectary .tech_speck.active {
     transform: translate(-50%, 0);
+  }
+  .vectary .tech_speck div[class^=tech_speck-]:first-child {
+    display: flex;
+    padding: 15px 30px;
+  }
+  .vectary .tech_speck .tech_speck-click .tech_speck-img {
+    transform: rotate(-180deg);
+    transition: all 0.5s ease;
+  }
+  .vectary .tech_speck .tech_speck-click .tech_speck-img.active {
+    transform: rotate(0);
   }
   .vectary .tech_speck div[class^=tech_speck-] {
     max-width: unset;

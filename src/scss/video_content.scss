@@ -3,7 +3,7 @@
 //}
 
 .video_content {
-  height: 1000vh;
+  height: 2000vh;
   opacity: 1;
   //position: absolute;
   //width: 100%;
@@ -24,6 +24,10 @@
 }
 
 // Колесо прокрутеи
+
+//.video_content .mouse_prev {
+//  position: fixed;
+//}
 
 .video_content .mouse_prev .mouse_prev-wrapper {
   position: absolute;

@@ -13,29 +13,29 @@ const ROUTES = [
   }
 ];
 
-
-
-const initOneVideo = () => {
-
-  // Определяем, является ли устройство мобильным
-  const isMobile = window.innerWidth < 481;
-
-  // Для каждого элемента с классом "bg-video"
-  document.querySelectorAll(".video-background").forEach((el, i) => {
-    // Создаем элемент "source" и задаем атрибуты для видеофайла
-    const source = document.createElement("source");
-    source.setAttribute(
-      "src",
-      `/${i + 1}${isMobile ? "mobile" : "video"}.mp4`
-    );
-    source.setAttribute("type", "video/mp4");
-
-    // Добавляем элемент "source" внутрь видеоэлемента
-    el.appendChild(source);
-  });
-};
-
-initOneVideo();
+// const initOneVideo = () => {
+//
+//   // Определяем, является ли устройство мобильным
+//   const isMobile = window.innerWidth < 481;
+//   console.log(isMobile);
+//   console.log(window.innerWidth);
+//
+//   // Для каждого элемента с классом "bg-video"
+//   document.querySelectorAll(".video-background").forEach((el, i) => {
+//     // Создаем элемент "source" и задаем атрибуты для видеофайла
+//     const source = document.createElement("source");
+//     source.setAttribute(
+//       "src",
+//       `/${i + 1}${isMobile ? "mobile" : "video"}.mp4`
+//     );
+//     source.setAttribute("type", "video/mp4");
+//
+//     // Добавляем элемент "source" внутрь видеоэлемента
+//     el.appendChild(source);
+//   });
+// };
+//
+// initOneVideo();
 
 
 // const initVideos = () => {
@@ -339,12 +339,14 @@ function App() {
 
 
     // Выезжающее описание на синичке в вектари (на мобилке)
-    const specsBlock = document.querySelector('.vectary .tech_speck');
-    const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
-
-    specClick.addEventListener('click', () => {
-      specsBlock.classList.toggle('active');
-    });
+    // const specsBlock = document.querySelector('.vectary .tech_speck');
+    // const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
+    // const speckArrow = document.querySelector('.vectary .tech_speck .tech_speck-click .tech_speck-img');
+    //
+    // specClick.addEventListener('click', () => {
+    //   specsBlock.classList.toggle('active');
+    //   speckArrow.classList.toggle('active');
+    // });
 
 
 
