@@ -1479,7 +1479,8 @@ a-scene {
   position: relative;
 }
 
-#aframe_rollup {
+#aframe_rollupPier,
+#aframe_rollupSinich {
   display: none;
   position: absolute;
   top: 30px;
