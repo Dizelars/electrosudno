@@ -248,7 +248,12 @@ function App() {
       }
 
       // клик за край fullimage
-      if (!fullimageEl.contains(e.target)) {
+      // if (!fullimageEl.contains(e.target)) {
+      //   fullimageEl.classList.remove('fullimage-active');
+      //   fullimageEl.classList.add('fullimage-disabled');
+      // }
+
+      if (!fullimageWrapper.contains(e.target)) {
         fullimageEl.classList.remove('fullimage-active');
         fullimageEl.classList.add('fullimage-disabled');
       }
@@ -339,14 +344,14 @@ function App() {
 
 
     // Выезжающее описание на синичке в вектари (на мобилке)
-    // const specsBlock = document.querySelector('.vectary .tech_speck');
-    // const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
-    // const speckArrow = document.querySelector('.vectary .tech_speck .tech_speck-click .tech_speck-img');
-    //
-    // specClick.addEventListener('click', () => {
-    //   specsBlock.classList.toggle('active');
-    //   speckArrow.classList.toggle('active');
-    // });
+    const specsBlock = document.querySelector('.vectary .tech_speck');
+    const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
+    const speckArrow = document.querySelector('.vectary .tech_speck .tech_speck-click .tech_speck-img');
+
+    specClick.addEventListener('click', () => {
+      specsBlock.classList.toggle('active');
+      speckArrow.classList.toggle('active');
+    });
 
 
 
