@@ -1,27 +1,66 @@
+.video_progress_container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-container {
+  width: 150px;
+  height: 5px;
+  border-radius: 20px;
+  background-color: #9794A6;
+}
+
+.progress-container:not(:last-child) {
+  margin-right: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  border-radius: 20px;
+  background-color: #7A768D;
+}
+
+
+
+
+
 //.video_content {
 //  position: relative;
+//  display: block;
+//}
+
+//.site_content {
+//  display: none;
 //}
 
 .video_content {
-  height: 2000vh;
-  opacity: 1;
-  //position: absolute;
-  //width: 100%;
-  //z-index: 16;
+  //height: 2000vh;
+  //opacity: 1;
+  position: absolute;
+  width: 100%;
+  z-index: 16;
   //overflow: hidden; /* Скрыть видео, которые не воспроизводятся */
   transition: opacity .5s;
 }
 
-.video_content .video-background {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  //opacity: 0;
-  //transition: opacity 1s ease; /* Плавный переход между видео */
-}
+//.video_content .video-background {
+//  position: fixed;
+//  top: 50%;
+//  left: 50%;
+//  min-width: 100%;
+//  min-height: 100%;
+//  transform: translate(-50%, -50%);
+//  //opacity: 0;
+//  //transition: opacity 1s ease; /* Плавный переход между видео */
+//}
 
 // Колесо прокрутеи
 

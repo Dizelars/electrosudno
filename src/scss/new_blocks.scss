@@ -6,6 +6,7 @@ section#pier-description,
 section#sinichka-section,
 section#pier-routes {
   height: 100vh;
+  //min-height: min-content;
   width: 100%;
   display: flex;
   align-items: center;
@@ -25,11 +26,6 @@ section#pier-description.fixed {
   z-index: -1;
 }
 
-.site_content {
-  //display: none;
-  position: relative;
-}
-
 .section-video {
   position: fixed !important;
 }
@@ -46,6 +42,13 @@ section#pier-description.fixed {
   section#pier-routes {
     height: auto;
     display: block;
+  }
+}
+
+@media (max-height: 1000px) {
+  section#pier-description,
+  section#pier-routes {
+    height: max-content;
   }
 }
 
