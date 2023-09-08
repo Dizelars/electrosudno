@@ -215,57 +215,72 @@ function App() {
       }
     };
 
-    // Пропустить превью с видео
-    const leavePrev = document.querySelector(".video_content .leave_button");
-    let allVideos = document.querySelectorAll(".bg-video");
-    leavePrev.addEventListener("click", () => {
-      allVideos.forEach((e, index) => {
-        e.removeAttribute('loop');
-        e.setAttribute('data-transit', '');
-        e.addEventListener("ended", () => {
-          switchHandler("next");
-        });
-        if (index === allVideos.length - 1) {
-          e.addEventListener("timeupdate", function() {
-            const currentTime = e.currentTime;
-            if (currentTime < 30.5) {
-              videoContent.style.opacity = 1;
-            } else if (currentTime >= 30.5 && currentTime < 31) {
-              videoContent.style.opacity = 0.9;
-            } else if (currentTime >= 31 && currentTime < 31.5) {
-              videoContent.style.opacity = 0.6;
-            } else if (currentTime >= 31.5 && currentTime < 32) {
-              videoContent.style.opacity = 0.3;
-            } else if (currentTime >= 32) {
-              videoContent.style.opacity = 0;
-            }
+
+
+    // window.addEventListener("DOMContentLoaded", () => {
+      // Пропустить превью с видео
+      const leavePrev = document.querySelector(".video_content .leave_button");
+      let allVideos = document.querySelectorAll(".bg-video");
+      leavePrev.addEventListener("click", () => {
+        allVideos.forEach((e, index) => {
+          e.removeAttribute('loop');
+          e.setAttribute('data-transit', '');
+          e.addEventListener("ended", () => {
+            switchHandler("next");
           });
-          e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
-        }
+          if (index === allVideos.length - 1) {
+            e.addEventListener("timeupdate", function() {
+              const currentTime = e.currentTime;
+              if (currentTime < 30.5) {
+                videoContent.style.opacity = 1;
+              } else if (currentTime >= 30.5 && currentTime < 31) {
+                videoContent.style.opacity = 0.9;
+              } else if (currentTime >= 31 && currentTime < 31.5) {
+                videoContent.style.opacity = 0.6;
+              } else if (currentTime >= 31.5 && currentTime < 32) {
+                videoContent.style.opacity = 0.3;
+              } else if (currentTime >= 32) {
+                videoContent.style.opacity = 0;
+              }
+            });
+            e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
+          }
+        });
       });
-    });
 
-    // const videoElements = document.querySelectorAll('.bg-video');
-    const progressBars = document.querySelectorAll('.progress-bar');
-    allVideos.forEach((video, index) => {
-      const progressBar = progressBars[index];
+      const progressBars = document.querySelectorAll('.progress-bar');
+      allVideos.forEach((video, index) => {
+        const progressBar = progressBars[index];
+        let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
 
-      video.addEventListener('timeupdate', () => {
-        const currentTime = video.currentTime;
-        const duration = video.duration;
+        video.addEventListener('timeupdate', () => {
+          const currentTime = video.currentTime;
+          const duration = video.duration;
 
-        // Обновляем прогресс-бар
-        const progress = (currentTime / duration) * 100;
-        progressBar.style.width = progress + '%';
+          // Обновляем прогресс-бар, если он еще не достиг 100%
+          if (!isProgressBarFull) {
+            const progress = (currentTime / duration) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Проверяем, достиг ли прогресс 100%
+            if (progress >= 100) {
+              isProgressBarFull = true;
+              console.log('Прогресс достиг 100%');
+            }
+          }
+        });
+
+        // Событие pause срабатывает до события ended, из за этого первое видео не оставляло прогресс бар в 100% ширины при завершении с первого раза.
+        // Код не успевал выполняться. Событие pause срабатывает раньше события ended
+        video.addEventListener('ended', () => {
+          if (!isProgressBarFull) {
+            progressBar.style.width = '100%';
+            isProgressBarFull = true;
+            video.currentTime = 0;
+          }
+        });
       });
-
-      video.addEventListener('ended', () => {
-        // Когда видео завершено, закрашиваем прогресс-бар
-        progressBar.style.width = '100%';
-      });
-    });
-
-
+    // });
 
     // Добавляем обработчик прокрутки на блок siteContent
     siteContent.addEventListener("scroll", () => {

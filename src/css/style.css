@@ -1249,6 +1249,7 @@ p {
   width: 0;
   border-radius: 20px;
   background-color: #7A768D;
+  transition: width 0.4s;
 }
 
 .video_content {
