@@ -1378,6 +1378,29 @@ p {
   cursor: pointer;
 }
 
+.video_content .reload_button {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 144px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.video_content .reload_button button {
+  font-family: "MoscowSans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .video_content .info_block,
 .video_content .mouse_prev {
   position: fixed;
@@ -1492,6 +1515,17 @@ p {
   display: block;
 }
 
+@media (max-width: 1920px) {
+  .video_content .reload_button {
+    left: 20px;
+  }
+}
+@media (max-width: 1670px) {
+  .video_content .reload_button {
+    top: 70px;
+    bottom: unset;
+  }
+}
 @media (max-width: 520px) {
   .video_content .info_block .card {
     padding: 26px;
@@ -1509,6 +1543,9 @@ p {
   }
 }
 @media (max-width: 440px) {
+  .video_content .mouse_prev .mouse_prev-wrapper {
+    bottom: 90px;
+  }
   .video_content .info_block .card {
     padding: 20px;
   }
@@ -1541,12 +1578,25 @@ html.a-fullscreen body {
   overflow: auto;
 }
 
+.aframeOne, .aframeTwo,
+#aframeHTMLOne, #aframeHTMLTwo {
+  height: 100%;
+  width: 100%;
+}
+
 a-scene {
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
   transition: all 0.5s;
   position: relative;
+}
+
+#scenePier {
+  height: 100%;
+  width: 100%;
 }
 
 #aframe_rollupPier,

@@ -3,16 +3,16 @@
 
 <head>
   <meta charset="utf-8" />
-<!--  <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>-->
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
+<!--  <meta name="theme-color" content="#000000" />-->
   <meta name="description" content="В Москве появился новый вид общественного транспорта – речные электротрамвайчики. На сайте мы наглядно продемонстрируем все их особенности, а также проведём экскурсию по причалам"/>
 <!--  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />-->
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+<!--  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />-->
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -205,7 +205,10 @@
         <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
       </div>
 
-
+      <div class="reload_button">
+        <img class="reload_button-img" src="%PUBLIC_URL%/images/icons/reload.svg" alt="Сначала">
+        <button>Сначала</button>
+      </div>
 
       <div class="video_progress_container">
         <div class="progress-container">
@@ -938,6 +941,7 @@
 
     function appdateCanvas() {
       const myCanvas = document.querySelector('.a-canvas');
+      console.log(myCanvas);
 
       // Получаем текущие размеры области видимости браузера
       function resizeCanvasToDisplaySize(canvas) {
@@ -1258,9 +1262,11 @@
 
       function toggleScene(sceneId) {
         let aframeContent = document.querySelector(`#${sceneId}`);
+        // console.log(aframeContent);
         setTimeout(() => {
           aframeContent.resize();
-        }, 100);
+          // console.log('resize');
+        }, 200);
         aframeContent.style.opacity = '1';
         aframeContent.style.pointerEvents = 'auto';
         mainContent.style.display = 'none';
@@ -1277,8 +1283,8 @@
 
       tour_Pier_360.addEventListener('click', () => {
         addSceneOne();
-        toggleScene('scenePier');
         rollup_Pier_360.style.display = 'block';
+        toggleScene('scenePier');
       });
 
       rollup_Pier_360.addEventListener('click', () => {
@@ -1289,8 +1295,8 @@
 
       tour_Sinich_360.addEventListener('click', () => {
         addSceneTwo();
-        toggleScene('sceneSinich');
         rollup_Sinich_360.style.display = 'block';
+        toggleScene('sceneSinich');
       });
 
       rollup_Sinich_360.addEventListener('click', () => {

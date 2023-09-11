@@ -53,7 +53,7 @@ const initVideos = () => {
     const source = document.createElement("source");
     source.setAttribute(
       "src",
-      `/${i + 1}${isMobile ? "video" : "video"}.mp4`
+      `/${i + 1}${isMobile ? "mob" : "video"}.mp4`
     );
     source.setAttribute("type", "video/mp4");
 
@@ -368,7 +368,11 @@ function App() {
     // document.addEventListener("wheel", (e) => switchHandler("next"));
 
     function anotherFunctionForScrollBack() {
-
+      const reloadBtn = document.querySelector('.reload_button');
+      reloadBtn.style.display = 'flex';
+      reloadBtn.addEventListener('click', () => {
+        window.location.reload();
+      });
     }
 
     document.addEventListener("wheel", (e) => {
@@ -385,11 +389,14 @@ function App() {
     });
     document.addEventListener("touchend", function (e) {
       const touchEndY = e.changedTouches[0].clientY;
-      touchEndY - touchstartY < 0
-          ? switchHandler("next")
-          : switchHandler("prev");
+      if (touchEndY - touchstartY > 0) {
+        // Вызвать функцию для скролла назад
+        anotherFunctionForScrollBack();
+      } else if (touchEndY - touchstartY < 0) {
+        // Вызвать функцию для скролла вперед
+        switchHandler("next");
+      }
     });
-
 
 
     // const videoElements = document.querySelectorAll('.bg-video');
@@ -407,7 +414,6 @@ function App() {
     //     progressBar.style.width = progress + '%';
     //   });
     // });
-
 
 
 

@@ -34,14 +34,25 @@ html.a-fullscreen body {
 //  bottom: 0;
 //}
 
+.aframeOne, .aframeTwo,
+#aframeHTMLOne, #aframeHTMLTwo {
+  height: 100%;
+  width: 100%;
+}
+
 a-scene {
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   opacity: 0;
-  //height: 100%;
-  //width: 100%;
   pointer-events: none;
   transition: all .5s;
   position: relative;
+}
+
+#scenePier {
+  height: 100%;
+  width: 100%;
 }
 
 #aframe_rollupPier,
