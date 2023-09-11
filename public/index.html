@@ -939,30 +939,32 @@
 
     // <!-- Воспроизведения видео по скроллу ЗАКОНЧИЛОСЬ -->
 
-    function appdateCanvas() {
-      const myCanvas = document.querySelector('.a-canvas');
-      console.log(myCanvas);
-
-      // Получаем текущие размеры области видимости браузера
-      function resizeCanvasToDisplaySize(canvas) {
-        const devicePixelRatio = window.devicePixelRatio || 1;
-
-        // Устанавливаем размеры канваса в размеры области видимости умноженные на devicePixelRatio
-        const width = canvas.clientWidth * devicePixelRatio;
-        const height = canvas.clientHeight * devicePixelRatio;
-
-        // Устанавливаем физические размеры канваса
-        canvas.width = width;
-        canvas.height = height;
-      }
-
-      // Обновляем размеры канваса
-      function updateCanvas() {
-        resizeCanvasToDisplaySize(myCanvas);
-        requestAnimationFrame(updateCanvas);
-      }
-      updateCanvas();
-    }
+    // function appdateCanvas() {
+    //   const myCanvas = document.querySelector('.a-canvas');
+    //   console.log(myCanvas);
+    //
+    //   // Получаем текущие размеры области видимости браузера
+    //   function resizeCanvasToDisplaySize(canvas) {
+    //     // const devicePixelRatio = window.devicePixelRatio || 1;
+    //
+    //     // Устанавливаем размеры канваса в размеры области видимости умноженные на devicePixelRatio
+    //     const width = canvas.clientWidth * devicePixelRatio;
+    //     const height = canvas.clientHeight * devicePixelRatio;
+    //     console.log(width);
+    //     console.log(height);
+    //
+    //     // Устанавливаем физические размеры канваса
+    //     canvas.width = width;
+    //     canvas.height = height;
+    //   }
+    //
+    //   // Обновляем размеры канваса
+    //   function updateCanvas() {
+    //     resizeCanvasToDisplaySize(myCanvas);
+    //     requestAnimationFrame(updateCanvas);
+    //   }
+    //   updateCanvas();
+    // }
 
     // Изменение размеров canvas для a-frame
     window.addEventListener("DOMContentLoaded", () => {
@@ -983,7 +985,7 @@
 
         const targetElement = document.getElementById('aframeHTMLOne');
         targetElement.innerHTML = SceneOneCode;
-        appdateCanvas();
+        // appdateCanvas();
         setTimeout(() => {
           let currentInfoPanel = null;
 
@@ -1125,7 +1127,7 @@
 
         const targetElement = document.getElementById('aframeHTMLTwo');
         targetElement.innerHTML = SceneTwoCode;
-        appdateCanvas();
+        // appdateCanvas();
         setTimeout(() => {
           let currentInfoPanel = null;
 

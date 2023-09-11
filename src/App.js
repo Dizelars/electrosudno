@@ -540,6 +540,10 @@ function App() {
       const duration = 1000; // Длительность анимации в миллисекундах
       const video = section.querySelector('.section-video');
 
+      if (modal.classList.contains('open')) {
+        return
+      }
+
       if (video) {
         video.currentTime = 0;
         video.classList.add('section-video_active');
@@ -579,6 +583,7 @@ function App() {
       let sections;
       let currentSectionIndex = 0;
       let isScrolling = false;
+
 
       // let aframeDot = document.querySelectorAll('#TeleportPier, #TeleportSinich');
       // aframeDot.forEach((sphere) => {

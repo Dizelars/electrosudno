@@ -1299,7 +1299,7 @@ p {
 }
 
 .video_content {
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 16;
   transition: opacity 0.5s;
