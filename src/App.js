@@ -118,42 +118,72 @@ function App() {
           `.js-number-block[data-number="${nextActiveNumber}"]`
       );
 
-      function fadeVideo() {
-        activeBlock.addEventListener("timeupdate", function() {
-          const currentTime = activeBlock.currentTime;
-          // console.log(currentTime);
-
-          if (currentTime < 2) {
-            videoContent.style.opacity = 1;
-          } else if (currentTime >= 2 && currentTime < 2.5) {
-            videoContent.style.opacity = 0.9;
-          } else if (currentTime >= 2.5 && currentTime < 3) {
-            videoContent.style.opacity = 0.6;
-          } else if (currentTime >= 3 && currentTime < 3.5) {
-            videoContent.style.opacity = 0.3;
-          } else if (currentTime >= 4) {
-            videoContent.style.opacity = 0;
-          }
-        });
-        function onVideoEndListener2() {
-          activeBlock.removeEventListener("ended", onVideoEndListener2);
-          finishVideosBlock();
-          WheelContentSmooth();
-        }
-        activeBlock.addEventListener("ended", onVideoEndListener2);
-      }
+      // function fadeVideo() {
+      //   console.log('fade');
+      //   console.log(activeBlock);
+      //   // activeBlock.addEventListener("timeupdate", function() {
+      //   //   console.log('fade time listen');
+      //   //   const currentTime = activeBlock.currentTime;
+      //   //   // console.log(currentTime);
+      //   //
+      //   //   if (currentTime < 7) {
+      //   //     videoContent.style.opacity = 1;
+      //   //   } else if (currentTime >= 8 && currentTime < 8.25) {
+      //   //     videoContent.style.opacity = 0.9;
+      //   //   } else if (currentTime >= 8.5 && currentTime < 8.75) {
+      //   //     videoContent.style.opacity = 0.6;
+      //   //   } else if (currentTime >= 9 && currentTime < 9.5) {
+      //   //     videoContent.style.opacity = 0.3;
+      //   //   } else if (currentTime >= 10) {
+      //   //     videoContent.style.opacity = 0;
+      //   //   }
+      //   // });
+      //   function onVideoEndListener2() {
+      //     console.log('finish scroll');
+      //     activeBlock.removeEventListener("ended", onVideoEndListener2);
+      //     finishVideosBlock();
+      //     WheelContentSmooth();
+      //     // console.log('finish scroll');
+      //   }
+      //   activeBlock.addEventListener("ended", onVideoEndListener2);
+      // }
 
       // Нижний край
       if (!nextVideo) {
-        fadeVideo();
+        console.log('no video');
+        // fadeVideo();
+        finishVideosBlock();
+        WheelContentSmooth();
       }
 
       const doSwitch = () => {
         if (!nextVideo) {
           return;
         }
+
+        // function onVideoEndListenerCardDown() {
+        //   console.log('ended');
+        //   activeBlock.removeEventListener("ended", onVideoEndListenerCardDown);
+        //   const cardElem = infoElem.querySelector('.card');
+        //   // const video = activeBlock.querySelector('video');
+        //
+        //   // Задайте время (в секундах), за которое вы хотите выполнить анимацию
+        //   const timeBeforeEnd = 1; // Например, 5 секунд до окончания
+        //
+        //   // Проверьте, находится ли текущее время видео близко к окончанию
+        //   if (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd) {
+        //     // Если близко к окончанию, добавьте и уберите классы анимации
+        //     cardElem.classList.remove('animateUp');
+        //     cardElem.classList.add('animateDown');
+        //   }
+        // }
+        // activeBlock.addEventListener("ended", () => {console.log('ended')});
+        // console.log(activeBlock);
+
         activeBlock.classList.remove("active");
         nextVideo.classList.add("active");
+
+
 
         if (nextVideo.hasAttribute("data-info-text")) {
           // добавить проверку на дата атрибуты и показывать один блок с разным контентом из атрибутов
@@ -161,7 +191,7 @@ function App() {
           infoElem.innerHTML = `
             <div class="card">
               <div class="card_marker">
-                <img class="card_marker-img" src="${nextVideo.getAttribute("data-info-src")}" alt="snow">
+                <img class="card_marker-img" src="${nextVideo.getAttribute("data-info-src")}" alt="card">
               </div>
               <div class="card_descr">
                 <p class="card_descr-text">${nextVideo.getAttribute("data-info-text")}</p>
@@ -169,6 +199,8 @@ function App() {
               </div>
             </div>
           `;
+          const cardElem = infoElem.querySelector('.card');
+          cardElem.classList.add('animateUp');
         } else {
           infoElem.classList.remove("active");
           infoElem.innerHTML = ""; // Удалить контент из infoElem
@@ -197,6 +229,17 @@ function App() {
       ) {
         // Удаляем у активного блока цикличность чтобы дождаться события его завершения
         activeBlock.removeAttribute("loop");
+
+        // const cardElem = infoElem.querySelector('.card');
+        // // Задайте время (в секундах), за которое вы хотите выполнить анимацию
+        // const timeBeforeEnd = 1; // Например, 5 секунд до окончания
+        //
+        // // Проверьте, находится ли текущее время видео близко к окончанию
+        // if (cardElem && (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd)) {
+        //   // Если близко к окончанию, добавьте и уберите классы анимации
+        //   cardElem.classList.remove('animateUp');
+        //   cardElem.classList.add('animateDown');
+        // }
 
         // Слушатель события завершения видео
         onVideoEndListener = () => {
@@ -231,24 +274,30 @@ function App() {
           if (index === allVideos.length - 1) {
             e.addEventListener("timeupdate", function() {
               const currentTime = e.currentTime;
-              if (currentTime < 30.5) {
+              if (currentTime < 7) {
                 videoContent.style.opacity = 1;
-              } else if (currentTime >= 30.5 && currentTime < 31) {
+              } else if (currentTime >= 8 && currentTime < 8.25) {
                 videoContent.style.opacity = 0.9;
-              } else if (currentTime >= 31 && currentTime < 31.5) {
+              } else if (currentTime >= 8.5 && currentTime < 8.75) {
                 videoContent.style.opacity = 0.6;
-              } else if (currentTime >= 31.5 && currentTime < 32) {
+              } else if (currentTime >= 9 && currentTime < 9.5) {
                 videoContent.style.opacity = 0.3;
-              } else if (currentTime >= 32) {
+              } else if (currentTime >= 10) {
                 videoContent.style.opacity = 0;
               }
             });
-            e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
+            function onVideoEndListenerButton() {
+              finishVideosBlock();
+              WheelContentSmooth();
+            }
+            // e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
+            e.addEventListener("ended", onVideoEndListenerButton);
           }
         });
       });
 
       const progressBars = document.querySelectorAll('.progress-bar');
+      const progressContainer = document.querySelectorAll('.progress-container');
       allVideos.forEach((video, index) => {
         const progressBar = progressBars[index];
         let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
@@ -265,7 +314,8 @@ function App() {
             // Проверяем, достиг ли прогресс 100%
             if (progress >= 100) {
               isProgressBarFull = true;
-              console.log('Прогресс достиг 100%');
+              progressBar.style.width = '100%';
+              progressContainer[index].classList.add('filled');
             }
           }
         });
@@ -277,6 +327,7 @@ function App() {
             progressBar.style.width = '100%';
             isProgressBarFull = true;
             video.currentTime = 0;
+            progressContainer[index].classList.add('filled');
           }
         });
       });
@@ -495,17 +546,17 @@ function App() {
 
     // Плавное переключение секций на весь экран при движении колеса мыши
     function WheelContentSmooth() {
-      // let sectionVideoEndListener = null;
+      let sectionVideoEndListener = null;
       let sections;
       let currentSectionIndex = 0;
       let isScrolling = false;
 
-      let aframeDot = document.querySelectorAll('#TeleportPier, #TeleportSinich');
-      aframeDot.forEach((sphere) => {
-        sphere.addEventListener("click", function () {
-          currentSectionIndex = 1;
-        });
-      });
+      // let aframeDot = document.querySelectorAll('#TeleportPier, #TeleportSinich');
+      // aframeDot.forEach((sphere) => {
+      //   sphere.addEventListener("click", function () {
+      //     currentSectionIndex = 1;
+      //   });
+      // });
 
       if (window.innerHeight > 1000) {
         sections = document.querySelectorAll('section');
@@ -527,9 +578,9 @@ function App() {
           event.preventDefault();
           event.stopPropagation();
 
-          // if (sectionVideoEndListener) {
-          //   return;
-          // }
+          if (sectionVideoEndListener) {
+            return;
+          }
 
           if (!isScrolling) {
             isScrolling = true;
@@ -574,7 +625,8 @@ function App() {
       const observer = new IntersectionObserver(handleIntersection);
       // Находим секцию с классом .sinichka_fixed
       const sectionVideo = document.querySelector('.sinichka_fixed');
-      if ((window.innerWidth < 1200 || window.innerHeight < 1000) && sectionVideo) {
+      if (window.innerWidth < 1200 || window.innerHeight < 1000) {
+        console.log('no weel');
         // Наблюдаем за секцией только если ширина окна меньше 481 пикселя и секция существует
         observer.observe(sectionVideo);
       }
@@ -584,8 +636,6 @@ function App() {
       // Добавляем обработчик события "touch"
       // document.addEventListener('touchstart', handleTouchEvent, { passive: false });
     }
-
-
 
   }, []);
   return <></>;

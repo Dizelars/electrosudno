@@ -25,96 +25,44 @@
   <title>Причал</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-<!--  <script>-->
-<!--    AFRAME.registerComponent("hotspots", {-->
-<!--      init: function () {-->
-<!--        this.el.addEventListener("reloadspots", function (evt) {-->
-<!--          //get the entire current spot group and scale it to 0-->
-<!--          var currspotgroup = document.getElementById(evt.detail.currspots);-->
-<!--          currspotgroup.setAttribute("scale", "0 0 0");-->
-
-<!--          //get the entire new spot group and scale it to 1-->
-<!--          var newspotgroup = document.getElementById(evt.detail.newspots);-->
-<!--          newspotgroup.setAttribute("scale", "1 1 1");-->
-<!--        });-->
-<!--      }-->
-<!--    });-->
-
-<!--    AFRAME.registerComponent("spot", {-->
-<!--      schema: {-->
-<!--        linkto: { type: "string", default: "" },-->
-<!--        spotgroup: { type: "string", default: "" },-->
-<!--        phiStart: { type: "string", default: "" }-->
-<!--      },-->
-<!--      init: function () {-->
-<!--        //add image source of hotspot icon-->
-<!--        // this.el.setAttribute("src", "#hotspot");-->
-<!--        //make the icon look at the camera all the time-->
-<!--        // this.el.setAttribute("look-at", "#cam");-->
-
-<!--        this.el.addEventListener("click", () => {-->
-<!--          var cam = document.getElementById("cam");-->
-<!--          cam.emit("zoomin");-->
-
-<!--          var fp = document.getElementById("camfadeplane");-->
-<!--          fp.setAttribute("width", "2");-->
-<!--          fp.setAttribute("height", "2");-->
-<!--          fp.emit("camFadeIn");-->
-
-<!--          //alert("Start zoom");-->
-
-<!--          const reloadSpot = () => {-->
-<!--            //set the skybox source to the new image as per the spot-->
-<!--            var sky = document.getElementById("skybox");-->
-<!--            sky.setAttribute("src", this.data.linkto);-->
-<!--            //надобавлял говна но оно не пашет-->
-<!--            sky.setAttribute("phi-start", this.data.phiStart);-->
-
-<!--            var spotcomp = document.getElementById("spots");-->
-<!--            var currspots = this.el.parentElement.getAttribute("id");-->
-<!--            //create event for spots component to change the spots data-->
-<!--            spotcomp.emit("reloadspots", {-->
-<!--              newspots: this.data.spotgroup,-->
-<!--              currspots: currspots-->
-<!--            });-->
-
-<!--            //this.setAttribute("camera","fov",80);-->
-<!--            cam.emit("zoomout");-->
-
-<!--            var fp = document.getElementById("camfadeplane");-->
-<!--            fp.emit("camFadeOut");-->
-
-<!--            setTimeout(() => {-->
-<!--              fp.setAttribute("width", "0");-->
-<!--              fp.setAttribute("height", "0");-->
-<!--            }, 1000);-->
-<!--          };-->
-<!--          setTimeout(reloadSpot, 2000);-->
-<!--        });-->
-
-<!--        // this.el.addEventListener("mouseleave", function () {-->
-<!--        //   var cur = document.getElementById("cursor-visual");-->
-<!--        //   cur.emit("stopFuse");-->
-<!--        // });-->
-
-<!--        //поменял mouseenter на click. какая то хуйня-->
-<!--        // this.el.addEventListener("click", function (evt) {-->
-<!--        //   var cur = document.getElementById("cursor-visual");-->
-<!--        //   cur.emit("startFuse");-->
-<!--        // });-->
-<!--      }-->
-<!--    });-->
-<!--  </script>-->
   <script>
+    function getAllTriggerableButtons() {
+      const allTriggerableButtons = document.querySelectorAll(
+              "[data-triggerable-button]"
+      );
+      return allTriggerableButtons;
+    }
+
+    // получаем все контейнеры инфопанелей раскрываемых после клика на типон
+    function getAllInfoPanelContainers() {
+      const allInfoPanelContainerElements = document.querySelectorAll(
+              "[id^=infoPanelContainer]"
+      );
+      return allInfoPanelContainerElements;
+    }
+
+    // ищем все инфопанели в текущем group-room и скрываем без сожалений
+    function hideAllInfoPanels() {
+      const allInfoPanelContainerElements = getAllInfoPanelContainers();
+
+      allInfoPanelContainerElements.forEach((container) => {
+        container.innerHTML = "";
+
+        const triggerableButton = container.previousElementSibling;
+
+        triggerableButton.setAttribute("visible", true);
+      });
+    }
+
     AFRAME.registerComponent("hotspots", {
-      init: function () {
-        this.el.addEventListener("reloadspots", function (evt) {
-          //get the entire current spot group and scale it to 0
-          var currspotgroup = document.getElementById(evt.detail.currspots);
+      init() {
+        this.el.addEventListener("reloadspots", (evt) => {
+          // get the entire current spot group and scale it to 0
+          const currspotgroup = document.getElementById(evt.detail.currspots);
           currspotgroup.setAttribute("scale", "0 0 0");
 
-          //get the entire new spot group and scale it to 1
-          var newspotgroup = document.getElementById(evt.detail.newspots);
+          // get the entire new spot group and scale it to 1
+          const newspotgroup = document.getElementById(evt.detail.newspots);
           newspotgroup.setAttribute("scale", "1 1 1");
         });
       }
@@ -126,42 +74,45 @@
         spotgroup: { type: "string", default: "" },
         phiStart: { type: "string", default: "" }
       },
-      init: function () {
-        //add image source of hotspot icon
+      init() {
+        // add image source of hotspot icon
         // this.el.setAttribute("src", "#hotspot");
-        //make the icon look at the camera all the time
+        // make the icon look at the camera all the time
         // this.el.setAttribute("look-at", "#cam");
 
         this.el.addEventListener("click", () => {
-          var cam = document.getElementById("cam");
+          // закрываем раскрытые инфопанели при уходе из кадра
+          hideAllInfoPanels();
+
+          const cam = document.getElementById("cam");
           cam.emit("zoomin");
 
-          var fp = document.getElementById("camfadeplane");
+          const fp = document.getElementById("camfadeplane");
           fp.setAttribute("width", "2");
           fp.setAttribute("height", "2");
           fp.emit("camFadeIn");
 
-          //alert("Start zoom");
+          // alert("Start zoom");
 
           const reloadSpot = () => {
-            //set the skybox source to the new image as per the spot
-            var sky = document.getElementById("skybox");
+            // set the skybox source to the new image as per the spot
+            const sky = document.getElementById("skybox");
             sky.setAttribute("src", this.data.linkto);
-            //надобавлял говна но оно не пашет
+            // надобавлял говна но оно не пашет
             sky.setAttribute("phi-start", this.data.phiStart);
 
-            var spotcomp = document.getElementById("spots");
-            var currspots = this.el.parentElement.getAttribute("id");
-            //create event for spots component to change the spots data
+            const spotcomp = document.getElementById("spots");
+            const currspots = this.el.parentElement.getAttribute("id");
+            // create event for spots component to change the spots data
             spotcomp.emit("reloadspots", {
               newspots: this.data.spotgroup,
-              currspots: currspots
+              currspots
             });
 
-            //this.setAttribute("camera","fov",80);
+            // this.setAttribute("camera","fov",80);
             cam.emit("zoomout");
 
-            var fp = document.getElementById("camfadeplane");
+            const fp = document.getElementById("camfadeplane");
             fp.emit("camFadeOut");
 
             setTimeout(() => {
@@ -171,17 +122,6 @@
           };
           setTimeout(reloadSpot, 2000);
         });
-
-        // this.el.addEventListener("mouseleave", function () {
-        //   var cur = document.getElementById("cursor-visual");
-        //   cur.emit("stopFuse");
-        // });
-
-        //поменял mouseenter на click. какая то хуйня
-        // this.el.addEventListener("click", function (evt) {
-        //   var cur = document.getElementById("cursor-visual");
-        //   cur.emit("startFuse");
-        // });
       }
     });
   </script>
@@ -193,56 +133,63 @@
 
   <div id="main" class="bord">
 
-<!--    <div id="hellopreloader">-->
-<!--      <div id="hellopreloader_preload">-->
-<!--        <p id="welcome-text">Готовимся к открытию</p>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div id="hellopreloader">
+      <div id="hellopreloader_preload">
+        <p id="welcome-text">Готовимся к открытию</p>
+      </div>
+    </div>
 
     <div class="video_content">
 
 <!--      <video playsinline preload muted class="video-background"></video>-->
 
-      <!--      <video src="%PUBLIC_URL%/2video.mp4" playsinline preload muted class="video-background"></video>-->
-
-      <!--      <video src="%PUBLIC_URL%/3video.mp4" playsinline preload muted class="video-background"></video>-->
-
-<!--      <video class="bg-video js-number-block active" autoplay muted loop data-number="1">-->
-<!--      </video>-->
-
-<!--      <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit>-->
-<!--      </video>-->
-
-      <video class="bg-video js-number-block active" autoplay muted loop
-             data-number="1"
-             data-info-src="%PUBLIC_URL%/images/icons/snow.svg"
-             data-info-text="Возможность использования"
-             data-info-title="Круглый год"
-             id="progress_one">
+      <video class="bg-video js-number-block active" loop autoplay muted data-number="1" data-transit id="progress_one">
       </video>
 
-      <video class="bg-video js-number-block" autoplay muted loop
-             data-number="2"
-             data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"
-             data-info-text="Выброс вредных веществ"
-             data-info-title="0%"
-             id="progress_two">
+      <video class="bg-video js-number-block" autoplay muted data-number="2" data-transit id="progress_two">
       </video>
 
       <video class="bg-video js-number-block" autoplay muted loop
              data-number="3"
-             data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"
-             data-info-text="Вместимость"
-             data-info-title="50 комфортных мест"
+             data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"
+             data-info-text="Выброс вредных веществ"
+             data-info-title="0%"
              id="progress_three">
       </video>
 
-<!--      <video class="bg-video js-number-block" autoplay muted data-transit-->
-<!--             data-number="6"-->
-<!--             data-info-src="%PUBLIC_URL%/images/icons/moorings.svg"-->
-<!--             data-info-text="Колличество причалов"-->
-<!--             data-info-title="23 штуки">-->
-<!--      </video>-->
+      <video class="bg-video js-number-block" autoplay muted data-transit
+             data-number="4"
+             id="progress_four">
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop
+             data-number="5"
+             data-info-src="%PUBLIC_URL%/images/icons/snow.svg"
+             data-info-text="Возможность использования"
+             data-info-title="Круглый год"
+             id="progress_five">
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted data-transit
+             data-number="6"
+             id="progress_six">
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted loop
+             data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"
+             data-info-text="Вместимость"
+             data-info-title="50 комфортных мест"
+             data-number="7"
+             id="progress_seven">
+      </video>
+
+      <video class="bg-video js-number-block" autoplay muted data-transit
+             data-number="8"
+             data-info-src="%PUBLIC_URL%/images/icons/moorings.svg"
+             data-info-text="Колличество причалов"
+             data-info-title="23 штуки"
+             id="progress_eight">
+      </video>
 
       <div class="mouse_prev">
         <div class="mouse_prev-wrapper">
@@ -268,14 +215,28 @@
         <div class="progress-container">
           <div class="progress-bar" id="progress_bar_three"></div>
         </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress_bar_four"></div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress_bar_five"></div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress_bar_six"></div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress_bar_seven"></div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progress_bar_eight"></div>
+        </div>
       </div>
 
       <div class="info_block js-number-block"></div>
     </div>
 
     <div class="site_content js-number-block">
-<!--      data-number="4"-->
-<!--      class="js-number-block"-->
+
       <section id="pier-description" class="bg-grey fixed">
         <div class="container grid-12 col-gap-10 pt-100 pb-100 d-flex-col-tab gap10-tab">
           <div class="col-6">
@@ -334,7 +295,7 @@
         </video>
 
         <div class="vectary">
-          <iframe src="https://app.vectary.com/p/6YGTFqmzg1ssFGNU2tCHY1" width="100%" height="100%"></iframe>
+          <iframe src="https://app.vectary.com/p/786nPXSSZ8fpj6zJkSF3Kb" width="100%" height="100%"></iframe>
           <div class="tech_speck">
             <div class="tech_speck-click">
               <p class="tech_speck-text">Характеристики</p>
@@ -524,682 +485,15 @@
     </div>
   </div>
 
-
-<!--  Сцена с причалом -->
-  <a-scene id="scenePier" renderer="
-	antialias: true;
-	sortObjects: true;
-	maxCanvasWidth: 3000;
-	maxCanvasHeight: 3000;
-	precision: low;
-	toneMapping:  ‘ACESFilmic’;">
+  <div class="aframeOne">
     <button id="aframe_rollupPier" class="dock_leave">Свернуть</button>
-    <a-assets>
-      <script id="flatShader" type="x-shader/x-fragment">
-          varying vec2 vUv;
-          void main() {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-          }
-        </script>
-      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-      <!-- Начало применения правок к коду -->
-      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div id="aframeHTMLOne"></div>
+  </div>
 
-
-      <!-- //////////////////// -->
-      <!-- Изображения причала -->
-      <!-- \\\\\\\\\\\\\\\\\\\\ -->
-
-
-      <!-- 01 Вход в здание причала -->
-      <img
-              id="dockImage_01"
-              src="https://coddmac.store/Prichal/building/building_01_enter.jpg"
-              crossorigin="anonymous"
-              importance="high"
-      />
-
-      <!-- 02 Выход напротив турникетов -->
-      <img
-              id="dockImage_02"
-              src="https://coddmac.store/Prichal/building/building_02_exit.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 03 Точка перехода в туалет, на улицу или возврата внутри шайбы -->
-      <img
-              id="dockImage_03"
-              src="https://coddmac.store/Prichal/building/building_03_prerestroom.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 04 туалет -->
-      <img
-              id="dockImage_04"
-              src="https://coddmac.store/Prichal/building/building_05_restroom_2_cropped.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 05 Уличная панорама -->
-      <img
-              id="dockImage_05"
-              src="https://coddmac.store/Prichal/building/building_06_panorama.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- //////////////////// -->
-      <!-- Уличные снимки -->
-      <!-- \\\\\\\\\\\\\\\\\\\\ -->
-
-
-      <!-- 01 Выход напротив турникетов -->
-      <img
-              id="streetImage_01"
-              src="https://coddmac.store/Prichal/street/street_01_preenterance.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 02 Вид на шайбу с причала -->
-      <img
-              id="streetImage_02"
-              src="https://coddmac.store/Prichal/street/street_02.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 03 Другой угол причала -->
-      <img
-              id="streetImage_03"
-              src="https://coddmac.store/Prichal/street/street_03.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 04 Вид с лестницы -->
-      <img
-              id="streetImage_04"
-              src="https://coddmac.store/Prichal/street/street_04.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 05 Фотография у стеллы -->
-      <img
-              id="streetImage_05"
-              src="https://coddmac.store/Prichal/street/street_05_fin.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- Стрелочка перехода между точками -->
-      <img
-              id="hotspot"
-              src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка синички -->
-      <img
-              id="boatTeleportSpot"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_boat_2.svg"
-              crossorigin="anonymous"
-      />
-
-
-    </a-assets>
-
-    <!-- Начинаем добавлять точки телепортации и переходы между ними -->
-
-    <a-entity id="spots" hotspots="">
-
-      <!-- //////////////////// -->
-      <!-- Перемещения по улице -->
-      <!-- \\\\\\\\\\\\\\\\\\\\ -->
-      <!--ST01 самая дальняя точка. мы до неё можем дойти, но не стартуем с нее -->
-      <a-entity id="group-room1" scale="0 0 0">
-        <!-- спуститься по лестнице -->
-        <a-image
-                src="#hotspot"
-                spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4"
-                position="-12 1 -2"
-                rotation="180 90 -45"
-                look-at
-        ></a-image>
-      </a-entity>
-
-      <!--ST02 Обзор с лестницы -->
-      <a-entity id="group-room2" scale="0 0 0">
-        <!-- выход назад -->
-        <a-image
-                spot="linkto:#streetImage_05;spotgroup:group-room1;phiStart:0"
-                src="#hotspot"
-                position="0 3 8"
-                rotation="180 0 -90"
-                look-at
-        ></a-image>
-        <!-- пройти на причал -->
-        <a-image
-                spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12"
-                src="#hotspot"
-                position="0 -1 -11"
-                look-at
-        ></a-image>
-      </a-entity>
-
-      <!--ST03 угол причала -->
-      <a-entity id="group-room3" scale="0 0 0">
-        <!-- выход назад -->
-        <a-image
-                spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4"
-                src="#hotspot"
-                position="-0.5 1 8"
-                look-at
-        ></a-image>
-        <!-- перейти в другой конец причала -->
-        <a-image
-                spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22"
-                src="#hotspot"
-                position="-8 1 -0.6"
-                rotation="180 90 180"
-                look-at
-        ></a-image>
-      </a-entity>
-
-      <!--ST04 Второй угол причала напротив шайбы -->
-      <a-entity id="group-room4" scale="0 0 0">
-        <!-- выход назад -->
-        <a-image
-                spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12"
-                src="#hotspot"
-                position="15 1 0.6"
-                rotation="180 90 180"
-                look-at
-        ></a-image>
-        <!-- подойти ближе к шайбе -->
-        <a-image
-                spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92"
-                src="#hotspot"
-                position="0 1 -8"
-                look-at
-        ></a-image>
-      </a-entity>
-
-      <!--ST05 стоим снаружи шайбы прямо у входа -->
-      <a-entity id="group-room5" scale="0 0 0">
-        <!-- выход назад -->
-        <a-image
-                spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22"
-                src="#hotspot"
-                position="-0.5 1 8"
-                look-at
-        ></a-image>
-        <!-- войти в шайбу -->
-        <a-image
-                spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95"
-                src="#hotspot"
-                position="0 1 -8"
-                look-at
-        ></a-image>
-      </a-entity>
-
-      <!-- //////////////////// -->
-      <!-- Точки внутри шайбы -->
-      <!-- \\\\\\\\\\\\\\\\\\\\ -->
-
-      <!--B01 Вход в шайбу после турникетов (тут начинается экскурсия) -->
-      <a-entity id="group-room6">
-        <!-- выход назад -->
-        <a-image
-                spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92"
-                src="#hotspot"
-                position="-1 1 8"
-                look-at
-        ></a-image>
-        <!-- к следующему турникету -->
-        <!-- phiStart:-135 чтобы смотреть прямо в турникет -->
-        <a-image
-                spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135"
-                src="#hotspot"
-                position="8 1 -6"
-                rotation="180 120 180"
-                look-at
-        ></a-image>
-      </a-entity>
-
-      <!--B02 Точка напротив турникетов. Возможность перейти на синичку -->
-      <a-entity id="group-room7" scale="0 0 0">
-        <!-- выход назад -->
-        <a-image
-                spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95"
-                src="#hotspot"
-                position="0 1 8"
-                look-at
-        ></a-image>
-        <!-- в предтуалетье -->
-        <a-image
-                spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143"
-                src="#hotspot"
-                position="-9 1 -3"
-                rotation="180 90 180"
-                look-at
-        ></a-image>
-
-        <!-- тут телепортируем на синичку пролистыванием сайта -->
-        <a-entity position="6.3 1 -5" look-at rotation="180 120 180">
-          <a-image src="#boatTeleportSpot"></a-entity>
-      </a-entity>
-    </a-entity>
-
-    <!--B03 точка напротив туалета -->
-    <a-entity id="group-room8" scale="0 0 0">
-      <!-- выход назад -->
-      <a-image
-              spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135"
-              src="#hotspot"
-              position="8 1 -3"
-              rotation="180 110 180"
-              look-at
-      ></a-image>
-      <!-- в туалет -->
-      <a-image
-              spot="linkto:#dockImage_04;spotgroup:group-room9;phiStart:-140"
-              src="#hotspot"
-              position="8.5 1 4.2"
-              rotation="180 60 180"
-              look-at
-      ></a-image>
-      <!-- к панораме -->
-      <a-image
-              spot="linkto:#dockImage_05;spotgroup:group-room10;phiStart:103"
-              src="#hotspot"
-              position="-6 1 -2.3"
-              rotation="180 60 180"
-              look-at
-      ></a-image>
-    </a-entity>
-
-    <!--B04 туалет -->
-    <a-entity id="group-room9" scale="0 0 0">
-      <!-- выход назад -->
-      <a-image
-              spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143"
-              src="#hotspot"
-              position="-6 1 -2"
-              rotation="180 80 180"
-              look-at
-      ></a-image>
-    </a-entity>
-
-    <!--B05 наружная панорама -->
-    <a-entity id="group-room10" scale="0 0 0">
-      <!-- выход назад -->
-      <a-image
-              spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143"
-              src="#hotspot"
-              position="5 1 2"
-              rotation="180 70 180"
-              look-at
-      ></a-image>
-    </a-entity>
-
-
-    </a-entity>
-
-    <!-- Камера в сцене -->
-
-    <a-entity
-            id="cam"
-            camera="fov:80"
-            position="0 1.6 0"
-            look-controls
-            cursor="rayOrigin: mouse"
-            animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;"
-            animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;"
-    >
-      <a-plane
-              id="camfadeplane"
-              rotation="10 0.5 0"
-              position="0 0 -0.5"
-              material="color:#000000;transparent:true;opacity:0"
-              width="0"
-              height="0"
-              animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn"
-              animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut"
-      ></a-plane>
-    </a-entity>
-
-    <!-- тут где написано phi-start подбираем точку начала первого кадра
-(куда будет повёрнута камера при загрузке страницы) -->
-
-    <a-sky id="skybox" src="#dockImage_01" rotation="0 0 0" phi-start="95"></a-sky>
-  </a-scene >
-
-
-  <!--  Сцена с Синичкой -->
-  <a-scene id="sceneSinich" renderer="
-	antialias: true;
-	sortObjects: true;
-	maxCanvasWidth: 3000;
-	maxCanvasHeight: 3000;
-	precision: low;
-	toneMapping:  ‘ACESFilmic’;">
+  <div class="aframeTwo">
     <button id="aframe_rollupSinich" class="dock_leave">Свернуть</button>
-    <a-assets>
-      <script id="flatShader" type="x-shader/x-fragment">
-          varying vec2 vUv;
-          void main() {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-          }
-        </script>
-      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-      <!-- Начало применения правок к коду -->
-      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-
-
-      <!-- //////////////////// -->
-      <!-- Изображения причала -->
-      <!-- \\\\\\\\\\\\\\\\\\\\ -->
-
-
-      <!-- 01 Выход причала -->
-      <img
-              id="dockImage_01"
-              src="https://coddmac.store/Prichal/building/buiding_04_street_to_the_boat.jpg"
-              crossorigin="anonymous"
-              importance="high"
-      />
-
-
-      <!-- //////////////////// -->
-      <!-- Снимки на лодке -->
-      <!-- \\\\\\\\\\\\\\\\\\\\ -->
-
-
-      <!-- 01 центральный зал синички -->
-      <img
-              id="boatImage_01"
-              src="https://coddmac.store/Prichal/boat/boat_01_main.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 02 Кипятильник с водой -->
-      <img
-              id="boatImage_02"
-              src="https://coddmac.store/Prichal/boat/boat_02_boiler.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 03 заднее окно Синички -->
-      <img
-              id="boatImage_03"
-              src="https://coddmac.store/Prichal/boat/boat_03_rearwindow.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 04 Туалет -->
-      <img
-              id="boatImage_04"
-              src="https://coddmac.store/Prichal/boat/boat_04_restroom_02.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- 05 Капитаношная -->
-      <img
-              id="boatImage_05"
-              src="https://coddmac.store/Prichal/boat/boat_05_capitan.jpg"
-              crossorigin="anonymous"
-              importance="low"
-      />
-
-      <!-- тут различные картинки -->
-
-      <!-- Стрелочка перехода между точками -->
-      <img
-              id="hotspot"
-              src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка шайбы -->
-      <img
-              id="buildingTeleportSpot"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_base.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка туалета со стрелкой влево -->
-      <img
-              id="restroomArrowLeftTeleportSpot"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_restroom_arrow_left.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка туалета со стрелкой вправо -->
-      <img
-              id="restroomArrowRightTeleportSpot"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_restroom_arrow_right.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка для бойлера -->
-      <img
-              id="boilerIcon"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_boiler.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка велопарковка -->
-      <img
-              id="bikeParkingIcon"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_bike.svg"
-              crossorigin="anonymous"
-      />
-
-      <!-- Иконка рубка капитана -->
-      <img
-              id="steeringWheelIcon"
-              src="https://coddmac.store/Prichal/Hotspot_Icon_capitan.svg"
-              crossorigin="anonymous"
-      />
-
-
-    </a-assets>
-
-    <!-- Начинаем добавлять точки телепортации и переходы между ними -->
-
-    <a-entity id="spots" hotspots="">
-
-
-      <!--BT01 точка перед входом в синичку -->
-      <a-entity id="group-room1" >
-        <!-- зайти внутрь слева -->
-        <a-image
-                src="#hotspot"
-                spot="linkto:#boatImage_01;spotgroup:group-room2;phiStart:-148"
-                position="-4 1 -8"
-                rotation="180 0 180"
-                look-at
-        ></a-image>
-        <!-- зайти внутрь справа -->
-        <a-image
-                src="#hotspot"
-                spot="linkto:#boatImage_01;spotgroup:group-room2;phiStart:-148"
-                position="5 1 -8"
-                rotation="180 0 180"
-                look-at
-        ></a-image>
-        <!-- пробраться к капитану -->
-        <a-image
-                src="#steeringWheelIcon"
-                spot="linkto:#boatImage_05;spotgroup:group-room6;phiStart:90"
-                position="0.4 5 -8"
-                rotation="180 0 180"
-                look-at
-        ></a-image>
-
-        <!-- тут телепортируем блок про шайбу ? -->
-        <a-entity position="0 1 8" look-at rotation="180 0 180">
-          <a-image src="#buildingTeleportSpot"></a-entity>
-      </a-entity>
-
-    </a-entity>
-
-    <!--BT02 Рассматриваем Синичку из самого центра -->
-    <a-entity id="group-room2" scale="0 0 0">
-      <!-- выход назад слева-->
-      <a-image
-              spot="linkto:#dockImage_01;spotgroup:group-room1;phiStart:-132"
-              src="#hotspot"
-              position="4.5 1 12"
-              look-at
-      ></a-image>
-      <!-- выход назад справа-->
-      <a-image
-              spot="linkto:#dockImage_01;spotgroup:group-room1;phiStart:-132"
-              src="#hotspot"
-              position="-3.7 1 12"
-              look-at
-      ></a-image>
-      <!-- пробраться к капитану -->
-      <a-image
-              src="#steeringWheelIcon"
-              spot="linkto:#boatImage_05;spotgroup:group-room6;phiStart:90"
-              position="0 4 12"
-              look-at
-      ></a-image>
-      <!-- переход к бойлеру -->
-      <a-image
-              spot="linkto:#boatImage_02;spotgroup:group-room3;phiStart:103"
-              src="#hotspot"
-              position="-3.3 1 -12"
-              look-at
-      ></a-image>
-      <!-- переход в туалет -->
-      <a-image
-              spot="linkto:#boatImage_04;spotgroup:group-room4;phiStart:90"
-              src="#restroomArrowLeftTeleportSpot"
-              position="3.5 1 -12"
-              look-at
-      ></a-image>
-    </a-entity>
-
-    <!--BT03 Точка у бойлера -->
-    <a-entity id="group-room3" scale="0 0 0">
-      <!-- назад в зал -->
-      <a-image
-              spot="linkto:#boatImage_01; spotgroup:group-room2;phiStart:-148"
-              src="#hotspot"
-              position="3 1 8"
-              rotation="180 15 180"
-              look-at
-      ></a-image>
-      <!-- к заднему окну -->
-      <a-image
-              spot="linkto:#boatImage_03; spotgroup:group-room5;phiStart:90"
-              src="#hotspot"
-              position="0 1 -8"
-              rotation="180 0 180"
-              look-at
-      ></a-image>
-
-      <!-- тут можем написать про кулер -->
-      <!-- <a-entity position="5 1 0" look-at rotation="180 90 180">
-          <a-image src="#boilerIcon"></a-entity>
-      </a-entity> -->
-    </a-entity>
-
-    <!--BT04 Туалет -->
-    <a-entity id="group-room4" scale="0 0 0">
-      <!-- выход назад -->
-      <a-image
-              spot="linkto:#boatImage_01;spotgroup:group-room2;phiStart:-148"
-              src="#hotspot"
-              position="-0.5 1 6"
-              rotation="180 0 180"
-              look-at
-      ></a-image>
-
-    </a-entity>
-
-    <!--BT05 задняя площадка -->
-    <a-entity id="group-room5" scale="0 0 0">
-      <!-- к бойлеру -->
-      <a-image
-              spot="linkto:#boatImage_02;spotgroup:group-room3;phiStart:103"
-              src="#hotspot"
-              position="-5 1 6"
-              rotation="180 135 180"
-              look-at
-      ></a-image>
-      <!-- в туалет -->
-      <a-image
-              spot="linkto:#boatImage_04;spotgroup:group-room4;phiStart:90"
-              src="#restroomArrowRightTeleportSpot"
-              position="5 1 6"
-              rotation="180 15 180"
-              look-at
-      ></a-image>
-    </a-entity>
-
-    <!--BT06 капитаношная -->
-    <a-entity id="group-room6" scale="0 0 0">
-      <!-- пройти в салон -->
-      <a-image
-              spot="linkto:#boatImage_01;spotgroup:group-room2;phiStart:-148"
-              src="#hotspot"
-              position="0 1 -8"
-              look-at
-      ></a-image>
-      <!-- выход на улицу-->
-      <a-image
-              spot="linkto:#dockImage_01;spotgroup:group-room1;phiStart:-132"
-              src="#hotspot"
-              position="0 1 6"
-              look-at
-      ></a-image>
-    </a-entity>
-
-
-    </a-entity>
-
-    <!-- Камера в сцене -->
-
-    <a-entity
-            id="cam"
-            camera="fov:80"
-            position="0 1.6 0"
-            look-controls
-            cursor="rayOrigin: mouse"
-            animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;"
-            animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;"
-    >
-      <a-plane
-              id="camfadeplane"
-              rotation="10 0.5 0"
-              position="0 0 -0.5"
-              material="color:#000000;transparent:true;opacity:0"
-              width="0"
-              height="0"
-              animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn"
-              animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut"
-      ></a-plane>
-    </a-entity>
-
-    <!-- тут где написано phi-start подбираем точку начала первого кадра
-(куда будет повёрнута камера при загрузке страницы) -->
-
-    <a-sky id="skybox" src="#dockImage_01" rotation="0 0 0" phi-start="-132"></a-sky>
-  </a-scene>
-
+    <div id="aframeHTMLTwo"></div>
+  </div>
 
 
 <!-- Библиотека GSAP для последующего воспроизведения видео по скроллу -->
@@ -1210,7 +504,6 @@
 
 
   <script>
-
     // <!-- Воспроизведения видео по скроллу НАЧАЛОСЬ-->
     // const initOneVideo = () => {
     //
@@ -1237,23 +530,23 @@
 
 
   // Прелоадер
-  //   let hellopreloader = document.getElementById("hellopreloader_preload");
-  //   function fadeOutnojquery(el) {
-  //     el.style.opacity = 1;
-  //     let interhellopreloader = setInterval(function() {
-  //       el.style.opacity = el.style.opacity - 0.05;
-  //
-  //       if (el.style.opacity <= 0.05) {
-  //         clearInterval(interhellopreloader);
-  //         hellopreloader.style.display = "none";
-  //       }
-  //     }, 16);
-  //   }
-  //   window.onload = function() {
-  //     setTimeout(function() {
-  //       fadeOutnojquery(hellopreloader);
-  //     }, 1000);
-  //   };
+    let hellopreloader = document.getElementById("hellopreloader_preload");
+    function fadeOutnojquery(el) {
+      el.style.opacity = 1;
+      let interhellopreloader = setInterval(function() {
+        el.style.opacity = el.style.opacity - 0.05;
+
+        if (el.style.opacity <= 0.05) {
+          clearInterval(interhellopreloader);
+          hellopreloader.style.display = "none";
+        }
+      }, 16);
+    }
+    window.onload = function() {
+      setTimeout(function() {
+        fadeOutnojquery(hellopreloader);
+      }, 1000);
+    };
 
 
     // При прокрутке колесом мыши, видео воспроизводится и моментально ставится на паузу.
@@ -1632,8 +925,7 @@
     <!-- Воспроизведения видео по скроллу ЗАКОНЧИЛОСЬ-->
 
 
-    // Изменение размеров canvas для a-frame
-    window.addEventListener("DOMContentLoaded", () => {
+    function appdateCanvas() {
       const myCanvas = document.querySelector('.a-canvas');
 
       // Получаем текущие размеры области видимости браузера
@@ -1655,63 +947,303 @@
         requestAnimationFrame(updateCanvas);
       }
       updateCanvas();
+    }
+
+    // Изменение размеров canvas для a-frame
+    window.addEventListener("DOMContentLoaded", () => {
 
       // Клик на кнопку ОСМОТРЕТЬ 360 и выход из сцена кнопкой СВЕРНУТЬ
-      // const tour_Pier_360 = document.querySelector('#pier-description a.vue_button');
-      // const rollup_Pier_360 = document.querySelector('#aframe_rollupPier');
+      const tour_Pier_360 = document.querySelector('#pier-description a.vue_button');
+      const rollup_Pier_360 = document.querySelector('#aframe_rollupPier');
       const tour_Sinich_360 = document.querySelector('#sinichka-section button.interior_button');
       const rollup_Sinich_360 = document.querySelector('#aframe_rollupSinich');
       const mainContent = document.querySelector('#main');
-      const htmlAframe = document.querySelector('html.a-fullscreen');
+      const htmlAframe = document.querySelector('html');
 
-      // tour_Pier_360.addEventListener('click', () => {
-      //   // После клика на кнопку находим тег сцены канвас a-scene через id
-      //   let aframeContent = document.querySelector('#scenePier');
-      //   setTimeout(() => {
-      //     // Обязательно через отложеннное время вызываем на сцене метод resize для обновления ее размеров под текущую область втдимости.
-      //     // Данного метода НЕТ в оффициальной документации a-frame. (но работает по совету из GitHub)
-      //     aframeContent.resize();
-      //   }, 100);
-      //   aframeContent.style.opacity = '1';
-      //   aframeContent.style.pointerEvents = 'auto';
-      //   mainContent.style.display = 'none';
-      //   rollup_Pier_360.style.display = 'block';
-      //   htmlAframe.classList.add('position');
-      // });
-      //
-      // rollup_Pier_360.addEventListener('click', () => {
-      //   let aframeContent = document.querySelector('#scenePier');
-      //   aframeContent.style.opacity = '0';
-      //   aframeContent.style.pointerEvents = 'none';
-      //   mainContent.style.display = 'block';
-      //   rollup_Pier_360.style.display = 'none';
-      //   htmlAframe.classList.remove('position');
-      // });
-      //
-      // tour_Sinich_360.addEventListener('click', () => {
-      //   // После клика на кнопку находим тег сцены канвас a-scene через id
-      //   let aframeContent = document.querySelector('#sceneSinich');
-      //   setTimeout(() => {
-      //     // Обязательно через отложеннное время вызываем на сцене метод resize для обновления ее размеров под текущую область втдимости.
-      //     // Данного метода НЕТ в оффициальной документации a-frame. (но работает по совету из GitHub)
-      //     aframeContent.resize();
-      //   }, 100);
-      //   aframeContent.style.opacity = '1';
-      //   aframeContent.style.pointerEvents = 'auto';
-      //   mainContent.style.display = 'none';
-      //   rollup_Sinich_360.style.display = 'block';
-      //   htmlAframe.classList.add('position');
-      // });
-      //
-      // rollup_Sinich_360.addEventListener('click', () => {
-      //   let aframeContent = document.querySelector('#sceneSinich');
-      //   aframeContent.style.opacity = '0';
-      //   aframeContent.style.pointerEvents = 'none';
-      //   mainContent.style.display = 'block';
-      //   rollup_Sinich_360.style.display = 'none';
-      //   htmlAframe.classList.remove('position');
-      // });
+      function addSceneOne() {
+        const SceneOneCode = `
+          <a-scene id="scenePier" renderer="\tantialias: true;\tsortObjects: true;\tmaxCanvasWidth: 3000;\tmaxCanvasHeight: 3000;\tprecision: low;\ttoneMapping: ‘ACESFilmic’;" loading-screen="enabled: false"><a-assets><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Начало применения правок к коду --><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- //////////////////// --><!-- Изображения причала --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Вход в здание причала --><img id="dockImage_01" src="https://coddmac.store/Prichal/building/building_01_enter.jpg" crossorigin="anonymous" importance="high" /><!-- 02 Выход напротив турникетов --><img id="dockImage_02" src="https://coddmac.store/Prichal/building/building_02_exit.jpg" crossorigin="anonymous" importance="low" /><!-- 03 Точка перехода в туалет, на улицу или возврата внутри шайбы --><img id="dockImage_03" src="https://coddmac.store/Prichal/building/building_03_prerestroom.jpg" crossorigin="anonymous" importance="low" /><!-- 04 туалет --><img id="dockImage_04" src="https://coddmac.store/Prichal/building/building_05_restroom_2_cropped.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Уличная панорама --><img id="dockImage_05" src="https://coddmac.store/Prichal/building/building_06_panorama.jpg" crossorigin="anonymous" importance="low" /><!-- //////////////////// --><!-- Уличные снимки --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Выход напротив турникетов --><img id="streetImage_01" src="https://coddmac.store/Prichal/street/street_01_preenterance.jpg" crossorigin="anonymous" importance="low" /><!-- 02 Вид на шайбу с причала --><img id="streetImage_02" src="https://coddmac.store/Prichal/street/street_02.jpg" crossorigin="anonymous" importance="low" /><!-- 03 Другой угол причала --><img id="streetImage_03" src="https://coddmac.store/Prichal/street/street_03.jpg" crossorigin="anonymous" importance="low" /><!-- 04 Вид с лестницы --><img id="streetImage_04" src="https://coddmac.store/Prichal/street/street_04.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Фотография у стеллы --><img id="streetImage_05" src="https://coddmac.store/Prichal/street/street_05_fin.jpg" crossorigin="anonymous" importance="low" /><!-- Стрелочка перехода между точками --><img id="hotspot" src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg" crossorigin="anonymous" /><!-- Иконка синички --><img id="boatTeleportSpot" src="https://coddmac.store/Prichal/Hotspot_Icon_boat_2.svg" crossorigin="anonymous" /></a-assets><!-- Начинаем добавлять точки телепортации и переходы между ними --><a-entity id="spots" hotspots=""><!-- //////////////////// --><!-- Перемещения по улице --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!--ST01 самая дальняя точка. мы до неё можем дойти, но не стартуем с нее --><a-entity id="group-room1" scale="0 0 0"><!-- спуститься по лестнице --><a-image src="#hotspot" spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4" position="-12 1 -2" rotation="180 90 -45" look-at ></a-image></a-entity><!--ST02 Обзор с лестницы --><a-entity id="group-room2" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_05;spotgroup:group-room1;phiStart:0" src="#hotspot" position="0 3 8" rotation="180 0 -90" look-at ></a-image><!-- пройти на причал --><a-image spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12" src="#hotspot" position="0 -1 -11" look-at ></a-image></a-entity><!--ST03 угол причала --><a-entity id="group-room3" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4" src="#hotspot" position="-0.5 1 8" look-at ></a-image><!-- перейти в другой конец причала --><a-image spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22" src="#hotspot" position="-8 1 -0.6" rotation="180 90 180" look-at ></a-image></a-entity><!--ST04 Второй угол причала напротив шайбы --><a-entity id="group-room4" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12" src="#hotspot" position="15 1 0.6" rotation="180 90 180" look-at ></a-image><!-- подойти ближе к шайбе --><a-image spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92" src="#hotspot" position="0 1 -8" look-at ></a-image></a-entity><!--ST05 стоим снаружи шайбы прямо у входа --><a-entity id="group-room5" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22" src="#hotspot" position="-0.5 1 8" look-at ></a-image><!-- войти в шайбу --><a-image spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95" src="#hotspot" position="0 1 -8" look-at ></a-image></a-entity><!-- //////////////////// --><!-- Точки внутри шайбы --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!--B01 Вход в шайбу после турникетов (тут начинается экскурсия) --><a-entity id="group-room6"><!-- выход назад --><a-image spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92" src="#hotspot" position="-1 1 8" look-at ></a-image><!-- к следующему турникету --><!-- phiStart:-135 чтобы смотреть прямо в турникет --><a-image spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135" src="#hotspot" position="8 1 -6" rotation="180 120 180" look-at ></a-image></a-entity><!--B02 Точка напротив турникетов. Возможность перейти на синичку --><a-entity id="group-room7" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95" src="#hotspot" position="0 1 8" look-at ></a-image><!-- в предтуалетье --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="-9 1 -3" rotation="180 90 180" look-at ></a-image><!-- тут телепортируем на синичку пролистыванием сайта --><a-entity position="6.3 1 -5" look-at rotation="180 120 180" id="TeleportPier"><a-image src="#boatTeleportSpot"></a-entity></a-entity></a-entity><!--B03 точка напротив туалета --><a-entity id="group-room8" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135" src="#hotspot" position="8 1 -3" rotation="180 110 180" look-at ></a-image><!-- в туалет --><a-image spot="linkto:#dockImage_04;spotgroup:group-room9;phiStart:-140" src="#hotspot" position="8.5 1 4.2" rotation="180 60 180" look-at ></a-image><!-- к панораме --><a-image spot="linkto:#dockImage_05;spotgroup:group-room10;phiStart:103" src="#hotspot" position="-6 1 -2.3" rotation="180 60 180" look-at ></a-image></a-entity><!--B04 туалет --><a-entity id="group-room9" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="-6 1 -2" rotation="180 80 180" look-at ></a-image></a-entity><!--B05 наружная панорама --><a-entity id="group-room10" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="5 1 2" rotation="180 70 180" look-at ></a-image></a-entity></a-entity><!-- Камера в сцене --><a-entity id="cam" camera="fov:80" position="0 1.6 0" look-controls cursor="rayOrigin: mouse" animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;" animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;" ><a-plane id="camfadeplane" rotation="10 0.5 0" position="0 0 -0.5" material="color:#000000;transparent:true;opacity:0" width="0" height="0" animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn" animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut" ></a-plane></a-entity><!-- тут где написано phi-start подбираем точку начала первого кадра
+(куда будет повёрнута камера при загрузке страницы) --><a-sky id="skybox" src="#dockImage_01" rotation="0 0 0" phi-start="95"></a-sky></a-scene >
+        `;
 
+        const targetElement = document.getElementById('aframeHTMLOne');
+        targetElement.innerHTML = SceneOneCode;
+        appdateCanvas();
+        setTimeout(() => {
+          let currentInfoPanel = null;
+
+          // function showAllOpenPanelButtons() {}
+
+          // Open the panel
+          getAllTriggerableButtons().forEach((triggerableButton) => {
+            triggerableButton.addEventListener("click", function () {
+              getAllTriggerableButtons().forEach((button) =>
+                      button.setAttribute("visible", true)
+              );
+
+              console.log(`button clicked: ${this.id}`);
+
+              const currentButtonIdNumber = this.getAttribute(
+                      "data-triggerable-button"
+              );
+
+              // Get the template for this info Button
+              const template = document.querySelector(
+                      `#infoPanel${currentButtonIdNumber}`
+              );
+
+              // Get the info panel entity
+              const infoPanel = triggerableButton.nextElementSibling;
+
+              console.log("Current info panel: ", infoPanel);
+
+              // Instantiate the new info panel from the template
+              infoPanel.appendChild(document.importNode(template.content, true));
+
+              const allInfoPanelContainerElements = getAllInfoPanelContainers();
+
+              triggerableButton.parentElement
+                      .querySelector("[src='#crossIcon']")
+                      .addEventListener("click", () => {
+                        infoPanel.innerHTML = "";
+
+                        triggerableButton.setAttribute("visible", true);
+
+                      });
+
+
+
+              allInfoPanelContainerElements.forEach((container) => {
+                if (container !== infoPanel) {
+                  container.innerHTML = "";
+                }
+                triggerableButton.setAttribute("visible", true);
+              });
+
+              // console.log("Current info panel insides: ", infoPanel.innerHTML);
+
+              const idNumber = currentButtonIdNumber;
+              if (currentInfoPanel) {
+                /* document
+                    .querySelector(`#sphere${currentInfoPanel}`)
+                    .setAttribute("visible", true); */
+                triggerableButton.setAttribute("visible", true);
+              }
+              // document.querySelector("#info" + idNumber).style.display = "block";
+              triggerableButton.setAttribute("visible", false);
+              currentInfoPanel = idNumber;
+              console.log(`Current info panel id: ${currentInfoPanel}`);
+            });
+          });
+
+          document.querySelectorAll('#TeleportPier').forEach(function (sphere) {
+            // Определение функции для анимированной прокрутки к указанной секции
+            function scrollToSection(section) {
+              const targetPosition = section.offsetTop; // Позиция верхней границы секции
+              const currentPosition = window.scrollY; // Текущая позиция прокрутки
+              const distance = targetPosition - currentPosition; // Расстояние до цели
+              const startTime = performance.now(); // Время начала анимации
+              const duration = 1000; // Длительность анимации в миллисекундах
+              const video = section.querySelector('.section-video');
+
+              if (video) {
+                video.currentTime = 0;
+                video.classList.add('section-video_active');
+                video.play();
+
+                const sectionVideoEndListenerOne = () => {
+                  video.classList.remove('section-video_active');
+                  video.removeEventListener("ended", sectionVideoEndListenerOne);
+                };
+
+                video.addEventListener("ended", sectionVideoEndListenerOne);
+              }
+
+              // Функция для анимации, использующая requestAnimationFrame
+              function step(timestamp) {
+                const currentTime = timestamp - startTime; // Прошедшее время
+                const progress = Math.min(currentTime / duration, 1); // Прогресс анимации (0-1)
+                const easing = easeInOutQuad(progress); // Функция для сглаживания анимации
+                window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+
+                // Продолжение анимации, если не достигнут конец анимации
+                if (currentTime < duration) {
+                  requestAnimationFrame(step);
+                }
+              }
+              // Запуск анимации
+              requestAnimationFrame(step);
+            }
+            // Определение функции для сглаживания анимации прокрутки (функция easing)
+            function easeInOutQuad(t) {
+              return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            }
+            sphere.addEventListener("click", function () {
+              let aframeContent = document.querySelector('#scenePier');
+              const rollup_Pier_360 = document.querySelector('#aframe_rollupPier');
+              const mainContent = document.querySelector('#main');
+              const htmlAframe = document.querySelector('html.a-fullscreen');
+              const sinichka = document.querySelector('#sinichka-section');
+              aframeContent.style.opacity = '0';
+              aframeContent.style.pointerEvents = 'none';
+              rollup_Pier_360.style.display = 'none';
+              mainContent.style.display = 'block';
+              htmlAframe.classList.remove('position');
+              scrollToSection(sinichka);
+              removeSceneOne();
+            });
+          });
+
+        }, 1500);
+      }
+
+      function removeSceneOne() {
+        const targetElement = document.getElementById('aframeHTMLOne');
+        targetElement.innerHTML = '';
+      }
+
+      function addSceneTwo() {
+        const SceneTwoCode = `
+        <a-scene id="sceneSinich" renderer="\tantialias: true;\tsortObjects: true;\tmaxCanvasWidth: 3000;\tmaxCanvasHeight: 3000;\tprecision: low;\ttoneMapping: ‘ACESFilmic’;" loading-screen="enabled: false"><a-assets><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Начало применения правок к коду --><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- //////////////////// --><!-- Изображения причала --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Выход причала --><img id="streetDockImage_01" src="https://coddmac.store/Prichal/building/buiding_04_street_to_the_boat.jpg" crossorigin="anonymous" importance="high" /><!-- //////////////////// --><!-- Снимки на лодке --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 центральный зал синички --><img id="boatImage_01" src="https://coddmac.store/Prichal/boat/boat_01_main.jpg" crossorigin="anonymous" importance="low" /><!-- 02 Кипятильник с водой --><img id="boatImage_02" src="https://coddmac.store/Prichal/boat/boat_02_boiler.jpg" crossorigin="anonymous" importance="low" /><!-- 03 заднее окно Синички --><img id="boatImage_03" src="https://coddmac.store/Prichal/boat/boat_03_rearwindow.jpg" crossorigin="anonymous" importance="low" /><!-- 04 Туалет --><img id="boatImage_04" src="https://coddmac.store/Prichal/boat/boat_04_restroom_02.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Капитаношная --><img id="boatImage_05" src="https://coddmac.store/Prichal/boat/boat_05_capitan.jpg" crossorigin="anonymous" importance="low" /><!-- тут различные картинки --><!-- Стрелочка перехода между точками --><img id="hotspot" src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg" crossorigin="anonymous" /><!-- Иконка шайбы --><img id="buildingTeleportSpot" src="https://coddmac.store/Prichal/Hotspot_Icon_base.svg" crossorigin="anonymous" /><!-- Иконка туалета со стрелкой влево --><img id="restroomArrowLeftTeleportSpot" src="https://coddmac.store/Prichal/Hotspot_Icon_restroom_arrow_left.svg" crossorigin="anonymous" /><!-- Иконка туалета со стрелкой вправо --><img id="restroomArrowRightTeleportSpot" src="https://coddmac.store/Prichal/Hotspot_Icon_restroom_arrow_right.svg" crossorigin="anonymous" /><!-- Иконка для бойлера --><img id="boilerIcon" src="https://coddmac.store/Prichal/icons/boat/Hotspot_Icon_boiler.svg" crossorigin="anonymous" /><!-- Иконка велопарковка --><img id="bikeParkingIcon" src="https://coddmac.store/Prichal/icons/boat/Hotspot_Icon_bike.svg" crossorigin="anonymous" /><!-- Иконка для стоянки колясок --><img id="parkingIcon" src="https://coddmac.store/Prichal/icons/boat/Hotspot_Icon_parking.svg" crossorigin="anonymous" /><!-- Иконка рубка капитана --><img id="steeringWheelIcon" src="https://coddmac.store/Prichal/Hotspot_Icon_capitan.svg" crossorigin="anonymous" /><!-- иконка-крестик --><img id="crossIcon" src="https://coddmac.store/THREE/360/cross-icon.svg" crossorigin="anonymous" importance="low" /><!-- текст-картинка про велосипеды --><img id="text-021" src="https://coddmac.store/Prichal/popup_text/boat/bike.svg" crossorigin="anonymous" importance="low" /><!-- текст-картинка про бойлер --><img id="text-022" src="https://coddmac.store/Prichal/popup_text/boat/water.svg" crossorigin="anonymous" importance="low" /><!-- текст-картинка про парковку для колясок --><img id="text-023" src="https://coddmac.store/Prichal/popup_text/boat/parking.svg" crossorigin="anonymous" importance="low" /><!-- !!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Здесь иконки и текст по капитанской рубке --><!--01 Иконка навигационной панели --><img id="navigationIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_navigation.svg" crossorigin="anonymous" importance="low" /><!--02 Иконка управления бортовыми системами --><img id="controlIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_control.svg" crossorigin="anonymous" importance="low" /><!--03 Иконка элементов управления судном --><img id="handlingIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_handling.svg" crossorigin="anonymous" importance="low" /><!--04 Иконка компуктер --><img id="pcIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_pc.svg" crossorigin="anonymous" importance="low" /><!--05 Иконка рации-микрофона --><img id="micIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_micro.svg" crossorigin="anonymous" importance="low" /><!--06 Иконка аварийной остановки --><img id="boatStopIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_stop.svg" crossorigin="anonymous" importance="low" /><!--07 Иконка управления камерами --><img id="camIcon" src="https://coddmac.store/Prichal/icons/boat/capitan/Hotspot_Icon_cam.svg" crossorigin="anonymous" importance="low" /><!-- Начались векторные изображения текста для капитанской рубки --><!-- 01 текст для навигационной панели --><img id="navigationText" src="https://coddmac.store/Prichal/popup_text/boat/captain/navigation.svg" crossorigin="anonymous" importance="low" /><!-- 02 текст для управления бортовыми системами --><img id="controlText" src="https://coddmac.store/Prichal/popup_text/boat/captain/controls.svg" crossorigin="anonymous" importance="low" /><!-- 03 текст для элементов управления судном --><img id="handlingText" src="https://coddmac.store/Prichal/popup_text/boat/captain/handling.svg" crossorigin="anonymous" importance="low" /><!-- 04 текст для компуктера --><img id="pcText" src="https://coddmac.store/Prichal/popup_text/boat/captain/pc.svg" crossorigin="anonymous" importance="low" /><!-- 05 текст для рации-микрофона --><img id="micText" src="https://coddmac.store/Prichal/popup_text/boat/captain/mic.svg" crossorigin="anonymous" importance="low" /><!-- 06 текст для аварийной остановки --><img id="boatStopText" src="https://coddmac.store/Prichal/popup_text/boat/captain/stop.svg" crossorigin="anonymous" importance="low" /><!-- 07 текст для управления камерами --><img id="camText" src="https://coddmac.store/Prichal/popup_text/boat/captain/cam.svg" crossorigin="anonymous" importance="low" /><!-- тут различные информационные сообщения --><!-- Первая инфопанель про велосипеды --><template id="infoPanel21"><a-image position="0 0 0.1" src="#text-021" width="6.4" height="2.9" ></a-image><a-image position="2.8 1 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- Вторая инфопанель про бойлер --><template id="infoPanel22"><a-image position="0 0 0.1" src="#text-022" width="6.4" height="3.4" ></a-image><a-image position="2.8 1.3 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- Третья инфопанель про парковку для колясок и инвалидов --><template id="infoPanel23"><a-image position="0 0 0.1" src="#text-023" width="6.4" height="3.4" ></a-image><a-image position="2.8 1.3 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- ######################## --><!-- Здесь начинаем класть инфопанели для рубки капитана --><!-- 01 инфопанель для навигационной панели --><template id="infoPanel24"><a-image position="0 0 0.1" src="#navigationText" width="6.4" height="1.86" ></a-image><a-image position="2.8 0.55 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 02 инфопанель для управления бортовыми системами --><template id="infoPanel25"><a-image position="0 0 0.1" src="#controlText" width="6.4" height="1.86" ></a-image><a-image position="2.8 0.55 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 03 инфопанель для элементов управления судном --><template id="infoPanel26"><a-image position="0 0 0.1" src="#handlingText" width="6.4" height="2.4" ></a-image><a-image position="2.8 0.8 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 04 инфопанель для компуктера --><template id="infoPanel27"><a-image position="0 0 0.1" src="#pcText" width="6.4" height="1.86" ></a-image><a-image position="2.8 0.55 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 05 инфопанель для нрации-микрофона --><template id="infoPanel28"><a-image position="0 0 0.1" src="#micText" width="6.4" height="2.4" ></a-image><a-image position="2.8 0.8 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 06 инфопанель для аварийной остановки --><template id="infoPanel29"><a-image position="0 0 0.1" src="#boatStopText" width="6.4" height="1.86" ></a-image><a-image position="2.8 0.55 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 07 инфопанель для управления камерами --><template id="infoPanel210"><a-image position="0 0 0.1" src="#camText" width="6.4" height="1.86" ></a-image><a-image position="2.8 0.55 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template></a-assets><!-- Начинаем добавлять точки телепортации и переходы между ними --><a-entity id="spots" hotspots=""><!--BT01 точка перед входом в синичку --><a-entity id="group-room21" ><!-- зайти внутрь слева --><a-image src="#hotspot" spot="linkto:#boatImage_01;spotgroup:group-room22;phiStart:-148" position="-4 1 -8" rotation="180 0 180" look-at ></a-image><!-- зайти внутрь справа --><a-image src="#hotspot" spot="linkto:#boatImage_01;spotgroup:group-room22;phiStart:-148" position="5 1 -8" rotation="180 0 180" look-at ></a-image><!-- пробраться к капитану --><a-image src="#steeringWheelIcon" spot="linkto:#boatImage_05;spotgroup:group-room26;phiStart:90" position="0.4 5 -8" rotation="180 0 180" look-at ></a-image><!-- тут телепортируем блок про шайбу ? --><a-entity position="0 1 8" look-at rotation="180 0 180" id="TeleportSinich"><a-image src="#buildingTeleportSpot"></a-entity><!-- это блок про велопарковку --><a-entity position="0.4 1 -8" look-at><a-image src="#bikeParkingIcon" data-triggerable-button="21" ></a-image><a-entity id="infoPanelContainer21"></a-entity></a-entity></a-entity><!--BT02 Рассматриваем Синичку из самого центра --><a-entity id="group-room22" scale="0 0 0"><!-- выход назад слева--><a-image spot="linkto:#streetDockImage_01;spotgroup:group-room21;phiStart:-132" src="#hotspot" position="4.5 1 12" look-at ></a-image><!-- выход назад справа--><a-image spot="linkto:#streetDockImage_01;spotgroup:group-room21;phiStart:-132" src="#hotspot" position="-3.7 1 12" look-at ></a-image><!-- пробраться к капитану --><a-image src="#steeringWheelIcon" spot="linkto:#boatImage_05;spotgroup:group-room26;phiStart:90" position="0 4 12" look-at ></a-image><!-- переход к бойлеру --><a-image spot="linkto:#boatImage_02;spotgroup:group-room23;phiStart:103" src="#hotspot" position="-3.3 1 -12" look-at ></a-image><!-- переход в туалет --><a-image spot="linkto:#boatImage_04;spotgroup:group-room24;phiStart:90" src="#restroomArrowLeftTeleportSpot" position="3.5 1 -12" look-at ></a-image></a-entity><!--BT03 Точка у бойлера --><a-entity id="group-room23" scale="0 0 0"><!-- назад в зал --><a-image spot="linkto:#boatImage_01; spotgroup:group-room22;phiStart:-148" src="#hotspot" position="3 1 8" rotation="180 15 180" look-at ></a-image><!-- к заднему окну --><a-image spot="linkto:#boatImage_03; spotgroup:group-room25;phiStart:90" src="#hotspot" position="0 1 -8" rotation="180 0 180" look-at ></a-image><!-- это блок про бойлер --><a-entity position="6 1 0.3" rotation="180 90 180" look-at><a-image src="#boilerIcon" data-triggerable-button="22" ></a-image><a-entity id="infoPanelContainer22"></a-entity></a-entity><!-- это блок про стоянку колясок --><a-entity position="0 -1 6" rotation="180 0 180" look-at><a-image src="#parkingIcon" data-triggerable-button="23" ></a-image><a-entity id="infoPanelContainer23"></a-entity></a-entity></a-entity><!--BT04 Туалет --><a-entity id="group-room24" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#boatImage_01;spotgroup:group-room22;phiStart:-148" src="#hotspot" position="-0.5 1 6" rotation="180 0 180" look-at ></a-image></a-entity><!--BT05 задняя площадка --><a-entity id="group-room25" scale="0 0 0"><!-- к бойлеру --><a-image spot="linkto:#boatImage_02;spotgroup:group-room23;phiStart:103" src="#hotspot" position="-5 1 6" rotation="180 135 180" look-at ></a-image><!-- в туалет --><a-image spot="linkto:#boatImage_04;spotgroup:group-room24;phiStart:90" src="#restroomArrowRightTeleportSpot" position="5 1 6" rotation="180 15 180" look-at ></a-image></a-entity><!--BT06 капитаношная --><a-entity id="group-room26" scale="0 0 0"><!-- пройти в салон --><a-image spot="linkto:#boatImage_01;spotgroup:group-room22;phiStart:-148" src="#hotspot" position="0 1 -8" look-at ></a-image><!-- выход на улицу--><a-image spot="linkto:#streetDockImage_01;spotgroup:group-room21;phiStart:-132" src="#hotspot" position="0 1 6" look-at ></a-image><!-- CP01 это блок про навигационную панель --><a-entity position="7.5 -4 5.6" rotation="-20 -130 0" look-at><a-image src="#navigationIcon" data-triggerable-button="24" ></a-image><a-entity id="infoPanelContainer24"></a-entity></a-entity><!-- CP02 это блок про управление бортовыми системами --><a-entity position="8 -5.5 1.3" rotation="-25 -129 1" look-at><a-image src="#controlIcon" data-triggerable-button="25" ></a-image><a-entity id="infoPanelContainer25"></a-entity></a-entity><!-- CP03 это блок про элементы управления судном --><a-entity position="6 -8 3" rotation="-33 -127 0" look-at><a-image src="#handlingIcon" data-triggerable-button="26" ></a-image><a-entity id="infoPanelContainer26"></a-entity></a-entity><!-- CP04 это блок про компуктер --><a-entity position="0 -6 7" rotation="-25 180 0" look-at><a-image src="#pcIcon" data-triggerable-button="27" ></a-image><a-entity id="infoPanelContainer27"></a-entity></a-entity><!-- CP05 это блок про рацию-микрофона --><a-entity position="-8.4 -4.6 5.5" rotation="-135 -59 -179" look-at><a-image src="#micIcon" data-triggerable-button="28" ></a-image><a-entity id="infoPanelContainer28"></a-entity></a-entity><!-- CP06 это блок про аварийную остановку --><a-entity position="-5 -6.3 7.2" rotation="-150 -24 -176" look-at><a-image src="#boatStopIcon" data-triggerable-button="29" ></a-image><a-entity id="infoPanelContainer29"></a-entity></a-entity><!-- CP07 это блок про управление камерами --><a-entity position="-7 -7.5 3" rotation="-139 -65 -179" look-at><a-image src="#camIcon" data-triggerable-button="210" ></a-image><a-entity id="infoPanelContainer210"></a-entity></a-entity></a-entity></a-entity><!-- Камера в сцене --><a-entity id="cam" camera="fov:80" position="0 1.6 0" look-controls cursor="rayOrigin: mouse" animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;" animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;" ><a-plane id="camfadeplane" rotation="10 0.5 0" position="0 0 -0.5" material="color:#000000;transparent:true;opacity:0" width="0" height="0" animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn" animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut" ></a-plane></a-entity><!-- тут где написано phi-start подбираем точку начала первого кадра
+(куда будет повёрнута камера при загрузке страницы) --><a-sky id="skybox" src="#streetDockImage_01" rotation="0 0 0" phi-start="-132"></a-sky></a-scene>
+        `;
+
+        const targetElement = document.getElementById('aframeHTMLTwo');
+        targetElement.innerHTML = SceneTwoCode;
+        appdateCanvas();
+        setTimeout(() => {
+          let currentInfoPanel = null;
+
+          // function showAllOpenPanelButtons() {}
+
+          // Open the panel
+          getAllTriggerableButtons().forEach((triggerableButton) => {
+            triggerableButton.addEventListener("click", function () {
+              getAllTriggerableButtons().forEach((button) =>
+                      button.setAttribute("visible", true)
+              );
+
+              console.log(`button clicked: ${this.id}`);
+
+              const currentButtonIdNumber = this.getAttribute(
+                      "data-triggerable-button"
+              );
+
+              // Get the template for this info Button
+              const template = document.querySelector(
+                      `#infoPanel${currentButtonIdNumber}`
+              );
+
+              // Get the info panel entity
+              const infoPanel = triggerableButton.nextElementSibling;
+
+              console.log("Current info panel: ", infoPanel);
+
+              // Instantiate the new info panel from the template
+              infoPanel.appendChild(document.importNode(template.content, true));
+
+              const allInfoPanelContainerElements = getAllInfoPanelContainers();
+
+              triggerableButton.parentElement
+                      .querySelector("[src='#crossIcon']")
+                      .addEventListener("click", () => {
+                        infoPanel.innerHTML = "";
+
+                        triggerableButton.setAttribute("visible", true);
+
+                      });
+
+
+
+              allInfoPanelContainerElements.forEach((container) => {
+                if (container !== infoPanel) {
+                  container.innerHTML = "";
+                }
+                triggerableButton.setAttribute("visible", true);
+              });
+
+              // console.log("Current info panel insides: ", infoPanel.innerHTML);
+
+              const idNumber = currentButtonIdNumber;
+              if (currentInfoPanel) {
+                /* document
+                    .querySelector(`#sphere${currentInfoPanel}`)
+                    .setAttribute("visible", true); */
+                triggerableButton.setAttribute("visible", true);
+              }
+              // document.querySelector("#info" + idNumber).style.display = "block";
+              triggerableButton.setAttribute("visible", false);
+              currentInfoPanel = idNumber;
+              console.log(`Current info panel id: ${currentInfoPanel}`);
+            });
+          });
+
+
+          document.querySelectorAll('#TeleportSinich').forEach(function (sphere) {
+            // Определение функции для анимированной прокрутки к указанной секции
+            function scrollToSection(section) {
+              const targetPosition = section.offsetTop; // Позиция верхней границы секции
+              const currentPosition = window.scrollY; // Текущая позиция прокрутки
+              const distance = targetPosition - currentPosition; // Расстояние до цели
+              const startTime = performance.now(); // Время начала анимации
+              const duration = 1000; // Длительность анимации в миллисекундах
+              const video = section.querySelector('.section-video');
+
+              if (video) {
+                video.currentTime = 0;
+                video.classList.add('section-video_active');
+                video.play();
+
+                const sectionVideoEndListenerOne = () => {
+                  video.classList.remove('section-video_active');
+                  video.removeEventListener("ended", sectionVideoEndListenerOne);
+                };
+
+                video.addEventListener("ended", sectionVideoEndListenerOne);
+              }
+
+              // Функция для анимации, использующая requestAnimationFrame
+              function step(timestamp) {
+                const currentTime = timestamp - startTime; // Прошедшее время
+                const progress = Math.min(currentTime / duration, 1); // Прогресс анимации (0-1)
+                const easing = easeInOutQuad(progress); // Функция для сглаживания анимации
+                window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+
+                // Продолжение анимации, если не достигнут конец анимации
+                if (currentTime < duration) {
+                  requestAnimationFrame(step);
+                }
+              }
+              // Запуск анимации
+              requestAnimationFrame(step);
+            }
+            // Определение функции для сглаживания анимации прокрутки (функция easing)
+            function easeInOutQuad(t) {
+              return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            }
+            sphere.addEventListener("click", function () {
+              let aframeContent2 = document.querySelector('#sceneSinich');
+              const rollup_Sinich_360 = document.querySelector('#aframe_rollupSinich');
+              const mainContent = document.querySelector('#main');
+              const htmlAframe = document.querySelector('html.a-fullscreen');
+              const pierDescription = document.querySelector('#pier-description');
+              aframeContent2.style.opacity = '0';
+              aframeContent2.style.pointerEvents = 'none';
+              rollup_Sinich_360.style.display = 'none';
+              mainContent.style.display = 'block';
+              htmlAframe.classList.remove('position');
+              scrollToSection(pierDescription);
+              removeSceneTwo();
+            });
+          });
+
+        }, 1500);
+      }
+
+      function removeSceneTwo() {
+        const targetElement = document.getElementById('aframeHTMLTwo');
+        targetElement.innerHTML = '';
+      }
 
       function toggleScene(sceneId) {
         let aframeContent = document.querySelector(`#${sceneId}`);
@@ -1732,118 +1264,30 @@
         htmlAframe.classList.remove('position');
       }
 
-      // tour_Pier_360.addEventListener('click', () => {
-      //   toggleScene('scenePier');
-      //   rollup_Pier_360.style.display = 'block';
-      // });
-      //
-      // rollup_Pier_360.addEventListener('click', () => {
-      //   closeScene('scenePier');
-      //   rollup_Pier_360.style.display = 'none';
-      // });
+      tour_Pier_360.addEventListener('click', () => {
+        addSceneOne();
+        toggleScene('scenePier');
+        rollup_Pier_360.style.display = 'block';
+      });
+
+      rollup_Pier_360.addEventListener('click', () => {
+        closeScene('scenePier');
+        removeSceneOne();
+        rollup_Pier_360.style.display = 'none';
+      });
 
       tour_Sinich_360.addEventListener('click', () => {
+        addSceneTwo();
         toggleScene('sceneSinich');
         rollup_Sinich_360.style.display = 'block';
       });
 
       rollup_Sinich_360.addEventListener('click', () => {
         closeScene('sceneSinich');
+        removeSceneTwo();
         rollup_Sinich_360.style.display = 'none';
       });
-
     });
-
-    setTimeout(() => {
-      // let currentInfoPanel = null;
-
-      // Open the panel
-      document
-              .querySelectorAll('#TeleportPier, #TeleportSinich')
-              .forEach(function (sphere) {
-                sphere.addEventListener("click", function () {
-                  // console.log("Info sphere clicked: " + this.id);
-
-                  // const currentSphereIdNumber = this.id.replace("sphere", "");
-                  //
-                  // // Get the template for this info sphere
-                  // const template = document.querySelector(
-                  //         "#infoPanel" + currentSphereIdNumber
-                  // );
-                  //
-                  // // Get the info panel entity
-                  // const infoPanel = document.querySelector(
-                  //         "#infoPanelContainer" + currentSphereIdNumber
-                  // );
-                  //
-                  // console.log("Current info panel: ", infoPanel);
-
-                  // Instantiate the new info panel from the template
-                  // infoPanel.appendChild(document.importNode(template.content, true));
-
-                  // const allInfoPanelContainerElements = document.querySelectorAll(
-                  //         "[id^=infoPanelContainer]"
-                  // );
-
-                  // let aframeContent = document.querySelector('#scenePier');
-                  // const rollup_Pier_360 = document.querySelector('#aframe_rollupPier');
-
-                  let aframeContent2 = document.querySelector('#sceneSinich');
-                  const rollup_Sinich_360 = document.querySelector('#aframe_rollupSinich');
-
-                  const mainContent = document.querySelector('#main');
-                  const htmlAframe = document.querySelector('html.a-fullscreen');
-                  const sinichka = document.querySelector('#sinichka-section');
-                  // aframeContent.style.opacity = '0';
-                  // aframeContent.style.pointerEvents = 'none';
-                  // rollup_Pier_360.style.display = 'none';
-
-                  aframeContent2.style.opacity = '0';
-                  aframeContent2.style.pointerEvents = 'none';
-                  rollup_Sinich_360.style.display = 'none';
-
-                  mainContent.style.display = 'block';
-                  htmlAframe.classList.remove('position');
-                  scrollToSection(sinichka);
-
-
-                  // document
-                  //         .querySelectorAll('[src="#crossIcon"]')
-                  //         .forEach(function (cross) {
-                  //           cross.addEventListener("click", function () {
-                  //             allInfoPanelContainerElements.forEach((container) => {
-                  //               if (container.id === infoPanel.id) {
-                  //                 container.innerHTML = "";
-                  //                 document
-                  //                         .querySelector("#sphere" + currentInfoPanel)
-                  //                         .setAttribute("visible", true);
-                  //               }
-                  //             });
-                  //           });
-                  //         });
-                  //
-                  // allInfoPanelContainerElements.forEach((container) => {
-                  //   if (container.id !== infoPanel.id) {
-                  //     container.innerHTML = "";
-                  //   }
-                  //   this.setAttribute("visible", true);
-                  // });
-                  //
-                  // // console.log("Current info panel insides: ", infoPanel.innerHTML);
-                  //
-                  // const idNumber = currentSphereIdNumber;
-                  // if (currentInfoPanel) {
-                  //   document
-                  //           .querySelector("#sphere" + currentInfoPanel)
-                  //           .setAttribute("visible", true);
-                  // }
-                  // // document.querySelector("#info" + idNumber).style.display = "block";
-                  // this.setAttribute("visible", false);
-                  // currentInfoPanel = idNumber;
-                  // console.log("Current info panel id: " + currentInfoPanel);
-                });
-              });
-    }, 1500);
   </script>
 </body>
 </html>
