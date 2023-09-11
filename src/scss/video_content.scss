@@ -184,6 +184,31 @@
   cursor: pointer;
 }
 
+// Кнопка Сначала
+.video_content .reload_button {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 144px;
+  //display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.video_content .reload_button button {
+  font-family: "MoscowSans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 
 // Карточки с информацией
 
@@ -306,6 +331,22 @@
 .section-video_active {
   display: block;
 }
+
+
+
+@media (max-width: 1920px) {
+  .video_content .reload_button {
+    left: 20px;
+  }
+}
+
+@media (max-width: 1670px) {
+  .video_content .reload_button {
+    top: 70px;
+    bottom: unset;
+  }
+}
+
 
 @media (max-width: 520px) {
   .video_content .info_block .card {
