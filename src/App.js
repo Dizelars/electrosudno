@@ -7,12 +7,12 @@ const ROUTES = [
   {
     name: 'kievsky',
     circles: [
-      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskyPoint.svg' },
-      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/kievskyPoint.svg '},
-      { bottom: '38%', right: '41.5%', hoverImgSrc: '/images/kievskyPoint.svg' },
-      { bottom: '47%', right: '32%', hoverImgSrc: '/images/kievskyPoint.svg '},
-      { bottom: '53%', right: '27%', hoverImgSrc: '/images/kievskyPoint.svg '},
-      { bottom: '52%', right: '17%', hoverImgSrc: '/images/kievskyPoint.svg '},
+      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '38%', right: '41.5%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '47%', right: '32%', hoverImgSrc: '/images/city_centr.jpg '},
+      { bottom: '53%', right: '27%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '52%', right: '17%', hoverImgSrc: '/images/trehgornii.jpg '},
     ],
   }
 ];
@@ -41,7 +41,7 @@ const ROUTES = [
 //
 // initOneVideo();
 
-
+// mob
 const initVideos = () => {
 
   // Определяем, является ли устройство мобильным
@@ -53,7 +53,7 @@ const initVideos = () => {
     const source = document.createElement("source");
     source.setAttribute(
       "src",
-      `/${i + 1}${isMobile ? "mob" : "video"}.mp4`
+      `/${i + 1}${isMobile ? "video" : "video"}.mp4`
     );
     source.setAttribute("type", "video/mp4");
 
@@ -121,23 +121,23 @@ function App() {
       // function fadeVideo() {
       //   console.log('fade');
       //   console.log(activeBlock);
-      //   // activeBlock.addEventListener("timeupdate", function() {
-      //   //   console.log('fade time listen');
-      //   //   const currentTime = activeBlock.currentTime;
-      //   //   // console.log(currentTime);
-      //   //
-      //   //   if (currentTime < 7) {
-      //   //     videoContent.style.opacity = 1;
-      //   //   } else if (currentTime >= 8 && currentTime < 8.25) {
-      //   //     videoContent.style.opacity = 0.9;
-      //   //   } else if (currentTime >= 8.5 && currentTime < 8.75) {
-      //   //     videoContent.style.opacity = 0.6;
-      //   //   } else if (currentTime >= 9 && currentTime < 9.5) {
-      //   //     videoContent.style.opacity = 0.3;
-      //   //   } else if (currentTime >= 10) {
-      //   //     videoContent.style.opacity = 0;
-      //   //   }
-      //   // });
+      //   activeBlock.addEventListener("timeupdate", function() {
+      //     console.log('fade time listen');
+      //     const currentTime = activeBlock.currentTime;
+      //     // console.log(currentTime);
+      //
+      //     if (currentTime < 7) {
+      //       videoContent.style.opacity = 1;
+      //     } else if (currentTime >= 8 && currentTime < 8.25) {
+      //       videoContent.style.opacity = 0.9;
+      //     } else if (currentTime >= 8.5 && currentTime < 8.75) {
+      //       videoContent.style.opacity = 0.6;
+      //     } else if (currentTime >= 9 && currentTime < 9.5) {
+      //       videoContent.style.opacity = 0.3;
+      //     } else if (currentTime >= 10) {
+      //       videoContent.style.opacity = 0;
+      //     }
+      //   });
       //   function onVideoEndListener2() {
       //     console.log('finish scroll');
       //     activeBlock.removeEventListener("ended", onVideoEndListener2);
@@ -150,8 +150,25 @@ function App() {
 
       // Нижний край
       if (!nextVideo) {
-        console.log('no video');
         // fadeVideo();
+        // activeBlock.addEventListener("timeupdate", () => {
+        //   const currentTime2 = activeBlock.currentTime;
+        //   console.log(currentTime2);
+        //   console.log(activeBlock);
+        //
+        //   if (currentTime2 <= 7) {
+        //     videoContent.style.opacity = 1;
+        //   } else if (currentTime2 >= 8 && currentTime2 < 8.25) {
+        //     videoContent.style.opacity = 0.9;
+        //   } else if (currentTime2 >= 8.5 && currentTime2 < 8.75) {
+        //     videoContent.style.opacity = 0.6;
+        //   } else if (currentTime2 >= 9 && currentTime2 < 9.5) {
+        //     videoContent.style.opacity = 0.3;
+        //   } else if (currentTime2 >= 10) {
+        //     videoContent.style.opacity = 0;
+        //   }
+        // });
+        // videoContent.style.opacity = 0.5;
         finishVideosBlock();
         WheelContentSmooth();
       }
@@ -302,34 +319,38 @@ function App() {
         const progressBar = progressBars[index];
         let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
 
-        video.addEventListener('timeupdate', () => {
-          const currentTime = video.currentTime;
-          const duration = video.duration;
 
-          // Обновляем прогресс-бар, если он еще не достиг 100%
-          if (!isProgressBarFull) {
-            const progress = (currentTime / duration) * 100;
-            progressBar.style.width = progress + '%';
+        if (video.hasAttribute("data-transit")) {
+          video.addEventListener('timeupdate', () => {
+            const currentTime = video.currentTime;
+            const duration = video.duration;
 
-            // Проверяем, достиг ли прогресс 100%
-            if (progress >= 100) {
-              isProgressBarFull = true;
+            // Обновляем прогресс-бар, если он еще не достиг 100%
+            if (!isProgressBarFull) {
+              const progress = (currentTime / duration) * 100;
+              progressBar.style.width = progress + '%';
+
+              // Проверяем, достиг ли прогресс 100%
+              if (progress >= 100) {
+                isProgressBarFull = true;
+                progressBar.style.width = '100%';
+                progressContainer[index].classList.add('filled');
+              }
+            }
+          });
+          // Событие pause срабатывает до события ended, из за этого первое видео не оставляло прогресс бар в 100% ширины при завершении с первого раза.
+          // Код не успевал выполняться. Событие pause срабатывает раньше события ended
+          video.addEventListener('ended', () => {
+            if (!isProgressBarFull) {
               progressBar.style.width = '100%';
+              isProgressBarFull = true;
+              video.currentTime = 0;
               progressContainer[index].classList.add('filled');
             }
-          }
-        });
-
-        // Событие pause срабатывает до события ended, из за этого первое видео не оставляло прогресс бар в 100% ширины при завершении с первого раза.
-        // Код не успевал выполняться. Событие pause срабатывает раньше события ended
-        video.addEventListener('ended', () => {
-          if (!isProgressBarFull) {
-            progressBar.style.width = '100%';
-            isProgressBarFull = true;
-            video.currentTime = 0;
-            progressContainer[index].classList.add('filled');
-          }
-        });
+          });
+        } else if (video.hasAttribute("loop")) {
+          progressContainer[index].style.display = 'none';
+        }
       });
     // });
 
@@ -344,7 +365,21 @@ function App() {
     });
 
     // Добавляем обработчики для переключения видеофрагментов при прокрутке и событиях touch
-    document.addEventListener("wheel", (e) => switchHandler("next"));
+    // document.addEventListener("wheel", (e) => switchHandler("next"));
+
+    function anotherFunctionForScrollBack() {
+
+    }
+
+    document.addEventListener("wheel", (e) => {
+      if (e.deltaY > 0) {
+        // Вызывать функцию для скролла вперед
+        switchHandler("next");
+      } else {
+        // Вызывать другую функцию для скролла назад
+        anotherFunctionForScrollBack();
+      }
+    });
     document.addEventListener("touchstart", function (e) {
       touchstartY = e.touches[0].clientY;
     });

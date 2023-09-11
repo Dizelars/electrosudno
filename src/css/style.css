@@ -1015,6 +1015,11 @@ p {
   transition: opacity 0.7s;
 }
 
+.fullimage-wrapper img:not(:first-child) {
+  width: 191px;
+  border-radius: 20px;
+}
+
 .card-body-disabled {
   opacity: 0;
   height: 0;
@@ -1223,7 +1228,7 @@ p {
 }
 .video_progress_container {
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -1231,45 +1236,60 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 24px;
 }
 
 .progress-container {
   position: relative;
-  width: 150px;
+  max-width: 270px;
+  width: 100%;
   height: 5px;
-  border-radius: 20px;
-  background-color: #9794A6;
+  border-radius: 2px;
+  opacity: 0.5;
+  background: #9794A6;
   transition: background-color 0.4s; /* Добавляем переход для background-color */
+  margin: 0 28px;
 }
 
-.progress-container:after {
+.progress-container:nth-child(2):before,
+.progress-container:not(:last-child):after,
+.video_progress_container .dots_card {
   content: "";
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: -20px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   z-index: 1;
   border-radius: 100%;
-  background-color: #9794A6;
+  opacity: 0.5;
+  background: #9794A6;
+}
+
+.progress-container:not(:last-child):after {
+  right: -48px;
   transition: background-color 0.4s;
 }
 
-.progress-container:not(:last-child) {
-  margin-right: 10px;
+.progress-container:nth-child(2):before {
+  left: -48px;
+  opacity: 1;
+  background-color: #FFFFFF;
+  background-image: url("/public/images/icons/boatVideo.svg");
 }
 
 .progress-bar {
   height: 100%;
   width: 0;
-  border-radius: 20px;
-  background-color: #7A768D;
+  border-radius: 2px;
+  background: #FFF;
+  opacity: 1;
   transition: width 0.4s;
 }
 
 .progress-container.filled:after {
-  background-color: #7A768D;
+  background-color: #FFF;
+  opacity: 1;
 }
 
 .video_content {
@@ -1618,16 +1638,16 @@ a-scene {
 
 .vectary .interior_button {
   position: absolute;
-  bottom: 82px;
+  bottom: 64px;
   right: 80px;
-  padding: 30px;
+  padding: 45px;
   border: none;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   font-family: "MoscowSans", sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500;
   color: #FFF;
   cursor: pointer;

@@ -331,6 +331,11 @@
   transition: opacity .7s;
 }
 
+.fullimage-wrapper img:not(:first-child) {
+  width: 191px;
+  border-radius: 20px;
+}
+
 .card-body-disabled {
   opacity: 0;
   height: 0;
