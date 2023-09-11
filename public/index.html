@@ -141,7 +141,7 @@
 
     <div class="video_content">
 
-<!--      <video playsinline preload muted class="video-background"></video>-->
+    <!-- <video playsinline preload muted class="video-background"></video> -->
 
       <video class="bg-video js-number-block active" autoplay loop muted data-number="1" id="progress_one">
       </video>
@@ -348,9 +348,6 @@
           </div>
         </div>
 
-        <div id="fullimage" class="fullimage fullimage-disabled">
-          <div class="fullimage-wrapper"></div>
-        </div>
       </section>
 
       <!-- Секция с одним маршрутом -->
@@ -484,6 +481,18 @@
           </div>
         </div>
       </footer>
+    </div>
+  </div>
+
+  <!-- Модалка -->
+  
+  <div class="modal" id="modal">
+    <div class="modal-bg modal-exit"></div>
+    <div class="modal-container">
+      <button class="btn modal-close modal-exit filter-white">
+        <img src="%PUBLIC_URL%/images/icons/close.svg" alt="close">
+      </button>
+      <div class="modal-body"></div>
     </div>
   </div>
 
@@ -924,8 +933,8 @@
     //   // document.addEventListener('touchstart', handleTouchEvent, { passive: false });
     // }
 
-    <!-- Воспроизведения видео по скроллу ЗАКОНЧИЛОСЬ-->
 
+    // <!-- Воспроизведения видео по скроллу ЗАКОНЧИЛОСЬ -->
 
     function appdateCanvas() {
       const myCanvas = document.querySelector('.a-canvas');

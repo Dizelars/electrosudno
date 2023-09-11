@@ -415,32 +415,13 @@ function App() {
 
     // Логика страницы после блоков видео
 
-    const fullimageEl = document.querySelector('#fullimage');
-    const fullimageWrapper = document.querySelector('.fullimage-wrapper');
     const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
+
+    const modal = document.getElementById('modal');
+    const modalExits = modal.querySelectorAll('.modal-exit');
+    const modalBody = document.querySelector('.modal-body');
     // const routeBtn = document.querySelector('.btn[data-route]');
     // const cardFaqs = document.querySelectorAll('.card-faq');
-
-    // Листнер для закрытия fullimage
-    document.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      // клик на изображение маршрута
-      if (e.target.hasAttribute('data-route')) {
-        return;
-      }
-
-      // клик за край fullimage
-      // if (!fullimageEl.contains(e.target)) {
-      //   fullimageEl.classList.remove('fullimage-active');
-      //   fullimageEl.classList.add('fullimage-disabled');
-      // }
-
-      if (!fullimageWrapper.contains(e.target)) {
-        fullimageEl.classList.remove('fullimage-active');
-        fullimageEl.classList.add('fullimage-disabled');
-      }
-    });
 
     // добавление кружка-станции
     const handleAddCircle = ({ bottom, right, hoverImgSrc }) => {
@@ -457,7 +438,7 @@ function App() {
       hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
       const hoverImgRight = isMobile ? `${right}` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
       hoverImg.style.setProperty('right', hoverImgRight);
-      fullimageWrapper.appendChild(hoverImg);
+      modalBody.appendChild(hoverImg);
 
       circleEl.addEventListener('mouseover', (e) => {
         e.preventDefault();
@@ -469,19 +450,17 @@ function App() {
         hoverImg.classList.remove('opacity-1');
       })
 
-      fullimageWrapper.appendChild(circleEl);
+      modalBody.appendChild(circleEl);
     }
 
-    // добавление изображения маршрута
+    // Открытие маршрута в модалке
     const handleOpenRoute = ({ src, routeName }) => {
-      fullimageWrapper.innerHTML = '';
-      fullimageEl.classList.remove('fullimage-disabled');
-      fullimageEl.classList.add('fullimage-active');
+      modalBody.innerHTML = '';
 
       const routeImg = document.createElement('img');
       routeImg.src = src;
       routeImg.classList.add('img-responsive');
-      fullimageWrapper.appendChild(routeImg);
+      modalBody.appendChild(routeImg);
       const currRoute = ROUTES.find((route) => route.name === routeName);
       currRoute.circles.forEach((circle) => {
         handleAddCircle(circle)
@@ -493,6 +472,15 @@ function App() {
       routeEl.addEventListener('click', (e) => {
         e.preventDefault();
         handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
+        modal.classList.add('open');
+      })
+    });
+
+    // Закрытие модалки маршрута
+    modalExits.forEach((modalExit) => {
+      modalExit.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.remove('open');
       })
     });
 
