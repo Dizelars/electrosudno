@@ -1537,6 +1537,9 @@ p {
   }
 }
 @media (max-width: 440px) {
+  .video_content .mouse_prev .mouse_prev-wrapper {
+    bottom: 90px;
+  }
   .video_content .info_block .card {
     padding: 20px;
   }
@@ -1577,6 +1580,11 @@ a-scene {
   pointer-events: none;
   transition: all 0.5s;
   position: relative;
+}
+
+#scenePier {
+  height: 100%;
+  width: 100%;
 }
 
 #aframe_rollupPier,

@@ -369,6 +369,10 @@
 }
 
 @media (max-width: 440px) {
+  .video_content .mouse_prev .mouse_prev-wrapper {
+    bottom: 90px;
+  }
+
   .video_content .info_block .card {
     padding: 20px;
   }
