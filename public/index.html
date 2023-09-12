@@ -128,24 +128,23 @@
 </head>
 
 <body>
+  <div id="hellopreloader">
+  <div id="hellopreloader_preload">
+    <div id="hellopreloader_loadingWrapper">
+      <div id="hellopreloader_percentWrapper">
+        <p id="hellopreloader_percent">0%</p>
+        <div id="hellopreloader_barWrapper">
+          <div id="hellopreloader_bar"></div>
+        </div>
+        <p id="hellopreloader_percentText">Загружаем...</p>
+      </div>
+    </div>
+  </div>
+</div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
   <div id="main" class="bord">
-
-    <div id="hellopreloader">
-      <div id="hellopreloader_preload">
-        <div id="hellopreloader_loadingWrapper">
-          <div id="hellopreloader_percentWrapper">
-            <p id="hellopreloader_percent">0%</p>
-            <div id="hellopreloader_barWrapper">
-              <div id="hellopreloader_bar"></div>
-            </div>
-            <p id="hellopreloader_percentText">Загружаем...</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="video_content">
 
@@ -225,30 +224,46 @@
 
         <div class="video_progress_container">
           <div class="progress_icon-first">
-            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+<!--            <img class="progress_content" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">-->
+            <div class="progress_content">
+              01
+            </div>
           </div>
           <div class="progress-container">
             <div class="progress-bar" id="progress_bar_two"></div>
           </div>
           <div class="progress_icon">
-            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+<!--            <img class="progress_content" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">-->
+            <div class="progress_content">
+              02
+            </div>
           </div>
           <div class="progress-container">
             <div class="progress-bar" id="progress_bar_four"></div>
           </div>
           <div class="progress_icon">
-            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+<!--            <img class="progress_content" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">-->
+            <div class="progress_content">
+              03
+            </div>
           </div>
           <div class="progress-container">
             <div class="progress-bar" id="progress_bar_six"></div>
           </div>
           <div class="progress_icon">
-            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+<!--            <img class="progress_content" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">-->
+            <div class="progress_content">
+              04
+            </div>
           </div>
           <div class="progress-container last">
             <div class="progress-bar" id="progress_bar_eight"></div>
           </div>
-          <div class="progress_icon last"></div>
+          <div class="progress_icon">
+            <div class="progress_content">
+              05
+            </div>
+          </div>
         </div>
       </div>
 
@@ -275,11 +290,23 @@
                   <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/coffee.png" alt="coffee">
                 </div>
               </div>
+<!--              <div class="col-6 row-6">-->
+<!--                <div class="card card-sm bg-grey-grad sepia-grey-grad">-->
+<!--                  <h3 class="text-uppercase">Оплата картой<br>«Тройка»</h3>-->
+<!--                  <p>Билет на&nbsp;транспорт всегда с&nbsp;вами. Но&nbsp;кассы на&nbsp;месте тоже работают</p>-->
+<!--                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/troyka.png" alt="troyka">-->
+<!--                </div>-->
+<!--              </div>-->
               <div class="col-6 row-6">
                 <div class="card card-sm bg-grey-grad sepia-grey-grad">
-                  <h3 class="text-uppercase">Оплата картой<br>«Тройка»</h3>
-                  <p>Билет на&nbsp;транспорт всегда с&nbsp;вами. Но&nbsp;кассы на&nbsp;месте тоже работают</p>
-                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/troyka.png" alt="troyka">
+                  <h3 class="text-uppercase">Оплата привычным<br>способом</h3>
+                  <ol class="card_list">
+                    <li class="card_item">Картой «Тройка»</li>
+                    <li class="card_item">По Биометрии</li>
+                    <li class="card_item">Телефоном на Android c NFC<br>и закгруженной картой «МИР»</li>
+                    <li class="card_item">Банковской картой</li>
+                  </ol>
+                  <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/pay_card.png" alt="payment">
                 </div>
               </div>
               <div class="col-6 row-6">
@@ -297,7 +324,7 @@
                 <h3 class="text-uppercase">Посетите виртуальную экскурсию по причалу</h3>
                 <p class="mb-50-tab">Рассмотрите все удобства собственными глазами на примере причала на станции «Киевская»</p>
                 <a href="#" class="vue_button btn btn-link sepia-black">
-                  <img class="rotation-icon" src="%PUBLIC_URL%/images/icons/360.svg" alt="360">
+                  <img class="rotation-icon" src="%PUBLIC_URL%/images/icons/human_360.svg" alt="360">
                   Осмотреть
                 </a>
               </div>
@@ -334,7 +361,7 @@
             </div>
           </div>
           <button class="interior_button sepia-black">
-            <img class="leave_button_img" src="%PUBLIC_URL%/images/icons/360.svg" alt="осмотреть салон">
+            <img class="leave_button_img rotation-icon" src="%PUBLIC_URL%/images/icons/human_360.svg" alt="осмотреть салон">
             осмотреть
           </button>
         </div>
@@ -406,7 +433,7 @@
         <div class="container pb-100 pt-20">
           <h1 class="h1 text-uppercase mb-40">Справочная информация</h1>
           <div class="card-flex-wrapper">
-            <div class="card card-faq bg-grey-grad sepia-grey-grad">
+            <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">
               <h3 class="text-uppercase">Расписание</h3>
               <p class="fg-1">Электросуда работают ежедневно.<br>Расписание можно посмотреть на едином транспортном портале</p>
               <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/calendar.png" alt="calendar">
@@ -441,19 +468,33 @@
 <!--                <p class="mt-0 mb-0">Речные маршруты включены в зону действия билетов «Единый» без лимита поездок на&nbsp;90 и&nbsp;365 дней</p>-->
 <!--              </div>-->
             </div>
+<!--            <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">-->
+<!--              <h3 class="text-uppercase">Как оплачивать</h3>-->
+<!--              <div class="d-flex-col card-body-active">-->
+<!--                <p class="fg-1">Пассажиры могут оплачивать проезд привычным для них способом</p>-->
+<!--                <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/card.png" alt="calendar">-->
+<!--                <a href="https://transport.mos.ru/reka/regular_river_routes" class="btn btn-link align-self-fs" target="_blank">-->
+<!--                  Посмотреть-->
+<!--                  <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">-->
+<!--                </a>-->
+<!--              </div>-->
+<!--&lt;!&ndash;              <div class="d-flex-col card-body-disabled justify-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Картой</p>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
             <div class="card card-faq bg-grey-grad sepia-grey-grad cursor-pointer">
-              <h3 class="text-uppercase">Как оплачивать</h3>
+              <h3 class="text-uppercase">Аудиоэкскурсии</h3>
               <div class="d-flex-col card-body-active">
-                <p class="fg-1">Пассажиры могут оплачивать проезд привычным для них способом</p>
-                <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/card.png" alt="calendar">
-                <a href="https://transport.mos.ru/reka/regular_river_routes" class="btn btn-link align-self-fs" target="_blank">
+                <p class="fg-1">На речном электрическом судне</p>
+                <img class="card-img card-center-img img-responsive" src="%PUBLIC_URL%/images/audio.png" alt="audio">
+                <a href="https://i.transport.mos.ru/river" class="btn btn-link align-self-fs" target="_blank">
                   Посмотреть
                   <img src="%PUBLIC_URL%/images/icons/arrow-right.svg" alt="arrow">
                 </a>
               </div>
-<!--              <div class="d-flex-col card-body-disabled justify-center">-->
-<!--                <p>Картой</p>-->
-<!--              </div>-->
+              <!--              <div class="d-flex-col card-body-disabled justify-center">-->
+              <!--                <p>Картой</p>-->
+              <!--              </div>-->
             </div>
           </div>
         </div>
@@ -463,10 +504,16 @@
           <div class="grid-12 d-flex-tab d-flex-col-mob pt-30-mob px-30-mob">
             <div class="col-4 mb-40-mob">
               <div class="logos-flex-wrapper mb-30">
-                <img src="%PUBLIC_URL%/images/icons/logo-river.svg" alt="river transport logo">
-                <img src="%PUBLIC_URL%/images/icons/logo-IC.svg" alt="innovation center logo">
+<!--                <img src="%PUBLIC_URL%/images/icons/logo-river.svg" alt="river transport logo">-->
+<!--                <img src="%PUBLIC_URL%/images/icons/logo-IC.svg" alt="innovation center logo">-->
+                <a href="#">
+                  <img src="%PUBLIC_URL%/images/icons/logo-river.svg" alt="river transport logo">
+                </a>
+                <a href="https://ictransport.ru" target="_blank">
+                  <img src="%PUBLIC_URL%/images/icons/logo-IC.svg" alt="innovation center logo">
+                </a>
               </div>
-              <a href="#" class="btn btn-link btn-link-footer align-self-fs sepia-grey">
+              <a href="https://transport.mos.ru/reka/regular_river_routes" class="btn btn-link btn-link-footer align-self-fs sepia-grey" target="_blank">
                 <img src="%PUBLIC_URL%/images/icons/boat.svg" alt="boat">
                 О речном транспорте
               </a>
@@ -474,10 +521,10 @@
             <div class="col-4 footer-links-wrapper">
               <p class="bold mt-0 fs-1125">Речной транспорт</p>
               <ul class="footer-list">
-                <li class="footer-list-item"><a class="footer-link" href="#">Причал</a></li>
-                <li class="footer-list-item"><a class="footer-link" href="#">Электросудно</a></li>
-                <li class="footer-list-item"><a class="footer-link" href="#">Маршруты</a></li>
-                <li class="footer-list-item"><a class="footer-link" href="#">Справка</a></li>
+                <li class="footer-list-item cursor-pointer"><a id="prichal" class="footer-link">Причал</a></li>
+                <li class="footer-list-item cursor-pointer"><a id="sinichka" class="footer-link">Электросудно</a></li>
+                <li class="footer-list-item cursor-pointer"><a id="routes" class="footer-link">Маршруты</a></li>
+                <li class="footer-list-item cursor-pointer"><a id="faq" class="footer-link">Справка</a></li>
               </ul>
             </div>
             <div class="col-4 footer-contacts">
@@ -487,10 +534,10 @@
             </div>
           </div>
           <div class="footer-links-wrapper-tab mt-60 mt-50-mob">
-            <a class="footer-link fs-0875-tab" href="#">Причал</a>
-            <a class="footer-link fs-0875-tab" href="#">Электросудно</a>
-            <a class="footer-link fs-0875-tab" href="#">Маршруты</a>
-            <a class="footer-link fs-0875-tab" href="#">Справка</a>
+            <a class="footer-link fs-0875-tab" href="#pier-description">Причал</a>
+            <a class="footer-link fs-0875-tab" href="#sinichka-section">Электросудно</a>
+            <a class="footer-link fs-0875-tab" href="#pier-routes">Маршруты</a>
+            <a class="footer-link fs-0875-tab" href="#pier-faq">Справка</a>
           </div>
         </div>
       </footer>

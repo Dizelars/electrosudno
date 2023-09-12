@@ -671,12 +671,33 @@ function App() {
       let isScrolling = false;
 
 
-      // let aframeDot = document.querySelectorAll('#TeleportPier, #TeleportSinich');
-      // aframeDot.forEach((sphere) => {
-      //   sphere.addEventListener("click", function () {
-      //     currentSectionIndex = 1;
-      //   });
-      // });
+      let aframe = document.querySelectorAll('#TeleportPier, #TeleportSinich');
+      aframe.forEach((sphere) => {
+        sphere.addEventListener("click", function () {
+          currentSectionIndex = 1;
+        });
+      });
+
+      let dotLink = document.querySelectorAll('.footer-list .footer-link, .footer-links-wrapper-tab .footer-link');
+      let dotSection = document.querySelectorAll('#pier-description, #sinichka-section, #pier-routes, #pier-faq');
+      // Создаем объект для сопоставления id с индексами
+      const sectionIdToIndex = {
+        'pier-description': 0,
+        'sinichka-section': 1,
+        'pier-routes': 2,
+        'pier-faq': 3,
+      };
+      dotLink.forEach((link, indexLink) => {
+        link.addEventListener('click', () => {
+          scrollToSection(dotSection[indexLink]);
+          // Получаем id текущей секции
+          const currentSectionId = dotSection[indexLink].getAttribute('id');
+          // Получаем индекс из объекта сопоставления
+          currentSectionIndex = sectionIdToIndex[currentSectionId];
+        });
+      });
+
+
 
       if (window.innerHeight > 1000) {
         sections = document.querySelectorAll('section');

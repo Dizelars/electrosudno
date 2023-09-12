@@ -80,14 +80,14 @@
   position: absolute;
   bottom: 64px;
   right: 80px;
-  padding: 45px;
+  padding: 42px;
   border: none;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.70);
   display: flex;
   align-items: center;
   font-family: "MoscowSans", sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   color: #FFF;
   cursor: pointer;
@@ -103,9 +103,9 @@
   background: url('/public/images/sepia.png'), #000000;
 }
 
-.vectary .interior_button:hover img {
-  transform: rotate(-30deg) translateZ(0);
-}
+//.vectary .interior_button:hover img {
+//  transform: rotate(-30deg) translateZ(0);
+//}
 
 
 
