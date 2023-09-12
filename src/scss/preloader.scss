@@ -1,7 +1,3 @@
-#hellopreloader > p {
-  display:none;
-}
-
 #hellopreloader_preload {
   display: block;
   position: fixed;
@@ -11,20 +7,61 @@
   width: 100%;
   height: 100%;
   min-width: 320px;
-  background: #9794A6 url(https://coddmac.store/Reka/oval.svg) center center no-repeat;
-  background-size:76px;
+  background: #050404;
 }
 
-#welcome-text {
-  font-family: "MoscowSans", sans-serif;
-  font-size: 24px;
-  color: #ffffff;
-  font-weight: 600;
+#hellopreloader_loadingWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 700px;
   width: 100%;
+}
+
+#hellopreloader_percentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#hellopreloader_percent,
+#hellopreloader_percentText {
   display: flex;
   justify-content: center;
-  position: absolute;
   align-items: center;
-  top: 72px;
-  height: 100%;
+  font-family: Moscow Sans, sans-serif;
+  color: #c1c1c4;
+  margin: 0;
+}
+
+#hellopreloader_percent {
+  width: 100%;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 60px;
+}
+
+#hellopreloader_percentText {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+}
+
+#hellopreloader_barWrapper,
+#hellopreloader_bar {
+  height: 6px;
+  border-radius: 20px;
+}
+
+#hellopreloader_barWrapper {
+  margin: 20px 0;
+  width: 100%;
+  background-color: #414049;
+}
+
+#hellopreloader_bar {
+  background-color: #c1c1c4;
 }

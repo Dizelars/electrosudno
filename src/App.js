@@ -345,46 +345,100 @@ function App() {
         });
       });
 
-      const progressBars = document.querySelectorAll('.progress-bar');
-      const progressContainer = document.querySelectorAll('.progress-container');
-      allVideos.forEach((video, index) => {
-        const progressBar = progressBars[index];
-        let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
+      // const progressBars = document.querySelectorAll('.progress-bar');
+      // const progressContainer = document.querySelectorAll('.progress-container');
+      // const filteredArray = allVideos.filter(item => item.hasOwnProperty("dataTransit"));
+      // allVideos.forEach((video, index) => {
+      //   const progressBar = progressBars[index];
+      //   let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
+      //
+      //
+      //   if (video.hasAttribute("data-transit")) {
+      //     video.addEventListener('timeupdate', () => {
+      //       const currentTime = video.currentTime;
+      //       const duration = video.duration;
+      //
+      //       // Обновляем прогресс-бар, если он еще не достиг 100%
+      //       if (!isProgressBarFull) {
+      //         const progress = (currentTime / duration) * 100;
+      //         progressBar.style.width = progress + '%';
+      //
+      //         // Проверяем, достиг ли прогресс 100%
+      //         if (progress >= 100) {
+      //           isProgressBarFull = true;
+      //           progressBar.style.width = '100%';
+      //           progressContainer[index].classList.add('filled');
+      //         }
+      //       }
+      //     });
+      //     // Событие pause срабатывает до события ended, из за этого первое видео не оставляло прогресс бар в 100% ширины при завершении с первого раза.
+      //     // Код не успевал выполняться. Событие pause срабатывает раньше события ended
+      //     video.addEventListener('ended', () => {
+      //       if (!isProgressBarFull) {
+      //         progressBar.style.width = '100%';
+      //         isProgressBarFull = true;
+      //         video.currentTime = 0;
+      //         progressContainer[index].classList.add('filled');
+      //       }
+      //     });
+      //   }
+      //   else if (video.hasAttribute("loop")) {
+      //     progressContainer[index].style.display = 'none';
+      //   }
+      // });
 
 
-        if (video.hasAttribute("data-transit")) {
-          video.addEventListener('timeupdate', () => {
-            const currentTime = video.currentTime;
-            const duration = video.duration;
+    // Новый вариант сторис
+    const progressBars = document.querySelectorAll('.progress-bar');
+    const progressIcon = document.querySelectorAll('.progress_icon');
+    // console.log(typeof allVideos);
+    // console.log(allVideos);
+    let filteredArray = Array.from(allVideos).filter(video => video.getAttribute("data-transit") != null);
+    // console.log(filteredArray);
 
-            // Обновляем прогресс-бар, если он еще не достиг 100%
-            if (!isProgressBarFull) {
-              const progress = (currentTime / duration) * 100;
-              progressBar.style.width = progress + '%';
 
-              // Проверяем, достиг ли прогресс 100%
-              if (progress >= 100) {
-                isProgressBarFull = true;
-                progressBar.style.width = '100%';
-                progressContainer[index].classList.add('filled');
-              }
-            }
-          });
-          // Событие pause срабатывает до события ended, из за этого первое видео не оставляло прогресс бар в 100% ширины при завершении с первого раза.
-          // Код не успевал выполняться. Событие pause срабатывает раньше события ended
-          video.addEventListener('ended', () => {
-            if (!isProgressBarFull) {
-              progressBar.style.width = '100%';
+    filteredArray.forEach((video, index) => {
+      const progressBar = progressBars[index];
+      let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
+
+        video.addEventListener('timeupdate', () => {
+          const currentTime = video.currentTime;
+          const duration = video.duration;
+
+          // Обновляем прогресс-бар, если он еще не достиг 100%
+          if (!isProgressBarFull) {
+            const progress = (currentTime / duration) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Проверяем, достиг ли прогресс 100%
+            if (progress >= 100) {
               isProgressBarFull = true;
-              video.currentTime = 0;
-              progressContainer[index].classList.add('filled');
+              progressBar.style.width = '100%';
+              progressIcon[index].classList.add('filled');
             }
-          });
-        } else if (video.hasAttribute("loop")) {
-          progressContainer[index].style.display = 'none';
-        }
-      });
-    // });
+          }
+        });
+
+        video.addEventListener('ended', () => {
+          if (!isProgressBarFull) {
+            progressBar.style.width = '100%';
+            isProgressBarFull = true;
+            video.currentTime = 0;
+            progressIcon[index].classList.add('filled');
+          }
+        });
+
+      // if (video.hasAttribute("loop")) {
+      //   progressContainer[index].style.display = 'none';
+      // }
+    });
+
+
+
+
+
+
+
 
     // Добавляем обработчик прокрутки на блок siteContent
     siteContent.addEventListener("scroll", () => {

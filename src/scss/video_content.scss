@@ -8,46 +8,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 24px;
 }
 
-.progress-container {
+.video_progress_container .progress-container {
   position: relative;
   max-width: 270px;
   width: 100%;
   height: 5px;
   border-radius: 2px;
-  opacity: 0.5;
+  //opacity: 0.5;
   background: #9794A6;
   transition: background-color .4s; /* Добавляем переход для background-color */
-  margin: 0 28px;
 }
 
-.progress-container:nth-child(2):before,
-.progress-container:not(:last-child):after,
-.video_progress_container .dots_card {
-  content: '';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  z-index: 1;
-  border-radius: 100%;
-  opacity: 0.5;
-  background: #9794A6;
+.video_progress_container .progress-container {
+  margin: 0 8px;
 }
 
-.progress-container:not(:last-child):after {
-  right: -48px;
-  transition: background-color .4s;
-}
-
-.progress-container:nth-child(2):before {
-  left: -48px;
-  opacity: 1;
-  background-color: #FFFFFF;
-  background-image: url('/public/images/icons/boatVideo.svg');
+.video_progress_container .progress-container.last {
+  margin-left: 8px;
+  margin-right: 0;
+  max-width: 316px;
 }
 
 .progress-bar {
@@ -55,18 +36,39 @@
   width: 0;
   border-radius: 2px;
   background: #FFF;
-  opacity: 1;
   transition: width .4s;
 }
 
-.progress-container.filled:after {
-  background-color: #FFF;
-  opacity: 1;
+.progress_icon,
+.progress_icon-first
+{
+  position: relative;
+  max-width: 40px;
+  width: 100%;
+  height: 40px;
+  z-index: 1;
+  border-radius: 100%;
+  //opacity: 0.5;
+  background: #9794A6;
 }
 
+.progress_icon img,
+.progress_icon-first img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+.progress_icon.last {
+  display: none;
+}
 
-
+.progress_icon-first,
+.progress_icon.filled {
+    background-color: #FFF;
+    opacity: 1;
+}
 
 
 
@@ -122,7 +124,7 @@
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 90px;
+  bottom: 120px;
   color: #9794A6;
   font-family: "MoscowSans", sans-serif;
   font-weight: 500;
@@ -138,19 +140,21 @@
   font-size: 16px;
 }
 
-//.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow {
-//  position: relative;
-//  left: 50%;
-//  transform: translateX(-50%);
-//}
-//
-//.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow img {
-//  position: absolute;
-//  top: 5px;
-//  left: 50%;
-//  transform: translateX(-50%);
-//  animation: mouse_arrow 1.1s linear infinite;
-//}
+.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 36px;
+}
+
+.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow img {
+  position: absolute;
+  height: 26px;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: mouse_arrow 1.1s linear infinite;
+}
 //
 //.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_dot {
 //  position: absolute;
@@ -163,17 +167,17 @@
 //  background-color: #FFFFFF;
 //}
 
-//@keyframes mouse_arrow {
-//  0% {
-//    top: 5px;
-//  }
-//  50% {
-//    top: 10px;
-//  }
-//  100% {
-//    top: 5px;
-//  }
-//}
+@keyframes mouse_arrow {
+  0% {
+    top: 5px;
+  }
+  50% {
+    top: 10px;
+  }
+  100% {
+    top: 5px;
+  }
+}
 
 
 // Код для проблеска света
@@ -212,7 +216,6 @@
 @keyframes moving {
   30% {  webkit-transform: skewX(-45deg) translateX(33.5em);
     transform: skewX(-45deg) translateX(33.5em);
-
   }
 
   100% {  webkit-transform: skewX(-45deg) translateX(33.5em);
@@ -222,22 +225,45 @@
 }
 
 
-// Кнопка причалить
+// Кнопка причалить и в начало
+
+.container_video {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  z-index: 1;
+}
 
 .video_content .leave_button {
-  //position: absolute;
-  position: fixed;
-  top: 82px;
-  right: 20px;
   display: flex;
+  //right: 20px;
+  right: 20px;
+}
+
+.video_content .reload_button {
+  display: none;
+  left: 20px;
+}
+
+.video_content .leave_button,
+.video_content .reload_button {
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  top: 82px;
   cursor: pointer;
   z-index: 1;
 }
 
-.video_content .leave_button button {
+.video_content .leave_button button,
+.video_content .reload_button button {
   font-family: "MoscowSans", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -250,29 +276,8 @@
   cursor: pointer;
 }
 
-// Кнопка Сначала
-.video_content .reload_button {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  left: 144px;
-  //display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.video_content .reload_button button {
-  font-family: "MoscowSans", sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border: none;
-  color: white;
-  background: transparent;
-  cursor: pointer;
-  margin-left: 10px;
+.video_content .reload_button img {
+  transform: rotate(180deg);
 }
 
 
@@ -301,7 +306,8 @@
   border-radius: 20px;
   background: linear-gradient(292deg, rgba(161, 159, 174, 0.50) 0%, rgba(172, 170, 186, 0.50) 100%);
   backdrop-filter: blur(10px);
-  bottom: 144px;
+  //bottom: 144px;
+  bottom: 220px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -358,7 +364,8 @@
 @keyframes CardUp {
   0% {
     opacity: 0;
-    transform: translate(-50%, 144px);
+    //transform: translate(-50%, 144px);
+    transform: translate(-50%, 220px);
   }
   100% {
     opacity: 1;
@@ -374,7 +381,8 @@
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, 144px);
+    //transform: translate(-50%, 144px);
+    transform: translate(-50%, 220px);
   }
 }
 
@@ -400,30 +408,27 @@
 
 
 
-@media (max-width: 1920px) {
-  .video_content .reload_button {
-    left: 20px;
-  }
-}
-
-@media (max-width: 1670px) {
-  .video_content .reload_button {
-    top: 70px;
-    bottom: unset;
-  }
-}
+//@media (max-width: 1920px) {
+//  .video_content .reload_button {
+//    left: 20px;
+//  }
+//}
+//
+//@media (max-width: 1670px) {
+//  .video_content .reload_button {
+//    top: 70px;
+//    bottom: unset;
+//  }
+//}
 
 @media (max-width: 1200px) {
-  .video_content .mouse_prev .mouse_prev-wrapper_desctop {
-    bottom: 90px;
-  }
-
   .video_content .mouse_prev .mouse_prev-wrapper_desctop {
     display: none;
   }
 
   .video_content .mouse_prev .mouse_prev-wrapper_mobile {
     display: block;
+    bottom: 80px;
   }
 }
 

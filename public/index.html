@@ -6,7 +6,7 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--  <meta name="theme-color" content="#000000" />-->
-  <meta name="description" content="В Москве появился новый вид общественного транспорта – речные электротрамвайчики. На сайте мы наглядно продемонстрируем все их особенности, а также проведём экскурсию по причалам"/>
+  <meta name="description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
 <!--  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />-->
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -22,7 +22,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>Причалы и электросуда</title>
+  <title>Электросудно</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
   <script>
@@ -135,7 +135,15 @@
 
     <div id="hellopreloader">
       <div id="hellopreloader_preload">
-        <p id="welcome-text">Готовимся к открытию</p>
+        <div id="hellopreloader_loadingWrapper">
+          <div id="hellopreloader_percentWrapper">
+            <p id="hellopreloader_percent">0%</p>
+            <div id="hellopreloader_barWrapper">
+              <div id="hellopreloader_bar"></div>
+            </div>
+            <p id="hellopreloader_percentText">Загружаем...</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -152,7 +160,7 @@
       <video class="bg-video js-number-block" autoplay muted loop
              data-number="3"
              data-info-src="%PUBLIC_URL%/images/icons/ejection.svg"
-             data-info-text="Выброс вредных веществ"
+             data-info-text="Выброс вредных веществ:"
              data-info-title="0%"
              id="progress_three">
       </video>
@@ -165,7 +173,7 @@
       <video class="bg-video js-number-block" autoplay muted loop
              data-number="5"
              data-info-src="%PUBLIC_URL%/images/icons/snow.svg"
-             data-info-text="Возможность использования"
+             data-info-text="Возможность использования:"
              data-info-title="Круглый год"
              id="progress_five">
       </video>
@@ -177,7 +185,7 @@
 
       <video class="bg-video js-number-block" autoplay muted loop
              data-info-src="%PUBLIC_URL%/images/icons/capacity.svg"
-             data-info-text="Вместимость"
+             data-info-text="Вместимость:"
              data-info-title="50 комфортных мест"
              data-number="7"
              id="progress_seven">
@@ -186,17 +194,17 @@
       <video class="bg-video js-number-block" autoplay muted data-transit
              data-number="8"
              data-info-src="%PUBLIC_URL%/images/icons/moorings.svg"
-             data-info-text="Колличество причалов"
+             data-info-text="Колличество причалов:"
              data-info-title="23 шт."
              id="progress_eight">
       </video>
 
       <div class="mouse_prev">
         <div class="mouse_prev-wrapper_desctop">
-          далее по скроллу
-<!--          <div class="mouse_prev_arrow">-->
-<!--            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">-->
-<!--          </div>-->
+          Крутите вниз
+          <div class="mouse_prev_arrow">
+            <img src="%PUBLIC_URL%/images/icons/mouse_arrow.svg" alt="arrow">
+          </div>
 <!--          <div class="mouse_prev_dot"></div>-->
         </div>
         <div class="mouse_prev-wrapper_mobile">
@@ -204,40 +212,43 @@
         </div>
       </div>
 
-      <div class="leave_button">
-        <button>Причалить</button>
-        <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
-      </div>
+      <div class="container_video">
+        <div class="leave_button">
+          <button>Причалить</button>
+          <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
+        </div>
 
-      <div class="reload_button">
-        <img class="reload_button-img" src="%PUBLIC_URL%/images/icons/reload.svg" alt="Сначала">
-        <button>Сначала</button>
-      </div>
+        <div class="reload_button">
+          <button>В начало</button>
+          <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
+        </div>
 
-      <div class="video_progress_container">
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_one"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_two"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_three"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_four"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_five"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_six"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_seven"></div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar" id="progress_bar_eight"></div>
+        <div class="video_progress_container">
+          <div class="progress_icon-first">
+            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress_bar_two"></div>
+          </div>
+          <div class="progress_icon">
+            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress_bar_four"></div>
+          </div>
+          <div class="progress_icon">
+            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress_bar_six"></div>
+          </div>
+          <div class="progress_icon">
+            <img class="progress_img" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">
+          </div>
+          <div class="progress-container last">
+            <div class="progress-bar" id="progress_bar_eight"></div>
+          </div>
+          <div class="progress_icon last"></div>
         </div>
       </div>
 
@@ -253,14 +264,14 @@
               <div class="col-6 row-6">
                 <div class="card card-sm bg-grey-grad sepia-grey-grad">
                   <h3 class="text-uppercase">Комфортная зона<br>ожидания</h3>
-                  <p class="card-body">Защита от&nbsp;солнца и&nbsp;ветра, а&nbsp;также комфортные диваны. Что может быть лучше?</p>
+                  <p class="card-body">Защита от&nbsp;солнца и&nbsp;ветра, а&nbsp;также комфортные диваны.<br> Что может быть лучше?</p>
                   <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/sofa.png" alt="sofa">
                 </div>
               </div>
               <div class="col-6 row-6">
                 <div class="card card-sm bg-grey-grad sepia-grey-grad">
                   <h3 class="text-uppercase">Кофе-<br>машина</h3>
-                  <p>Скрасить ожидание посадки вам поможет ароматная чашечка кофе</p>
+                  <p>Ароматная чашечка кофе скрасит ожидание посадки</p>
                   <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/coffee.png" alt="coffee">
                 </div>
               </div>
@@ -273,8 +284,8 @@
               </div>
               <div class="col-6 row-6">
                 <div class="card card-sm bg-grey-grad sepia-grey-grad">
-                  <h3 class="text-uppercase">Комната матери<br>и&nbsp;ребенка</h3>
-                  <p>Для мамочек с самыми юными пассажиров здесь предусмотрена специальная комната</p>
+                  <h3 class="text-uppercase">Комната для<br>пеленания</h3>
+                  <p>Для родителей с самыми юными пассажиров здесь предусмотрено специальное помещение</p>
                   <img class="card-img card-bottom-img img-responsive" src="%PUBLIC_URL%/images/bathroom.png" alt="bathroom">
                 </div>
               </div>
@@ -284,7 +295,7 @@
             <div class="card card-large bg-pier card-aframe">
               <div class="card-content bg-grey-grad05">
                 <h3 class="text-uppercase">Посетите виртуальную экскурсию по причалу</h3>
-                <p class="mb-50-tab">Рассмотрите все удобства собственными глазами на примере причала на станции Киевская</p>
+                <p class="mb-50-tab">Рассмотрите все удобства собственными глазами на примере причала на станции «Киевская»</p>
                 <a href="#" class="vue_button btn btn-link sepia-black">
                   <img class="rotation-icon" src="%PUBLIC_URL%/images/icons/360.svg" alt="360">
                   Осмотреть
@@ -541,12 +552,33 @@
     // };
     // initOneVideo();
 
+      // Прелоадер
+    // Прелоадер
 
-  // Прелоадер
+    // Для демонстрации взято большое время и шаг 5%
+    const LOADING_TIME = 6000;
+    const PERCENT_STEP = 5;
+    const COUNT_LOAD_TIME = LOADING_TIME / (100 / PERCENT_STEP);
+    let percent = 0;
     let hellopreloader = document.getElementById("hellopreloader_preload");
+    const percentEl = document.getElementById("hellopreloader_percent");
+    const barEl = document.getElementById("hellopreloader_bar");
+
+    function countLoad() {
+      barEl.style.width = "0%";
+      percentEl.textContent = `0%`;
+      let countInterval = setInterval(function () {
+        percent += PERCENT_STEP;
+        percentEl.textContent = `${percent}%`;
+        barEl.style.width = `${percent}%`;
+        if (percent === 100) {
+          clearInterval(countInterval);
+        }
+      }, COUNT_LOAD_TIME);
+    }
     function fadeOutnojquery(el) {
       el.style.opacity = 1;
-      let interhellopreloader = setInterval(function() {
+      let interhellopreloader = setInterval(function () {
         el.style.opacity = el.style.opacity - 0.05;
 
         if (el.style.opacity <= 0.05) {
@@ -555,11 +587,20 @@
         }
       }, 16);
     }
-    window.onload = function() {
-      setTimeout(function() {
-        fadeOutnojquery(hellopreloader);
-      }, 1000);
-    };
+
+    countLoad();
+    setTimeout(function () {
+      fadeOutnojquery(hellopreloader);
+    }, LOADING_TIME);
+
+    // window.onload = function () {
+    //   countLoad();
+    //   setTimeout(function () {
+    //     fadeOutnojquery(hellopreloader);
+    //   }, LOADING_TIME);
+    // };
+
+
 
 
     // При прокрутке колесом мыши, видео воспроизводится и моментально ставится на паузу.
@@ -978,7 +1019,7 @@
 
       function addSceneOne() {
         const SceneOneCode = `
-         <a-scene id="scenePier" renderer="\tantialias: true;\tsortObjects: true;\tmaxCanvasWidth: 3000;\tmaxCanvasHeight: 3000;\tprecision: low;\ttoneMapping: ‘ACESFilmic’;" loading-screen="enabled: true, dotsColor: #B8B6C5, backgroundColor: #797688"><a-assets><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Начало применения правок к коду --><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- //////////////////// --><!-- Изображения причала --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Вход в здание причала --><img id="dockImage_01" src="https://coddmac.store/Prichal/building/building_01_enter.jpg" crossorigin="anonymous" importance="high" /><!-- 02 Выход напротив турникетов --><img id="dockImage_02" src="https://coddmac.store/Prichal/building/building_02_exit.jpg" crossorigin="anonymous" importance="low" /><!-- 03 Точка перехода в туалет, на улицу или возврата внутри шайбы --><img id="dockImage_03" src="https://coddmac.store/Prichal/building/building_03_prerestroom.jpg" crossorigin="anonymous" importance="low" /><!-- 04 туалет --><img id="dockImage_04" src="https://coddmac.store/Prichal/building/building_05_restroom_2_cropped.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Уличная панорама --><img id="dockImage_05" src="https://coddmac.store/Prichal/building/building_06_panorama.jpg" crossorigin="anonymous" importance="low" /><!-- //////////////////// --><!-- Уличные снимки --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Выход напротив турникетов --><img id="streetImage_01" src="https://coddmac.store/Prichal/street/street_01_preenterance.jpg" crossorigin="anonymous" importance="low" /><!-- 02 Вид на шайбу с причала --><img id="streetImage_02" src="https://coddmac.store/Prichal/street/street_02.jpg" crossorigin="anonymous" importance="low" /><!-- 03 Другой угол причала --><img id="streetImage_03" src="https://coddmac.store/Prichal/street/street_03.jpg" crossorigin="anonymous" importance="low" /><!-- 04 Вид с лестницы --><img id="streetImage_04" src="https://coddmac.store/Prichal/street/street_04.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Фотография у стеллы --><img id="streetImage_05" src="https://coddmac.store/Prichal/street/street_05_fin.jpg" crossorigin="anonymous" importance="low" /><!-- Стрелочка перехода между точками --><img id="hotspot" src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg" crossorigin="anonymous" /><!-- Иконка синички --><img id="boatTeleportSpot" src="https://coddmac.store/Prichal/Hotspot_Icon_boat_2.svg" crossorigin="anonymous" /><!-- иконка-крестик --><img id="crossIcon" src="https://coddmac.store/THREE/360/cross-icon.svg" crossorigin="anonymous" importance="low" /><!-- !!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Здесь иконки и текст для типонов --><!--01 Иконка кофе --><img id="coffeeIcon" src="https://coddmac.store/Prichal/icons/base/Hotspot_Icon_coffe.svg" crossorigin="anonymous" importance="low" /><!--02 Иконка оплата --><img id="paymentIcon" src="https://coddmac.store/Prichal/icons/base/Hotspot_Icon_turniket.svg" crossorigin="anonymous" importance="low" /><!-- Текст попапов для шайбы --><!--01 Текст кофе --><img id="coffeeText" src="https://coddmac.store/Prichal/popup_text/base/coffe.svg" crossorigin="anonymous" importance="low" /><!--02 Текст оплата --><img id="paymentText" src="https://coddmac.store/Prichal/popup_text/base/payment.svg" crossorigin="anonymous" importance="low" /><!-- Текст и крестики собираются в текстовые компоненты --><!-- 01 инфопанель про кофе --><template id="infoPanel1"><a-image position="0 0 0.1" src="#coffeeText" width="6.4" height="3.4" ></a-image><a-image position="2.8 1.4 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 02 инфопанель про оплату --><template id="infoPanel2"><a-image position="0 0 0.1" src="#paymentText" width="6.41" height="5.05" ></a-image><a-image position="2.8 2.1 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template></a-assets><!-- Начинаем добавлять точки телепортации и переходы между ними --><a-entity id="spots" hotspots=""><!-- //////////////////// --><!-- Перемещения по улице --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!--ST01 самая дальняя точка. мы до неё можем дойти, но не стартуем с нее --><a-entity id="group-room1" scale="0 0 0"><!-- спуститься по лестнице --><a-image src="#hotspot" spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4" position="-12 1 -2" rotation="180 90 -45" look-at ></a-image></a-entity><!--ST02 Обзор с лестницы --><a-entity id="group-room2" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_05;spotgroup:group-room1;phiStart:0" src="#hotspot" position="0 3 8" rotation="180 0 -90" look-at ></a-image><!-- пройти на причал --><a-image spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12" src="#hotspot" position="0 -1 -11" look-at ></a-image></a-entity><!--ST03 угол причала --><a-entity id="group-room3" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4" src="#hotspot" position="-0.5 1 8" look-at ></a-image><!-- перейти в другой конец причала --><a-image spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22" src="#hotspot" position="-8 1 -0.6" rotation="180 90 180" look-at ></a-image></a-entity><!--ST04 Второй угол причала напротив шайбы --><a-entity id="group-room4" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12" src="#hotspot" position="15 1 0.6" rotation="180 90 180" look-at ></a-image><!-- подойти ближе к шайбе --><a-image spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92" src="#hotspot" position="0 1 -8" look-at ></a-image></a-entity><!--ST05 стоим снаружи шайбы прямо у входа --><a-entity id="group-room5" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22" src="#hotspot" position="-0.5 1 8" look-at ></a-image><!-- войти в шайбу --><a-image spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95" src="#hotspot" position="0 1 -8" look-at ></a-image></a-entity><!-- //////////////////// --><!-- Точки внутри шайбы --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!--B01 Вход в шайбу после турникетов (тут начинается экскурсия) --><a-entity id="group-room6"><!-- выход назад --><a-image spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92" src="#hotspot" position="-1 1 8" look-at ></a-image><!-- к следующему турникету --><!-- phiStart:-135 чтобы смотреть прямо в турникет --><a-image spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135" src="#hotspot" position="8 1 -6" rotation="180 120 180" look-at ></a-image><!-- 01 блок про кофе --><a-entity position="-0.5 1 -9" look-at><a-image src="#coffeeIcon" data-triggerable-button="1"></a-image><a-entity id="infoPanelContainer1"></a-entity></a-entity></a-entity><!--B02 Точка напротив турникетов. Возможность перейти на синичку --><a-entity id="group-room7" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95" src="#hotspot" position="0 1 8" look-at ></a-image><!-- в предтуалетье --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="-9 1 -3" rotation="180 90 180" look-at ></a-image><!-- тут телепортируем на синичку пролистыванием сайта --><a-entity position="6.3 1 -5" look-at rotation="180 120 180" id="TeleportPier"><a-image src="#boatTeleportSpot"></a-image></a-entity><!-- 02 блок про оплату --><a-entity position="5 -2 -4" rotation="-170 125 180" look-at><a-image src="#paymentIcon" data-triggerable-button="2"></a-image><a-entity id="infoPanelContainer2"></a-entity></a-entity></a-entity><!--B03 точка напротив туалета --><a-entity id="group-room8" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135" src="#hotspot" position="8 1 -3" rotation="180 110 180" look-at ></a-image><!-- в туалет --><a-image spot="linkto:#dockImage_04;spotgroup:group-room9;phiStart:-140" src="#hotspot" position="8.5 1 4.2" rotation="180 60 180" look-at ></a-image><!-- к панораме --><a-image spot="linkto:#dockImage_05;spotgroup:group-room10;phiStart:103" src="#hotspot" position="-6 1 -2.3" rotation="180 60 180" look-at ></a-image></a-entity><!--B04 туалет --><a-entity id="group-room9" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="-6 1 -2" rotation="180 80 180" look-at ></a-image></a-entity><!--B05 наружная панорама --><a-entity id="group-room10" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="5 1 2" rotation="180 70 180" look-at ></a-image></a-entity></a-entity><!-- Камера в сцене --><a-entity id="cam" camera="fov:80" position="0 1.6 0" look-controls cursor="rayOrigin: mouse" animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;" animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;" ><a-plane id="camfadeplane" rotation="10 0.5 0" position="0 0 -0.5" material="color:#000000;transparent:true;opacity:0" width="0" height="0" animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn" animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut" ></a-plane></a-entity><!-- тут где написано phi-start подбираем точку начала первого кадра
+         <a-scene id="scenePier" renderer="\tantialias: true;\tsortObjects: true;\tmaxCanvasWidth: 3000;\tmaxCanvasHeight: 3000;\tprecision: low;\ttoneMapping: ‘ACESFilmic’;" loading-screen="enabled: true, dotsColor: #B8B6C5, backgroundColor: #797688"><a-assets><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Начало применения правок к коду --><!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --><!-- //////////////////// --><!-- Изображения причала --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Вход в здание причала --><img id="dockImage_01" src="https://coddmac.store/Prichal/building/building_01_enter.jpg" crossorigin="anonymous" importance="high" /><!-- 02 Выход напротив турникетов --><img id="dockImage_02" src="https://coddmac.store/Prichal/building/building_02_exit.jpg" crossorigin="anonymous" importance="low" /><!-- 03 Точка перехода в туалет, на улицу или возврата внутри шайбы --><img id="dockImage_03" src="https://coddmac.store/Prichal/building/building_03_prerestroom.jpg" crossorigin="anonymous" importance="low" /><!-- 04 туалет --><img id="dockImage_04" src="https://coddmac.store/Prichal/building/building_05_restroom_2_cropped.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Уличная панорама --><img id="dockImage_05" src="https://coddmac.store/Prichal/building/building_06_panorama.jpg" crossorigin="anonymous" importance="low" /><!-- //////////////////// --><!-- Уличные снимки --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!-- 01 Выход напротив турникетов --><img id="streetImage_01" src="https://coddmac.store/Prichal/street/street_01_preenterance.jpg" crossorigin="anonymous" importance="low" /><!-- 02 Вид на шайбу с причала --><img id="streetImage_02" src="https://coddmac.store/Prichal/street/street_02.jpg" crossorigin="anonymous" importance="low" /><!-- 03 Другой угол причала --><img id="streetImage_03" src="https://coddmac.store/Prichal/street/street_03.jpg" crossorigin="anonymous" importance="low" /><!-- 04 Вид с лестницы --><img id="streetImage_04" src="https://coddmac.store/Prichal/street/street_04.jpg" crossorigin="anonymous" importance="low" /><!-- 05 Фотография у стеллы --><img id="streetImage_05" src="https://coddmac.store/Prichal/street/street_05_fin.jpg" crossorigin="anonymous" importance="low" /><!-- Стрелочка перехода между точками --><img id="hotspot" src="https://coddmac.store/BKL/360/source/Hotspot_blue_big.svg" crossorigin="anonymous" /><!-- Иконка синички --><img id="boatTeleportSpot" src="https://coddmac.store/Prichal/Hotspot_Icon_boat_2.svg" crossorigin="anonymous" /><!-- иконка-крестик --><img id="crossIcon" src="https://coddmac.store/THREE/360/cross-icon.svg" crossorigin="anonymous" importance="low" /><!-- !!!!!!!!!!!!!!!!!!!!!!!!! --><!-- Здесь иконки и текст для типонов --><!--01 Иконка кофе --><img id="coffeeIcon" src="https://coddmac.store/Prichal/icons/base/Hotspot_Icon_coffe.svg" crossorigin="anonymous" importance="low" /><!--02 Иконка оплата --><img id="paymentIcon" src="https://coddmac.store/Prichal/icons/base/Hotspot_Icon_turniket.svg" crossorigin="anonymous" importance="low" /><!-- Текст попапов для шайбы --><!--01 Текст кофе --><img id="coffeeText" src="https://coddmac.store/Prichal/popup_text/base/coffe.svg" crossorigin="anonymous" importance="low" /><!--02 Текст оплата --><img id="paymentText" src="https://coddmac.store/Prichal/popup_text/base/payment.svg" crossorigin="anonymous" importance="low" /><!-- Текст и крестики собираются в текстовые компоненты --><!-- 01 инфопанель про кофе --><template id="infoPanel1"><a-image position="0 0 0" src="#coffeeText" width="6.4" height="3.4" ></a-image><a-image position="2.5 1.1 1" src="#crossIcon" width="0.5" height="0.5" ></a-image></template><!-- 02 инфопанель про оплату --><template id="infoPanel2"><a-image position="0 0 0" src="#paymentText" width="6.41" height="5.05" ></a-image><a-image position="2.8 2.1 0.2" src="#crossIcon" width="0.5" height="0.5" ></a-image></template></a-assets><!-- Начинаем добавлять точки телепортации и переходы между ними --><a-entity id="spots" hotspots=""><!-- //////////////////// --><!-- Перемещения по улице --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!--ST01 самая дальняя точка. мы до неё можем дойти, но не стартуем с нее --><a-entity id="group-room1" scale="0 0 0"><!-- спуститься по лестнице --><a-image src="#hotspot" spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4" position="-12 1 -2" rotation="180 90 -45" look-at ></a-image></a-entity><!--ST02 Обзор с лестницы --><a-entity id="group-room2" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_05;spotgroup:group-room1;phiStart:0" src="#hotspot" position="0 3 8" rotation="180 0 -90" look-at ></a-image><!-- пройти на причал --><a-image spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12" src="#hotspot" position="0 -1 -11" look-at ></a-image></a-entity><!--ST03 угол причала --><a-entity id="group-room3" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_04;spotgroup:group-room2;phiStart:4" src="#hotspot" position="-0.5 1 8" look-at ></a-image><!-- перейти в другой конец причала --><a-image spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22" src="#hotspot" position="-8 1 -0.6" rotation="180 90 180" look-at ></a-image></a-entity><!--ST04 Второй угол причала напротив шайбы --><a-entity id="group-room4" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_03;spotgroup:group-room3;phiStart:12" src="#hotspot" position="15 1 0.6" rotation="180 90 180" look-at ></a-image><!-- подойти ближе к шайбе --><a-image spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92" src="#hotspot" position="0 1 -8" look-at ></a-image></a-entity><!--ST05 стоим снаружи шайбы прямо у входа --><a-entity id="group-room5" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#streetImage_02;spotgroup:group-room4;phiStart:-22" src="#hotspot" position="-0.5 1 8" look-at ></a-image><!-- войти в шайбу --><a-image spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95" src="#hotspot" position="0 1 -8" look-at ></a-image></a-entity><!-- //////////////////// --><!-- Точки внутри шайбы --><!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --><!--B01 Вход в шайбу после турникетов (тут начинается экскурсия) --><a-entity id="group-room6"><!-- выход назад --><a-image spot="linkto:#streetImage_01;spotgroup:group-room5;phiStart:-92" src="#hotspot" position="-1 1 8" look-at ></a-image><!-- к следующему турникету --><!-- phiStart:-135 чтобы смотреть прямо в турникет --><a-image spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135" src="#hotspot" position="8 1 -6" rotation="180 120 180" look-at ></a-image><!-- 01 блок про кофе --><a-entity position="-0.5 1 -9" look-at><a-image src="#coffeeIcon" data-triggerable-button="1"></a-image><a-entity id="infoPanelContainer1"></a-entity></a-entity></a-entity><!--B02 Точка напротив турникетов. Возможность перейти на синичку --><a-entity id="group-room7" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_01;spotgroup:group-room6;phiStart:95" src="#hotspot" position="0 1 8" look-at ></a-image><!-- в предтуалетье --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="-9 1 -3" rotation="180 90 180" look-at ></a-image><!-- тут телепортируем на синичку пролистыванием сайта --><a-entity position="6.3 1 -5" look-at rotation="180 120 180" id="TeleportPier"><a-image src="#boatTeleportSpot"></a-image></a-entity><!-- 02 блок про оплату --><a-entity position="5 -2 -4" rotation="-170 125 180" look-at><a-image src="#paymentIcon" data-triggerable-button="2"></a-image><a-entity id="infoPanelContainer2"></a-entity></a-entity></a-entity><!--B03 точка напротив туалета --><a-entity id="group-room8" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_02;spotgroup:group-room7;phiStart:-135" src="#hotspot" position="8 1 -3" rotation="180 110 180" look-at ></a-image><!-- в туалет --><a-image spot="linkto:#dockImage_04;spotgroup:group-room9;phiStart:-140" src="#hotspot" position="8.5 1 4.2" rotation="180 60 180" look-at ></a-image><!-- к панораме --><a-image spot="linkto:#dockImage_05;spotgroup:group-room10;phiStart:103" src="#hotspot" position="-6 1 -2.3" rotation="180 60 180" look-at ></a-image></a-entity><!--B04 туалет --><a-entity id="group-room9" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="-6 1 -2" rotation="180 80 180" look-at ></a-image></a-entity><!--B05 наружная панорама --><a-entity id="group-room10" scale="0 0 0"><!-- выход назад --><a-image spot="linkto:#dockImage_03;spotgroup:group-room8;phiStart:-143" src="#hotspot" position="5 1 2" rotation="180 70 180" look-at ></a-image></a-entity></a-entity><!-- Камера в сцене --><a-entity id="cam" camera="fov:80" position="0 1.6 0" look-controls cursor="rayOrigin: mouse" animation__zoomin="property:camera.fov;dur:2000;to:50;startEvents:zoomin;" animation__zoomout="property:camera.fov;dur:1000;to:80;startEvents:zoomout;" ><a-plane id="camfadeplane" rotation="10 0.5 0" position="0 0 -0.5" material="color:#000000;transparent:true;opacity:0" width="0" height="0" animation__fadein="property:material.opacity;to:1;dur:2000;startEvents:camFadeIn" animation__fadeout="property:material.opacity;to:0;dur:1000;startEvents:camFadeOut" ></a-plane></a-entity><!-- тут где написано phi-start подбираем точку начала первого кадра
 (куда будет повёрнута камера при загрузке страницы) --><a-sky id="skybox" src="#dockImage_01" rotation="0 0 0" phi-start="95" ></a-sky></a-scene>
          `;
 
@@ -1110,7 +1151,7 @@
             });
           });
 
-        }, 1500);
+        }, 0);
       }
 
       function removeSceneOne() {
@@ -1253,7 +1294,7 @@
             });
           });
 
-        }, 1500);
+        }, 0);
       }
 
       function removeSceneTwo() {
