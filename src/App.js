@@ -45,7 +45,7 @@ const ROUTES = [
 const initVideos = () => {
 
   // Определяем, является ли устройство мобильным
-  const isMobile = window.innerWidth < 481;
+  const isMobile = window.innerWidth < 1200;
 
   // Для каждого элемента с классом "bg-video"
   document.querySelectorAll(".bg-video").forEach((el, i) => {
@@ -60,7 +60,37 @@ const initVideos = () => {
     // Добавляем элемент "source" внутрь видеоэлемента
     el.appendChild(source);
   });
+
+  document.querySelectorAll(".section-video").forEach((el, i) => {
+    // Создаем элемент "source" и задаем атрибуты для видеофайла
+    const sourceDoor = document.createElement("source");
+    sourceDoor.setAttribute(
+        "src",
+        `/${i + 1}${isMobile ? "doors_mob" : "doors"}.mp4`
+    );
+    sourceDoor.setAttribute("type", "video/mp4");
+
+    // Добавляем элемент "source" внутрь видеоэлемента
+    el.appendChild(sourceDoor);
+  });
 };
+
+
+let mousePrevWrappers = document.querySelectorAll('.mouse_prev-wrapper_desctop, .mouse_prev-wrapper_mobile');
+
+mousePrevWrappers.forEach(function(element) {
+  element.classList.add('autoflash');
+
+  let flashElement = document.createElement('div');
+  flashElement.className = 'flash lighting';
+  flashElement.style.height = '28px';
+  flashElement.style.width = '15px';
+  flashElement.style.top = '0px';
+  flashElement.style.left = '-140px';
+
+  element.appendChild(flashElement);
+});
+
 
 function App() {
   useEffect(() => {
@@ -281,7 +311,9 @@ function App() {
       // Пропустить превью с видео
       const leavePrev = document.querySelector(".video_content .leave_button");
       let allVideos = document.querySelectorAll(".bg-video");
+      let mouse = document.querySelector('.mouse_prev');
       leavePrev.addEventListener("click", () => {
+        mouse.style.display = 'none';
         allVideos.forEach((e, index) => {
           e.removeAttribute('loop');
           e.setAttribute('data-transit', '');
