@@ -383,12 +383,6 @@ function App() {
     });
 
 
-
-
-
-
-
-
     // Добавляем обработчик прокрутки на блок siteContent
     siteContent.addEventListener("scroll", () => {
       // Если прокрутка дошла до верха блока siteContent
@@ -457,7 +451,6 @@ function App() {
     // Логика страницы после блоков видео
 
     const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
-
     const modal = document.getElementById('modal');
     const modalExits = modal.querySelectorAll('.modal-exit');
     const modalBody = document.querySelector('.modal-body');
@@ -612,6 +605,19 @@ function App() {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     }
 
+    let rollup = document.querySelectorAll('#aframe_rollupSinich, #aframe_rollupPier');
+    console.log(rollup);
+
+    let dotLink = document.querySelectorAll('.footer-list .footer-link, .footer-links-wrapper-tab .footer-link');
+    let dotSection = document.querySelectorAll('#pier-description, #sinichka-section, #pier-routes, #pier-faq');
+    // Создаем объект для сопоставления id с индексами
+    const sectionIdToIndex = {
+      'pier-description': 0,
+      'sinichka-section': 1,
+      'pier-routes': 2,
+      'pier-faq': 3,
+    };
+
     // Плавное переключение секций на весь экран при движении колеса мыши
     function WheelContentSmooth() {
       let sectionVideoEndListener = null;
@@ -619,23 +625,19 @@ function App() {
       let currentSectionIndex = 0;
       let isScrolling = false;
 
-
-      let aframe = document.querySelectorAll('#TeleportPier, #TeleportSinich');
-      aframe.forEach((sphere) => {
+      rollup.forEach((sphere, indexSphere) => {
         sphere.addEventListener("click", function () {
-          currentSectionIndex = 1;
+          console.log(indexSphere);
+          if (indexSphere === 0) {
+            scrollToSection(dotSection[indexSphere]);
+            currentSectionIndex = indexSphere;
+          } else {
+            scrollToSection(dotSection[indexSphere]);
+            currentSectionIndex = indexSphere;
+          }
         });
       });
 
-      let dotLink = document.querySelectorAll('.footer-list .footer-link, .footer-links-wrapper-tab .footer-link');
-      let dotSection = document.querySelectorAll('#pier-description, #sinichka-section, #pier-routes, #pier-faq');
-      // Создаем объект для сопоставления id с индексами
-      const sectionIdToIndex = {
-        'pier-description': 0,
-        'sinichka-section': 1,
-        'pier-routes': 2,
-        'pier-faq': 3,
-      };
       dotLink.forEach((link, indexLink) => {
         link.addEventListener('click', () => {
           scrollToSection(dotSection[indexLink]);
@@ -645,7 +647,6 @@ function App() {
           currentSectionIndex = sectionIdToIndex[currentSectionId];
         });
       });
-
 
 
       if (window.innerHeight > 1000) {

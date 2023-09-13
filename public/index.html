@@ -1357,7 +1357,6 @@
         targetElement.innerHTML = '';
       }
 
-      // let clickedRollup;
 
       function toggleScene(sceneId) {
         let aframeContent = document.querySelector(`#${sceneId}`);
@@ -1382,28 +1381,24 @@
         addSceneOne();
         rollup_Pier_360.style.display = 'block';
         toggleScene('scenePier');
-        // clickedRollup = false;
       });
 
       rollup_Pier_360.addEventListener('click', () => {
         closeScene('scenePier');
         removeSceneOne();
         rollup_Pier_360.style.display = 'none';
-        // clickedRollup = true;
       });
 
       tour_Sinich_360.addEventListener('click', () => {
         addSceneTwo();
         rollup_Sinich_360.style.display = 'block';
         toggleScene('sceneSinich');
-        // clickedRollup = false;
       });
 
       rollup_Sinich_360.addEventListener('click', () => {
         closeScene('sceneSinich');
         removeSceneTwo();
         rollup_Sinich_360.style.display = 'none';
-        // clickedRollup = true;
       });
     });
   </script>
