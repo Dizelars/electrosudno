@@ -501,12 +501,15 @@ function App() {
       });
     }
 
+
+    const bodyNoScroll = document.querySelector('body');
     // Листнеры на картинках с маршрутами
     routeImages.forEach((routeEl) => {
       routeEl.addEventListener('click', (e) => {
         e.preventDefault();
         handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
         modal.classList.add('open');
+        bodyNoScroll.style.overflow = 'hidden';
       })
     });
 
@@ -515,6 +518,7 @@ function App() {
       modalExit.addEventListener('click', (e) => {
         e.preventDefault();
         modal.classList.remove('open');
+        bodyNoScroll.style.overflow = 'auto';
       })
     });
 
@@ -559,6 +563,7 @@ function App() {
     });
 
 
+
     // Определение функции для анимированной прокрутки к указанной секции
     function scrollToSection(section) {
       const targetPosition = section.offsetTop; // Позиция верхней границы секции
@@ -567,12 +572,13 @@ function App() {
       const startTime = performance.now(); // Время начала анимации
       const duration = 1000; // Длительность анимации в миллисекундах
       const video = section.querySelector('.section-video');
+      const modalNoScroll = document.getElementById('modal');
 
-      if (modal.classList.contains('open')) {
+      if (modalNoScroll.classList.contains('open'))  {
         return
       }
 
-      if (video) {
+      if (video && (currentPosition < section.offsetTop)) {
         video.currentTime = 0;
         video.classList.add('section-video_active');
         video.play();
@@ -605,8 +611,12 @@ function App() {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     }
 
+
+
+
+
     let rollup = document.querySelectorAll('#aframe_rollupSinich, #aframe_rollupPier');
-    console.log(rollup);
+    // console.log(rollup);
 
     let dotLink = document.querySelectorAll('.footer-list .footer-link, .footer-links-wrapper-tab .footer-link');
     let dotSection = document.querySelectorAll('#pier-description, #sinichka-section, #pier-routes, #pier-faq');
@@ -627,7 +637,6 @@ function App() {
 
       rollup.forEach((sphere, indexSphere) => {
         sphere.addEventListener("click", function () {
-          console.log(indexSphere);
           if (indexSphere === 0) {
             scrollToSection(dotSection[indexSphere]);
             currentSectionIndex = indexSphere;
@@ -658,7 +667,6 @@ function App() {
       // Функция для обработки события "wheel"
       function handleWheelEvent(event) {
         if (window.innerWidth >= 1200 && window.innerHeight >= 1000) {
-          console.log('wheel');
           const siteContent = document.querySelector('.site_content');
           const isSiteContentVisible = window.getComputedStyle(siteContent).display === 'block';
 
@@ -701,9 +709,12 @@ function App() {
 
       // На устройствах меньше 1200px переходное видео показывается, если блок с vectary
       // попал в область видимости вьюпорта.
+      const sectionVideo = document.querySelector('.sinichka_fixed');
       function executeCode() {
         // Выполняется если видна секция с vectary
-        scrollToSection(sectionVideo);
+        if (window.scrollY < sectionVideo.offsetTop) {
+          scrollToSection(sectionVideo);
+        }
       }
       function handleIntersection(entries) {
         entries.forEach((entry) => {
@@ -715,11 +726,9 @@ function App() {
       // Создаем экземпляр Intersection Observer
       const observer = new IntersectionObserver(handleIntersection);
       // Находим секцию с классом .sinichka_fixed
-      const sectionVideo = document.querySelector('.sinichka_fixed');
-      if (window.innerWidth < 1200 || window.innerHeight < 1000) {
-        console.log('no weel');
-        // Наблюдаем за секцией только если ширина окна меньше 481 пикселя и секция существует
+      if ((window.innerWidth < 1200 || window.innerHeight < 1000)) {
         observer.observe(sectionVideo);
+        // Наблюдаем за секцией только если ширина окна меньше 481 пикселя и секция существует
       }
 
       // Добавляем обработчик события "wheel"

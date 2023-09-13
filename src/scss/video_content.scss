@@ -181,7 +181,7 @@
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 120px;
+  bottom: 150px;
   color: #9794A6;
   font-family: "MoscowSans", sans-serif;
   font-weight: 500;
@@ -201,12 +201,13 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  height: 36px;
+  height: 42px;
+  opacity: 0.5;
 }
 
 .video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow img {
   position: absolute;
-  height: 26px;
+  height: 32px;
   top: 5px;
   left: 50%;
   transform: translateX(-50%);
@@ -351,7 +352,8 @@
   background: linear-gradient(292deg, rgba(161, 159, 174, 0.50) 0%, rgba(172, 170, 186, 0.50) 100%);
   backdrop-filter: blur(10px);
   //bottom: 144px;
-  bottom: 220px;
+  //bottom: 220px;
+  bottom: 260px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -409,7 +411,8 @@
   0% {
     opacity: 0;
     //transform: translate(-50%, 144px);
-    transform: translate(-50%, 220px);
+    //transform: translate(-50%, 220px);
+    transform: translate(-50%, 260px);
   }
   100% {
     opacity: 1;
@@ -426,7 +429,8 @@
   100% {
     opacity: 1;
     //transform: translate(-50%, 144px);
-    transform: translate(-50%, 220px);
+    //transform: translate(-50%, 220px);
+    transform: translate(-50%, 260px);
   }
 }
 

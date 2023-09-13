@@ -28,12 +28,14 @@
   backdrop-filter: blur(10px);
 }
 
-.vectary .tech_speck .tech_speck-click {
-  display: none;
-}
-
 .vectary .tech_speck div[class^="tech_speck-"] {
   padding: 32px 50px 32px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.vectary .tech_speck .tech_speck-click {
+  display: none !important;
 }
 
 .vectary .tech_speck div[class^="tech_speck-"] p {
