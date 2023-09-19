@@ -1500,10 +1500,11 @@ p, ol {
 .video_content .learn_button {
   display: none;
   position: absolute;
-  bottom: 82px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 30px;
+  padding: 28px;
+  width: max-content;
   cursor: pointer;
   z-index: 1;
   border-radius: 20px;
@@ -1518,9 +1519,9 @@ p, ol {
   padding: 0;
   cursor: pointer;
   font-family: "MoscowSans", sans-serif;
-  font-size: 32px;
-  line-height: 35px;
-  font-weight: 600;
+  font-size: 22px;
+  line-height: 20px;
+  font-weight: 300;
   color: #ffffff;
   background: transparent;
 }
@@ -1647,7 +1648,32 @@ p, ol {
     display: none;
   }
   .video_content .learn_button {
-    display: block;
+    display: flex;
+  }
+  .video_content .info_block .card {
+    bottom: 120px;
+  }
+  /*Поднимает кнопку снизу вверх на px*/
+  @keyframes CardUp {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 120px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+  /*Появление сверху вниз*/
+  @keyframes CardDown {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 120px);
+    }
   }
 }
 @media (max-width: 640px) {
@@ -1695,6 +1721,13 @@ p, ol {
   .video_content .info_block .card .card_descr .card_descr-title {
     font-size: 22px;
     line-height: 22px;
+  }
+  .video_content .learn_button {
+    padding: 20px;
+  }
+  .video_content .learn_button button {
+    font-size: 16px;
+    line-height: 16px;
   }
 }
 html.a-fullscreen {
