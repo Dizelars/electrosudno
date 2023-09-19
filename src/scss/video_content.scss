@@ -280,7 +280,7 @@
 }
 
 
-// Кнопка причалить и в начало
+// Кнопка причалить, начало и узнать больше
 
 .video_content .leave_button {
   display: flex;
@@ -320,6 +320,34 @@
 
 .video_content .reload_button img {
   transform: rotate(180deg);
+}
+
+.video_content .learn_button {
+  display: none;
+  position: absolute;
+  bottom: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 30px;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 20px;
+  background: linear-gradient(292deg, rgba(161, 159, 174, 0.50) 0%, rgba(172, 170, 186, 0.50) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.video_content .learn_button button {
+  text-transform: uppercase;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: "MoscowSans", sans-serif;
+  font-size: 32px;
+  line-height: 35px;
+  font-weight: 600;
+  color: #ffffff;
+  background: transparent;
 }
 
 
@@ -467,14 +495,20 @@
 //}
 
 @media (max-width: 1200px) {
-  .video_content .mouse_prev .mouse_prev-wrapper_desctop {
+  .video_progress_container,
+  .video_content .mouse_prev .mouse_prev-wrapper_desctop,
+  .video_content .mouse_prev .mouse_prev-wrapper_mobile,
+  .video_content .leave_button, .video_content .reload_button {
     display: none;
   }
 
-  .video_content .mouse_prev .mouse_prev-wrapper_mobile {
+  .video_content .learn_button {
     display: block;
-    //bottom: 80px;
   }
+
+  //.video_content .mouse_prev .mouse_prev-wrapper_mobile {
+  //  display: block;
+  //}
 }
 
 @media (max-width: 640px) {
@@ -510,10 +544,10 @@
 }
 
 @media (max-width: 440px) {
-  .video_progress_container,
-  .video_content .mouse_prev .mouse_prev-wrapper_mobile {
-    display: none;
-  }
+  //.video_progress_container,
+  //.video_content .mouse_prev .mouse_prev-wrapper_mobile {
+  //  display: none;
+  //}
 
   //.progress_icon-first {
   //  margin-left: 10px;

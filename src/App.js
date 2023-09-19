@@ -14,6 +14,17 @@ const ROUTES = [
       { bottom: '53%', right: '27%', hoverImgSrc: '/images/city_bagration.jpg '},
       { bottom: '52%', right: '17%', hoverImgSrc: '/images/trehgornii.jpg '},
     ],
+  },
+  {
+    name: 'avtozavodsky',
+    circles: [
+      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '38%', right: '41.5%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '47%', right: '32%', hoverImgSrc: '/images/city_centr.jpg '},
+      { bottom: '53%', right: '27%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '52%', right: '17%', hoverImgSrc: '/images/trehgornii.jpg '},
+    ],
   }
 ];
 
@@ -313,42 +324,47 @@ function App() {
 
     // window.addEventListener("DOMContentLoaded", () => {
       // Пропустить превью с видео
-      const leavePrev = document.querySelector(".video_content .leave_button");
+      // const leavePrev = document.querySelector(".video_content .leave_button");
+      const endButtons = document.querySelectorAll(".video_content .leave_button, .video_content .learn_button");
+      const learn = document.querySelector(".video_content .learn_button");
       let allVideos = document.querySelectorAll(".bg-video");
       let mouse = document.querySelector('.mouse_prev');
-      leavePrev.addEventListener("click", () => {
-        mouse.style.display = 'none';
-        allVideos.forEach((e, index) => {
-          e.removeAttribute('loop');
-          e.setAttribute('data-transit', '');
-          e.addEventListener("ended", () => {
-            switchHandler("next");
-          });
-          if (index === allVideos.length - 1) {
-            e.addEventListener("timeupdate", function() {
-              const currentTime = e.currentTime;
-              const cardElem = infoElem.querySelector('.card');
-              if (currentTime >= 5 && currentTime < 5.4) {
-                cardElem.style.visibility = 'hidden';
-              } else if (currentTime < 7) {
-                videoContent.style.opacity = 1;
-              } else if (currentTime >= 8 && currentTime < 8.25) {
-                videoContent.style.opacity = 0.9;
-              } else if (currentTime >= 8.5 && currentTime < 8.75) {
-                videoContent.style.opacity = 0.6;
-              } else if (currentTime >= 9 && currentTime < 9.5) {
-                videoContent.style.opacity = 0.3;
-              } else if (currentTime >= 10) {
-                videoContent.style.opacity = 0;
-              }
+      endButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          mouse.style.display = 'none';
+          learn.style.display = 'none';
+          allVideos.forEach((e, index) => {
+            e.removeAttribute('loop');
+            e.setAttribute('data-transit', '');
+            e.addEventListener("ended", () => {
+              switchHandler("next");
             });
-            function onVideoEndListenerButton() {
-              finishVideosBlock();
-              WheelContentSmooth();
+            if (index === allVideos.length - 1) {
+              e.addEventListener("timeupdate", function() {
+                const currentTime = e.currentTime;
+                const cardElem = infoElem.querySelector('.card');
+                if (currentTime >= 5 && currentTime < 5.4) {
+                  cardElem.style.visibility = 'hidden';
+                } else if (currentTime < 7) {
+                  videoContent.style.opacity = 1;
+                } else if (currentTime >= 8 && currentTime < 8.25) {
+                  videoContent.style.opacity = 0.9;
+                } else if (currentTime >= 8.5 && currentTime < 8.75) {
+                  videoContent.style.opacity = 0.6;
+                } else if (currentTime >= 9 && currentTime < 9.5) {
+                  videoContent.style.opacity = 0.3;
+                } else if (currentTime >= 10) {
+                  videoContent.style.opacity = 0;
+                }
+              });
+              function onVideoEndListenerButton() {
+                finishVideosBlock();
+                WheelContentSmooth();
+              }
+              // e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
+              e.addEventListener("ended", onVideoEndListenerButton);
             }
-            // e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
-            e.addEventListener("ended", onVideoEndListenerButton);
-          }
+          });
         });
       });
 
@@ -405,10 +421,12 @@ function App() {
 
     function anotherFunctionForScrollBack() {
       const reloadBtn = document.querySelector('.reload_button');
-      reloadBtn.style.display = 'flex';
-      reloadBtn.addEventListener('click', () => {
-        window.location.reload();
-      });
+      if (window.innerWidth >= 1200) {
+        reloadBtn.style.display = 'flex';
+        reloadBtn.addEventListener('click', () => {
+          window.location.reload();
+        });
+      }
     }
 
     document.addEventListener("wheel", (e) => {

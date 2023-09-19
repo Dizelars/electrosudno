@@ -6,7 +6,12 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--  <meta name="theme-color" content="#000000" />-->
-  <meta name="description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
+<!--  <meta name="description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>-->
+  <meta property="og:title" content="Электросудно">
+  <meta property="og:site_name" content="Речной трамвай">
+  <meta property="og:url" content="https://electrosudno.ru/">
+  <meta property="og:description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов">
+  <meta property="og:image" content="%PUBLIC_URL%/images/seo_prev.jpg">
 <!--  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />-->
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -236,6 +241,10 @@
           <img class="leave_button-img" src="%PUBLIC_URL%/images/icons/leave_button_arrow.svg" alt="Причалить">
         </div>
 
+          <div class="learn_button">
+              <button>Узнать больше</button>
+          </div>
+
         <div class="video_progress_container">
           <div class="progress_icon-first">
 <!--            <img class="progress_content" src="%PUBLIC_URL%/images/icons/boatVideo.svg" alt="лодка">-->
@@ -400,11 +409,13 @@
               <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
               <p>Первый регулярный речной маршрут Киевский — Сердце столицы улучшит транспортное обслуживание тех москвичей, которых река разделяет со станциями метро и МЦК</p>
             </div>
-            <div class="card bg-grey-grad card-disabled">
+<!--              card-disabled-->
+<!--              img-disabled-->
+            <div class="card bg-grey-grad">
               <p class="route-number mt-0 mb-10">№2</p>
               <h3 class="text-uppercase cursor-pointer">Автозаводский Мост — Печатники</h3>
-              <img class="card-img img-responsive d-block d-none-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg" alt="kievsky route">
-              <img class="card-img img-responsive d-none d-block-mob cursor-pointer img-disabled" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg" alt="kievsky route">
+              <img class="card-img img-responsive d-block d-none-mob cursor-pointer" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled.svg" alt="avtozavodsky route">
+              <img class="card-img img-responsive d-none d-block-mob cursor-pointer" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled.svg" alt="avtozavodsky route">
               <p>Раньше через Южный речной вокзал и прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у москвичей. Открытие нового маршрута состоится до конца года.</p>
             </div>
           </div>
