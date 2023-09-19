@@ -885,7 +885,7 @@ p, ol {
 }
 
 .card-faq {
-  height: 455px;
+  height: 522px;
 }
 
 .card-disabled {
@@ -1129,6 +1129,9 @@ p, ol {
   .card-large {
     justify-content: flex-end;
   }
+  .card-faq {
+    height: 530px;
+  }
   .card-content {
     position: relative;
     width: auto;
@@ -1180,7 +1183,7 @@ p, ol {
     flex-direction: column;
   }
   .card-flex-wrapper .card-faq {
-    flex: 1 1 256px;
+    flex: 1 1 290px;
   }
   .card-center-img {
     max-width: 160px;
@@ -1259,11 +1262,17 @@ p, ol {
   }
   .logos-flex-wrapper {
     justify-content: center;
+    flex-wrap: wrap;
   }
   .footer-contacts {
     display: flex;
     flex-direction: column;
     text-align: center;
+  }
+}
+@media (max-width: 360px) {
+  .card-flex-wrapper .card-faq {
+    flex: 1 1 380px;
   }
 }
 .container_video {
@@ -1299,9 +1308,6 @@ p, ol {
   border-radius: 2px;
   background: #9794A6;
   transition: background-color 0.4s; /* Добавляем переход для background-color */
-}
-
-.video_progress_container .progress-container {
   margin: 0 8px;
 }
 
@@ -1611,7 +1617,16 @@ p, ol {
   }
   .video_content .mouse_prev .mouse_prev-wrapper_mobile {
     display: block;
-    bottom: 80px;
+  }
+}
+@media (max-width: 640px) {
+  .progress_icon,
+  .progress_icon-first {
+    padding: 14px;
+  }
+  .progress_icon .progress_content,
+  .progress_icon-first .progress_content {
+    font-size: 14px;
   }
 }
 @media (max-width: 520px) {
@@ -1631,6 +1646,10 @@ p, ol {
   }
 }
 @media (max-width: 440px) {
+  .video_progress_container,
+  .video_content .mouse_prev .mouse_prev-wrapper_mobile {
+    display: none;
+  }
   .video_content .info_block .card {
     padding: 20px;
   }

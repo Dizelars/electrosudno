@@ -149,7 +149,8 @@
 }
 
 .card-faq {
-  height: 455px;
+  //height: 455px;
+  height: 522px;
 }
 
 .card-disabled {
@@ -418,6 +419,10 @@
     justify-content: flex-end;
   }
 
+  .card-faq {
+    height: 530px;
+  }
+
   .card-content {
     position: relative;
     width: auto;
@@ -479,7 +484,8 @@
     flex-direction: column;
 
     & .card-faq {
-      flex: 1 1 256px;
+      //flex: 1 1 256px;
+      flex: 1 1 290px;
     }
   }
 
@@ -584,11 +590,18 @@
 
   .logos-flex-wrapper {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .footer-contacts {
     display: flex;
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-flex-wrapper .card-faq {
+    flex: 1 1 380px;
   }
 }

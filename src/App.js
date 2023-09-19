@@ -228,7 +228,11 @@ function App() {
         // console.log(activeBlock);
 
         activeBlock.classList.remove("active");
+        if (activeBlock.hasAttribute("autoplay")) {
+          activeBlock.removeAttribute("autoplay");
+        }
         nextVideo.classList.add("active");
+        nextVideo.play();
 
 
 
@@ -323,7 +327,10 @@ function App() {
           if (index === allVideos.length - 1) {
             e.addEventListener("timeupdate", function() {
               const currentTime = e.currentTime;
-              if (currentTime < 7) {
+              const cardElem = infoElem.querySelector('.card');
+              if (currentTime >= 5 && currentTime < 5.4) {
+                cardElem.style.visibility = 'hidden';
+              } else if (currentTime < 7) {
                 videoContent.style.opacity = 1;
               } else if (currentTime >= 8 && currentTime < 8.25) {
                 videoContent.style.opacity = 0.9;
