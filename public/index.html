@@ -185,9 +185,9 @@
 
     <div class="video_content">
 
-     <video class="video-background" playsinline autoplay muted></video>
+     <video class="video-background" playsinline muted preload="auto"></video>
 
-      <video class="bg-video js-number-block active" autoplay loop muted playsinline data-number="1" id="progress_one">
+      <video class="bg-video js-number-block active" preload="auto" loop muted playsinline data-number="1" id="progress_one">
       </video>
 
       <video class="bg-video js-number-block" muted playsinline data-number="2" data-transit id="progress_two">
@@ -634,6 +634,8 @@
     let hellopreloader = document.getElementById("hellopreloader_preload");
     const percentEl = document.getElementById("hellopreloader_percent");
     const barEl = document.getElementById("hellopreloader_bar");
+    const videoDesctop = document.querySelector("#progress_one");
+    const videoMobile = document.querySelector(".video_content .video-background");
 
     function countLoad() {
       barEl.style.width = "0%";
@@ -644,6 +646,11 @@
         barEl.style.width = `${percent}%`;
         if (percent === 100) {
           clearInterval(countInterval);
+          if (window.innerWidth < 1200) {
+              videoMobile.play();
+          } else {
+              videoDesctop.play();
+          }
         }
       }, COUNT_LOAD_TIME);
     }
