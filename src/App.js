@@ -437,14 +437,24 @@ function App() {
       const bodyOverflow = document.querySelector("body");
       const mouseLogo = document.querySelector('.video_content .mouse_prev');
 
+      let loopVideo = true;  // Флаг для циклического повторения видео
+      // Функция для начала проигрывания видео с нулевой секунды
+      function playVideoFromStart() {
+        if (loopVideo) {
+          video.currentTime = 0;  // Устанавливаем время видео в 0 секунд
+          video.play();
+        }
+      }
+
       // Анимация карточек и промежутка времени видео
       let currentActiveContent = null;
       video.addEventListener("timeupdate", function() {
         const currentTime = video.currentTime;
         let newActiveContent = null;
-        // console.log(currentTime);
 
-        if (currentTime >= 7 && currentTime < 12) {
+        if (currentTime > 6.5 && currentTime < 7) {
+          playVideoFromStart()
+        } else if (currentTime >= 7 && currentTime < 12) {
           newActiveContent = infoElemContent.ejection;
         } else if (currentTime >= 13 && currentTime < 17) {
           newActiveContent = infoElemContent.snow;
@@ -528,8 +538,6 @@ function App() {
         bodyOverflow.style.overflow = 'auto';
         firstSection.classList.remove('fixed');
         htmlSmooth.classList.remove('smooth');
-        // Отрубаем их скролл потому что он ломает получение корректных индексов секций при скролле.
-        // ScrollTrigger.normalizeScroll(false);
         setTimeout(() => {
           WheelContentSmooth();
         }, 500);
@@ -542,16 +550,18 @@ function App() {
       const finishVideos = () => {
         bodyOverflow.style.overflow = 'hidden';
         mouseLogo.style.display = 'none';
+        loopVideo = false;
         video.play();
-        // Отрубаем их скролл потому что он позволяет скролить при воспроизведении.
-        // ScrollTrigger.normalizeScroll(false);
         video.addEventListener("ended", onVideoEndListener);
       };
+
       video.addEventListener("ended", onVideoEndListener);
 
       const leavePrev = document.querySelector(".video_content .learn_button");
       leavePrev.addEventListener("click", () => {
         leavePrev.style.display = 'none';
+        loopVideo = false;  // Отключаем циклическое повторение видео
+        video.play();  // Запускаем видео с текущей секунды
         finishVideos();
       });
     }
@@ -565,7 +575,6 @@ function App() {
         siteContent.style.display = "none";
       }
     });
-
 
 
     // Логика страницы после блоков видео
