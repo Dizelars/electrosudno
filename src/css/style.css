@@ -1365,8 +1365,20 @@ p, ol {
 .video_content {
   position: fixed;
   width: 100%;
+  height: 100%;
   z-index: 16;
   transition: opacity 0.5s;
+  background: url("/public/images/video_block_bg.jpg") no-repeat center/cover;
+}
+
+.video_content .video-background {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
 }
 
 .video_content .mouse_prev .mouse_prev-wrapper_mobile,
@@ -1641,11 +1653,15 @@ p, ol {
 }
 
 @media (max-width: 1200px) {
+  .video_content .bg-video,
   .video_progress_container,
   .video_content .mouse_prev .mouse_prev-wrapper_desctop,
   .video_content .mouse_prev .mouse_prev-wrapper_mobile,
   .video_content .leave_button, .video_content .reload_button {
     display: none;
+  }
+  .video_content .video-background {
+    display: block;
   }
   .video_content .learn_button {
     display: flex;
@@ -1994,6 +2010,9 @@ a-scene {
   }
 }
 @media (max-width: 540px) {
+  .sinichka_fixed .vectary .container {
+    position: static;
+  }
   .vectary .tech_speck {
     transform: translate(-50%, 94%);
     transition: all 0.5s ease;
@@ -2002,7 +2021,7 @@ a-scene {
     transform: translate(-50%, 0);
   }
   .vectary .tech_speck div[class^=tech_speck-]:first-child {
-    display: flex;
+    display: flex !important;
     padding: 15px 30px;
   }
   .vectary .tech_speck .tech_speck-click .tech_speck-img {

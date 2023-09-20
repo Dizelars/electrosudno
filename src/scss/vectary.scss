@@ -247,6 +247,10 @@
 }
 
 @media (max-width: 540px) {
+  .sinichka_fixed .vectary .container {
+    position: static;
+  }
+
   .vectary .tech_speck {
     transform: translate(-50%, 94%);
     transition: all .5s ease;
@@ -257,7 +261,7 @@
   }
 
   .vectary .tech_speck div[class^="tech_speck-"]:first-child {
-    display: flex;
+    display: flex !important;
     padding: 15px 30px;
   }
 

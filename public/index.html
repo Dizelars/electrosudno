@@ -185,7 +185,7 @@
 
     <div class="video_content">
 
-    <!-- <video playsinline preload muted class="video-background"></video> -->
+     <video playsinline preload muted class="video-background"></video>
 
       <video class="bg-video js-number-block active" autoplay loop muted playsinline data-number="1" id="progress_one">
       </video>
@@ -384,7 +384,7 @@
               <div class="tech_speck">
                   <div class="tech_speck-click">
                       <!--              <p class="tech_speck-text">Характеристики</p>-->
-                      <!--              <p class="tech_speck-text">Удобства</p>-->
+                      <p class="tech_speck-text">Удобства</p>
                       <img class="tech_speck-img" src="%PUBLIC_URL%/images/icons/techarrow.svg" alt="Скрыть/раскрыть">
                   </div>
                   <div class="tech_speck-1 tech_speck-info">
@@ -625,30 +625,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <script>
-    // <!-- Воспроизведения видео по скроллу НАЧАЛОСЬ-->
-    // const initOneVideo = () => {
-    //
-    //   // Определяем, является ли устройство мобильным
-    //   const isMobile = window.innerWidth < 481;
-    //   // console.log(isMobile);
-    //   console.log(window.innerWidth);
-    //
-    //   // Для каждого элемента с классом "bg-video"
-    //   document.querySelectorAll(".video-background").forEach((el, i) => {
-    //     // Создаем элемент "source" и задаем атрибуты для видеофайла
-    //     const source = document.createElement("source");
-    //     source.setAttribute(
-    //             "src",
-    //             `/${i + 1}${isMobile ? "mobile" : "video_test_60"}.mp4`
-    //     );
-    //     source.setAttribute("type", "video/mp4");
-    //
-    //     // Добавляем элемент "source" внутрь видеоэлемента
-    //     el.appendChild(source);
-    //   });
-    // };
-    // initOneVideo();
-
     // Прелоадер
     // Для демонстрации взято большое время и шаг 5%
     const LOADING_TIME = 6000;
@@ -689,8 +665,6 @@
     }, LOADING_TIME);
 
 
-
-
     // При прокрутке колесом мыши, видео воспроизводится и моментально ставится на паузу.
     // Таким образом создается эффект регулирования переключения.
     // Получается, чем медленнее видео, тем создается более плавный эффект перемещения видео.
@@ -704,26 +678,26 @@
     // const infoElemContent = {
     //   snow: {
     //     src: "%PUBLIC_URL%/images/icons/snow.svg",
-    //     text: "Возможность использования",
-    //     title: "Круглый год",
+    //     text: "Возможность использования:",
+    //     title: "круглый год",
     //   },
     //   ejection: {
     //     src: "%PUBLIC_URL%/images/icons/ejection.svg",
-    //     text: "Выброс вредных веществ",
-    //     title: "0%",
+    //     text: "Выброс вредных веществ:",
+    //     title: "0",
     //   },
     //   capacity: {
     //     src: "%PUBLIC_URL%/images/icons/capacity.svg",
-    //     text: "Вместимость",
+    //     text: "Вместимость:",
     //     title: "50 комфортных мест",
     //   },
     //   moorings: {
     //     src: "%PUBLIC_URL%/images/icons/moorings.svg",
-    //     text: "Колличество причалов",
-    //     title: "23",
+    //     text: "Планируемое количество</br>плавучих причалов:",
+    //     title: "23 шт.",
     //   }
     // }
-
+    // //
     // const video = document.querySelector(".video_content .video-background");
     // const src = video.currentSrc || video.src;
     // const videoContent = document.querySelector(".video_content");
@@ -816,7 +790,7 @@
     // console.log(smooth);
 
 
-    // Анимация карточек и промежутка времени видео
+    // // Анимация карточек и промежутка времени видео
     // let currentActiveContent = null;
     // video.addEventListener("timeupdate", function() {
     //   const currentTime = video.currentTime;
@@ -908,10 +882,10 @@
     //   firstSection.classList.remove('fixed');
     //   htmlSmooth.classList.remove('smooth');
     //   // Отрубаем их скролл потому что он ломает получение корректных индексов секций при скролле.
-    //   ScrollTrigger.normalizeScroll(false);
-    //   setTimeout(() => {
-    //     WheelContentSmooth();
-    //   }, 500);
+    //   // ScrollTrigger.normalizeScroll(false);
+    //   // setTimeout(() => {
+    //   //   WheelContentSmooth();
+    //   // }, 500);
     //   setTimeout(() => {
     //     contentNone.forEach((section) => {
     //       section.classList.remove('video_active');
@@ -923,11 +897,11 @@
     //   mouseLogo.style.display = 'none';
     //   video.play();
     //   // Отрубаем их скролл потому что он позволяет скролить при воспроизведении.
-    //   ScrollTrigger.normalizeScroll(false);
+    //   // ScrollTrigger.normalizeScroll(false);
     //   video.addEventListener("ended", onVideoEndListener);
     // };
     // video.addEventListener("ended", onVideoEndListener);
-    // const leavePrev = document.querySelector(".video_content .leave_button");
+    // const leavePrev = document.querySelector(".video_content .learn_button");
     // leavePrev.addEventListener("click", () => {
     //   finishVideos();
     // });

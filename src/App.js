@@ -28,89 +28,51 @@ const ROUTES = [
   }
 ];
 
-// const initOneVideo = () => {
-//
-//   // Определяем, является ли устройство мобильным
-//   const isMobile = window.innerWidth < 481;
-//   console.log(isMobile);
-//   console.log(window.innerWidth);
-//
-//   // Для каждого элемента с классом "bg-video"
-//   document.querySelectorAll(".video-background").forEach((el, i) => {
-//     // Создаем элемент "source" и задаем атрибуты для видеофайла
-//     const source = document.createElement("source");
-//     source.setAttribute(
-//       "src",
-//       `/${i + 1}${isMobile ? "mobile" : "video"}.mp4`
-//     );
-//     source.setAttribute("type", "video/mp4");
-//
-//     // Добавляем элемент "source" внутрь видеоэлемента
-//     el.appendChild(source);
-//   });
-// };
-//
-// initOneVideo();
-
-// mob
+const createVideoSource = (el, i, isMobile, fileType) => {
+  const source = document.createElement("source");
+  source.setAttribute("src", `/${i + 1}${fileType}${isMobile ? "_mob" : ""}.mp4`);
+  source.setAttribute("type", "video/mp4");
+  el.appendChild(source);
+};
 const initVideos = () => {
-
-  // Определяем, является ли устройство мобильным
   const isMobile = window.innerWidth < 1200;
 
-  // Для каждого элемента с классом "bg-video"
-  document.querySelectorAll(".bg-video").forEach((el, i) => {
-    // Создаем элемент "source" и задаем атрибуты для видеофайла
-    const source = document.createElement("source");
-    source.setAttribute(
-      "src",
-      `/${i + 1}${isMobile ? "mob" : "video"}.mp4`
-    );
-    source.setAttribute("type", "video/mp4");
-
-    // Добавляем элемент "source" внутрь видеоэлемента
-    el.appendChild(source);
-  });
+  if (isMobile) {
+    document.querySelectorAll(".video-background").forEach((el, i) => {
+      createVideoSource(el, i, isMobile, "long");
+    });
+  } else {
+    document.querySelectorAll(".bg-video").forEach((el, i) => {
+      createVideoSource(el, i, isMobile, "video");
+    });
+  }
 
   document.querySelectorAll(".section-video").forEach((el, i) => {
-    // Создаем элемент "source" и задаем атрибуты для видеофайла
-    const sourceDoor = document.createElement("source");
-    sourceDoor.setAttribute(
-        "src",
-        `/${i + 1}${isMobile ? "doors_mob" : "doors"}.mp4`
-    );
-    sourceDoor.setAttribute("type", "video/mp4");
-
-    // Добавляем элемент "source" внутрь видеоэлемента
-    el.appendChild(sourceDoor);
+    createVideoSource(el, i, isMobile, "doors");
   });
 };
 
-
+// Анимация проблеска букв (проезжающий блок под текстом)
 let mousePrevWrappers = document.querySelectorAll('.mouse_prev-wrapper_desctop, .mouse_prev-wrapper_mobile');
-
 mousePrevWrappers.forEach(function(element) {
   element.classList.add('autoflash');
-
   let flashElement = document.createElement('div');
   flashElement.className = 'flash lighting';
   flashElement.style.height = '28px';
   flashElement.style.width = '15px';
   flashElement.style.top = '0px';
   flashElement.style.left = '-140px';
-
   element.appendChild(flashElement);
 });
-
 
 function App() {
   useEffect(() => {
     // Логика Егора НАЧИНАЕТСЯ
+    const isMobile = window.innerWidth < 1200;
 
     let onVideoEndListener = null;
     let touchstartY = 0;
     let isEndVideos = false;
-
     const infoElem = document.querySelector(".info_block");
     const videoContent = document.querySelector(".video_content");
     const siteContent = document.querySelector(".site_content");
@@ -123,134 +85,143 @@ function App() {
 
     initVideos();
 
-    const finishVideosBlock = () => {
-      videoContent.style.display = "none";
-      firstSection.classList.remove('fixed');
-      contentNone.forEach((e) => {
-        e.classList.remove('video_active');
-      });
-      isEndVideos = true;
+    if (isMobile) {
+      mobileVideo();
+    } else {
+      desctopVideo();
     }
 
-    // Обработчик для переключения видеофрагментов
-    const switchHandler = (direction) => {
-      // TODO: Избавиться от direction вовсе
-      if (direction === "prev" || isEndVideos) {
-        return;
-      }
-      if (onVideoEndListener) {
-        return;
-      }
+    function desctopVideo() {
+      console.log('desctop video');
 
-      const activeBlock = document.querySelector(".js-number-block.active");
-      const activeNumber = Number(activeBlock.getAttribute("data-number"));
-
-      const nextActiveNumber =
-          direction === "next" ? activeNumber + 1 : activeNumber - 1;
-
-      console.log("nextActiveNumber", nextActiveNumber);
-
-      // Верхний край
-      if (!nextActiveNumber) {
-        return;
+      const finishVideosBlock = () => {
+        videoContent.style.display = "none";
+        firstSection.classList.remove('fixed');
+        contentNone.forEach((e) => {
+          e.classList.remove('video_active');
+        });
+        isEndVideos = true;
       }
 
-      const nextVideo = document.querySelector(
-          `.js-number-block[data-number="${nextActiveNumber}"]`
-      );
-
-      // function fadeVideo() {
-      //   console.log('fade');
-      //   console.log(activeBlock);
-      //   activeBlock.addEventListener("timeupdate", function() {
-      //     console.log('fade time listen');
-      //     const currentTime = activeBlock.currentTime;
-      //     // console.log(currentTime);
-      //
-      //     if (currentTime < 7) {
-      //       videoContent.style.opacity = 1;
-      //     } else if (currentTime >= 8 && currentTime < 8.25) {
-      //       videoContent.style.opacity = 0.9;
-      //     } else if (currentTime >= 8.5 && currentTime < 8.75) {
-      //       videoContent.style.opacity = 0.6;
-      //     } else if (currentTime >= 9 && currentTime < 9.5) {
-      //       videoContent.style.opacity = 0.3;
-      //     } else if (currentTime >= 10) {
-      //       videoContent.style.opacity = 0;
-      //     }
-      //   });
-      //   function onVideoEndListener2() {
-      //     console.log('finish scroll');
-      //     activeBlock.removeEventListener("ended", onVideoEndListener2);
-      //     finishVideosBlock();
-      //     WheelContentSmooth();
-      //     // console.log('finish scroll');
-      //   }
-      //   activeBlock.addEventListener("ended", onVideoEndListener2);
-      // }
-
-      // Нижний край
-      if (!nextVideo) {
-        // fadeVideo();
-        // activeBlock.addEventListener("timeupdate", () => {
-        //   const currentTime2 = activeBlock.currentTime;
-        //   console.log(currentTime2);
-        //   console.log(activeBlock);
-        //
-        //   if (currentTime2 <= 7) {
-        //     videoContent.style.opacity = 1;
-        //   } else if (currentTime2 >= 8 && currentTime2 < 8.25) {
-        //     videoContent.style.opacity = 0.9;
-        //   } else if (currentTime2 >= 8.5 && currentTime2 < 8.75) {
-        //     videoContent.style.opacity = 0.6;
-        //   } else if (currentTime2 >= 9 && currentTime2 < 9.5) {
-        //     videoContent.style.opacity = 0.3;
-        //   } else if (currentTime2 >= 10) {
-        //     videoContent.style.opacity = 0;
-        //   }
-        // });
-        // videoContent.style.opacity = 0.5;
-        finishVideosBlock();
-        WheelContentSmooth();
-      }
-
-      const doSwitch = () => {
-        if (!nextVideo) {
+      // Обработчик для переключения видеофрагментов
+      const switchHandler = (direction) => {
+        // TODO: Избавиться от direction вовсе
+        if (direction === "prev" || isEndVideos) {
+          return;
+        }
+        if (onVideoEndListener) {
           return;
         }
 
-        // function onVideoEndListenerCardDown() {
-        //   console.log('ended');
-        //   activeBlock.removeEventListener("ended", onVideoEndListenerCardDown);
-        //   const cardElem = infoElem.querySelector('.card');
-        //   // const video = activeBlock.querySelector('video');
-        //
-        //   // Задайте время (в секундах), за которое вы хотите выполнить анимацию
-        //   const timeBeforeEnd = 1; // Например, 5 секунд до окончания
-        //
-        //   // Проверьте, находится ли текущее время видео близко к окончанию
-        //   if (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd) {
-        //     // Если близко к окончанию, добавьте и уберите классы анимации
-        //     cardElem.classList.remove('animateUp');
-        //     cardElem.classList.add('animateDown');
-        //   }
-        // }
-        // activeBlock.addEventListener("ended", () => {console.log('ended')});
-        // console.log(activeBlock);
+        const activeBlock = document.querySelector(".js-number-block.active");
+        const activeNumber = Number(activeBlock.getAttribute("data-number"));
 
-        activeBlock.classList.remove("active");
-        if (activeBlock.hasAttribute("autoplay")) {
-          activeBlock.removeAttribute("autoplay");
+        const nextActiveNumber =
+            direction === "next" ? activeNumber + 1 : activeNumber - 1;
+
+        console.log("nextActiveNumber", nextActiveNumber);
+
+        // Верхний край
+        if (!nextActiveNumber) {
+          return;
         }
-        nextVideo.classList.add("active");
-        nextVideo.play();
+
+        const nextVideo = document.querySelector(
+            `.js-number-block[data-number="${nextActiveNumber}"]`
+        );
+
+        // function fadeVideo() {
+        //   console.log('fade');
+        //   console.log(activeBlock);
+        //   activeBlock.addEventListener("timeupdate", function() {
+        //     console.log('fade time listen');
+        //     const currentTime = activeBlock.currentTime;
+        //     // console.log(currentTime);
+        //
+        //     if (currentTime < 7) {
+        //       videoContent.style.opacity = 1;
+        //     } else if (currentTime >= 8 && currentTime < 8.25) {
+        //       videoContent.style.opacity = 0.9;
+        //     } else if (currentTime >= 8.5 && currentTime < 8.75) {
+        //       videoContent.style.opacity = 0.6;
+        //     } else if (currentTime >= 9 && currentTime < 9.5) {
+        //       videoContent.style.opacity = 0.3;
+        //     } else if (currentTime >= 10) {
+        //       videoContent.style.opacity = 0;
+        //     }
+        //   });
+        //   function onVideoEndListener2() {
+        //     console.log('finish scroll');
+        //     activeBlock.removeEventListener("ended", onVideoEndListener2);
+        //     finishVideosBlock();
+        //     WheelContentSmooth();
+        //     // console.log('finish scroll');
+        //   }
+        //   activeBlock.addEventListener("ended", onVideoEndListener2);
+        // }
+
+        // Нижний край
+        if (!nextVideo) {
+          // fadeVideo();
+          // activeBlock.addEventListener("timeupdate", () => {
+          //   const currentTime2 = activeBlock.currentTime;
+          //   console.log(currentTime2);
+          //   console.log(activeBlock);
+          //
+          //   if (currentTime2 <= 7) {
+          //     videoContent.style.opacity = 1;
+          //   } else if (currentTime2 >= 8 && currentTime2 < 8.25) {
+          //     videoContent.style.opacity = 0.9;
+          //   } else if (currentTime2 >= 8.5 && currentTime2 < 8.75) {
+          //     videoContent.style.opacity = 0.6;
+          //   } else if (currentTime2 >= 9 && currentTime2 < 9.5) {
+          //     videoContent.style.opacity = 0.3;
+          //   } else if (currentTime2 >= 10) {
+          //     videoContent.style.opacity = 0;
+          //   }
+          // });
+          // videoContent.style.opacity = 0.5;
+          finishVideosBlock();
+          WheelContentSmooth();
+        }
+
+        const doSwitch = () => {
+          if (!nextVideo) {
+            return;
+          }
+
+          // function onVideoEndListenerCardDown() {
+          //   console.log('ended');
+          //   activeBlock.removeEventListener("ended", onVideoEndListenerCardDown);
+          //   const cardElem = infoElem.querySelector('.card');
+          //   // const video = activeBlock.querySelector('video');
+          //
+          //   // Задайте время (в секундах), за которое вы хотите выполнить анимацию
+          //   const timeBeforeEnd = 1; // Например, 5 секунд до окончания
+          //
+          //   // Проверьте, находится ли текущее время видео близко к окончанию
+          //   if (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd) {
+          //     // Если близко к окончанию, добавьте и уберите классы анимации
+          //     cardElem.classList.remove('animateUp');
+          //     cardElem.classList.add('animateDown');
+          //   }
+          // }
+          // activeBlock.addEventListener("ended", () => {console.log('ended')});
+          // console.log(activeBlock);
+
+          activeBlock.classList.remove("active");
+          if (activeBlock.hasAttribute("autoplay")) {
+            activeBlock.removeAttribute("autoplay");
+          }
+          nextVideo.classList.add("active");
+          nextVideo.play();
 
 
 
-        if (nextVideo.hasAttribute("data-info-text")) {
-          // добавить проверку на дата атрибуты и показывать один блок с разным контентом из атрибутов
-          infoElem.classList.add("active");
-          infoElem.innerHTML = `
+          if (nextVideo.hasAttribute("data-info-text")) {
+            // добавить проверку на дата атрибуты и показывать один блок с разным контентом из атрибутов
+            infoElem.classList.add("active");
+            infoElem.innerHTML = `
             <div class="card">
               <div class="card_marker">
                 <img class="card_marker-img" src="${nextVideo.getAttribute("data-info-src")}" alt="card">
@@ -261,78 +232,75 @@ function App() {
               </div>
             </div>
           `;
-          const cardElem = infoElem.querySelector('.card');
-          cardElem.classList.add('animateUp');
-        } else {
-          infoElem.classList.remove("active");
-          infoElem.innerHTML = ""; // Удалить контент из infoElem
-        }
-
-        // Если видео транзитное - дождемся его завершения и симитируем прокрутку колесика дальше
-        if (nextVideo.hasAttribute("data-transit")) {
-          if (nextVideo.hasAttribute("loop")) {
-            throw new Error("Транзитное видео не может быть зациклено");
+            const cardElem = infoElem.querySelector('.card');
+            cardElem.classList.add('animateUp');
+          } else {
+            infoElem.classList.remove("active");
+            infoElem.innerHTML = ""; // Удалить контент из infoElem
           }
 
+          // Если видео транзитное - дождемся его завершения и симитируем прокрутку колесика дальше
+          if (nextVideo.hasAttribute("data-transit")) {
+            if (nextVideo.hasAttribute("loop")) {
+              throw new Error("Транзитное видео не может быть зациклено");
+            }
+
+            onVideoEndListener = () => {
+              nextVideo.removeEventListener("ended", onVideoEndListener);
+              onVideoEndListener = null;
+
+              switchHandler("next");
+            };
+            nextVideo.addEventListener("ended", onVideoEndListener);
+          }
+        };
+
+        // Если текущий активный блок - незаконченное видео, тогда ждем завершения и переключаем блок
+        if (
+            activeBlock.tagName === "VIDEO" &&
+            activeBlock.currentTime < activeBlock.duration
+        ) {
+          // Удаляем у активного блока цикличность чтобы дождаться события его завершения
+          activeBlock.removeAttribute("loop");
+
+          // const cardElem = infoElem.querySelector('.card');
+          // // Задайте время (в секундах), за которое вы хотите выполнить анимацию
+          // const timeBeforeEnd = 1; // Например, 5 секунд до окончания
+          //
+          // // Проверьте, находится ли текущее время видео близко к окончанию
+          // if (cardElem && (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd)) {
+          //   // Если близко к окончанию, добавьте и уберите классы анимации
+          //   cardElem.classList.remove('animateUp');
+          //   cardElem.classList.add('animateDown');
+          // }
+
+          // Слушатель события завершения видео
           onVideoEndListener = () => {
-            nextVideo.removeEventListener("ended", onVideoEndListener);
+            activeBlock.removeEventListener("ended", onVideoEndListener);
             onVideoEndListener = null;
 
-            switchHandler("next");
+            // Возвращаем атрибут цикличности после завершения и ставим на старт
+            activeBlock.setAttribute("loop", "true");
+            activeBlock.currentTime = 0;
+
+            doSwitch();
           };
-          nextVideo.addEventListener("ended", onVideoEndListener);
+          activeBlock.addEventListener("ended", onVideoEndListener);
+        } else {
+          doSwitch();
         }
       };
 
-      // Если текущий активный блок - незаконченное видео, тогда ждем завершения и переключаем блок
-      if (
-          activeBlock.tagName === "VIDEO" &&
-          activeBlock.currentTime < activeBlock.duration
-      ) {
-        // Удаляем у активного блока цикличность чтобы дождаться события его завершения
-        activeBlock.removeAttribute("loop");
-
-        // const cardElem = infoElem.querySelector('.card');
-        // // Задайте время (в секундах), за которое вы хотите выполнить анимацию
-        // const timeBeforeEnd = 1; // Например, 5 секунд до окончания
-        //
-        // // Проверьте, находится ли текущее время видео близко к окончанию
-        // if (cardElem && (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd)) {
-        //   // Если близко к окончанию, добавьте и уберите классы анимации
-        //   cardElem.classList.remove('animateUp');
-        //   cardElem.classList.add('animateDown');
-        // }
-
-        // Слушатель события завершения видео
-        onVideoEndListener = () => {
-          activeBlock.removeEventListener("ended", onVideoEndListener);
-          onVideoEndListener = null;
-
-          // Возвращаем атрибут цикличности после завершения и ставим на старт
-          activeBlock.setAttribute("loop", "true");
-          activeBlock.currentTime = 0;
-
-          doSwitch();
-        };
-        activeBlock.addEventListener("ended", onVideoEndListener);
-      } else {
-        doSwitch();
-      }
-    };
-
-
-
-    // window.addEventListener("DOMContentLoaded", () => {
       // Пропустить превью с видео
       // const leavePrev = document.querySelector(".video_content .leave_button");
-      const endButtons = document.querySelectorAll(".video_content .leave_button, .video_content .learn_button");
-      const learn = document.querySelector(".video_content .learn_button");
+      const endButtons = document.querySelectorAll(".video_content .leave_button");
+      // const learn = document.querySelector(".video_content .learn_button");
       let allVideos = document.querySelectorAll(".bg-video");
       let mouse = document.querySelector('.mouse_prev');
       endButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           mouse.style.display = 'none';
-          learn.style.display = 'none';
+          // learn.style.display = 'none';
           allVideos.forEach((e, index) => {
             e.removeAttribute('loop');
             e.setAttribute('data-transit', '');
@@ -368,14 +336,13 @@ function App() {
         });
       });
 
-    // Новый вариант сторис
-    const progressBars = document.querySelectorAll('.progress-bar');
-    const progressIcon = document.querySelectorAll('.progress_icon');
-    let filteredArray = Array.from(allVideos).filter(video => video.getAttribute("data-transit") != null);
-
-    filteredArray.forEach((video, index) => {
-      const progressBar = progressBars[index];
-      let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
+      // Cторис
+      const progressBars = document.querySelectorAll('.progress-bar');
+      const progressIcon = document.querySelectorAll('.progress_icon');
+      let filteredArray = Array.from(allVideos).filter(video => video.getAttribute("data-transit") != null);
+      filteredArray.forEach((video, index) => {
+        const progressBar = progressBars[index];
+        let isProgressBarFull = false; // Флаг для отслеживания заполнения прогресс-бара
 
         video.addEventListener('timeupdate', () => {
           const currentTime = video.currentTime;
@@ -403,8 +370,191 @@ function App() {
             progressIcon[index].classList.add('filled');
           }
         });
-    });
+      });
 
+      // Добавляем обработчики для переключения видеофрагментов при прокрутке и событиях touch
+      function anotherFunctionForScrollBack() {
+        const reloadBtn = document.querySelector('.reload_button');
+        if (window.innerWidth >= 1200) {
+          reloadBtn.style.display = 'flex';
+          reloadBtn.addEventListener('click', () => {
+            window.location.reload();
+          });
+        }
+      }
+      document.addEventListener("wheel", (e) => {
+        if (e.deltaY > 0) {
+          // Вызывать функцию для скролла вперед
+          switchHandler("next");
+        } else {
+          // Вызывать другую функцию для скролла назад
+          anotherFunctionForScrollBack();
+        }
+      });
+      document.addEventListener("touchstart", function (e) {
+        touchstartY = e.touches[0].clientY;
+      });
+      document.addEventListener("touchend", function (e) {
+        const touchEndY = e.changedTouches[0].clientY;
+        if (touchEndY - touchstartY > 0) {
+          // Вызвать функцию для скролла назад
+          anotherFunctionForScrollBack();
+        } else if (touchEndY - touchstartY < 0) {
+          // Вызвать функцию для скролла вперед
+          switchHandler("next");
+        }
+      });
+    }
+
+    function mobileVideo() {
+      console.log('mobile video');
+
+      const infoElemContent = {
+        snow: {
+          src: "/images/icons/snow.svg",
+          text: "Возможность использования:",
+          title: "круглый год",
+        },
+        ejection: {
+          src: "/images/icons/ejection.svg",
+          text: "Выброс вредных веществ:",
+          title: "0",
+        },
+        capacity: {
+          src: "/images/icons/capacity.svg",
+          text: "Вместимость:",
+          title: "50 комфортных мест",
+        },
+        moorings: {
+          src: "/images/icons/moorings.svg",
+          text: "Планируемое количество</br>плавучих причалов:",
+          title: "23 шт.",
+        }
+      }
+      const video = document.querySelector(".video_content .video-background");
+      // const src = video.currentSrc || video.src;
+      const htmlSmooth = document.querySelector("html");
+      const bodyOverflow = document.querySelector("body");
+      const mouseLogo = document.querySelector('.video_content .mouse_prev');
+
+      // Анимация карточек и промежутка времени видео
+      let currentActiveContent = null;
+      video.addEventListener("timeupdate", function() {
+        const currentTime = video.currentTime;
+        let newActiveContent = null;
+        // console.log(currentTime);
+
+        if (currentTime >= 7 && currentTime < 12) {
+          newActiveContent = infoElemContent.ejection;
+        } else if (currentTime >= 13 && currentTime < 17) {
+          newActiveContent = infoElemContent.snow;
+        } else if (currentTime >= 18 && currentTime < 22) {
+          newActiveContent = infoElemContent.capacity;
+        } else if (currentTime >= 23 && currentTime < 26) {
+          newActiveContent = infoElemContent.moorings;
+        } else if (currentTime < 30.5) {
+          videoContent.style.opacity = 1;
+        } else if (currentTime >= 30.5 && currentTime < 31) {
+          videoContent.style.opacity = 0.9;
+        } else if (currentTime >= 31 && currentTime < 31.5) {
+          videoContent.style.opacity = 0.6;
+        } else if (currentTime >= 31.5 && currentTime < 32) {
+          videoContent.style.opacity = 0.3;
+        } else if (currentTime >= 32) {
+          videoContent.style.opacity = 0;
+        }
+
+        if (newActiveContent !== currentActiveContent) {
+          if (newActiveContent) {
+            const { src, text, title } = newActiveContent;
+
+            // Анимация ухода текущего контента
+            if (currentActiveContent) {
+              const card = infoElem.querySelector('.card');
+              card.classList.remove('animateUp');
+              card.classList.add('animateDown');
+              setTimeout(() => {
+                updateInfoElement(src, text, title);
+                card.classList.remove('animateDown');
+                setTimeout(() => {
+                  card.classList.add('animateUp');
+                }, 50);
+              }, 500);
+            } else {
+              // Первый контент (без анимации ухода)
+              updateInfoElement(src, text, title);
+              const card = infoElem.querySelector('.card');
+              card.classList.add('animateUp');
+            }
+          } else {
+            // Анимация ухода текущего контента при очистке
+            if (currentActiveContent) {
+              const card = infoElem.querySelector('.card');
+              card.classList.remove('animateUp');
+              card.classList.add('animateDown');
+              setTimeout(() => {
+                clearInfoElement();
+                card.classList.remove('animateDown');
+              }, 500);
+            } else {
+              clearInfoElement();
+            }
+          }
+          currentActiveContent = newActiveContent;
+        }
+      });
+      function updateInfoElement(src, text, title) {
+        infoElem.style.display = "block";
+        infoElem.innerHTML = `
+      <div class="card">
+        <div class="card_marker">
+          <img class="card_marker-img" src="${src}" alt="snow">
+        </div>
+        <div class="card_descr">
+          <p class="card_descr-text">${text}</p>
+          <p class="card_descr-title">${title}</p>
+        </div>
+      </div>
+    `;
+      }
+      function clearInfoElement() {
+        infoElem.style.display = "none";
+      }
+
+      function onVideoEndListener() {
+        video.removeEventListener("ended", onVideoEndListener);
+        videoContent.style.display = "none";
+        siteContent.style.display = "block";
+        bodyOverflow.style.overflow = 'auto';
+        firstSection.classList.remove('fixed');
+        htmlSmooth.classList.remove('smooth');
+        // Отрубаем их скролл потому что он ломает получение корректных индексов секций при скролле.
+        // ScrollTrigger.normalizeScroll(false);
+        setTimeout(() => {
+          WheelContentSmooth();
+        }, 500);
+        setTimeout(() => {
+          contentNone.forEach((section) => {
+            section.classList.remove('video_active');
+          });
+        }, 600);
+      }
+      const finishVideos = () => {
+        bodyOverflow.style.overflow = 'hidden';
+        mouseLogo.style.display = 'none';
+        video.play();
+        // Отрубаем их скролл потому что он позволяет скролить при воспроизведении.
+        // ScrollTrigger.normalizeScroll(false);
+        video.addEventListener("ended", onVideoEndListener);
+      };
+      video.addEventListener("ended", onVideoEndListener);
+
+      const leavePrev = document.querySelector(".video_content .learn_button");
+      leavePrev.addEventListener("click", () => {
+        leavePrev.style.display = 'none';
+        finishVideos();
+      });
+    }
 
     // Добавляем обработчик прокрутки на блок siteContent
     siteContent.addEventListener("scroll", () => {
@@ -416,65 +566,9 @@ function App() {
       }
     });
 
-    // Добавляем обработчики для переключения видеофрагментов при прокрутке и событиях touch
-    // document.addEventListener("wheel", (e) => switchHandler("next"));
-
-    function anotherFunctionForScrollBack() {
-      const reloadBtn = document.querySelector('.reload_button');
-      if (window.innerWidth >= 1200) {
-        reloadBtn.style.display = 'flex';
-        reloadBtn.addEventListener('click', () => {
-          window.location.reload();
-        });
-      }
-    }
-
-    document.addEventListener("wheel", (e) => {
-      if (e.deltaY > 0) {
-        // Вызывать функцию для скролла вперед
-        switchHandler("next");
-      } else {
-        // Вызывать другую функцию для скролла назад
-        anotherFunctionForScrollBack();
-      }
-    });
-    document.addEventListener("touchstart", function (e) {
-      touchstartY = e.touches[0].clientY;
-    });
-    document.addEventListener("touchend", function (e) {
-      const touchEndY = e.changedTouches[0].clientY;
-      if (touchEndY - touchstartY > 0) {
-        // Вызвать функцию для скролла назад
-        anotherFunctionForScrollBack();
-      } else if (touchEndY - touchstartY < 0) {
-        // Вызвать функцию для скролла вперед
-        switchHandler("next");
-      }
-    });
-
-
-    // const videoElements = document.querySelectorAll('.bg-video');
-    // const progressBars = document.querySelectorAll('.progress-bar');
-    //
-    // videoElements.forEach((video, index) => {
-    //   const progressBar = progressBars[index];
-    //
-    //   video.addEventListener('timeupdate', () => {
-    //     const currentTime = video.currentTime;
-    //     const duration = video.duration;
-    //
-    //     // Обновляем прогресс-бар
-    //     const progress = (currentTime / duration) * 100;
-    //     progressBar.style.width = progress + '%';
-    //   });
-    // });
-
-
-
 
 
     // Логика страницы после блоков видео
-
     const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
     const modal = document.getElementById('modal');
     const modalExits = modal.querySelectorAll('.modal-exit');
@@ -555,8 +649,6 @@ function App() {
     //   handleOpenRoute({ src, routeName });
     // });
 
-
-
     // Переворачивание карточки справочная информация
     // cardFaqs.forEach((cardFaq) => {
     //   cardFaq.addEventListener('click', (e) => {
@@ -586,8 +678,6 @@ function App() {
       specsBlock.classList.toggle('active');
       speckArrow.classList.toggle('active');
     });
-
-
 
     // Определение функции для анимированной прокрутки к указанной секции
     function scrollToSection(section) {
@@ -638,10 +728,8 @@ function App() {
 
 
 
-
-
+    // aframe
     let rollup = document.querySelectorAll('#aframe_rollupSinich, #aframe_rollupPier');
-    // console.log(rollup);
 
     let dotLink = document.querySelectorAll('.footer-list .footer-link, .footer-links-wrapper-tab .footer-link');
     let dotSection = document.querySelectorAll('#pier-description, #sinichka-section, #pier-routes, #pier-faq');

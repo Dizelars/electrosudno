@@ -141,21 +141,24 @@
   //opacity: 1;
   position: fixed;
   width: 100%;
+  height: 100%;
   z-index: 16;
   //overflow: hidden; /* Скрыть видео, которые не воспроизводятся */
   transition: opacity .5s;
+  background: url("/public/images/video_block_bg.jpg") no-repeat center/cover;
 }
 
-//.video_content .video-background {
-//  position: fixed;
-//  top: 50%;
-//  left: 50%;
-//  min-width: 100%;
-//  min-height: 100%;
-//  transform: translate(-50%, -50%);
-//  //opacity: 0;
-//  //transition: opacity 1s ease; /* Плавный переход между видео */
-//}
+.video_content .video-background {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  //opacity: 0;
+  //transition: opacity 1s ease; /* Плавный переход между видео */
+}
 
 // Колесо прокрутеи
 
@@ -496,11 +499,16 @@
 //}
 
 @media (max-width: 1200px) {
+  .video_content .bg-video,
   .video_progress_container,
   .video_content .mouse_prev .mouse_prev-wrapper_desctop,
   .video_content .mouse_prev .mouse_prev-wrapper_mobile,
   .video_content .leave_button, .video_content .reload_button {
     display: none;
+  }
+
+  .video_content .video-background {
+    display: block;
   }
 
   .video_content .learn_button {
