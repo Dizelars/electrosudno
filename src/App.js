@@ -103,6 +103,33 @@ function App() {
         isEndVideos = true;
       }
 
+      function fadeVideo(lastVideo) {
+        lastVideo.addEventListener("timeupdate", function() {
+          const currentTime = lastVideo.currentTime;
+          const cardElem = infoElem.querySelector('.card');
+
+          if (currentTime >= 5 && currentTime < 5.4) {
+            cardElem.style.visibility = 'hidden';
+          } else if (currentTime < 7) {
+            videoContent.style.opacity = 1;
+          } else if (currentTime >= 8 && currentTime < 8.25) {
+            videoContent.style.opacity = 0.9;
+          } else if (currentTime >= 8.5 && currentTime < 8.75) {
+            videoContent.style.opacity = 0.6;
+          } else if (currentTime >= 9 && currentTime < 9.5) {
+            videoContent.style.opacity = 0.3;
+          } else if (currentTime >= 10) {
+            videoContent.style.opacity = 0;
+          }
+        });
+        function onlastVideoEndListener() {
+          lastVideo.removeEventListener("ended", onlastVideoEndListener);
+          finishVideosBlock();
+          WheelContentSmooth();
+        }
+        lastVideo.addEventListener("ended", onlastVideoEndListener);
+      }
+
       // Обработчик для переключения видеофрагментов
       const switchHandler = (direction) => {
         // TODO: Избавиться от direction вовсе
@@ -130,34 +157,6 @@ function App() {
             `.js-number-block[data-number="${nextActiveNumber}"]`
         );
 
-        function fadeVideo() {
-          nextVideo.addEventListener("timeupdate", function() {
-            const currentTime = nextVideo.currentTime;
-            const cardElem = infoElem.querySelector('.card');
-            // console.log(currentTime);
-
-            if (currentTime >= 5 && currentTime < 5.4) {
-              cardElem.style.visibility = 'hidden';
-            } else if (currentTime < 7) {
-              videoContent.style.opacity = 1;
-            } else if (currentTime >= 8 && currentTime < 8.25) {
-              videoContent.style.opacity = 0.9;
-            } else if (currentTime >= 8.5 && currentTime < 8.75) {
-              videoContent.style.opacity = 0.6;
-            } else if (currentTime >= 9 && currentTime < 9.5) {
-              videoContent.style.opacity = 0.3;
-            } else if (currentTime >= 10) {
-              videoContent.style.opacity = 0;
-            }
-          });
-          function onVideoEndListener2() {
-            nextVideo.removeEventListener("ended", onVideoEndListener2);
-            finishVideosBlock();
-            WheelContentSmooth();
-          }
-          nextVideo.addEventListener("ended", onVideoEndListener2);
-        }
-
         // Нижний край
         // if (!nextVideo) {
         //   finishVideosBlock();
@@ -165,7 +164,7 @@ function App() {
         // }
 
         if (nextVideo.id === 'progress_eight') {
-          fadeVideo();
+          fadeVideo(nextVideo);
         }
 
         const doSwitch = () => {
@@ -173,32 +172,12 @@ function App() {
             return;
           }
 
-          // function onVideoEndListenerCardDown() {
-          //   console.log('ended');
-          //   activeBlock.removeEventListener("ended", onVideoEndListenerCardDown);
-          //   const cardElem = infoElem.querySelector('.card');
-          //   // const video = activeBlock.querySelector('video');
-          //
-          //   // Задайте время (в секундах), за которое вы хотите выполнить анимацию
-          //   const timeBeforeEnd = 1; // Например, 5 секунд до окончания
-          //
-          //   // Проверьте, находится ли текущее время видео близко к окончанию
-          //   if (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd) {
-          //     // Если близко к окончанию, добавьте и уберите классы анимации
-          //     cardElem.classList.remove('animateUp');
-          //     cardElem.classList.add('animateDown');
-          //   }
-          // }
-          // activeBlock.addEventListener("ended", () => {console.log('ended')});
-          // console.log(activeBlock);
-
           activeBlock.classList.remove("active");
-          if (activeBlock.hasAttribute("autoplay")) {
-            activeBlock.removeAttribute("autoplay");
-          }
+          // if (activeBlock.hasAttribute("autoplay")) {
+          //   activeBlock.removeAttribute("autoplay");
+          // }
           nextVideo.classList.add("active");
           nextVideo.play();
-
 
 
           if (nextVideo.hasAttribute("data-info-text")) {
@@ -246,17 +225,6 @@ function App() {
           // Удаляем у активного блока цикличность чтобы дождаться события его завершения
           activeBlock.removeAttribute("loop");
 
-          // const cardElem = infoElem.querySelector('.card');
-          // // Задайте время (в секундах), за которое вы хотите выполнить анимацию
-          // const timeBeforeEnd = 1; // Например, 5 секунд до окончания
-          //
-          // // Проверьте, находится ли текущее время видео близко к окончанию
-          // if (cardElem && (activeBlock.currentTime >= activeBlock.duration - timeBeforeEnd)) {
-          //   // Если близко к окончанию, добавьте и уберите классы анимации
-          //   cardElem.classList.remove('animateUp');
-          //   cardElem.classList.add('animateDown');
-          // }
-
           // Слушатель события завершения видео
           onVideoEndListener = () => {
             activeBlock.removeEventListener("ended", onVideoEndListener);
@@ -273,6 +241,8 @@ function App() {
           doSwitch();
         }
       };
+
+
 
       // Пропустить превью с видео
       // const leavePrev = document.querySelector(".video_content .leave_button");
@@ -292,29 +262,7 @@ function App() {
               switchHandler("next");
             });
             if (index === allVideos.length - 1) {
-              e.addEventListener("timeupdate", function() {
-                const currentTime = e.currentTime;
-                const cardElem = infoElem.querySelector('.card');
-                if (currentTime >= 5 && currentTime < 5.4) {
-                  cardElem.style.visibility = 'hidden';
-                } else if (currentTime < 7) {
-                  videoContent.style.opacity = 1;
-                } else if (currentTime >= 8 && currentTime < 8.25) {
-                  videoContent.style.opacity = 0.9;
-                } else if (currentTime >= 8.5 && currentTime < 8.75) {
-                  videoContent.style.opacity = 0.6;
-                } else if (currentTime >= 9 && currentTime < 9.5) {
-                  videoContent.style.opacity = 0.3;
-                } else if (currentTime >= 10) {
-                  videoContent.style.opacity = 0;
-                }
-              });
-              function onVideoEndListenerButton() {
-                finishVideosBlock();
-                WheelContentSmooth();
-              }
-              // e.addEventListener("ended", finishVideosBlock, WheelContentSmooth);
-              e.addEventListener("ended", onVideoEndListenerButton);
+              fadeVideo(e);
             }
           });
         });
