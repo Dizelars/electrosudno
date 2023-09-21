@@ -16,14 +16,14 @@
     <meta property="og:url" content="https://electrosudno.ru/"/>
     <meta property="og:title" content="Электросудно"/>
     <meta property="og:description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
-    <meta property="og:image" content="https://electrosudno.ru/seoPrev.png"/>
+    <meta property="og:image" content="https://electrosudno.ru/seo.png"/>
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image"/>
     <meta property="twitter:url" content="https://electrosudno.ru/"/>
     <meta property="twitter:title" content="Электросудно"/>
     <meta property="twitter:description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
-    <meta property="twitter:image" content="https://electrosudno.ru/seoPrev.png"/>
+    <meta property="twitter:image" content="https://electrosudno.ru/seo.png"/>
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
@@ -195,9 +195,9 @@
 
     <div class="video_content">
 
-     <video class="video-background" playsinline muted preload="auto"></video>
+     <video class="video-background" playsinline preload muted></video>
 
-      <video class="bg-video js-number-block active" preload="auto" loop muted playsinline data-number="1" id="progress_one">
+      <video class="bg-video js-number-block active" preload loop muted playsinline data-number="1" id="progress_one">
       </video>
 
       <video class="bg-video js-number-block" muted playsinline data-number="2" data-transit id="progress_two">
@@ -637,7 +637,7 @@
   <script>
     // Прелоадер
     // Для демонстрации взято большое время и шаг 5%
-    const LOADING_TIME = 6000;
+    const LOADING_TIME = 7000;
     const PERCENT_STEP = 5;
     const COUNT_LOAD_TIME = LOADING_TIME / (100 / PERCENT_STEP);
     let percent = 0;
@@ -662,6 +662,9 @@
           } else {
               videoDesctop.play();
           }
+        setTimeout(function () {
+            fadeOutnojquery(hellopreloader);
+        }, 100);
         }
       }, COUNT_LOAD_TIME);
     }
@@ -678,9 +681,9 @@
     }
 
     countLoad();
-    setTimeout(function () {
-      fadeOutnojquery(hellopreloader);
-    }, LOADING_TIME);
+    // setTimeout(function () {
+    //   fadeOutnojquery(hellopreloader);
+    // }, LOADING_TIME);
 
 
     // При прокрутке колесом мыши, видео воспроизводится и моментально ставится на паузу.

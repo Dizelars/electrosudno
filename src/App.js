@@ -92,7 +92,7 @@ function App() {
     }
 
     function desctopVideo() {
-      console.log('desctop video');
+      // console.log('desctop video');
 
       const finishVideosBlock = () => {
         videoContent.style.display = "none";
@@ -119,7 +119,7 @@ function App() {
         const nextActiveNumber =
             direction === "next" ? activeNumber + 1 : activeNumber - 1;
 
-        console.log("nextActiveNumber", nextActiveNumber);
+        // console.log("nextActiveNumber", nextActiveNumber);
 
         // Верхний край
         if (!nextActiveNumber) {
@@ -130,59 +130,42 @@ function App() {
             `.js-number-block[data-number="${nextActiveNumber}"]`
         );
 
-        // function fadeVideo() {
-        //   console.log('fade');
-        //   console.log(activeBlock);
-        //   activeBlock.addEventListener("timeupdate", function() {
-        //     console.log('fade time listen');
-        //     const currentTime = activeBlock.currentTime;
-        //     // console.log(currentTime);
-        //
-        //     if (currentTime < 7) {
-        //       videoContent.style.opacity = 1;
-        //     } else if (currentTime >= 8 && currentTime < 8.25) {
-        //       videoContent.style.opacity = 0.9;
-        //     } else if (currentTime >= 8.5 && currentTime < 8.75) {
-        //       videoContent.style.opacity = 0.6;
-        //     } else if (currentTime >= 9 && currentTime < 9.5) {
-        //       videoContent.style.opacity = 0.3;
-        //     } else if (currentTime >= 10) {
-        //       videoContent.style.opacity = 0;
-        //     }
-        //   });
-        //   function onVideoEndListener2() {
-        //     console.log('finish scroll');
-        //     activeBlock.removeEventListener("ended", onVideoEndListener2);
-        //     finishVideosBlock();
-        //     WheelContentSmooth();
-        //     // console.log('finish scroll');
-        //   }
-        //   activeBlock.addEventListener("ended", onVideoEndListener2);
-        // }
+        function fadeVideo() {
+          nextVideo.addEventListener("timeupdate", function() {
+            const currentTime = nextVideo.currentTime;
+            const cardElem = infoElem.querySelector('.card');
+            // console.log(currentTime);
+
+            if (currentTime >= 5 && currentTime < 5.4) {
+              cardElem.style.visibility = 'hidden';
+            } else if (currentTime < 7) {
+              videoContent.style.opacity = 1;
+            } else if (currentTime >= 8 && currentTime < 8.25) {
+              videoContent.style.opacity = 0.9;
+            } else if (currentTime >= 8.5 && currentTime < 8.75) {
+              videoContent.style.opacity = 0.6;
+            } else if (currentTime >= 9 && currentTime < 9.5) {
+              videoContent.style.opacity = 0.3;
+            } else if (currentTime >= 10) {
+              videoContent.style.opacity = 0;
+            }
+          });
+          function onVideoEndListener2() {
+            nextVideo.removeEventListener("ended", onVideoEndListener2);
+            finishVideosBlock();
+            WheelContentSmooth();
+          }
+          nextVideo.addEventListener("ended", onVideoEndListener2);
+        }
 
         // Нижний край
-        if (!nextVideo) {
-          // fadeVideo();
-          // activeBlock.addEventListener("timeupdate", () => {
-          //   const currentTime2 = activeBlock.currentTime;
-          //   console.log(currentTime2);
-          //   console.log(activeBlock);
-          //
-          //   if (currentTime2 <= 7) {
-          //     videoContent.style.opacity = 1;
-          //   } else if (currentTime2 >= 8 && currentTime2 < 8.25) {
-          //     videoContent.style.opacity = 0.9;
-          //   } else if (currentTime2 >= 8.5 && currentTime2 < 8.75) {
-          //     videoContent.style.opacity = 0.6;
-          //   } else if (currentTime2 >= 9 && currentTime2 < 9.5) {
-          //     videoContent.style.opacity = 0.3;
-          //   } else if (currentTime2 >= 10) {
-          //     videoContent.style.opacity = 0;
-          //   }
-          // });
-          // videoContent.style.opacity = 0.5;
-          finishVideosBlock();
-          WheelContentSmooth();
+        // if (!nextVideo) {
+        //   finishVideosBlock();
+        //   WheelContentSmooth();
+        // }
+
+        if (nextVideo.id === 'progress_eight') {
+          fadeVideo();
         }
 
         const doSwitch = () => {
@@ -300,6 +283,7 @@ function App() {
       endButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           mouse.style.display = 'none';
+          btn.style.display = 'none';
           // learn.style.display = 'none';
           allVideos.forEach((e, index) => {
             e.removeAttribute('loop');
@@ -407,7 +391,7 @@ function App() {
     }
 
     function mobileVideo() {
-      console.log('mobile video');
+      // console.log('mobile video');
 
       const infoElemContent = {
         snow: {

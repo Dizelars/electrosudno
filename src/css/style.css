@@ -1368,7 +1368,7 @@ p, ol {
   height: 100%;
   z-index: 16;
   transition: opacity 0.5s;
-  background: url("/public/images/video_block_bg.jpg") no-repeat center/cover;
+  background: url("/public/images/firstCadr.jpg") no-repeat center/cover;
 }
 
 .video_content .video-background {
