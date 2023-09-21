@@ -18,12 +18,23 @@ const ROUTES = [
   {
     name: 'avtozavodsky',
     circles: [
-      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '38%', right: '41.5%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-      { bottom: '47%', right: '32%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '53%', right: '27%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '52%', right: '17%', hoverImgSrc: '/images/trehgornii.jpg '},
+      { bottom: '32.1%', right: '11.3%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '26.6%', right: '31.5%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '38.1%', right: '43%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '30.5%', right: '56.4%', hoverImgSrc: '/images/city_centr.jpg '},
+      { bottom: '51%', right: '90.7%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '56%', right: '87.1%', hoverImgSrc: '/images/trehgornii.jpg '},
+    ],
+  },
+  {
+    name: 'avtozavodsky_vert',
+    circles: [
+      { bottom: '7.8%', right: '64.8%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '28.6%', right: '71.2%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '40.4%', right: '58%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '54.2%', right: '66.4%', hoverImgSrc: '/images/city_centr.jpg '},
+      { bottom: '89.4%', right: '43.4%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '85.5%', right: '37.5%', hoverImgSrc: '/images/trehgornii.jpg '},
     ],
   }
 ];
