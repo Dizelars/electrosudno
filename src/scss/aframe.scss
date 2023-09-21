@@ -111,3 +111,48 @@ a-scene {
 //  position: absolute;
 //  z-index: 20;
 //}
+
+
+@media (max-width: 1200px) {
+  .a-dialog {
+    border-radius: 20px;
+    background: #A7A5B4;
+    padding: 20px;
+    max-height: 250px;
+    height: 100%;
+  }
+
+  .a-dialog-allow-button,
+  .a-dialog-deny-button,
+  .a-dialog-ok-button {
+    border-radius: 10px;
+  }
+
+  .a-dialog-allow-button,
+  .a-dialog-deny-button,
+  .a-dialog-ok-button,
+  .a-dialog-text {
+    font-family: "MoscowSans", sans-serif;
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .a-dialog-text {
+    margin-bottom: 20px;
+  }
+
+  .a-dialog-allow-button {
+    background-color: #59C598;
+  }
+
+  .a-dialog-deny-button {
+    background-color: #BBB9C8;
+  }
+
+  .a-dialog-ok-button {
+    background-color: #BBB9C8;
+  }
+
+}
