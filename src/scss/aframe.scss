@@ -131,7 +131,8 @@ a-scene {
   .a-dialog-allow-button,
   .a-dialog-deny-button,
   .a-dialog-ok-button,
-  .a-dialog-text {
+  .a-dialog-text,
+  .a-https-text{
     font-family: "MoscowSans", sans-serif;
     color: #ffffff;
     font-weight: 300;
@@ -154,5 +155,4 @@ a-scene {
   .a-dialog-ok-button {
     background-color: #BBB9C8;
   }
-
 }

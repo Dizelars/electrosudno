@@ -103,7 +103,7 @@ function App() {
     }
 
     function desctopVideo() {
-      // console.log('desctop video');
+      console.log('desctop video');
 
       const finishVideosBlock = () => {
         videoContent.style.display = "none";
@@ -119,17 +119,17 @@ function App() {
           const currentTime = lastVideo.currentTime;
           const cardElem = infoElem.querySelector('.card');
 
-          if (currentTime >= 5 && currentTime < 5.4) {
+          if (currentTime >= 5.6 && currentTime < 6) {
             cardElem.style.visibility = 'hidden';
-          } else if (currentTime < 7) {
+          } else if (currentTime < 10) {
             videoContent.style.opacity = 1;
-          } else if (currentTime >= 8 && currentTime < 8.25) {
+          } else if (currentTime >= 11 && currentTime < 11.25) {
             videoContent.style.opacity = 0.9;
-          } else if (currentTime >= 8.5 && currentTime < 8.75) {
+          } else if (currentTime >= 11.5 && currentTime < 11.75) {
             videoContent.style.opacity = 0.6;
-          } else if (currentTime >= 9 && currentTime < 9.5) {
+          } else if (currentTime >= 12 && currentTime < 12.5) {
             videoContent.style.opacity = 0.3;
-          } else if (currentTime >= 10) {
+          } else if (currentTime >= 13) {
             videoContent.style.opacity = 0;
           }
         });
@@ -393,27 +393,32 @@ function App() {
       let currentActiveContent = null;
       video.addEventListener("timeupdate", function() {
         const currentTime = video.currentTime;
+        const cardElem = infoElem.querySelector('.card');
         let newActiveContent = null;
 
-        if (currentTime > 6.5 && currentTime < 7) {
+        if (currentTime > 9.5 && currentTime < 10) {
           playVideoFromStart()
-        } else if (currentTime >= 7 && currentTime < 12) {
+        } else if (currentTime >= 10.5 && currentTime < 16.5) {
           newActiveContent = infoElemContent.ejection;
-        } else if (currentTime >= 13 && currentTime < 17) {
+        } else if (currentTime >= 18.5 && currentTime < 20.5) {
           newActiveContent = infoElemContent.snow;
-        } else if (currentTime >= 18 && currentTime < 22) {
+        } else if (currentTime >= 22.5 && currentTime < 27.5) {
           newActiveContent = infoElemContent.capacity;
-        } else if (currentTime >= 23 && currentTime < 26) {
+        } else if (currentTime >= 28 && currentTime < 33.5) {
           newActiveContent = infoElemContent.moorings;
-        } else if (currentTime < 30.5) {
-          videoContent.style.opacity = 1;
-        } else if (currentTime >= 30.5 && currentTime < 31) {
+        }else if (currentTime >= 34.5) {
+          cardElem.style.visibility = 'hidden';
+        }
+        // else if (currentTime < 37.5) {
+        //   videoContent.style.opacity = 1;
+        // }
+        else if (currentTime >= 37.5 && currentTime < 38) {
           videoContent.style.opacity = 0.9;
-        } else if (currentTime >= 31 && currentTime < 31.5) {
+        } else if (currentTime >= 38 && currentTime < 38.5) {
           videoContent.style.opacity = 0.6;
-        } else if (currentTime >= 31.5 && currentTime < 32) {
+        } else if (currentTime >= 38.6 && currentTime < 39) {
           videoContent.style.opacity = 0.3;
-        } else if (currentTime >= 32) {
+        } else if (currentTime >= 39) {
           videoContent.style.opacity = 0;
         }
 
@@ -587,6 +592,7 @@ function App() {
     // Закрытие модалки маршрута
     modalExits.forEach((modalExit) => {
       modalExit.addEventListener('click', (e) => {
+        console.log('click exit');
         e.preventDefault();
         modal.classList.remove('open');
         bodyNoScroll.style.overflow = 'auto';
@@ -663,7 +669,11 @@ function App() {
         const currentTime = timestamp - startTime; // Прошедшее время
         const progress = Math.min(currentTime / duration, 1); // Прогресс анимации (0-1)
         const easing = easeInOutQuad(progress); // Функция для сглаживания анимации
-        window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+        // window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+        setTimeout(() => {
+          window.scrollTo(0, currentPosition + distance * easing); // Прокрутка
+        }, 150);
+
 
         // Продолжение анимации, если не достигнут конец анимации
         if (currentTime < duration) {

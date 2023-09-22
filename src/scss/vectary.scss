@@ -137,6 +137,10 @@
 }
 
 @media (max-width: 1024px) {
+  .vectary .container {
+    position: static;
+  }
+
   .vectary .tech_speck {
     left: 30px;
     bottom: 30px;
@@ -156,6 +160,16 @@
   }
 }
 
+//@media (max-width: 840px) {
+//  .vectary .tech_speck div[class^="tech_speck-"] {
+//    padding: 14px;
+//  }
+//
+//  .vectary .tech_speck div[class^="tech_speck-"] p {
+//    font-size: 14px;
+//  }
+//}
+
 @media (max-width: 840px) {
   .vectary .tech_speck div[class^="tech_speck-"] {
     padding: 14px;
@@ -164,9 +178,7 @@
   .vectary .tech_speck div[class^="tech_speck-"] p {
     font-size: 14px;
   }
-}
 
-@media (max-width: 640px) {
   .vectary .interior_button {
     padding: 10px 30px;
     font-size: 14px;
