@@ -613,9 +613,13 @@
 
   <!-- Модалка -->
   <div class="modal" id="modal">
-    <div class="modal-bg modal-exit"></div>
+    <div class="modal-bg modal-exit">
+      <button class="btn modal-close modal-exit d-block-mob d-none filter-white">
+        <img src="%PUBLIC_URL%/images/icons/close.svg" alt="close">
+      </button>
+    </div>
     <div class="modal-container">
-      <button class="btn modal-close modal-exit filter-white">
+      <button class="btn modal-close modal-exit d-none-mob d-block filter-white">
         <img src="%PUBLIC_URL%/images/icons/close.svg" alt="close">
       </button>
       <div class="modal-body"></div>
