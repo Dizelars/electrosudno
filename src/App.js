@@ -89,6 +89,8 @@ function App() {
     const siteContent = document.querySelector(".site_content");
     const contentNone = document.querySelectorAll('.video_active, section#pier-routes, section#sinichka-section, footer#footer');
     const firstSection = document.querySelector('section#pier-description');
+    const mouseTrigger = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop');
+    const progressStories = document.querySelector('.video_content .video_progress_container');
 
     // if (videoContent) {
     //
@@ -121,6 +123,8 @@ function App() {
 
           if (currentTime >= 5.6 && currentTime < 6) {
             cardElem.style.visibility = 'hidden';
+            mouseTrigger.style.visibility = 'hidden';
+            progressStories.style.visibility = 'hidden';
           } else if (currentTime < 10) {
             videoContent.style.opacity = 1;
           } else if (currentTime >= 11 && currentTime < 11.25) {
@@ -396,8 +400,8 @@ function App() {
         const cardElem = infoElem.querySelector('.card');
         let newActiveContent = null;
 
-        if (currentTime > 9.5 && currentTime < 10) {
-          playVideoFromStart()
+        if (currentTime > 9.6 && currentTime < 10.1) {
+          playVideoFromStart();
         } else if (currentTime >= 10.5 && currentTime < 16.5) {
           newActiveContent = infoElemContent.ejection;
         } else if (currentTime >= 18.5 && currentTime < 20.5) {
