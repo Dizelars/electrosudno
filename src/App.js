@@ -90,6 +90,7 @@ function App() {
     const contentNone = document.querySelectorAll('.video_active, section#pier-routes, section#sinichka-section, footer#footer');
     const firstSection = document.querySelector('section#pier-description');
     const mouseTrigger = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop');
+    const mouseTriggerText = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop span');
     const progressStories = document.querySelector('.video_content .video_progress_container');
 
     // if (videoContent) {
@@ -161,6 +162,8 @@ function App() {
         const nextActiveNumber =
             direction === "next" ? activeNumber + 1 : activeNumber - 1;
 
+        mouseTriggerText.innerHTML = 'Переходим далее';
+
         // console.log("nextActiveNumber", nextActiveNumber);
 
         // Верхний край
@@ -211,6 +214,7 @@ function App() {
           `;
             const cardElem = infoElem.querySelector('.card');
             cardElem.classList.add('animateUp');
+            mouseTriggerText.innerHTML = 'Крутите вниз';
           } else {
             infoElem.classList.remove("active");
             infoElem.innerHTML = ""; // Удалить контент из infoElem
