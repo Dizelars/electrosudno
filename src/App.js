@@ -91,7 +91,10 @@ function App() {
     const firstSection = document.querySelector('section#pier-description');
     const mouseTrigger = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop');
     const mouseTriggerText = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop span');
+    const mouseArrow = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow');
     const progressStories = document.querySelector('.video_content .video_progress_container');
+    const endButton = document.querySelector(".video_content .leave_button");
+    const reloadBtn = document.querySelector('.reload_button');
 
     // if (videoContent) {
     //
@@ -108,6 +111,8 @@ function App() {
     function desctopVideo() {
       console.log('desctop video');
 
+      const firstVideo = document.querySelector('#progress_one');
+
       const finishVideosBlock = () => {
         videoContent.style.display = "none";
         firstSection.classList.remove('fixed');
@@ -118,14 +123,20 @@ function App() {
       }
 
       function fadeVideo(lastVideo) {
+        mouseTrigger.style.display = 'none';
+        endButton.style.display = 'none';
+        reloadBtn.style.display = 'none';
         lastVideo.addEventListener("timeupdate", function() {
           const currentTime = lastVideo.currentTime;
           const cardElem = infoElem.querySelector('.card');
 
-          if (currentTime >= 5.6 && currentTime < 6) {
+          // if (currentTime >= 1 && currentTime < 1.5) {
+          //   mouseTrigger.style.visibility = 'hidden';
+          //
+          // } else
+            if (currentTime >= 5.6 && currentTime < 6) {
             cardElem.style.visibility = 'hidden';
-            mouseTrigger.style.visibility = 'hidden';
-            progressStories.style.visibility = 'hidden';
+            progressStories.style.display = 'none';
           } else if (currentTime < 10) {
             videoContent.style.opacity = 1;
           } else if (currentTime >= 11 && currentTime < 11.25) {
@@ -146,6 +157,15 @@ function App() {
         lastVideo.addEventListener("ended", onlastVideoEndListener);
       }
 
+      const onVideoFirstEndListener = () => {
+        const currentTime = firstVideo.currentTime;
+        if (currentTime >= 9.5) {
+          mouseTrigger.style.display = 'block';
+          firstVideo.removeEventListener("timeupdate", onVideoFirstEndListener);
+        }
+      };
+      firstVideo.addEventListener("timeupdate", onVideoFirstEndListener);
+
       // Обработчик для переключения видеофрагментов
       const switchHandler = (direction) => {
         // TODO: Избавиться от direction вовсе
@@ -163,6 +183,7 @@ function App() {
             direction === "next" ? activeNumber + 1 : activeNumber - 1;
 
         mouseTriggerText.innerHTML = 'Переходим далее';
+        mouseArrow.style.display = 'none';
 
         // console.log("nextActiveNumber", nextActiveNumber);
 
@@ -215,6 +236,7 @@ function App() {
             const cardElem = infoElem.querySelector('.card');
             cardElem.classList.add('animateUp');
             mouseTriggerText.innerHTML = 'Крутите вниз';
+            mouseArrow.style.display = 'block';
           } else {
             infoElem.classList.remove("active");
             infoElem.innerHTML = ""; // Удалить контент из infoElem
@@ -325,7 +347,7 @@ function App() {
 
       // Добавляем обработчики для переключения видеофрагментов при прокрутке и событиях touch
       function anotherFunctionForScrollBack() {
-        const reloadBtn = document.querySelector('.reload_button');
+        // const reloadBtn = document.querySelector('.reload_button');
         if (window.innerWidth >= 1200) {
           reloadBtn.style.display = 'flex';
           reloadBtn.addEventListener('click', () => {
