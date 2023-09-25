@@ -40,20 +40,25 @@ const ROUTES = [
   }
 ];
 
-const createVideoSource = (el, i, isMobile, fileType) => {
+const createVideoSource = (el, i, resolution, fileType) => {
   const source = document.createElement("source");
-  source.setAttribute("src", `/${i + 1}${fileType}${isMobile ? "_mob" : ""}.mp4`);
+  source.setAttribute("src", `/${i + 1}${fileType}${resolution ? "_mob" : ""}.mp4`);
   source.setAttribute("type", "video/mp4");
   el.appendChild(source);
 };
 const initVideos = () => {
-  const isMobile = window.innerWidth < 1200;
+  const isiPad = window.innerWidth < 1200;
+  const isMobile = window.innerWidth < 700;
 
-  if (isMobile) {
+  if (isiPad && !isMobile) {
+    document.querySelectorAll(".video-background").forEach((el, i) => {
+      createVideoSource(el, i, isiPad, "ipad");
+    });
+  } else if (isiPad && isMobile) {
     document.querySelectorAll(".video-background").forEach((el, i) => {
       createVideoSource(el, i, isMobile, "long");
     });
-  } else {
+  } else if (!isiPad && !isMobile) {
     document.querySelectorAll(".bg-video").forEach((el, i) => {
       createVideoSource(el, i, isMobile, "video");
     });
