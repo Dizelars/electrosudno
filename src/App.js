@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 
 const IMAGE_WIDTH_OFFSET = 180;
+const IMAGE_WIDTH_MOBILE_OFFSET = IMAGE_WIDTH_OFFSET / 2;
 
 // Маршруты
 const ROUTES = [
@@ -542,7 +543,7 @@ function App() {
     // const cardFaqs = document.querySelectorAll('.card-faq');
 
     // добавление кружка-станции
-    const handleAddCircle = ({ bottom, right, hoverImgSrc }) => {
+    const handleAddCircle = ({ bottom, right, hoverImgSrc }, index) => {
       const isMobile = window.innerWidth <= 440;
       const circleEl = document.createElement('div');
       circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
@@ -554,7 +555,7 @@ function App() {
       hoverImg.src = hoverImgSrc;
 
       hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
-      const hoverImgRight = isMobile ? `${right}` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
+      const hoverImgRight = isMobile ? `calc(${right} - ${IMAGE_WIDTH_MOBILE_OFFSET}px` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
       hoverImg.style.setProperty('right', hoverImgRight);
       modalBody.appendChild(hoverImg);
 
@@ -568,6 +569,16 @@ function App() {
         hoverImg.classList.remove('opacity-1');
       })
 
+      // всплытие иконки первой станции при открытии маршрута
+      if (index === 0) {
+        setTimeout(() => {
+          hoverImg.classList.add('opacity-1');
+          setTimeout(() => {
+            hoverImg.classList.remove('opacity-1');
+          }, 2000);
+        }, 1000);
+      }
+
       modalBody.appendChild(circleEl);
     }
 
@@ -580,8 +591,8 @@ function App() {
       routeImg.classList.add('img-responsive');
       modalBody.appendChild(routeImg);
       const currRoute = ROUTES.find((route) => route.name === routeName);
-      currRoute.circles.forEach((circle) => {
-        handleAddCircle(circle)
+      currRoute.circles.forEach((circle, index) => {
+        handleAddCircle(circle, index);
       });
     }
 
