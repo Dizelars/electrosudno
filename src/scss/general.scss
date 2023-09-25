@@ -50,7 +50,7 @@ h3 {
   font-weight: 700;
 }
 
-p, ol {
+p, ol, ul {
   width: 100%;
   font-size: 1.125em;
   line-height: 1.3rem;
@@ -206,7 +206,7 @@ p, ol {
 }
 
 @media (max-width: map-get($breakpoints, horizTab)) {
-  p, ol li {
+  p, ol li, ul li {
     font-size: 1rem;
   }
 
@@ -222,7 +222,7 @@ p, ol {
     line-height: 3.65rem;
   }
 
-  p, ol li {
+  p, ol li, ul li {
     font-size: 0.875rem;
     line-height: 1.125rem;
   }

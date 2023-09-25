@@ -509,6 +509,10 @@
     color: map-get($colors, white);
   }
 
+  .footer-links-wrapper-tab .footer-link {
+    border-bottom: 1px solid map-get($colors, white);
+  }
+
   .btn-link-footer {
     width: 100%;
   }
@@ -591,6 +595,7 @@
   .logos-flex-wrapper {
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
   }
 
   .footer-contacts {

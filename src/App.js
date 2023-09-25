@@ -112,8 +112,6 @@ function App() {
     function desctopVideo() {
       console.log('desctop video');
 
-      const firstVideo = document.querySelector('#progress_one');
-
       const finishVideosBlock = () => {
         videoContent.style.display = "none";
         firstSection.classList.remove('fixed');
@@ -158,9 +156,10 @@ function App() {
         lastVideo.addEventListener("ended", onlastVideoEndListener);
       }
 
+      const firstVideo = document.querySelector('#progress_one');
       const onVideoFirstEndListener = () => {
         const currentTime = firstVideo.currentTime;
-        if (currentTime >= 9.5) {
+        if (currentTime >= 4.5) {
           mouseTrigger.style.display = 'block';
           firstVideo.removeEventListener("timeupdate", onVideoFirstEndListener);
         }
@@ -410,6 +409,7 @@ function App() {
       const htmlSmooth = document.querySelector("html");
       const bodyOverflow = document.querySelector("body");
       const mouseLogo = document.querySelector('.video_content .mouse_prev');
+      const leavePrev = document.querySelector(".video_content .learn_button");
 
       let loopVideo = true;  // Флаг для циклического повторения видео
       // Функция для начала проигрывания видео с нулевой секунды
@@ -437,8 +437,9 @@ function App() {
           newActiveContent = infoElemContent.capacity;
         } else if (currentTime >= 28 && currentTime < 33.5) {
           newActiveContent = infoElemContent.moorings;
-        }else if (currentTime >= 34.5) {
+        } else if (currentTime >= 34.5) {
           cardElem.style.visibility = 'hidden';
+          leavePrev.style.display = "none";
         }
         // else if (currentTime < 37.5) {
         //   videoContent.style.opacity = 1;
@@ -536,9 +537,9 @@ function App() {
 
       video.addEventListener("ended", onVideoEndListener);
 
-      const leavePrev = document.querySelector(".video_content .learn_button");
+
       leavePrev.addEventListener("click", () => {
-        leavePrev.style.display = 'none';
+        leavePrev.querySelector('button').innerHTML = 'Внимание на экран';
         loopVideo = false;  // Отключаем циклическое повторение видео
         video.play();  // Запускаем видео с текущей секунды
         finishVideos();
@@ -669,7 +670,7 @@ function App() {
 
 
     // Выезжающее описание на синичке в вектари (на мобилке)
-    const specsBlock = document.querySelector('.vectary .tech_speck');
+    const specsBlock = document.querySelector('.vectary .info_wrapper .info_position');
     const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
     const speckArrow = document.querySelector('.vectary .tech_speck .tech_speck-click .tech_speck-img');
 

@@ -113,7 +113,7 @@ h3 {
   font-weight: 700;
 }
 
-p, ol {
+p, ol, ul {
   width: 100%;
   font-size: 1.125em;
   line-height: 1.3rem;
@@ -702,7 +702,7 @@ p, ol {
 }
 
 @media (max-width: 1024px) {
-  p, ol li {
+  p, ol li, ul li {
     font-size: 1rem;
   }
   h3 {
@@ -715,7 +715,7 @@ p, ol {
     font-size: 3.3rem;
     line-height: 3.65rem;
   }
-  p, ol li {
+  p, ol li, ul li {
     font-size: 0.875rem;
     line-height: 1.125rem;
   }
@@ -1199,6 +1199,9 @@ p, ol {
   .footer-link {
     color: #FFFFFF;
   }
+  .footer-links-wrapper-tab .footer-link {
+    border-bottom: 1px solid #FFFFFF;
+  }
   .btn-link-footer {
     width: 100%;
   }
@@ -1263,6 +1266,7 @@ p, ol {
   .logos-flex-wrapper {
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
   }
   .footer-contacts {
     display: flex;
@@ -1876,21 +1880,50 @@ a-scene {
   overflow: hidden;
 }
 
-.vectary .tech_speck {
-  position: absolute;
-  display: flex;
-  left: 80px;
-  bottom: 62px;
-  border-radius: 20px;
-  border: 2px solid #b9b8c4;
-  background: linear-gradient(290deg, rgba(161, 159, 174, 0.8) 0%, rgba(172, 170, 186, 0.8) 100%);
-  backdrop-filter: blur(10px);
+.vectary iframe {
+  border: none;
 }
 
-.vectary .tech_speck div[class^=tech_speck-] {
-  padding: 32px 50px 32px 30px;
+.vectary .container {
+  position: absolute;
+  top: unset;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  max-height: max-content;
+  height: 100%;
+  pointer-events: none;
+}
+
+.vectary .info_wrapper {
+  position: relative;
+  top: 20px;
+  height: 100%;
+}
+
+.vectary .info_wrapper .info_position {
+  position: absolute;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  bottom: 20px;
+  width: 100%;
+}
+
+.vectary .tech_speck {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  border-radius: unset;
+  border: none;
+  background: none;
+  backdrop-filter: none;
+}
+
+.vectary .info_wrapper .info_position .speck_wrapper {
+  width: 100%;
 }
 
 .vectary .tech_speck .tech_speck-click {
@@ -1900,7 +1933,7 @@ a-scene {
 .vectary .tech_speck div[class^=tech_speck-] p {
   font-family: "MoscowSans", sans-serif;
   font-size: 20px;
-  line-height: 26px;
+  line-height: 20.5px;
   color: #FFF;
   margin: 0;
 }
@@ -1911,11 +1944,6 @@ a-scene {
 
 .vectary .tech_speck div[class^=tech_speck-] p.tech_speck-text {
   font-weight: 800;
-}
-
-.vectary .tech_speck div[class^=tech_speck-]:not(:last-child) {
-  border-right: 1px solid #b9b8c4;
-  position: relative;
 }
 
 .vectary .tech_speck div[class^=tech_speck-]:not(:last-child):before,
@@ -1937,11 +1965,14 @@ a-scene {
   bottom: -2px;
 }
 
-.vectary .interior_button {
-  position: absolute;
-  bottom: 64px;
-  right: 80px;
-  padding: 42px;
+.vectary .excursion_buttons,
+.vectary .tech_speck {
+  pointer-events: all;
+}
+
+.vectary .interior_button,
+.vectary .ar_button {
+  padding: 26px 10px;
   border: none;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.7);
@@ -1953,136 +1984,139 @@ a-scene {
   color: #FFF;
   cursor: pointer;
   transition: 0.7s;
+  width: 100%;
+  height: 48%;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
-.vectary .interior_button img {
+.vectary .ar_button {
+  text-decoration: none;
+}
+
+.vectary .interior_button img,
+.vectary .ar_button img {
   margin-right: 8px;
   transition: transform 0.7s ease;
 }
 
-.vectary .interior_button:hover {
+.vectary .interior_button:hover,
+.vectary .ar_button:hover {
   background: url("/public/images/sepia.png"), #000000;
 }
 
-@media (max-width: 1440px) {
-  .vectary .tech_speck {
-    left: 40px;
-    bottom: 31px;
-  }
+.vectary .excursion_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 30%;
+  width: 100%;
+}
+
+.vectary .tech_speck div[class^=tech_speck-] {
+  background: linear-gradient(290deg, rgba(161, 159, 174, 0.8) 0%, rgba(172, 170, 186, 0.8) 100%);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  width: 43%;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:not(:last-child) {
+  border-right: unset;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) + div[class^=tech_speck-] {
+  border-radius: 20px 0 0 20px;
+  border-right: 2px solid #b9b8c4;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(2),
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(3) {
+  border-bottom: 2px solid #b9b8c4;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(3):before {
+  content: none;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(2):after {
+  bottom: -3px;
+  left: 10px;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(4):before {
+  top: -4px;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(2):before,
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(4):before,
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(4):after {
+  right: -4px;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(3):after {
+  bottom: -3px;
+  right: 10px;
+}
+
+.vectary .tech_speck div[class^=tech_speck-]:nth-child(even) + div[class^=tech_speck-] {
+  border-radius: 5px 20px 20px 5px;
+}
+
+@media (max-width: 1300px) {
   .vectary .tech_speck div[class^=tech_speck-] {
-    padding: 20px 30px 20px 20px;
-  }
-  .vectary .interior_button {
-    bottom: 41px;
-    right: 40px;
-    padding: 22px;
+    width: 40%;
   }
 }
-@media (max-width: 1200px) {
-  .vectary .tech_speck div[class^=tech_speck-] p {
-    font-size: 16px;
+@media (max-width: 930px) {
+  .vectary .tech_speck div[class^=tech_speck-] {
+    width: 37%;
   }
 }
-@media (max-width: 1024px) {
-  .vectary .container {
+@media (max-width: 768px) {
+  .vectary .info_wrapper {
     position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
   }
-  .vectary .tech_speck {
-    left: 30px;
-    bottom: 30px;
+  .vectary .info_wrapper .info_position {
+    position: static;
+    flex-direction: column;
+    gap: 10px;
   }
-  .vectary .tech_speck div[class^=tech_speck-] {
-    padding: 30px;
+  .vectary .speck_wrapper {
+    order: 1;
   }
-  .vectary .interior_button {
-    padding: 24px 30px;
-    font-size: 15px;
-    left: 24px;
-    top: 30px;
-    bottom: unset;
-    right: unset;
-  }
-}
-@media (max-width: 840px) {
-  .vectary .tech_speck div[class^=tech_speck-] {
-    padding: 14px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-] p {
-    font-size: 14px;
-  }
-  .vectary .interior_button {
-    padding: 10px 30px;
-    font-size: 14px;
-  }
-  .vectary .tech_speck {
-    max-width: 580px;
+  .vectary .excursion_buttons {
+    flex-direction: row;
     width: 100%;
+    max-width: unset;
     justify-content: center;
-    flex-wrap: wrap;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: unset;
-    border: none;
-    background: none;
-    backdrop-filter: none;
+    gap: 10px;
   }
-  .vectary .tech_speck div[class^=tech_speck-] {
-    background: linear-gradient(290deg, rgba(161, 159, 174, 0.8) 0%, rgba(172, 170, 186, 0.8) 100%);
-    backdrop-filter: blur(10px);
-    padding: 20px 30px;
-    max-width: 208px;
-    width: 100%;
-  }
-  .vectary .tech_speck div[class^=tech_speck-] p {
-    line-height: 20.5px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:not(:last-child) {
-    border-right: unset;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) + div[class^=tech_speck-] {
-    border-radius: 20px 0 0 20px;
-    border-right: 2px solid #b9b8c4;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2),
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3) {
-    border-bottom: 2px solid #b9b8c4;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3):before {
-    content: none;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2):after {
-    bottom: -3px;
-    left: 10px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4):before {
-    top: -4px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(2):before,
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4):before,
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(4):after {
-    right: -4px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(3):after {
-    bottom: -3px;
-    right: 10px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-]:nth-child(even) + div[class^=tech_speck-] {
-    border-radius: 5px 20px 20px 5px;
-  }
-  .vectary .tech_speck div[class^=tech_speck-] p {
+  .vectary .interior_button, .vectary .ar_button {
+    padding: 10px 22px;
+    height: 100%;
+    width: 45%;
     font-size: 16px;
   }
 }
 @media (max-width: 540px) {
-  .sinichka_fixed .vectary .container {
-    position: static;
-  }
-  .vectary .tech_speck {
-    transform: translate(-50%, 94%);
+  .vectary .info_wrapper .info_position {
+    transform: translateY(78%);
     transition: all 0.5s ease;
   }
-  .vectary .tech_speck.active {
-    transform: translate(-50%, 0);
+  .vectary .info_wrapper .info_position.active {
+    transform: translateY(0);
+  }
+  .vectary .tech_speck,
+  .vectary .excursion_buttons {
+    max-width: unset;
+  }
+  .vectary .interior_button, .vectary .ar_button {
+    font-size: 14px;
   }
   .vectary .tech_speck div[class^=tech_speck-]:first-child {
     display: flex !important;
@@ -2097,7 +2131,7 @@ a-scene {
   }
   .vectary .tech_speck div[class^=tech_speck-] {
     max-width: unset;
-    margin: 0 20px;
+    width: 100%;
   }
   .vectary .tech_speck div[class^=tech_speck-]:nth-child(odd) + div[class^=tech_speck-] {
     border-right: unset;
@@ -2133,10 +2167,15 @@ a-scene {
     top: unset;
   }
 }
-@media (max-width: 440px) {
-  .vectary .interior_button {
-    left: 50%;
-    transform: translateX(-50%);
+@media (max-width: 370px) {
+  .vectary .interior_button, .vectary .ar_button {
+    padding: 10px 10px;
+  }
+  .vectary .ar_button img {
+    height: 24px;
+  }
+  .vectary .interior_button img {
+    width: 30px;
   }
 }
 section {
