@@ -8,66 +8,113 @@ const ROUTES = [
   {
     name: 'kievsky',
     circles: [
-      { bottom: '27.5%', right: '21.4%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '69.5%', right: '62.4%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '38%', right: '41.5%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-      { bottom: '47%', right: '32%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '53%', right: '27%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '52%', right: '17%', hoverImgSrc: '/images/trehgornii.jpg '},
+      { bottom: '29.9%', right: '19.1%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '72.5%', right: '60.8%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '41%', right: '40%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '50%', right: '30.5%', hoverImgSrc: '/images/city_centr.jpg '},
+      { bottom: '56%', right: '26%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '55%', right: '15.5%', hoverImgSrc: '/images/trehgornii.jpg '},
     ],
   },
   {
     name: 'avtozavodsky',
     circles: [
-      { bottom: '32.1%', right: '11.3%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '26.6%', right: '31.5%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '38.1%', right: '43%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '32.5%', right: '10.8%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '28.6%', right: '31%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '40.1%', right: '42%', hoverImgSrc: '/images/kutuzovskii.jpg' },
       { bottom: '30.5%', right: '56.4%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '51%', right: '90.7%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '56%', right: '87.1%', hoverImgSrc: '/images/trehgornii.jpg '},
+      { bottom: '53%', right: '87.3%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '61%', right: '90.8%', hoverImgSrc: '/images/trehgornii.jpg '},
     ],
   },
   {
     name: 'avtozavodsky_vert',
     circles: [
-      { bottom: '7.8%', right: '64.8%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '28.6%', right: '71.2%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '40.4%', right: '58%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-      { bottom: '54.2%', right: '66.4%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '89.4%', right: '43.4%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '85.5%', right: '37.5%', hoverImgSrc: '/images/trehgornii.jpg '},
+      { bottom: '6.8%', right: '67.8%', hoverImgSrc: '/images/kievskii.jpg' },
+      { bottom: '28.6%', right: '73.2%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+      { bottom: '40.4%', right: '60%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+      { bottom: '55.2%', right: '70.4%', hoverImgSrc: '/images/city_centr.jpg '},
+      { bottom: '87.4%', right: '44.4%', hoverImgSrc: '/images/city_bagration.jpg '},
+      { bottom: '92.5%', right: '35.5%', hoverImgSrc: '/images/trehgornii.jpg '},
     ],
   }
 ];
 
-const createVideoSource = (el, i, resolution, fileType) => {
+// const createVideoSource = (el, i, resolution, fileType) => {
+//   const source = document.createElement("source");
+//   source.setAttribute("src", `/${i + 1}${fileType}${resolution ? "_mob" : ""}.mp4`);
+//   source.setAttribute("type", "video/mp4");
+//   el.appendChild(source);
+// };
+
+// const initVideos = () => {
+//   const isiPad = window.innerWidth < 1200;
+//   const isMobile = window.innerWidth < 700;
+//   // const isVertical = window.innerHeight > window.innerWidth;
+//
+//   if (isiPad && isMobile) {
+//     document.querySelectorAll(".video-background").forEach((el, i) => {
+//       createVideoSource(el, i, isMobile, "long");
+//     });
+//   } else if (!isiPad && !isMobile) {
+//     document.querySelectorAll(".bg-video").forEach((el, i) => {
+//       createVideoSource(el, i, isMobile, "video");
+//     });
+//   }
+//
+//   document.querySelectorAll(".section-video").forEach((el, i) => {
+//     createVideoSource(el, i, isiPad, "doors");
+//   });
+// };
+
+const createVideoSource = (el, i, fileType) => {
   const source = document.createElement("source");
-  source.setAttribute("src", `/${i + 1}${fileType}${resolution ? "_mob" : ""}.mp4`);
+  source.setAttribute("src", `/${i + 1}${fileType}.mp4`);
   source.setAttribute("type", "video/mp4");
   el.appendChild(source);
 };
+
 const initVideos = () => {
   const isiPad = window.innerWidth < 1200;
   const isMobile = window.innerWidth < 700;
+  const isVertical = window.innerHeight > window.innerWidth;
 
-  if (isiPad && !isMobile) {
-    document.querySelectorAll(".video-background").forEach((el, i) => {
-      createVideoSource(el, i, isiPad, "ipad");
-    });
-  } else if (isiPad && isMobile) {
-    document.querySelectorAll(".video-background").forEach((el, i) => {
-      createVideoSource(el, i, isMobile, "long");
-    });
-  } else if (!isiPad && !isMobile) {
+  if (!isiPad && !isVertical && !isMobile) {
     document.querySelectorAll(".bg-video").forEach((el, i) => {
-      createVideoSource(el, i, isMobile, "video");
+      createVideoSource(el, i, "video");
+    });
+    document.querySelectorAll(".section-video").forEach((el, i) => {
+      createVideoSource(el, i, "doors");
+    });
+  } else if (isiPad && !isVertical && !isMobile) {
+    document.querySelectorAll(".video-background").forEach((el, i) => {
+      createVideoSource(el, i, "ipad_mob");
+    });
+    document.querySelectorAll(".section-video").forEach((el, i) => {
+      createVideoSource(el, i, "doors_mob");
+    });
+  } else if (isiPad && isVertical && !isMobile) {
+    document.querySelectorAll(".video-background").forEach((el, i) => {
+      createVideoSource(el, i, "long_mob");
+    });
+    document.querySelectorAll(".section-video").forEach((el, i) => {
+      createVideoSource(el, i, "doors_mob");
+    });
+  } else if (isMobile) {
+    document.querySelectorAll(".video-background").forEach((el, i) => {
+      createVideoSource(el, i, "long_mob");
+    });
+    document.querySelectorAll(".section-video").forEach((el, i) => {
+      createVideoSource(el, i, "doors_mob");
     });
   }
 
-  document.querySelectorAll(".section-video").forEach((el, i) => {
-    createVideoSource(el, i, isMobile, "doors");
-  });
+  // document.querySelectorAll(".section-video").forEach((el, i) => {
+  //   createVideoSource(el, i, "doors");
+  // });
 };
+
+
 
 // Анимация проблеска букв (проезжающий блок под текстом)
 let mousePrevWrappers = document.querySelectorAll('.mouse_prev-wrapper_desctop, .mouse_prev-wrapper_mobile');
@@ -187,7 +234,7 @@ function App() {
         const nextActiveNumber =
             direction === "next" ? activeNumber + 1 : activeNumber - 1;
 
-        mouseTriggerText.innerHTML = 'Переходим далее';
+        mouseTriggerText.innerHTML = 'Внимание на экран';
         mouseArrow.style.display = 'none';
 
         // console.log("nextActiveNumber", nextActiveNumber);
@@ -432,30 +479,26 @@ function App() {
         const cardElem = infoElem.querySelector('.card');
         let newActiveContent = null;
 
-        if (currentTime > 9.6 && currentTime < 10.1) {
+        if (currentTime > 9.9 && currentTime < 10.5) {
           playVideoFromStart();
-        } else if (currentTime >= 10.5 && currentTime < 16.5) {
+        } else if (currentTime >= 11 && currentTime < 16.5) {
           newActiveContent = infoElemContent.ejection;
-        } else if (currentTime >= 18.5 && currentTime < 20.5) {
+        } else if (currentTime >= 17.5 && currentTime < 28.5) {
           newActiveContent = infoElemContent.snow;
-        } else if (currentTime >= 22.5 && currentTime < 27.5) {
+        } else if (currentTime >= 29.5 && currentTime < 34.5) {
           newActiveContent = infoElemContent.capacity;
-        } else if (currentTime >= 28 && currentTime < 33.5) {
+        } else if (currentTime >= 35.5 && currentTime < 40) {
           newActiveContent = infoElemContent.moorings;
-        } else if (currentTime >= 34.5) {
+        } else if (currentTime >= 40) {
           cardElem.style.visibility = 'hidden';
           leavePrev.style.display = "none";
-        }
-        // else if (currentTime < 37.5) {
-        //   videoContent.style.opacity = 1;
-        // }
-        else if (currentTime >= 37.5 && currentTime < 38) {
+        } else if (currentTime >= 44.5 && currentTime < 45) {
           videoContent.style.opacity = 0.9;
-        } else if (currentTime >= 38 && currentTime < 38.5) {
+        } else if (currentTime >= 45 && currentTime < 45.5) {
           videoContent.style.opacity = 0.6;
-        } else if (currentTime >= 38.6 && currentTime < 39) {
+        } else if (currentTime >= 45.6 && currentTime < 46) {
           videoContent.style.opacity = 0.3;
-        } else if (currentTime >= 39) {
+        } else if (currentTime >= 46) {
           videoContent.style.opacity = 0;
         }
 
@@ -545,6 +588,9 @@ function App() {
 
       leavePrev.addEventListener("click", () => {
         leavePrev.querySelector('button').innerHTML = 'Внимание на экран';
+        leavePrev.style.background = 'none';
+        leavePrev.style.backdropFilter = 'none';
+        leavePrev.style.opacity = '0.6';
         loopVideo = false;  // Отключаем циклическое повторение видео
         video.play();  // Запускаем видео с текущей секунды
         finishVideos();
@@ -561,6 +607,39 @@ function App() {
       }
     });
 
+
+    const mainContent = document.querySelector('#main');
+    const htmlAframe = document.querySelector('html');
+    const rollup_AR = document.querySelector('#vectary_rollupAR');
+    const arButton = document.getElementById('ARButton');
+    const arWrapper = document.querySelector('.vectaryVR');
+    const iframeWrapper = document.querySelector('.iframe_wrapper');
+    const sinichka = document.querySelector('#sinichka-section');
+    // const ARid = document.querySelector('#AR');
+    arButton.addEventListener('click', () => {
+      rollup_AR.style.display = 'block';
+      mainContent.style.display = 'none';
+      htmlAframe.classList.add('position');
+      arWrapper.style.height = '100%';
+      arWrapper.style.pointerEvents = 'auto';
+      // arWrapper.style.display = 'block';
+      iframeWrapper.innerHTML = `
+      <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>
+      `;
+      // ARid.style.display = 'block';
+    });
+
+    rollup_AR.addEventListener('click', () => {
+      rollup_AR.style.display = 'none';
+      mainContent.style.display = 'block';
+      htmlAframe.classList.remove('position');
+      arWrapper.style.height = '0';
+      arWrapper.style.pointerEvents = 'none';
+      // arWrapper.style.display = 'none';
+      iframeWrapper.innerHTML = ``;
+      // ARid.style.display = 'none';
+      scrollToSection(sinichka);
+    });
 
     // Логика страницы после блоков видео
     const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');

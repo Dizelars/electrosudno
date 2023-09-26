@@ -3,7 +3,6 @@ section {
 }
 
 section#pier-description,
-section#sinichka-section,
 section#pier-routes {
   height: 100vh;
   //min-height: min-content;
@@ -11,6 +10,10 @@ section#pier-routes {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+section#sinichka-section {
+  height: calc(100vh - 40px);
 }
 
 section#pier-faq.video_active,
@@ -54,6 +57,12 @@ section#pier-description.fixed {
   section#pier-description,
   section#pier-routes {
     height: max-content;
+  }
+}
+
+@media (min-height: 830px) and (max-width: 680px) {
+  section#sinichka-section {
+    height: 100vh;
   }
 }
 

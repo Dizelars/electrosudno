@@ -223,7 +223,8 @@ p, ol, ul {
   }
 
   p, ol li, ul li {
-    font-size: 0.875rem;
+    //font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1.125rem;
   }
 
@@ -246,15 +247,15 @@ p, ol, ul {
     font-size: 0.875rem;
     line-height: 1.125rem;
   }
+}
 
-  @media (max-width: 440px) {
-    h1 {
-      font-size: 2.3rem;
-      line-height: 2.4rem;
-    }
+@media (max-width: 440px) {
+  h1 {
+    font-size: 2.3rem;
+    line-height: 2.4rem;
+  }
 
-    .p-30-mob {
-      padding: 30px;
-    }
+  .p-30-mob {
+    padding: 30px;
   }
 }

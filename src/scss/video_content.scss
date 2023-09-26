@@ -337,7 +337,8 @@
 .video_content .learn_button {
   display: none;
   position: absolute;
-  bottom: 32px;
+  //bottom: 32px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   padding: 28px;
@@ -563,14 +564,14 @@
   }
 
   .video_content .info_block .card {
-    bottom: 120px;
+    bottom: 200px;
   }
 
   /*Поднимает кнопку снизу вверх на px*/
   @keyframes CardUp {
     0% {
       opacity: 0;
-      transform: translate(-50%, 120px);
+      transform: translate(-50%, 200px);
     }
     100% {
       opacity: 1;
@@ -586,7 +587,7 @@
     }
     100% {
       opacity: 0;
-      transform: translate(-50%, 120px);
+      transform: translate(-50%, 200px);
     }
   }
 

@@ -56,7 +56,8 @@ a-scene {
 }
 
 #aframe_rollupPier,
-#aframe_rollupSinich {
+#aframe_rollupSinich,
+#vectary_rollupAR {
   display: none;
   position: absolute;
   top: 30px;
@@ -73,6 +74,10 @@ a-scene {
   text-transform: uppercase;
   cursor: pointer;
   z-index: 1;
+}
+
+#vectary_rollupAR {
+  z-index: 999999 !important;
 }
 
 .card-content {
