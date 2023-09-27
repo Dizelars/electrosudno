@@ -2,7 +2,31 @@
 <html lang="ru" class="smooth" prefix="og: http://ogp.me/ns#">
 
 <head>
-  <meta charset="utf-8" />
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments);
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(94995468, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/94995468" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#000000"/>
@@ -24,24 +48,6 @@
     <meta property="twitter:title" content="Электросудно"/>
     <meta property="twitter:description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
     <meta property="twitter:image" content="https://electrosudno.ru/seo.png"/>
-
-    <!-- Yandex.Metrika counter -->
-<!--    <script type="text/javascript" >-->
-<!--        (function(m,e,t,r,i,k,a){m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};-->
-<!--            m[i].l=1*new Date();-->
-<!--            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}-->
-<!--            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})-->
-<!--        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");-->
-
-<!--        ym(94995468, "init", {-->
-<!--            clickmap:true,-->
-<!--            trackLinks:true,-->
-<!--            accurateTrackBounce:true,-->
-<!--            webvisor:true-->
-<!--        });-->
-<!--    </script>-->
-    <noscript><div><img src="https://mc.yandex.ru/watch/94995468" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -392,33 +398,40 @@
 
         <div class="vectary">
           <iframe src="https://app.vectary.com/p/786nPXSSZ8fpj6zJkSF3Kb" width="100%" height="100%"></iframe>
+            <div class="briffAR">
+                <p class="briffAR_text">Откройте страницу на мобильном устройстве, чтобы рассмотреть электросудно в дополненной реальности</p>
+                <div class="closeAR">
+                    <img src="%PUBLIC_URL%/images/icons/closeAR.svg" alt="close">
+                </div>
+            </div>
+            <div class="hideARButton"></div>
           <div class="container">
               <div class="info_wrapper">
                   <div class="info_position">
                       <div class="speck_wrapper">
                           <div class="tech_speck">
-                              <div class="tech_speck-click dots">
+                              <div class="tech_speck-click dots first">
                                   <!--              <p class="tech_speck-text">Характеристики</p>-->
                                   <p class="tech_speck-text">Удобства</p>
                                   <img class="tech_speck-img" src="%PUBLIC_URL%/images/icons/techarrow.svg" alt="Скрыть/раскрыть">
                               </div>
-                              <div class="tech_speck-1 tech_speck-info dots">
+                              <div class="tech_speck-1 tech_speck-info dots second">
                                   <!--              <p class="tech_speck-title">Класс судна:</p>-->
                                   <!--              <p class="tech_speck-text">ледовый</p>-->
                                   <!--              <p class="tech_speck-text">Удобства:</p>-->
                                   <p class="tech_speck-title">Панорамные<br>окна</p>
                               </div>
-                              <div class="tech_speck-2 tech_speck-info dots">
+                              <div class="tech_speck-2 tech_speck-info dots third">
                                   <!--              <p class="tech_speck-title">Скорость движения:</p>-->
                                   <!--              <p class="tech_speck-text">15 км/ч</p>-->
                                   <p class="tech_speck-title">Розетки <br>220 вольт</p>
                               </div>
-                              <div class="tech_speck-3 tech_speck-info dots">
+                              <div class="tech_speck-3 tech_speck-info dots fourth">
                                   <!--              <p class="tech_speck-title">Время автономной работы:</p>-->
                                   <!--              <p class="tech_speck-text">5 часов</p>-->
                                   <p class="tech_speck-title">USB-порты <br>и беспроводные зарядки</p>
                               </div>
-                              <div class="tech_speck-4 tech_speck-info dots">
+                              <div class="tech_speck-4 tech_speck-info dots last">
                                   <!--              <p class="tech_speck-title">Вместимость:</p>-->
                                   <!--              <p class="tech_speck-text">50 человек</p>-->
                                   <p class="tech_speck-title">Климат-<br>контроль</p>
@@ -430,10 +443,10 @@
                               <img class="leave_button_img rotation-icon" src="%PUBLIC_URL%/images/icons/human_360.svg" alt="осмотреть салон">
                               осмотреть
                           </button>
-                          <a class="ar_button sepia-black" id="ARButton">
-                              <img class="leave_button_img rotation-icon" src="%PUBLIC_URL%/images/icons/ar.svg" alt="AR электросудно">
-                              электросудно
-                          </a>
+<!--                          <a class="ar_button sepia-black" id="ARButton">-->
+<!--                              <img class="leave_button_img rotation-icon" src="%PUBLIC_URL%/images/icons/ar.svg" alt="AR электросудно">-->
+<!--                              электросудно-->
+<!--                          </a>-->
                       </div>
                   </div>
               </div>
@@ -608,8 +621,8 @@
             </div>
             <div class="col-4 footer-contacts">
               <p class="bold mt-0 mb-30 fs-1125 fs-1-tab mb-20-mob">Контакт-центр<br>«Московский транспорт»</p>
-              <a class="footer-link fs-15 fs-1125-tab" href="tel:+74955395454">+7 495 539-54-54</a>
-              <a class="footer-link" href="tel:3210"><span class="fs-15 fs-1125-tab">3210</span> (с мобильного телефона)</a>
+              <a class="footer-link mobile_number fs-15 fs-1125-tab" href="tel:+74955395454">+7 495 539-54-54</a>
+              <a class="footer-link mobile_number" href="tel:3210"><span class="fs-15 fs-1125-tab">3210</span> (с мобильного телефона)</a>
             </div>
           </div>
           <div class="footer-links-wrapper-tab mt-60 mt-50-mob">
@@ -638,20 +651,15 @@
     </div>
   </div>
 
-  <div class="vectaryVR">
-      <button id="vectary_rollupAR" class="dock_leave">Свернуть</button>
-      <div class="ipad_text">
-          <p class="text"></p>
-      </div>
-
-      <div class="iframe_wrapper">
-          <!--          <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>-->
-      </div>
-<!--      <div class="iframe_wrapper">-->
-<!--&lt;!&ndash;          <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>&ndash;&gt;-->
+<!--  <div class="vectaryVR">-->
+<!--      <button id="vectary_rollupAR" class="dock_leave">Свернуть</button>-->
+<!--      <div class="ipad_text">-->
+<!--          <p class="text"></p>-->
 <!--      </div>-->
-<!--      <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>-->
-  </div>
+<!--      <div class="iframe_wrapper">-->
+<!--          &lt;!&ndash;          <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>&ndash;&gt;-->
+<!--      </div>-->
+<!--  </div>-->
 
   <div class="aframeOne">
     <button id="aframe_rollupPier" class="dock_leave">Свернуть</button>
@@ -1171,8 +1179,6 @@
         setTimeout(() => {
           let currentInfoPanel = null;
 
-          // function showAllOpenPanelButtons() {}
-
           // Open the panel
           getAllTriggerableButtons().forEach((triggerableButton) => {
             triggerableButton.addEventListener("click", function () {
@@ -1243,19 +1249,6 @@
               const duration = 1000; // Длительность анимации в миллисекундах
               const video = section.querySelector('.section-video');
 
-              // if (video) {
-              //   video.currentTime = 0;
-              //   video.classList.add('section-video_active');
-              //   video.play();
-              //
-              //   const sectionVideoEndListenerOne = () => {
-              //     video.classList.remove('section-video_active');
-              //     video.removeEventListener("ended", sectionVideoEndListenerOne);
-              //   };
-              //
-              //   video.addEventListener("ended", sectionVideoEndListenerOne);
-              // }
-
             if (video && (currentPosition < section.offsetTop)) {
                 video.currentTime = 0;
                 video.classList.add('section-video_active');
@@ -1322,8 +1315,6 @@
         setTimeout(() => {
           let currentInfoPanel = null;
 
-          // function showAllOpenPanelButtons() {}
-
           // Open the panel
           getAllTriggerableButtons().forEach((triggerableButton) => {
             triggerableButton.addEventListener("click", function () {
@@ -1385,7 +1376,6 @@
               console.log(`Current info panel id: ${currentInfoPanel}`);
             });
           });
-
 
           document.querySelectorAll('#TeleportSinich').forEach(function (sphere) {
             // Определение функции для анимированной прокрутки к указанной секции

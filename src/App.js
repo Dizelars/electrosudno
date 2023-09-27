@@ -212,6 +212,7 @@ function App() {
       const onVideoFirstEndListener = () => {
         const currentTime = firstVideo.currentTime;
         if (currentTime >= 4.5) {
+          endButton.style.display = 'flex';
           mouseTrigger.style.display = 'block';
           firstVideo.removeEventListener("timeupdate", onVideoFirstEndListener);
         }
@@ -474,72 +475,153 @@ function App() {
 
       // Анимация карточек и промежутка времени видео
       let currentActiveContent = null;
+      // let isPlayVideoStarted = false;
       video.addEventListener("timeupdate", function() {
-        const currentTime = video.currentTime;
-        const cardElem = infoElem.querySelector('.card');
-        let newActiveContent = null;
+        // const currentTime = video.currentTime;
+        // let currentTime;
+        // const cardElem = infoElem.querySelector('.card');
+        // let newActiveContent = null;
+        // console.log(currentTime);
 
-        if (currentTime > 9.9 && currentTime < 10.5) {
-          playVideoFromStart();
-        } else if (currentTime >= 11 && currentTime < 16.5) {
-          newActiveContent = infoElemContent.ejection;
-        } else if (currentTime >= 17.5 && currentTime < 28.5) {
-          newActiveContent = infoElemContent.snow;
-        } else if (currentTime >= 29.5 && currentTime < 34.5) {
-          newActiveContent = infoElemContent.capacity;
-        } else if (currentTime >= 35.5 && currentTime < 40) {
-          newActiveContent = infoElemContent.moorings;
-        } else if (currentTime >= 40) {
-          cardElem.style.visibility = 'hidden';
-          leavePrev.style.display = "none";
-        } else if (currentTime >= 44.5 && currentTime < 45) {
-          videoContent.style.opacity = 0.9;
-        } else if (currentTime >= 45 && currentTime < 45.5) {
-          videoContent.style.opacity = 0.6;
-        } else if (currentTime >= 45.6 && currentTime < 46) {
-          videoContent.style.opacity = 0.3;
-        } else if (currentTime >= 46) {
-          videoContent.style.opacity = 0;
-        }
+        // const currentTimeInMilliseconds = video.currentTime * 1000;
+        // console.log('Время в милисекундах:', currentTimeInMilliseconds);
 
-        if (newActiveContent !== currentActiveContent) {
-          if (newActiveContent) {
-            const { src, text, title } = newActiveContent;
+        function updateVideoTime() {
+          const currentTime = video.currentTime;
+          const cardElem = infoElem.querySelector('.card');
+          let newActiveContent = null;
+          // console.log('Current time:', currentTime);
 
-            // Анимация ухода текущего контента
-            if (currentActiveContent) {
-              const card = infoElem.querySelector('.card');
-              card.classList.remove('animateUp');
-              card.classList.add('animateDown');
-              setTimeout(() => {
-                updateInfoElement(src, text, title);
-                card.classList.remove('animateDown');
-                setTimeout(() => {
-                  card.classList.add('animateUp');
-                }, 50);
-              }, 500);
-            } else {
-              // Первый контент (без анимации ухода)
-              updateInfoElement(src, text, title);
-              const card = infoElem.querySelector('.card');
-              card.classList.add('animateUp');
-            }
-          } else {
-            // Анимация ухода текущего контента при очистке
-            if (currentActiveContent) {
-              const card = infoElem.querySelector('.card');
-              card.classList.remove('animateUp');
-              card.classList.add('animateDown');
-              setTimeout(() => {
-                clearInfoElement();
-                card.classList.remove('animateDown');
-              }, 500);
-            } else {
-              clearInfoElement();
-            }
+          if (currentTime >= 10.1499 && currentTime < 10.9) {
+            playVideoFromStart();
+          } else if (currentTime >= 11 && currentTime < 16.5) {
+            newActiveContent = infoElemContent.ejection;
+          } else if (currentTime >= 17.5 && currentTime < 28.5) {
+            newActiveContent = infoElemContent.snow;
+          } else if (currentTime >= 29.5 && currentTime < 34.5) {
+            newActiveContent = infoElemContent.capacity;
+          } else if (currentTime >= 35.5 && currentTime < 40) {
+            newActiveContent = infoElemContent.moorings;
+          } else if (currentTime >= 40) {
+            cardElem.style.visibility = 'hidden';
+            leavePrev.style.display = "none";
+          } else if (currentTime >= 44.5 && currentTime < 45) {
+            videoContent.style.opacity = 0.9;
+          } else if (currentTime >= 45 && currentTime < 45.5) {
+            videoContent.style.opacity = 0.6;
+          } else if (currentTime >= 45.6 && currentTime < 46) {
+            videoContent.style.opacity = 0.3;
+          } else if (currentTime >= 46) {
+            videoContent.style.opacity = 0;
           }
-          currentActiveContent = newActiveContent;
+
+          if (newActiveContent !== currentActiveContent) {
+            if (newActiveContent) {
+              const { src, text, title } = newActiveContent;
+
+              // Анимация ухода текущего контента
+              if (currentActiveContent) {
+                const card = infoElem.querySelector('.card');
+                card.classList.remove('animateUp');
+                card.classList.add('animateDown');
+                setTimeout(() => {
+                  updateInfoElement(src, text, title);
+                  card.classList.remove('animateDown');
+                  setTimeout(() => {
+                    card.classList.add('animateUp');
+                  }, 50);
+                }, 500);
+              } else {
+                // Первый контент (без анимации ухода)
+                updateInfoElement(src, text, title);
+                const card = infoElem.querySelector('.card');
+                card.classList.add('animateUp');
+              }
+            } else {
+              // Анимация ухода текущего контента при очистке
+              if (currentActiveContent) {
+                const card = infoElem.querySelector('.card');
+                card.classList.remove('animateUp');
+                card.classList.add('animateDown');
+                setTimeout(() => {
+                  clearInfoElement();
+                  card.classList.remove('animateDown');
+                }, 500);
+              } else {
+                clearInfoElement();
+              }
+            }
+            currentActiveContent = newActiveContent;
+          }
+
+          // Вызываем requestAnimationFrame для обновления времени на следующем кадре
+          requestAnimationFrame(updateVideoTime);
         }
+
+        updateVideoTime();
+
+        // if (currentTime >= 10.15 && currentTime < 10.4) {
+        //   playVideoFromStart();
+        // }
+        // else if (currentTime >= 11 && currentTime < 16.5) {
+        //   newActiveContent = infoElemContent.ejection;
+        // } else if (currentTime >= 17.5 && currentTime < 28.5) {
+        //   newActiveContent = infoElemContent.snow;
+        // } else if (currentTime >= 29.5 && currentTime < 34.5) {
+        //   newActiveContent = infoElemContent.capacity;
+        // } else if (currentTime >= 35.5 && currentTime < 40) {
+        //   newActiveContent = infoElemContent.moorings;
+        // } else if (currentTime >= 40) {
+        //   cardElem.style.visibility = 'hidden';
+        //   leavePrev.style.display = "none";
+        // } else if (currentTime >= 44.5 && currentTime < 45) {
+        //   videoContent.style.opacity = 0.9;
+        // } else if (currentTime >= 45 && currentTime < 45.5) {
+        //   videoContent.style.opacity = 0.6;
+        // } else if (currentTime >= 45.6 && currentTime < 46) {
+        //   videoContent.style.opacity = 0.3;
+        // } else if (currentTime >= 46) {
+        //   videoContent.style.opacity = 0;
+        // }
+
+        // if (newActiveContent !== currentActiveContent) {
+        //   if (newActiveContent) {
+        //     const { src, text, title } = newActiveContent;
+        //
+        //     // Анимация ухода текущего контента
+        //     if (currentActiveContent) {
+        //       const card = infoElem.querySelector('.card');
+        //       card.classList.remove('animateUp');
+        //       card.classList.add('animateDown');
+        //       setTimeout(() => {
+        //         updateInfoElement(src, text, title);
+        //         card.classList.remove('animateDown');
+        //         setTimeout(() => {
+        //           card.classList.add('animateUp');
+        //         }, 50);
+        //       }, 500);
+        //     } else {
+        //       // Первый контент (без анимации ухода)
+        //       updateInfoElement(src, text, title);
+        //       const card = infoElem.querySelector('.card');
+        //       card.classList.add('animateUp');
+        //     }
+        //   } else {
+        //     // Анимация ухода текущего контента при очистке
+        //     if (currentActiveContent) {
+        //       const card = infoElem.querySelector('.card');
+        //       card.classList.remove('animateUp');
+        //       card.classList.add('animateDown');
+        //       setTimeout(() => {
+        //         clearInfoElement();
+        //         card.classList.remove('animateDown');
+        //       }, 500);
+        //     } else {
+        //       clearInfoElement();
+        //     }
+        //   }
+        //   currentActiveContent = newActiveContent;
+        // }
       });
       function updateInfoElement(src, text, title) {
         infoElem.style.display = "block";
@@ -608,38 +690,45 @@ function App() {
     });
 
 
-    const mainContent = document.querySelector('#main');
-    const htmlAframe = document.querySelector('html');
-    const rollup_AR = document.querySelector('#vectary_rollupAR');
-    const arButton = document.getElementById('ARButton');
-    const arWrapper = document.querySelector('.vectaryVR');
-    const iframeWrapper = document.querySelector('.iframe_wrapper');
-    const sinichka = document.querySelector('#sinichka-section');
-    // const ARid = document.querySelector('#AR');
-    arButton.addEventListener('click', () => {
-      rollup_AR.style.display = 'block';
-      mainContent.style.display = 'none';
-      htmlAframe.classList.add('position');
-      arWrapper.style.height = '100%';
-      arWrapper.style.pointerEvents = 'auto';
-      // arWrapper.style.display = 'block';
-      iframeWrapper.innerHTML = `
-      <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>
-      `;
-      // ARid.style.display = 'block';
+    // const mainContent = document.querySelector('#main');
+    // const htmlAframe = document.querySelector('html');
+    // const rollup_AR = document.querySelector('#vectary_rollupAR');
+    // const arButton = document.getElementById('ARButton');
+    // const arWrapper = document.querySelector('.vectaryVR');
+    // const iframeWrapper = document.querySelector('.iframe_wrapper');
+    // const sinichka = document.querySelector('#sinichka-section');
+    // // const ARid = document.querySelector('#AR');
+    // arButton.addEventListener('click', () => {
+    //   rollup_AR.style.display = 'block';
+    //   mainContent.style.display = 'none';
+    //   htmlAframe.classList.add('position');
+    //   arWrapper.style.height = '100%';
+    //   arWrapper.style.pointerEvents = 'auto';
+    //   // arWrapper.style.display = 'block';
+    //   iframeWrapper.innerHTML = `
+    //   <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>
+    //   `;
+    //   // ARid.style.display = 'block';
+    // });
+    //
+    // rollup_AR.addEventListener('click', () => {
+    //   rollup_AR.style.display = 'none';
+    //   mainContent.style.display = 'block';
+    //   htmlAframe.classList.remove('position');
+    //   arWrapper.style.height = '0';
+    //   arWrapper.style.pointerEvents = 'none';
+    //   // arWrapper.style.display = 'none';
+    //   iframeWrapper.innerHTML = ``;
+    //   // ARid.style.display = 'none';
+    //   scrollToSection(sinichka);
+    // });
+
+    const Briff = document.querySelector('.briffAR');
+    const closeBriff = document.querySelector('.closeAR');
+    closeBriff.addEventListener('click', () => {
+      Briff.style.display = "none";
     });
 
-    rollup_AR.addEventListener('click', () => {
-      rollup_AR.style.display = 'none';
-      mainContent.style.display = 'block';
-      htmlAframe.classList.remove('position');
-      arWrapper.style.height = '0';
-      arWrapper.style.pointerEvents = 'none';
-      // arWrapper.style.display = 'none';
-      iframeWrapper.innerHTML = ``;
-      // ARid.style.display = 'none';
-      scrollToSection(sinichka);
-    });
 
     // Логика страницы после блоков видео
     const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
@@ -908,9 +997,14 @@ function App() {
         }
       }
 
-      // На устройствах меньше 1200px переходное видео показывается, если блок с vectary
-      // попал в область видимости вьюпорта.
+      // На устройствах меньше 1200px переходное видео показывается, если блок с vectary попал в область видимости вьюпорта.
       const sectionVideo = document.querySelector('.sinichka_fixed');
+      const rollup_Button = document.querySelector('#aframe_rollupSinich');
+      let rollup_Buttons_Click;
+      rollup_Button.addEventListener('click', () => {
+        rollup_Buttons_Click = true;
+      });
+
       function executeCode() {
         // Выполняется если видна секция с vectary
         if (window.scrollY < sectionVideo.offsetTop) {
@@ -919,8 +1013,10 @@ function App() {
       }
       function handleIntersection(entries) {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !rollup_Buttons_Click) {
             executeCode();
+          } else {
+            rollup_Buttons_Click = false;
           }
         });
       }

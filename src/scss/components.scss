@@ -278,6 +278,10 @@
   text-decoration: none;
 }
 
+.footer-link.mobile_number {
+  text-decoration: none !important;
+}
+
 .footer-contacts {
   text-align: right;
 }
@@ -334,7 +338,7 @@
 .modal {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh + 50px);
   opacity: 0;
   visibility: hidden;
   transition: all 0.7s ease;

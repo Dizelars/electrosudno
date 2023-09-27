@@ -9,26 +9,26 @@
   border: none;
 }
 
-.vectaryVR {
-  width: 100%;
-  height: 0;
-  position: absolute;
-  overflow: hidden;
-  pointer-events: none;
-  transition: height .5s ease;
-  //display: none !important;
-}
-
-.vectaryVR .iframe_wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-#AR {
-  border: none !important;
-  position: relative !important;
-  z-index: 0 !important;
-}
+//.vectaryVR {
+//  width: 100%;
+//  height: 0;
+//  position: absolute;
+//  overflow: hidden;
+//  pointer-events: none;
+//  transition: height .5s ease;
+//  //display: none !important;
+//}
+//
+//.vectaryVR .iframe_wrapper {
+//  width: 100%;
+//  height: 100%;
+//}
+//
+//#AR {
+//  border: none !important;
+//  position: relative !important;
+//  z-index: 0 !important;
+//}
 
 .vectary .container {
   position: absolute;
@@ -96,14 +96,6 @@
   margin: 0;
 }
 
-//.vectary .tech_speck div[class^="tech_speck-"] p.tech_speck-title {
-//  font-weight: 300;
-//}
-//
-//.vectary .tech_speck div[class^="tech_speck-"] p.tech_speck-text {
-//  font-weight: 800;
-//}
-
 //.vectary .tech_speck div[class^="tech_speck-"]:not(:last-child) {
 //  border-right: 1px solid #b9b8c4;
 //  position: relative;
@@ -111,12 +103,14 @@
 
 //div[class^="tech_speck-"]
 
-.vectary .tech_speck .dots:not(:last-child):before,
-.vectary .tech_speck .dots:not(:last-child):after {
+.vectary .tech_speck .dots:not(.last) {
+  position: relative;
+}
+
+.vectary .tech_speck .dots:not(.last):before,
+.vectary .tech_speck .dots:not(.last):after {
   content: '';
   position: absolute;
-  //left: 0;
-  //right: 0;
   right: -3px;
   width: 5px;
   height: 5px;
@@ -124,14 +118,12 @@
   background-color: #FFFFFF;
 }
 
-.vectary .tech_speck .dots:not(:last-child):before {
+.vectary .tech_speck .dots:not(.last):before {
   top: -2px;
-  //right: -3px;
 }
 
-.vectary .tech_speck .dots:not(:last-child):after {
+.vectary .tech_speck .dots:not(.last):after {
   bottom: -2px;
-  //right: -3px;
 }
 
 .vectary .excursion_buttons,
@@ -201,51 +193,50 @@
   width: 43%;
 }
 
-.vectary .tech_speck .dots:not(:last-child) {
+.vectary .tech_speck .dots:not(.last) {
   border-right: unset;
 }
 
-.vectary .tech_speck .dots:nth-child(odd) + .dots {
+//.vectary .tech_speck .dots:nth-child(odd) + .dots,
+.vectary .tech_speck .dots.second,
+.vectary .tech_speck .dots.fourth {
   border-radius: 20px 0 0 20px;
   border-right: 2px solid #b9b8c4;
 }
 
-.vectary .tech_speck .dots:nth-child(2),
-.vectary .tech_speck .dots:nth-child(3) {
+.vectary .tech_speck .dots.second,
+.vectary .tech_speck .dots.third {
   border-bottom: 2px solid #b9b8c4;
 }
 
-.vectary .tech_speck .dots:nth-child(3):before {
+.vectary .tech_speck .dots.third:before {
   content: none;
 }
 
-.vectary .tech_speck .dots:nth-child(2):after {
+.vectary .tech_speck .dots.second:after {
   bottom: -3px;
   left: 10px;
 }
 
-.vectary .tech_speck .dots:nth-child(4):before {
+.vectary .tech_speck .dots.fourth:before {
   top: -4px;
 }
 
-.vectary .tech_speck .dots:nth-child(2):before,
-.vectary .tech_speck .dots:nth-child(4):before,
-.vectary .tech_speck .dots:nth-child(4):after {
+.vectary .tech_speck .dots.second:before,
+.vectary .tech_speck .dots.fourth:before,
+.vectary .tech_speck .dots.fourth:after {
   right: -4px;
 }
 
-.vectary .tech_speck .dots:nth-child(3):after {
+.vectary .tech_speck .dots.third:after {
   bottom: -3px;
   right: 10px;
 }
 
-.vectary .tech_speck .dots:nth-child(even) + .dots {
+.vectary .tech_speck .dots.third,
+.vectary .tech_speck .dots.last {
   border-radius: 5px 20px 20px 5px;
 }
-
-//.vectary .tech_speck div[class^="tech_speck-"] p {
-//  font-size: 16px;
-//}
 
 @media (max-width: 1024px) {
   .vectary .tech_speck .dots p {
@@ -287,9 +278,11 @@
 
   .vectary .excursion_buttons {
     flex-direction: row;
-    width: 100%;
+    //width: 100%;
+    width: 95%;
     max-width: unset;
-    justify-content: center;
+    //justify-content: center;
+    justify-content: flex-end;
     gap: 10px;
   }
 
@@ -317,7 +310,9 @@
   }
 
   .vectary .excursion_buttons {
-    justify-content: space-between;
+    //justify-content: space-between;
+    justify-content: center;
+    width: 100%;
   }
 
   .vectary .interior_button, .vectary .ar_button {
@@ -325,14 +320,16 @@
   }
 
   .vectary .interior_button {
-    margin-left: 5px;
+    //margin-left: 5px;
+    width: 100%;
+    max-width: unset;
   }
 
-  .vectary .ar_button {
-    margin-right: 5px;
-  }
+  //.vectary .ar_button {
+  //  margin-right: 5px;
+  //}
 
-  .vectary .tech_speck .dots:first-child {
+  .vectary .tech_speck .dots.first {
     display: flex !important;
     padding: 15px 30px;
   }
@@ -349,43 +346,53 @@
   .vectary .tech_speck .dots {
     max-width: unset;
     width: 100%;
-    //margin: 0 20px;
   }
 
-  .vectary .tech_speck .dots:nth-child(odd) + .dots {
+  .vectary .tech_speck .dots.second,
+  .vectary .tech_speck .dots.fourth {
     border-right: unset;
   }
 
-  .vectary .tech_speck .dots:nth-child(even) + .dots,
-  .vectary .tech_speck .dots:nth-child(odd) + .dots,
-  .vectary .tech_speck .dots:nth-child(odd),
-  .vectary .tech_speck .dots:nth-child(even) {
+  //.vectary .tech_speck .dots:nth-child(even) + .dots,
+  //.vectary .tech_speck .dots:nth-child(odd) + .dots,
+  //.vectary .tech_speck .dots:nth-child(odd),
+  //.vectary .tech_speck .dots:nth-child(even) {
+  //  border-radius: 20px;
+  //}
+
+  .vectary .tech_speck .dots.first,
+  .vectary .tech_speck .dots.second,
+  .vectary .tech_speck .dots.third,
+  .vectary .tech_speck .dots.fourth,
+  .vectary .tech_speck .dots.last {
     border-radius: 20px;
   }
 
-  .vectary .tech_speck .dots:nth-child(odd) {
+  .vectary .tech_speck .dots.first,
+  .vectary .tech_speck .dots.third,
+  .vectary .tech_speck .dots.last {
     border-right: unset;
   }
 
-  .vectary .tech_speck .dots:nth-child(1),
-  .vectary .tech_speck .dots:nth-child(3),
-  .vectary .tech_speck .dots:nth-child(4) {
+  .vectary .tech_speck .dots.first,
+  .vectary .tech_speck .dots.third,
+  .vectary .tech_speck .dots.fourth {
     border-bottom: 2px solid #b9b8c4;
   }
 
-  .vectary .tech_speck .dots:not(:last-child):before,
-  .vectary .tech_speck .dots:not(:last-child):after {
+  .vectary .tech_speck .dots:not(.last):before,
+  .vectary .tech_speck .dots:not(.last):after {
     content: '';
   }
 
-  .vectary .tech_speck .dots:not(:last-child):before {
+  .vectary .tech_speck .dots:not(.last):before {
     bottom: -3px;
     right: 10px;
     left: unset;
     top: unset;
   }
 
-  .vectary .tech_speck .dots:not(:last-child):after {
+  .vectary .tech_speck .dots:not(.last):after {
     bottom: -3px;
     right: unset;
     left: 10px;
@@ -394,27 +401,20 @@
 }
 
 @media (max-width: 440px) {
-  .excursion_buttons {
-    justify-content: center;
-    gap: 5px;
-  }
-
-  .vectary .interior_button, .vectary .ar_button {
-    //width: 50%;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 370px) {
   //.excursion_buttons {
   //  justify-content: center;
   //  gap: 5px;
   //}
 
   .vectary .interior_button, .vectary .ar_button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 370px) {
+  .vectary .interior_button, .vectary .ar_button {
     padding: 10px 10px;
-    //font-size: 12px;
-    width: 50%;
+    //width: 50%;
     margin: 0;
   }
 
@@ -424,6 +424,55 @@
 
   .vectary .interior_button img {
     width: 30px;
+  }
+}
+
+
+@media only screen and (min-width: 700px) and (max-width: 1200px) {
+  .briffAR {
+    position: absolute;
+    z-index: 1;
+    //max-width: -webkit-fill-available;
+    //width: 100%;
+    height: max-content;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: unset;
+    background-color: #403F46;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: all .5s;
+  }
+
+  .briffAR .briffAR_text {
+    font-family: "MoscowSans", sans-serif;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    margin: 0;
+    width: max-content;
+  }
+
+  .briffAR .closeAR {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+
+  .hideARButton {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 18px;
+    right: 20px;
+    left: unset;
+    bottom: unset;
+    background-color: #9794A6;
   }
 }
 
