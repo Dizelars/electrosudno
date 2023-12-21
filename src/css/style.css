@@ -2111,6 +2111,19 @@ a-scene {
     width: 40%;
   }
 }
+@media screen and (min-width: 1200px) and (max-height: 820px) {
+  /* Стили для экранов с шириной больше 1200px и высотой меньше 820px */
+  .vectary .tech_speck {
+    pointer-events: none;
+    justify-content: flex-start;
+    width: 80%;
+  }
+  .vectary .tech_speck .dots {
+    pointer-events: all;
+    width: 30%;
+    padding: 20px 26px;
+  }
+}
 @media (max-width: 930px) {
   .vectary .tech_speck .dots {
     width: 37%;
