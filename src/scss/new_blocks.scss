@@ -1,3 +1,32 @@
+.BackToInnovation {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px 8px 8px;
+  color: white;
+  border-radius: 32px;
+  border: 2px solid #5F35FF;
+  background: linear-gradient(98deg, #070021 6.79%, #0F0144 85.82%);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.BackToInnovation .innovation_img {
+  margin-right: 8px;
+}
+
+.BackToInnovation .innovation_text {
+  font-family: 'MoscowSans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
 section {
   scroll-snap-align: start;
 }

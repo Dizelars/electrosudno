@@ -1,44 +1,44 @@
 import {useEffect} from "react";
 
-const IMAGE_WIDTH_OFFSET = 180;
-const IMAGE_WIDTH_MOBILE_OFFSET = IMAGE_WIDTH_OFFSET / 2;
+// const IMAGE_WIDTH_OFFSET = 180;
+// const IMAGE_WIDTH_MOBILE_OFFSET = IMAGE_WIDTH_OFFSET / 2;
 
 // Маршруты
-const ROUTES = [
-  {
-    name: 'kievsky',
-    circles: [
-      { bottom: '29.9%', right: '19.1%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '72.5%', right: '60.8%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '41%', right: '40%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-      { bottom: '50%', right: '30.5%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '56%', right: '26%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '55%', right: '15.5%', hoverImgSrc: '/images/trehgornii.jpg '},
-    ],
-  },
-  {
-    name: 'avtozavodsky',
-    circles: [
-      { bottom: '32.5%', right: '10.8%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '28.6%', right: '31%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '40.1%', right: '42%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-      { bottom: '30.5%', right: '56.4%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '53%', right: '87.3%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '61%', right: '90.8%', hoverImgSrc: '/images/trehgornii.jpg '},
-    ],
-  },
-  {
-    name: 'avtozavodsky_vert',
-    circles: [
-      { bottom: '6.8%', right: '67.8%', hoverImgSrc: '/images/kievskii.jpg' },
-      { bottom: '28.6%', right: '73.2%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-      { bottom: '40.4%', right: '60%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-      { bottom: '55.2%', right: '70.4%', hoverImgSrc: '/images/city_centr.jpg '},
-      { bottom: '87.4%', right: '44.4%', hoverImgSrc: '/images/city_bagration.jpg '},
-      { bottom: '92.5%', right: '35.5%', hoverImgSrc: '/images/trehgornii.jpg '},
-    ],
-  }
-];
+// const ROUTES = [
+//   {
+//     name: 'kievsky',
+//     circles: [
+//       { bottom: '29.9%', right: '19.1%', hoverImgSrc: '/images/kievskii.jpg' },
+//       { bottom: '72.5%', right: '60.8%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+//       { bottom: '41%', right: '40%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+//       { bottom: '50%', right: '30.5%', hoverImgSrc: '/images/city_centr.jpg '},
+//       { bottom: '56%', right: '26%', hoverImgSrc: '/images/city_bagration.jpg '},
+//       { bottom: '55%', right: '15.5%', hoverImgSrc: '/images/trehgornii.jpg '},
+//     ],
+//   },
+//   {
+//     name: 'avtozavodsky',
+//     circles: [
+//       { bottom: '32.5%', right: '10.8%', hoverImgSrc: '/images/kievskii.jpg' },
+//       { bottom: '28.6%', right: '31%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+//       { bottom: '40.1%', right: '42%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+//       { bottom: '30.5%', right: '56.4%', hoverImgSrc: '/images/city_centr.jpg '},
+//       { bottom: '53%', right: '87.3%', hoverImgSrc: '/images/city_bagration.jpg '},
+//       { bottom: '61%', right: '90.8%', hoverImgSrc: '/images/trehgornii.jpg '},
+//     ],
+//   },
+//   {
+//     name: 'avtozavodsky_vert',
+//     circles: [
+//       { bottom: '6.8%', right: '67.8%', hoverImgSrc: '/images/kievskii.jpg' },
+//       { bottom: '28.6%', right: '73.2%', hoverImgSrc: '/images/serdce_stolici.jpg '},
+//       { bottom: '40.4%', right: '60%', hoverImgSrc: '/images/kutuzovskii.jpg' },
+//       { bottom: '55.2%', right: '70.4%', hoverImgSrc: '/images/city_centr.jpg '},
+//       { bottom: '87.4%', right: '44.4%', hoverImgSrc: '/images/city_bagration.jpg '},
+//       { bottom: '92.5%', right: '35.5%', hoverImgSrc: '/images/trehgornii.jpg '},
+//     ],
+//   }
+// ];
 
 // const createVideoSource = (el, i, resolution, fileType) => {
 //   const source = document.createElement("source");
@@ -174,9 +174,6 @@ function App() {
       }
 
       function fadeVideo(lastVideo) {
-        mouseTrigger.style.display = 'none';
-        endButton.style.display = 'none';
-        reloadBtn.style.display = 'none';
         lastVideo.addEventListener("timeupdate", function() {
           const currentTime = lastVideo.currentTime;
           const cardElem = infoElem.querySelector('.card');
@@ -188,6 +185,9 @@ function App() {
             if (currentTime >= 5.6 && currentTime < 6) {
             cardElem.style.visibility = 'hidden';
             progressStories.style.display = 'none';
+            mouseTrigger.style.display = 'none';
+            endButton.style.display = 'none';
+            reloadBtn.style.display = 'none';
           } else if (currentTime < 10) {
             videoContent.style.opacity = 1;
           } else if (currentTime >= 11 && currentTime < 11.25) {
@@ -229,14 +229,17 @@ function App() {
           return;
         }
 
+
         const activeBlock = document.querySelector(".js-number-block.active");
         const activeNumber = Number(activeBlock.getAttribute("data-number"));
 
         const nextActiveNumber =
             direction === "next" ? activeNumber + 1 : activeNumber - 1;
 
-        mouseTriggerText.innerHTML = 'Внимание на экран';
-        mouseArrow.style.display = 'none';
+        if (!clickOnEndButton) {
+          mouseTriggerText.innerHTML = 'Внимание на экран';
+          mouseArrow.style.display = 'none';
+        }
 
         // console.log("nextActiveNumber", nextActiveNumber);
 
@@ -288,8 +291,10 @@ function App() {
           `;
             const cardElem = infoElem.querySelector('.card');
             cardElem.classList.add('animateUp');
-            mouseTriggerText.innerHTML = 'Крутите вниз';
-            mouseArrow.style.display = 'block';
+            if (!clickOnEndButton) {
+              mouseTriggerText.innerHTML = 'Крутите вниз';
+              mouseArrow.style.display = 'block';
+            }
           } else {
             infoElem.classList.remove("active");
             infoElem.innerHTML = ""; // Удалить контент из infoElem
@@ -343,12 +348,14 @@ function App() {
       const endButtons = document.querySelectorAll(".video_content .leave_button");
       // const learn = document.querySelector(".video_content .learn_button");
       let allVideos = document.querySelectorAll(".bg-video");
-      let mouse = document.querySelector('.mouse_prev');
+      // let mouse = document.querySelector('.mouse_prev');
+      let clickOnEndButton = false;
       endButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-          mouse.style.display = 'none';
           btn.style.display = 'none';
-          // learn.style.display = 'none';
+          clickOnEndButton = true;
+          mouseArrow.style.display = 'none';
+          mouseTriggerText.innerHTML = 'Внимание на экран';
           allVideos.forEach((e, index) => {
             e.removeAttribute('loop');
             e.setAttribute('data-transit', '');
@@ -731,88 +738,88 @@ function App() {
 
 
     // Логика страницы после блоков видео
-    const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
-    const modal = document.getElementById('modal');
-    const modalExits = modal.querySelectorAll('.modal-exit');
-    const modalBody = document.querySelector('.modal-body');
+    // const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
+    // const modal = document.getElementById('modal');
+    // const modalExits = modal.querySelectorAll('.modal-exit');
+    // const modalBody = document.querySelector('.modal-body');
     // const routeBtn = document.querySelector('.btn[data-route]');
     // const cardFaqs = document.querySelectorAll('.card-faq');
 
     // добавление кружка-станции
-    const handleAddCircle = ({ bottom, right, hoverImgSrc }, index) => {
-      const isMobile = window.innerWidth <= 440;
-      const circleEl = document.createElement('div');
-      circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
-      circleEl.style.bottom = bottom;
-      circleEl.style.right = right;
-
-      const hoverImg = document.createElement('img');
-      hoverImg.classList.add('pos-abs', 'circle-hover-img');
-      hoverImg.src = hoverImgSrc;
-
-      hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
-      const hoverImgRight = isMobile ? `calc(${right} - ${IMAGE_WIDTH_MOBILE_OFFSET}px` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
-      hoverImg.style.setProperty('right', hoverImgRight);
-      modalBody.appendChild(hoverImg);
-
-      circleEl.addEventListener('mouseover', (e) => {
-        e.preventDefault();
-        hoverImg.classList.add('opacity-1');
-      })
-
-      circleEl.addEventListener('mouseleave', (e) => {
-        e.preventDefault();
-        hoverImg.classList.remove('opacity-1');
-      })
-
-      // всплытие иконки первой станции при открытии маршрута
-      if (index === 0) {
-        setTimeout(() => {
-          hoverImg.classList.add('opacity-1');
-          setTimeout(() => {
-            hoverImg.classList.remove('opacity-1');
-          }, 2000);
-        }, 1000);
-      }
-
-      modalBody.appendChild(circleEl);
-    }
+    // const handleAddCircle = ({ bottom, right, hoverImgSrc }, index) => {
+    //   const isMobile = window.innerWidth <= 440;
+    //   const circleEl = document.createElement('div');
+    //   circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
+    //   circleEl.style.bottom = bottom;
+    //   circleEl.style.right = right;
+    //
+    //   const hoverImg = document.createElement('img');
+    //   hoverImg.classList.add('pos-abs', 'circle-hover-img');
+    //   hoverImg.src = hoverImgSrc;
+    //
+    //   hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
+    //   const hoverImgRight = isMobile ? `calc(${right} - ${IMAGE_WIDTH_MOBILE_OFFSET}px` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
+    //   hoverImg.style.setProperty('right', hoverImgRight);
+    //   modalBody.appendChild(hoverImg);
+    //
+    //   circleEl.addEventListener('mouseover', (e) => {
+    //     e.preventDefault();
+    //     hoverImg.classList.add('opacity-1');
+    //   })
+    //
+    //   circleEl.addEventListener('mouseleave', (e) => {
+    //     e.preventDefault();
+    //     hoverImg.classList.remove('opacity-1');
+    //   })
+    //
+    //   // всплытие иконки первой станции при открытии маршрута
+    //   if (index === 0) {
+    //     setTimeout(() => {
+    //       hoverImg.classList.add('opacity-1');
+    //       setTimeout(() => {
+    //         hoverImg.classList.remove('opacity-1');
+    //       }, 2000);
+    //     }, 1000);
+    //   }
+    //
+    //   modalBody.appendChild(circleEl);
+    // }
 
     // Открытие маршрута в модалке
-    const handleOpenRoute = ({ src, routeName }) => {
-      modalBody.innerHTML = '';
+    // const handleOpenRoute = ({ src, routeName }) => {
+    //   modalBody.innerHTML = '';
+    //
+    //   const routeImg = document.createElement('img');
+    //   routeImg.src = src;
+    //   routeImg.classList.add('img-responsive');
+    //   modalBody.appendChild(routeImg);
+    //   const currRoute = ROUTES.find((route) => route.name === routeName);
+    //   currRoute.circles.forEach((circle, index) => {
+    //     handleAddCircle(circle, index);
+    //   });
+    // }
 
-      const routeImg = document.createElement('img');
-      routeImg.src = src;
-      routeImg.classList.add('img-responsive');
-      modalBody.appendChild(routeImg);
-      const currRoute = ROUTES.find((route) => route.name === routeName);
-      currRoute.circles.forEach((circle, index) => {
-        handleAddCircle(circle, index);
-      });
-    }
 
-
-    const bodyNoScroll = document.querySelector('body');
+    // const bodyNoScroll = document.querySelector('body');
     // Листнеры на картинках с маршрутами
-    routeImages.forEach((routeEl) => {
-      routeEl.addEventListener('click', (e) => {
-        e.preventDefault();
-        handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
-        modal.classList.add('open');
-        bodyNoScroll.style.overflow = 'hidden';
-      })
-    });
+    // routeImages.forEach((routeEl) => {
+    //   routeEl.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
+    //     modal.classList.add('open');
+    //     bodyNoScroll.style.overflow = 'hidden';
+    //   })
+    // });
 
     // Закрытие модалки маршрута
-    modalExits.forEach((modalExit) => {
-      modalExit.addEventListener('click', (e) => {
-        console.log('click exit');
-        e.preventDefault();
-        modal.classList.remove('open');
-        bodyNoScroll.style.overflow = 'auto';
-      })
-    });
+    // modalExits.forEach((modalExit) => {
+    //   modalExit.addEventListener('click', (e) => {
+    //     console.log('click exit');
+    //     e.preventDefault();
+    //     modal.classList.remove('open');
+    //     bodyNoScroll.style.overflow = 'auto';
+    //   })
+    // });
 
     // Листнер на кнопке с маршрутами
     // routeBtn.addEventListener('click', (e) => {

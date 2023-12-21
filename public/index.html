@@ -197,6 +197,11 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
+  <div class="BackToInnovation">
+      <img class="innovation_img" src="https://coddmac.store/innovation/innovation.svg" alt="Инновационная столица">
+      <p class="innovation_text">На главную</p>
+  </div>
+
   <div id="main" class="bord">
 
     <div class="video_content">
@@ -462,17 +467,20 @@
             <div class="card bg-grey-grad">
               <p class="route-number mt-0 mb-10">№1</p>
               <h3 class="text-uppercase">Киевский — Сердце столицы</h3>
-              <img class="card-img img-responsive cursor-pointer" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
-              <p>Первый регулярный речной маршрут Киевский — Сердце&nbsp;столицы улучшит транспортное обслуживание тех&nbsp;москвичей, которых река разделяет со станциями метро и&nbsp;МЦК</p>
+              <img class="card-img img-responsive" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
+<!--              <p>Первый регулярный речной маршрут Киевский — Сердце&nbsp;столицы улучшит транспортное обслуживание тех&nbsp;москвичей, которых река разделяет со станциями метро и&nbsp;МЦК</p>-->
+                <p>Первый регулярный речной маршрут Киевский&nbsp;&mdash; Сердце столицы улучшил транспортное обслуживание тех москвичей, которых река разделяет со&nbsp;станциями метро и&nbsp;МЦК</p>
             </div>
 <!--              card-disabled-->
 <!--              img-disabled-->
+<!--              cursor-pointer-->
             <div class="card bg-grey-grad">
               <p class="route-number mt-0 mb-10">№2</p>
-              <h3 class="text-uppercase cursor-pointer">ЗИЛ — Печатники</h3>
-              <img class="card-img img-responsive d-block d-none-mob cursor-pointer" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled_new.svg" alt="avtozavodsky route">
-              <img class="card-img img-responsive d-none d-block-mob mt-20 cursor-pointer" data-route="avtozavodsky_vert" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled_new.svg" alt="avtozavodsky route">
-              <p>Раньше через Южный речной вокзал и&nbsp;прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у&nbsp;москвичей. Открытие нового маршрута состоится до&nbsp;конца года</p>
+              <h3 class="text-uppercase">ЗИЛ — Печатники</h3>
+              <img class="card-img img-responsive d-block d-none-mob" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled_new.svg" alt="avtozavodsky route">
+              <img class="card-img img-responsive d-none d-block-mob mt-20" data-route="avtozavodsky_vert" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled_new.svg" alt="avtozavodsky route">
+<!--              <p>Раньше через Южный речной вокзал и&nbsp;прилегающие районы проходило несколько маршрутов речного транспорта, которые были популярны у&nbsp;москвичей.</p>-->
+                <p>Второй регулярный речной маршрут &laquo;ЗИЛ&nbsp;&mdash; Печатники&raquo; связал между собой районы юга и&nbsp;юго&ndash;востока столицы и&nbsp;предоставил жителям еще&nbsp;один комфортный вариант передвижения по&nbsp;городу</p>
             </div>
           </div>
         </div>
@@ -721,6 +729,31 @@
     }
 
     countLoad();
+
+    function checkUrlParameterAndCreateButton() {
+        console.log('URLCheck');
+        let url = window.location.href;
+        const button = document.querySelector('.BackToInnovation');
+
+        if (url.includes('innovation')) {
+            button.style.display = 'flex';
+            button.addEventListener('click', function() {
+                window.location.href = 'https://i.transport.mos.ru/screen';
+            });
+            document.addEventListener("DOMContentLoaded", () => {
+                const links = document.querySelectorAll("a");
+                links.forEach(link => {
+                    const href = link.getAttribute("href");
+                    if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("tel") && !href.includes("?innovation")) {
+                        link.setAttribute("href", `${href}?innovation`);
+                    }
+                });
+            });
+        }
+    }
+    checkUrlParameterAndCreateButton();
+
+
     // setTimeout(function () {
     //   fadeOutnojquery(hellopreloader);
     // }, LOADING_TIME);
