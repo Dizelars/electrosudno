@@ -1651,6 +1651,7 @@ p, ol, ul {
   }
 }
 .section-video {
+  pointer-events: none;
   display: none;
   position: fixed;
   top: 0;
@@ -1665,8 +1666,9 @@ p, ol, ul {
   object-fit: cover;
 }
 
-.section-video_active {
-  display: block;
+.section-video.section-video_active {
+  display: block !important;
+  z-index: 100 !important;
 }
 
 @media (min-height: 850px) and (max-width: 680px) {
@@ -2285,9 +2287,9 @@ a-scene {
   }
   .hideARButton {
     position: absolute;
-    width: 40px;
+    width: 72px;
     height: 40px;
-    top: 18px;
+    top: 16px;
     right: 20px;
     left: unset;
     bottom: unset;

@@ -866,7 +866,6 @@ function App() {
       const distance = targetPosition - currentPosition; // Расстояние до цели
       const startTime = performance.now(); // Время начала анимации
       const duration = 1000; // Длительность анимации в миллисекундах
-      // const videoWrapper = section.querySelector('.section-video_wrapper');
       const video = section.querySelector('.section-video');
       const modalNoScroll = document.getElementById('modal');
 
@@ -876,12 +875,10 @@ function App() {
 
       if (video && (currentPosition < section.offsetTop)) {
         video.currentTime = 0;
-        // videoWrapper.classList.add('section-video_wrapper_active');
         video.classList.add('section-video_active');
         video.play();
 
         const sectionVideoEndListenerOne = () => {
-          // videoWrapper.classList.remove('section-video_wrapper_active');
           video.classList.remove('section-video_active');
           video.removeEventListener("ended", sectionVideoEndListenerOne);
         };
