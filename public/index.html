@@ -731,6 +731,8 @@
 
     countLoad();
 
+    let isInnovation = false;
+
     function checkUrlParameterAndCreateButton() {
         console.log('URLCheck');
         let url = window.location.href;
@@ -741,6 +743,7 @@
             button.addEventListener('click', function() {
                 window.location.href = 'https://i.transport.mos.ru/screen';
             });
+            isInnovation = true;
             document.addEventListener("DOMContentLoaded", () => {
                 const links = document.querySelectorAll("a");
                 links.forEach(link => {
@@ -751,8 +754,17 @@
                 });
             });
         }
+        return isInnovation;
     }
     checkUrlParameterAndCreateButton();
+
+    // ссылка в футере отключена при URL-параметре
+    const urlLinksKill = document.querySelectorAll('#pier-faq .card a, #footer .logos-flex-wrapper a, #footer .btn-link-footer, #footer .footer-contacts .mobile_number');
+    if (isInnovation) {
+      urlLinksKill.forEach((link) => {
+        link.style.pointerEvents = 'none';
+      });
+    }
 
 
     // setTimeout(function () {
