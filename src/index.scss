@@ -9,14 +9,6 @@ body {
   // overflow: hidden;
 }
 
-//.video_content {
-//  display: block;
-//}
-//
-//.site_content {
-//  display: none;
-//}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -25,16 +17,6 @@ code {
 #main {
   position: relative;
 }
-
-//.bg-video {
-//  display: none;
-//  width: 100%;
-//  height: 100vh;
-//  object-fit: cover;
-//}
-//.bg-video.active {
-//  display: block;
-//}
 
 .bg-video {
   width: 100%;
@@ -48,7 +30,6 @@ code {
 .bg-video.active {
   z-index: 1;
 }
-
 
 .info-text {
   position: absolute;

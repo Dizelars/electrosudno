@@ -114,8 +114,6 @@ const initVideos = () => {
   // });
 };
 
-
-
 // Анимация проблеска букв (проезжающий блок под текстом)
 let mousePrevWrappers = document.querySelectorAll('.mouse_prev-wrapper_desctop, .mouse_prev-wrapper_mobile');
 mousePrevWrappers.forEach(function(element) {

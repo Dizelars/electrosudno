@@ -4,13 +4,11 @@
   width: 4%;
   background-color: transparent;
   border-radius: 50%;
-
   z-index: 200;
 }
 
 .circle-hover-img {
   opacity: 0;
-
   transition: opacity .7s;
 }
 
@@ -102,7 +100,6 @@
   text-align: center;
   text-decoration: none;
   color: map-get($colors, white);
-
   cursor: pointer;
 }
 
@@ -148,7 +145,6 @@
 }
 
 .card-faq {
-  //height: 455px;
   height: 522px;
 }
 
@@ -488,7 +484,6 @@
     flex-direction: column;
 
     & .card-faq {
-      //flex: 1 1 256px;
       flex: 1 1 290px;
     }
   }
@@ -547,14 +542,6 @@
     @include px(30px, 30px);
   }
 
-  //.d-none-mob {
-  //  display: none;
-  //}
-  //
-  //.d-block-mob {
-  //  display: block;
-  //}
-
   .d-flex-col-mob {
     display: flex;
     flex-direction: column;
@@ -585,12 +572,6 @@
     right: 0;
     bottom: 0;
   }
-
-  //.card-flex-wrapper {
-  //  & .card-faq {
-  //    flex: 1 1 350px;
-  //  }
-  //}
 
   .card-center-img {
     bottom: 75px;

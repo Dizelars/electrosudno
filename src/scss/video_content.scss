@@ -12,8 +12,6 @@
   z-index: 2;
 }
 
-
-
 .video_progress_container {
   //position: fixed;
   position: absolute;
@@ -272,7 +270,7 @@
 }
 
 .lighting {
-  webkit-animation: moving 5s ease-in-out infinite;
+  -webkit-animation: moving 5s ease-in-out infinite;
   -moz-animation: moving 5s ease-in-out infinite;
   -ms-animation: moving 5s ease-in-out infinite;
   -o-animation: moving 5s ease-in-out infinite;

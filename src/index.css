@@ -23,6 +23,7 @@ code {
   height: 100vh;
   object-fit: cover;
 }
+
 .bg-video.active {
   display: block;
 }
@@ -38,6 +39,7 @@ code {
   transform: translateX(-50%);
   transition: opacity 500ms;
 }
+
 .info-text.active {
   opacity: 1;
   pointer-events: all;
