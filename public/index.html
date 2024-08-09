@@ -199,10 +199,10 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
-  <div class="BackToInnovation">
+  <!-- <div class="BackToInnovation">
       <img class="innovation_img" src="https://coddmac.store/innovation/innovation.svg" alt="Инновационная столица">
       <p class="innovation_text">На главную</p>
-  </div>
+  </div> -->
 
   <div id="main" class="bord">
 
@@ -657,40 +657,41 @@
 
     countLoad();
 
-    let isInnovation = false;
+    // Проверка url-параметра для Инновационной столицы
+    // let isInnovation = false;
 
-    function checkUrlParameterAndCreateButton() {
-        console.log('URLCheck');
-        let url = window.location.href;
-        const button = document.querySelector('.BackToInnovation');
+    // function checkUrlParameterAndCreateButton() {
+    //     console.log('URLCheck');
+    //     let url = window.location.href;
+    //     const button = document.querySelector('.BackToInnovation');
 
-        if (url.includes('innovation')) {
-            button.style.display = 'flex';
-            button.addEventListener('click', function() {
-                window.location.href = 'https://i.transport.mos.ru/screen';
-            });
-            isInnovation = true;
-            document.addEventListener("DOMContentLoaded", () => {
-                const links = document.querySelectorAll("a");
-                links.forEach(link => {
-                    const href = link.getAttribute("href");
-                    if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("tel") && !href.includes("?innovation")) {
-                        link.setAttribute("href", `${href}?innovation`);
-                    }
-                });
-            });
-        }
-        return isInnovation;
-    }
-    checkUrlParameterAndCreateButton();
+    //     if (url.includes('innovation')) {
+    //         button.style.display = 'flex';
+    //         button.addEventListener('click', function() {
+    //             window.location.href = 'https://i.transport.mos.ru/screen';
+    //         });
+    //         isInnovation = true;
+    //         document.addEventListener("DOMContentLoaded", () => {
+    //             const links = document.querySelectorAll("a");
+    //             links.forEach(link => {
+    //                 const href = link.getAttribute("href");
+    //                 if (href && !href.startsWith("#") && !href.startsWith("mailto") && !href.startsWith("tel") && !href.includes("?innovation")) {
+    //                     link.setAttribute("href", `${href}?innovation`);
+    //                 }
+    //             });
+    //         });
+    //     }
+    //     return isInnovation;
+    // }
+    // checkUrlParameterAndCreateButton();
 
-    // ссылка в футере отключена при URL-параметре
-    const urlLinksKill = document.querySelectorAll('#pier-faq .card a, #footer .logos-flex-wrapper a, #footer .btn-link-footer, #footer .footer-contacts .mobile_number');
-    if (isInnovation) {
-      urlLinksKill.forEach((link) => {
-        link.style.pointerEvents = 'none';
-      });
-    }
+    // // ссылка в футере отключена при URL-параметре
+    // const urlLinksKill = document.querySelectorAll('#pier-faq .card a, #footer .logos-flex-wrapper a, #footer .btn-link-footer, #footer .footer-contacts .mobile_number');
+    // if (isInnovation) {
+    //   urlLinksKill.forEach((link) => {
+    //     link.style.pointerEvents = 'none';
+    //   });
+    // }
 
 
     // setTimeout(function () {

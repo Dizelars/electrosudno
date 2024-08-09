@@ -1,5 +1,5 @@
+@charset "UTF-8";
 @import './fonts.css';
-
 #hellopreloader_preload {
   display: block;
   position: fixed;
