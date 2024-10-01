@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="encoding" content="utf-8" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Model Viewer Example">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="yandex" content="noindex,nofollow,noarchive">
+    <meta name="googlebot" content="noindex,nofollow,noarchive">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://garagetest.ru/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://garagetest.ru/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://garagetest.ru/favicons/favicon-16x16.png">
+    <link rel="manifest" href="https://garagetest.ru/favicons/site.webmanifest">
+    <link rel="mask-icon" href="https://garagetest.ru/favicons/safari-pinned-tab.svg" color="#5bbad5">
+     <style>
+        .google_viewer {
+            display: none;
+        }
+     </style>
+    <title>AR</title>
+  </head>
+  <body>
+    <div id="div_mv"></div>
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+     <script type="module">
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   const newsId = urlParams.get("armodel");
+
+    //   const arModelUrls = {
+    //       muslcar: 'MuslCarLowPoly_mintexture_transform/untitled.gltf',
+    //       police: 'Police_car_transform/scene.gltf',
+    //       moto: 'moto_transform/MOTO_16.08.gltf',
+    //   };
+
+    //   let arModelUrl = arModelUrls[newsId];
+
+      document.addEventListener("DOMContentLoaded", () => {
+          const m_viewer = document.createElement('model-viewer');
+          m_viewer.setAttribute('class', 'google_viewer');
+          m_viewer.setAttribute('ar', 'true');
+        //   if (arModelUrl) {
+        //       m_viewer.setAttribute('src', `https://garagetest.ru/models/${arModelUrl}`);
+        //   }
+        m_viewer.setAttribute('src', `https://garagetest.ru/models/sinichka/Sinichka2.0.gltf`);
+
+          let myDiv = document.getElementById('div_mv');
+          myDiv.appendChild(m_viewer);
+          setTimeout(() => {
+              alert(m_viewer.canActivateAR);
+              // console.log(myDiv);
+              alert(m_viewer.src);
+              m_viewer.activateAR();
+          }, 100);
+      });
+     </script>
+  </body>
+</html>

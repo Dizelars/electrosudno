@@ -5,6 +5,12 @@
   overflow: hidden;
 }
 
+.vectary img.vectary_plug {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .vectary iframe {
   border: none;
 }
