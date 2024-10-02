@@ -69,6 +69,32 @@ import AR from "./js/threeJS/AR.js";
 //   });
 // };
 
+const urlParams = new URLSearchParams(window.location.search);
+const newsId = urlParams.get("ar");
+let hellopreloader = document.getElementById("hellopreloader_preload");
+// console.log(newsId)
+
+// if (newsId == true) {
+//   checkURLMobile();
+// }
+
+// function checkURLMobile() {
+//   video.removeEventListener("ended", onVideoEndListener);
+//   videoContent.style.display = "none";
+//   siteContent.style.display = "block";
+//   bodyOverflow.style.overflow = 'auto';
+//   firstSection.classList.remove('fixed');
+//   htmlSmooth.classList.remove('smooth');
+//   setTimeout(() => {
+//     WheelContentSmooth();
+//   }, 500);
+//   setTimeout(() => {
+//     contentNone.forEach((section) => {
+//       section.classList.remove('video_active');
+//     });
+//   }, 600);
+// }
+
 const createVideoSource = (el, i, fileType) => {
   const source = document.createElement("source");
   source.setAttribute("src", `/${i + 1}${fileType}.mp4`);
@@ -171,6 +197,12 @@ function App() {
           e.classList.remove('video_active');
         });
         isEndVideos = true;
+      }
+
+      if (newsId) {
+        finishVideosBlock();
+        // WheelContentSmooth();
+        hellopreloader.style.display = "none";
       }
 
       function fadeVideo(lastVideo) {
@@ -671,6 +703,11 @@ function App() {
         onVideoEndListener()
       };
 
+      if (newsId) {
+        onVideoEndListener();
+        hellopreloader.style.display = "none";
+      }
+
       video.addEventListener("ended", onVideoEndListener);
 
 
@@ -931,6 +968,10 @@ function App() {
       let currentSectionIndex = 0;
       let isScrolling = false;
 
+      if (newsId) {
+        currentSectionIndex = 1;
+      }
+
       rollup.forEach((sphere, indexSphere) => {
         sphere.addEventListener("click", function () {
           if (indexSphere === 0) {
@@ -1039,7 +1080,9 @@ function App() {
       // Добавляем обработчик события "touch"
       // document.addEventListener('touchstart', handleTouchEvent, { passive: false });
     }
-
+    if (newsId) {
+      WheelContentSmooth();
+    }
   }, []);
   return <>
     <AR />

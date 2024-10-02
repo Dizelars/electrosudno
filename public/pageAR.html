@@ -14,13 +14,35 @@
     <link rel="manifest" href="https://garagetest.ru/favicons/site.webmanifest">
     <link rel="mask-icon" href="https://garagetest.ru/favicons/safari-pinned-tab.svg" color="#5bbad5">
      <style>
+        body {
+          background-color: #9794A6;
+          position: relative;
+        }
+
         .google_viewer {
             display: none;
+        }
+
+        .backToPageBack {
+          font-family: 'MoscowSans', sans-serif;
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          background-color: black;
+          color: #ffffff;
+          text-align: center;
+          min-width: 60px;
+          padding: 10px;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
         }
      </style>
     <title>AR</title>
   </head>
   <body>
+
+    <div class="backToPageBack">Назад</div>
     <div id="div_mv"></div>
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
@@ -40,19 +62,29 @@
           const m_viewer = document.createElement('model-viewer');
           m_viewer.setAttribute('class', 'google_viewer');
           m_viewer.setAttribute('ar', 'true');
-        //   if (arModelUrl) {
-        //       m_viewer.setAttribute('src', `https://garagetest.ru/models/${arModelUrl}`);
-        //   }
-        m_viewer.setAttribute('src', `https://garagetest.ru/models/sinichka/Sinichka2.0.gltf`);
+
+          // https://garagetest.ru/models/sinichka/Sinichka2.0.gltf
+          // https://garagetest.ru/models/testModel/untitled.gltf
+          // https://garagetest.ru/models/moto/SF_MOTO_CODD_30_09.gltf
+          // https://garagetest.ru/models/kamaz/Kamaz_AR_dupelikasione.gltf
+
+          // https://garagetest.ru/models/testModel/S2.gltf
+
+          m_viewer.setAttribute('src', `https://garagetest.ru/models/testModel/S2.gltf`);
 
           let myDiv = document.getElementById('div_mv');
           myDiv.appendChild(m_viewer);
           setTimeout(() => {
               alert(m_viewer.canActivateAR);
-              // console.log(myDiv);
-              alert(m_viewer.src);
               m_viewer.activateAR();
           }, 100);
+
+          const backToPageBack = document.querySelector('.backToPageBack');
+          backToPageBack.addEventListener('click', () => {
+            // window.history.back();
+            // window.open('https://garagetest.ru/?ar=true#sinichka-section');
+            window.location.href = 'https://garagetest.ru/?ar=true#sinichka-section';
+          });
       });
      </script>
   </body>

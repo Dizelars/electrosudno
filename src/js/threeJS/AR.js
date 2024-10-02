@@ -13,12 +13,14 @@ function AR() {
         console.log("Доступность AR: " + modelViewer.canActivateAR)
         
         if (modelViewer.canActivateAR) {
-            // modelViewer.style.zIndex = "2147483647";
             // modelViewer.activateAR();
             window.open('https://garagetest.ru/pageAR.html');
         } else {
-            console.log('Открываем QR с ссылкой на AR');
-            openErrorStatus()
+            if (window.innerWidth < 1200) {
+                window.open('https://garagetest.ru/pageAR.html');
+            } else {
+                openPopupQR();
+            }
         }
     });
     
@@ -46,14 +48,14 @@ function AR() {
         bodyOverflow.style.width = "100%";
     }
     
-    function openErrorStatus() {
+    function openPopupQR() {
         statusError.classList.add('active');
         statusError.style.visibility = 'visible';
         arButton.classList.add('hidden');
         openPopup();
     }
     
-    function closeErrorStatus() {
+    function closePopupQR() {
         statusError.classList.remove('active');
         arButton.classList.remove('hidden');
         // setTimeout(() => {
@@ -72,7 +74,7 @@ function AR() {
     // 	});
     // }
     
-    // clickOutOfPopup(statusError, closeErrorStatus);
+    // clickOutOfPopup(statusError, closePopupQR);
     
     function clickButtonClose(clickedElem, closeFunc) {
         clickedElem.addEventListener('click', () => {
@@ -81,7 +83,7 @@ function AR() {
     }
     
     const statusErrorCloseIcon = document.querySelector('.qrCode-popup .closeButton');
-    clickButtonClose(statusErrorCloseIcon, closeErrorStatus);
+    clickButtonClose(statusErrorCloseIcon, closePopupQR);
 };
 
 export default AR;

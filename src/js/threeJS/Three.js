@@ -34,6 +34,7 @@ function Electrosudno() {
     // Создаем папки дебагера
     // const hdriFolder = gui.addFolder('Карта окружения');
     const toneMapping = gui.addFolder('Тоновое отображение')
+    const cameraSettings = gui.addFolder('Настройки камеры')
     // const PointFolder = gui.addFolder('Типоны');
     // const One = PointFolder.addFolder('Типон 1');
     // const Two = PointFolder.addFolder('Типон 2');
@@ -94,24 +95,16 @@ function Electrosudno() {
         {
             if(child.isMesh && child.material.isMeshStandardMaterial)
             {
-                console.log(child);
+                // console.log(child);
                 if (child.name === 'Boat') {
                     child.material.depthWrite = true;
-                    console.log(child);
+                    // console.log(child);
                 }
                 // child.material.envMapIntensity = global.envMapIntensity
                 // child.material.side = THREE.DoubleSide
             }
         })
     }
-
-
-    //* Textures
-    // const textureLoader = new THREE.TextureLoader();
-    // const ColorTexture = textureLoader.load('./models/sinichka/Base-color-v2&lambert16SG_Opacity.jpg');
-    // ColorTexture.colorSpace = THREE.SRGBColorSpace;
-    // ColorTexture.generateMipmaps = false
-    // ColorTexture.minFilter = THREE.NearestFilter
 
 
     let dracoLoader = new DRACOLoader(loadingManager)
@@ -126,15 +119,15 @@ function Electrosudno() {
 
     // ./models/sinichka/Sinichka2.0.gltf
     // ./models/testModel/untitled.gltf
+    // ./models/sinichka/S2.gltf
 
-    gltfLoader.load("./models/testModel/untitled.gltf", (gltf) => {
+    gltfLoader.load("./models/sinichka/S2.gltf", (gltf) => {
         console.log(gltf);
         let current_object = gltf.scene;
 
         current_object.position.x = 0;
         current_object.position.y = -2.5;
         current_object.position.z = 0;
-        // current_object.rotation.y = -3.08;
         current_object.scale.set(12, 12, 12);
 
         // positionFolder.add(current_object.position, 'x', -9, 9, 0.01).name('position X')
@@ -221,7 +214,13 @@ function Electrosudno() {
     // Base camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
     // camera.position.set(2.5, 2, 4.5)
-    camera.position.set(2.5, 2, 4.5)
+    camera.position.x = 5.5;
+    camera.position.y = 0;
+    camera.position.z = 0;
+
+    cameraSettings.add(camera.position, 'x', -9, 9, 0.01).name('position X')
+    cameraSettings.add(camera.position, 'y', -9, 9, 0.01).name('position Y')
+    cameraSettings.add(camera.position, 'z', -9, 9, 0.01).name('position Z')
     scene.add(camera)
 
     // Controls
@@ -231,6 +230,7 @@ function Electrosudno() {
     // controls.maxDistance = 5.5;
     // controls.minDistance = 3.5;
     controls.enableDamping = true
+    controls.enableZoom = false;
     //* Отключение перетаскивания
     controls.enablePan = false
 
@@ -310,7 +310,6 @@ function Electrosudno() {
      */
     const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
-        // precision: "highp",
         antialias: true,
         alpha: true
     })
@@ -322,34 +321,12 @@ function Electrosudno() {
     let hdrJpgEquirectangularMap
     let hdrJpg = new HDRJPGLoader(renderer).load( './images/environmentMaps/skylit_garage_4k.jpg', () => {
 
-        // console.log(hdrJpg)
-
         hdrJpgEquirectangularMap = hdrJpg.renderTarget.texture;
 
         hdrJpgEquirectangularMap.mapping = THREE.EquirectangularReflectionMapping;
         hdrJpgEquirectangularMap.needsUpdate = true;
 
         scene.environment = hdrJpgEquirectangularMap;
-
-        // let skybox = new GroundedSkybox(hdrJpgEquirectangularMap, constants.height, constants.radius, constants.resolution);
-        // skybox.position.y = constants.height  - 0.01;
-        // scene.add(skybox)
-
-        // //* Мы можем управлять проекцией скайбокса с помощью радиуса и высоты, но так как результат непредсказуем, лучше добавить эти значения в lil-gui:
-        // hdriFolder.add(constants, 'radius', 1, 200, 0.1).name('skyboxRadius').onFinishChange(() => {
-        //     skybox.radius = constants.radius;
-        //     scene.remove(skybox); // Удаление старого skybox
-        //     skybox = new GroundedSkybox(hdrJpgEquirectangularMap, constants.height, constants.radius); // Создание нового skybox с обновленными параметрами
-        //     skybox.position.y = constants.height - 0.01;
-        //     scene.add(skybox); // Добавление нового skybox на сцену
-        // });
-        // hdriFolder.add(constants, 'height', 1, 100, 0.1).name('skyboxHeight').onFinishChange(() => {
-        //     skybox.height = constants.height;
-        //     scene.remove(skybox); // Удаление старого skybox
-        //     skybox = new GroundedSkybox(hdrJpgEquirectangularMap, constants.height, constants.radius); // Создание нового skybox с обновленными параметрами
-        //     skybox.position.y = constants.height - 0.01;
-        //     scene.add(skybox); // Добавление нового skybox на сцену
-        // });
     });
 
     //! Tone mapping
@@ -385,49 +362,6 @@ function Electrosudno() {
     tick()
     //! 1. Информация о рендере
     // console.log(renderer.info)
-
-    // Переключение между сценами при клике на кнопку с классом ".tech_spec__interior"
-    // let activeScene = 1;
-    // const interiorButton = document.querySelector('.tech_spec__interior');
-    // const aFrameScene = document.querySelector('a-scene');
-    // const tiponsOnModel = document.querySelectorAll('.point');
-
-    // const transitionHelper = new InteriorTransitionHelper(interiorButton);
-    // interiorButton.addEventListener('click', () => {
-    //     if (transitionHelper.isTransition()) {
-    //         return;
-    //     }
-
-    //     transitionHelper.startTransition();
-
-    //     if (activeScene === 1) {
-    //         setTimeout(() => {
-    //             activeScene = 2;
-    //             aFrameScene.style.opacity = '1';
-    //             aFrameScene.style.height = 'auto';
-    //             aFrameScene.style.pointerEvents = 'auto';
-    //             aFrameScene.play();
-    //             controls.enabled = false;
-    //             transitionHelper.endTransition();
-    //             tiponsOnModel.forEach((e) => {
-    //                 e.style.zIndex = "0";
-    //             })
-    //         }, 1500);
-    //     } else {
-    //         setTimeout(() => {
-    //             activeScene = 1;
-    //             aFrameScene.style.opacity = '0';
-    //             aFrameScene.style.height = '0';
-    //             aFrameScene.style.pointerEvents = 'none';
-    //             aFrameScene.pause();
-    //             controls.enabled = true;
-    //             transitionHelper.endTransition();
-    //             tiponsOnModel.forEach((e) => {
-    //                 e.style.zIndex = "1";
-    //             })
-    //         }, 1500);
-    //     }
-    // });
 }
 
 export default Electrosudno;
