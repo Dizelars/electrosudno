@@ -16,7 +16,8 @@
      <style>
         body {
           background-color: #9794A6;
-          position: relative;
+          /* position: relative; */
+          margin: 0;
         }
 
         .google_viewer {
@@ -24,58 +25,66 @@
         }
 
         .backToPageBack {
-          font-family: 'MoscowSans', sans-serif;
           position: absolute;
           top: 20px;
-          left: 20px;
+          left: 50%;
+          transform: translateX(-50%);
           background-color: black;
-          color: #ffffff;
           text-align: center;
           min-width: 60px;
           padding: 10px;
           border-radius: 5px;
-          font-size: 16px;
           cursor: pointer;
+        }
+
+        .backToPageBack a {
+          font-family: 'MoscowSans', sans-serif;
+          font-weight: 300;
+          font-size: 16px;
+          display: block;
+          width: max-content;
+          color: #ffffff;
+          text-decoration: none;
+        }
+
+        .vectary_plug {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          max-width: max-content;
+          pointer-events: none;
         }
      </style>
     <title>AR</title>
   </head>
   <body>
 
-    <div class="backToPageBack">Назад</div>
     <div id="div_mv"></div>
+    <div class="backToPageBack">
+      <!-- <a href="index.html#sinichka-section">На страницу с моделью</a> -->
+      <a>На страницу с моделью</a>
+    </div>
+    <img class="vectary_plug" src="./images/sinichka_prev.png" alt="Электросудно Синичка">
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
      <script type="module">
-    //   const urlParams = new URLSearchParams(window.location.search);
-    //   const newsId = urlParams.get("armodel");
-
-    //   const arModelUrls = {
-    //       muslcar: 'MuslCarLowPoly_mintexture_transform/untitled.gltf',
-    //       police: 'Police_car_transform/scene.gltf',
-    //       moto: 'moto_transform/MOTO_16.08.gltf',
-    //   };
-
-    //   let arModelUrl = arModelUrls[newsId];
-
       document.addEventListener("DOMContentLoaded", () => {
           const m_viewer = document.createElement('model-viewer');
           m_viewer.setAttribute('class', 'google_viewer');
           m_viewer.setAttribute('ar', 'true');
+          m_viewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
+          m_viewer.setAttribute('camera-controls', '');
 
           // https://garagetest.ru/models/sinichka/Sinichka2.0.gltf
           // https://garagetest.ru/models/testModel/untitled.gltf
-          // https://garagetest.ru/models/moto/SF_MOTO_CODD_30_09.gltf
-          // https://garagetest.ru/models/kamaz/Kamaz_AR_dupelikasione.gltf
-
           // https://garagetest.ru/models/testModel/S2.gltf
 
           m_viewer.setAttribute('src', `https://garagetest.ru/models/testModel/S2.gltf`);
 
-          let myDiv = document.getElementById('div_mv');
-          myDiv.appendChild(m_viewer);
+          document.getElementById('div_mv').appendChild(m_viewer);
           setTimeout(() => {
-              alert(m_viewer.canActivateAR);
               m_viewer.activateAR();
           }, 100);
 
@@ -83,7 +92,8 @@
           backToPageBack.addEventListener('click', () => {
             // window.history.back();
             // window.open('https://garagetest.ru/?ar=true#sinichka-section');
-            window.location.href = 'https://garagetest.ru/?ar=true#sinichka-section';
+            // window.location.href = 'https://garagetest.ru/?ar=true#sinichka-section';
+            window.location.href = 'http://localhost:3000/?ar=true#sinichka-section';
           });
       });
      </script>

@@ -34,7 +34,7 @@ function Electrosudno() {
     // Создаем папки дебагера
     // const hdriFolder = gui.addFolder('Карта окружения');
     const toneMapping = gui.addFolder('Тоновое отображение')
-    const cameraSettings = gui.addFolder('Настройки камеры')
+    // const cameraSettings = gui.addFolder('Настройки камеры')
     // const PointFolder = gui.addFolder('Типоны');
     // const One = PointFolder.addFolder('Типон 1');
     // const Two = PointFolder.addFolder('Типон 2');
@@ -112,13 +112,6 @@ function Electrosudno() {
     let gltfLoader = new GLTFLoader(loadingManager)
     gltfLoader.setDRACOLoader(dracoLoader)
 
-    // models/moto_transform/MOTO_16.08.gltf
-    // models/moto/MOTO_16.08.gltf
-    // https://garagetest.ru/models/sinichka/Sinichka 2.0.gltf
-    // ./models/sinichka/Sinichka 2.0.gltf
-
-    // ./models/sinichka/Sinichka2.0.gltf
-    // ./models/testModel/untitled.gltf
     // ./models/sinichka/S2.gltf
 
     gltfLoader.load("./models/sinichka/S2.gltf", (gltf) => {
@@ -208,29 +201,54 @@ function Electrosudno() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     })
 
+    let cameraPosX;
+    let cameraPosY = 0;
+    let cameraPosZ = 0;
+    let maxDistanceOrbit;
+    let enableZoomOrbit;
+
+    if (window.innerWidth <= 350) {
+        cameraPosX = 20;
+        maxDistanceOrbit = 21;
+        enableZoomOrbit = true;
+    } else if (window.innerWidth > 350 && window.innerWidth <= 480) {
+        cameraPosX = 18;
+        maxDistanceOrbit = 20;
+        enableZoomOrbit = true;
+    } else if (window.innerWidth > 480 && window.innerWidth <= 700) {
+        cameraPosX = 14;
+        maxDistanceOrbit = 15;
+        enableZoomOrbit = true;
+    } else if (window.innerWidth > 700 && window.innerWidth <= 960) {
+        cameraPosX = 9;
+        maxDistanceOrbit = 10;
+        enableZoomOrbit = true;
+    } else if (window.innerWidth > 960 && window.innerWidth <= 1200) {
+        cameraPosX = 7;
+        maxDistanceOrbit = 8;
+        enableZoomOrbit = true;
+    }  else {
+        cameraPosX = 5.5;
+        maxDistanceOrbit = 5.5;
+        enableZoomOrbit = false;
+    }
+
     /**
      * Camera
      */
     // Base camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-    // camera.position.set(2.5, 2, 4.5)
-    camera.position.x = 5.5;
-    camera.position.y = 0;
-    camera.position.z = 0;
-
-    cameraSettings.add(camera.position, 'x', -9, 9, 0.01).name('position X')
-    cameraSettings.add(camera.position, 'y', -9, 9, 0.01).name('position Y')
-    cameraSettings.add(camera.position, 'z', -9, 9, 0.01).name('position Z')
+    camera.position.set(cameraPosX, cameraPosY, cameraPosZ)
     scene.add(camera)
 
     // Controls
     const controls = new OrbitControls(camera, canvas)
     controls.target.set(0, 0.75, 0)
     controls.maxPolarAngle = Math.PI * 0.5;
-    // controls.maxDistance = 5.5;
-    // controls.minDistance = 3.5;
+    controls.maxDistance = maxDistanceOrbit;
+    controls.minDistance = 3.5;
     controls.enableDamping = true
-    controls.enableZoom = false;
+    controls.enableZoom = enableZoomOrbit;
     //* Отключение перетаскивания
     controls.enablePan = false
 
@@ -240,7 +258,8 @@ function Electrosudno() {
     // });
 
     // controls.addEventListener('end', () => {
-    //     raycasterTipons();
+    //     // raycasterTipons();
+    //     console.log(camera.position);
     // });
 
     // function raycasterTipons() {

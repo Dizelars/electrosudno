@@ -1,9 +1,8 @@
 .google_viewer {
     display: none;
-    // z-index: 2147483647 !important;
 }
 
-.qrCode-popup {
+.popup_design {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -14,7 +13,8 @@
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: -99999;
+    // z-index: -99999;
+    z-index: 99999;
     width: 100%;
     max-height: 100vh;
     height: 100%;
@@ -26,22 +26,21 @@
             align-items: center;
     overflow: auto;
     padding: 0 20px;
-
-    /* background: transparent; */
     background: rgba(255,255,255,0.10);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
 }
 
-.qrCode-popup.active {
+.popup_design.active {
     pointer-events: all;
     z-index: 99999;
 }
 
-.qrCode-popup.active .qrCode-popup_wrapper {
-    -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-            transform: translateY(0);
+.popup_design p {
+    margin: 0;
+}
+
+.popup_design.active .popup_wrapper {
     position: relative;
     padding: 20px;
     max-width: 240px;
@@ -65,15 +64,11 @@
     gap: 14px;
 }
 
-.qrCode-popup .closeIcon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 16px;
-    cursor: pointer;
+.popup_design.arSupport-popup.active .popup_wrapper {
+    max-width: 350px;
 }
 
-.qrCode-popup .title {
+.popup_design .title {
     font-family: 'MoscowSans', sans-serif;
     font-size: 20px;
     font-weight: 700;
@@ -81,12 +76,17 @@
     color: #252525;
 }
 
+.popup_design.arSupport-popup .title {
+	text-align: unset;
+    width: 100%;
+}
+
 .qrCode-popup .qr_code {
     max-width: 184px;
     width: 100%;
 }
 
-.qrCode-popup .description {
+.popup_design .description {
     font-family: 'MoscowSans', sans-serif;
     font-size: 13px;
     line-height: 15px;
@@ -95,7 +95,14 @@
     color: #6d6d6d;
 }
 
-.qrCode-popup .closeButton {
+.popup_design.arSupport-popup .description {
+	font-size: 16px;
+    line-height: 18px;
+    font-weight: 500;
+    text-align: unset;
+}
+
+.popup_design .closeButton {
     text-align: center;
     width: 100%;
     color: #252525;
@@ -106,10 +113,10 @@
     cursor: pointer;
     border: 1px solid #efefef;
     border-radius: 5px;
-    // transition: all .5s;
+    transition: background-color .5s;
 }
 
-.qrCode-popup .closeButton:hover {
+.popup_design .closeButton:hover {
     background-color: #fcfcfc;
 }
 
@@ -126,7 +133,6 @@
     height: 32px;
     border-radius: 4px;
     border: 1px solid white;
-    /* pointer-events: none; */
     cursor: pointer;
 }
 
@@ -170,5 +176,33 @@
     40% {
         transform: scale(1.2);
         opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup_design.arSupport-popup {
+        padding: 0;
+    }
+
+    .popup_design.arSupport-popup .popup_wrapper {
+        position: absolute;
+        bottom: -30%;
+        transition: all .6s ease;
+    }
+    
+    .popup_design.arSupport-popup.active .popup_wrapper {
+        max-width: unset;
+        position: absolute;
+        bottom: 0;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .popup_design .title {
+        font-size: 16px;
+    }
+
+    .popup_design.arSupport-popup .description {
+        font-size: 12px;
+        line-height: 16px;
     }
 }
