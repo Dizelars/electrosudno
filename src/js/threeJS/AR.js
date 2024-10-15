@@ -7,20 +7,25 @@ function AR() {
 
     // isUserOnTelegram();
 
+    const modelViewer = document.querySelector('#pageWithModel');
+    const pulseBlock = document.querySelector('.pulse_media');
+
     document.querySelector('.pulse_wrapper').addEventListener('click', () => {
-        const modelViewer = document.querySelector('#pageWithModel');
-    
-        // console.log("Доступность AR: " + modelViewer.canActivateAR)
-        
+        pulseBlock.classList.add('loading');
         if (modelViewer.canActivateAR) {
             modelViewer.activateAR();
+            setTimeout(() => {
+                pulseBlock.classList.remove('loading');
+            }, 5000);
         } else {
             if (window.innerWidth < 1200) {
                 console.log('No AR on this device');
                 openPopupARSupport()
+                pulseBlock.classList.remove('loading');
             } else {
                 console.log('Открываем QR с ссылкой на AR');
                 openPopupQR()
+                pulseBlock.classList.remove('loading');
             }
         }
     });

@@ -145,10 +145,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
 }
 
-.pulse_media .pulse_img:first-child {
-    margin-right: 4px;
+.pulse_media.loading .pulse_img:first-child {
+    display: none;
+}
+
+.pulse_media svg {
+    display: none;
+}
+
+.pulse_media.loading svg {
+    display: block;
 }
 
 .pulse {

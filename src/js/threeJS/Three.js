@@ -63,7 +63,7 @@ function Electrosudno() {
      */
     // let sceneReady = false
 
-    const loadingManager = new THREE.LoadingManager();
+    // const loadingManager = new THREE.LoadingManager();
 
     // const progressBar = document.getElementById('progress-bar');
     // const progressLabel = document.getElementById('progress-label');
@@ -98,18 +98,34 @@ function Electrosudno() {
                 // console.log(child);
                 if (child.name === 'Boat') {
                     child.material.depthWrite = true;
-                    // console.log(child);
                 }
-                // child.material.envMapIntensity = global.envMapIntensity
-                // child.material.side = THREE.DoubleSide
+                if (child.castShadow) {
+                    child.castShadow = false;
+                }
+                
+                if (child.receiveShadow) {
+                    child.receiveShadow = false;
+                }
+                
+                if (child.matrixAutoUpdate) {
+                    child.matrixAutoUpdate = false;
+                }
+                
+                if (child.matrixWorldAutoUpdate) {
+                    child.matrixWorldAutoUpdate = false;
+                }
+                
+                if (child.matrixWorldNeedsUpdate) {
+                    child.matrixWorldNeedsUpdate = false;
+                }
             }
         })
     }
 
 
-    let dracoLoader = new DRACOLoader(loadingManager)
+    let dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/draco/')
-    let gltfLoader = new GLTFLoader(loadingManager)
+    let gltfLoader = new GLTFLoader()
     gltfLoader.setDRACOLoader(dracoLoader)
 
     // ./models/sinichka/S2.gltf
@@ -207,17 +223,17 @@ function Electrosudno() {
     let maxDistanceOrbit;
     let enableZoomOrbit;
 
-    if (window.innerWidth <= 350) {
-        cameraPosX = 20;
-        maxDistanceOrbit = 21;
+    if (window.innerWidth <= 375) {
+        cameraPosX = 10;
+        maxDistanceOrbit = 11;
         enableZoomOrbit = true;
-    } else if (window.innerWidth > 350 && window.innerWidth <= 480) {
-        cameraPosX = 18;
-        maxDistanceOrbit = 20;
+    } else if (window.innerWidth > 375 && window.innerWidth <= 480) {
+        cameraPosX = 11;
+        maxDistanceOrbit = 12;
         enableZoomOrbit = true;
     } else if (window.innerWidth > 480 && window.innerWidth <= 700) {
-        cameraPosX = 14;
-        maxDistanceOrbit = 15;
+        cameraPosX = 10;
+        maxDistanceOrbit = 11;
         enableZoomOrbit = true;
     } else if (window.innerWidth > 700 && window.innerWidth <= 960) {
         cameraPosX = 9;
@@ -301,27 +317,27 @@ function Electrosudno() {
     //     }
     // }
 
-    controls.update();
+    // controls.update();
 
     /**
      * Point click
      */
-    const pointsOnModel = document.querySelectorAll('.point')
+    // const pointsOnModel = document.querySelectorAll('.point')
 
-    pointsOnModel.forEach((point) => {
-        point.addEventListener('click', () => {
-            point.classList.toggle('show')
+    // pointsOnModel.forEach((point) => {
+    //     point.addEventListener('click', () => {
+    //         point.classList.toggle('show')
 
-            // Проверка наличия класса 'show' у остальных точек
-            pointsOnModel.forEach((otherPoint) => {
-                if (otherPoint !== point) {
-                    if (otherPoint.classList.contains('show')) {
-                        otherPoint.classList.remove('show')
-                    }
-                }
-            })
-        })
-    })
+    //         // Проверка наличия класса 'show' у остальных точек
+    //         pointsOnModel.forEach((otherPoint) => {
+    //             if (otherPoint !== point) {
+    //                 if (otherPoint.classList.contains('show')) {
+    //                     otherPoint.classList.remove('show')
+    //                 }
+    //             }
+    //         })
+    //     })
+    // })
 
 
     /**
@@ -330,11 +346,14 @@ function Electrosudno() {
     const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
         antialias: true,
-        alpha: true
+        // alpha: true,
+        powerPreference: 'high-performance',
+        precision: 'lowp'
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor( 0x000000, 0 );
+    renderer.shadowMap.autoUpdate = false;
 
 
     let hdrJpgEquirectangularMap
