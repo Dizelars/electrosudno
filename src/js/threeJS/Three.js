@@ -99,25 +99,12 @@ function Electrosudno() {
                 if (child.name === 'Boat') {
                     child.material.depthWrite = true;
                 }
-                if (child.castShadow) {
-                    child.castShadow = false;
-                }
                 
-                if (child.receiveShadow) {
-                    child.receiveShadow = false;
-                }
-                
-                if (child.matrixAutoUpdate) {
-                    child.matrixAutoUpdate = false;
-                }
-                
-                if (child.matrixWorldAutoUpdate) {
-                    child.matrixWorldAutoUpdate = false;
-                }
-                
-                if (child.matrixWorldNeedsUpdate) {
-                    child.matrixWorldNeedsUpdate = false;
-                }
+                child.castShadow = false;
+                child.receiveShadow = false;
+                child.matrixAutoUpdate = false;
+                child.matrixWorldAutoUpdate = false;
+                child.matrixWorldNeedsUpdate = false;
             }
         })
     }
