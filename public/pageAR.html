@@ -213,6 +213,7 @@
           m_viewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
           m_viewer.setAttribute('camera-controls', '');
 
+          // m_viewer.setAttribute('src', `https://electrosudno.ru/models/testModel/S2.gltf`);
           m_viewer.setAttribute('src', `https://garagetest.ru/models/testModel/S2.gltf`);
 
           document.getElementById('div_mv').appendChild(m_viewer);
@@ -228,6 +229,7 @@
   
           const backToPageBack = document.querySelector('.backToPageBack');
           backToPageBack.addEventListener('click', () => {
+            // window.location.href = 'https://electrosudno.ru/?ar=true#sinichka-section';
             window.location.href = 'https://garagetest.ru/?ar=true#sinichka-section';
           });
       });

@@ -342,9 +342,12 @@ function Electrosudno() {
     renderer.setClearColor( 0x000000, 0 );
     renderer.shadowMap.autoUpdate = false;
 
+    // ./images/environmentMaps/skylit_garage_4k.jpg
+    // ./images/environmentMaps/garage.jpg
+    // ./images/environmentMaps/dok_kater.jpg
 
     let hdrJpgEquirectangularMap
-    let hdrJpg = new HDRJPGLoader(renderer).load( './images/environmentMaps/skylit_garage_4k.jpg', () => {
+    let hdrJpg = new HDRJPGLoader(renderer).load( './images/environmentMaps/dok_kater.jpg', () => {
 
         hdrJpgEquirectangularMap = hdrJpg.renderTarget.texture;
 
@@ -364,7 +367,7 @@ function Electrosudno() {
         ACESFilmic: THREE.ACESFilmicToneMapping
     })
 
-    renderer.toneMappingExposure = 2
+    renderer.toneMappingExposure = 1
     toneMapping.add(renderer, 'toneMappingExposure').min(0).max(10).step(0.001)
 
 
