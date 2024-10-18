@@ -16,7 +16,7 @@ function AR() {
             modelViewer.activateAR();
             setTimeout(() => {
                 pulseBlock.classList.remove('loading');
-            }, 5000);
+            }, 10000);
         } else {
             if (window.innerWidth < 1200) {
                 console.log('No AR on this device');

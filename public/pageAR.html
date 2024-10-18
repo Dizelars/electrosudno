@@ -69,9 +69,13 @@
           font-display: swap;
         }
 
+        * {
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+
         body {
           background-color: #9794A6;
-          /* position: relative; */
           margin: 0;
         }
 
@@ -87,7 +91,7 @@
           background-color: black;
           text-align: center;
           min-width: 60px;
-          padding: 10px;
+          padding: 14px 12px;
           border-radius: 5px;
           cursor: pointer;
         }
@@ -112,40 +116,27 @@
           pointer-events: none;
         }
 
-        /* .AR_loading {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: rgba(255,255,255,0.10);
-          -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-        } */
-
-        /* .AR_loading .AR_loading_wrapper {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 20px;
-        } */
-
         .AR_loading {
           position: absolute;
-          box-sizing: border-box;
-          top: 100px;
+          z-index: 2;
+          -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+          top: 88px;
           left: 50%;
-          transform: translateX(-50%);
+          -webkit-transform: translateX(-50%);
+              -ms-transform: translateX(-50%);
+                  transform: translateX(-50%);
           width: 100%;
           padding: 0 10px;
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
-          justify-content: center;
-          align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
         }
 
         .AR_loading.AR_opened {
@@ -153,14 +144,21 @@
         }
 
         .AR_loading .AR_loading_wrapper {
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          min-height: 130px;
           padding: 20px;
-          gap: 20px;
-          border-radius: 10px;
-          background: white;
+          gap: 10px;
+          max-width: 400px;
+          border-radius: 12px;
+          background: #ffffff;
         }
 
         .AR_loading .text {
@@ -169,6 +167,7 @@
           font-size: 16px;
           text-align: center;
           margin: 0;
+          color: #000000;
         }
 
         @media (max-width: 480px) {
@@ -178,6 +177,22 @@
 
           .vectary_plug.AR_opened {
             transform: translate(-50%, -50%);
+          }
+        }
+
+        @media (max-width: 375px) {
+          .AR_loading .AR_loading_wrapper {
+            padding: 5px;
+            gap: 5px;
+          }
+
+          .AR_loading .AR_loading_wrapper .lottie {
+            width: 100px !important;
+            height: 100px !important;
+          }
+
+          .AR_loading .text {
+            font-size: 14px;
           }
         }
      </style>
@@ -193,11 +208,12 @@
 
     <img class="vectary_plug" src="./images/sinichka_prev.png" alt="Электросудно Синичка">
 
+    <!-- https://lottie.host/c8b1e0ce-7b93-410e-932a-65464aaf9c88/ARVftr2Y47.json -->
     <div class="AR_loading">
       <div class="AR_loading_wrapper">
         <p class="text">Подготавливаем показ модели в дополненной реальности</p>
         <!-- <img class="gif_loading" src="./images/AR_loading.gif" alt="AR 3D"> -->
-        <dotlottie-player src="https://lottie.host/c8b1e0ce-7b93-410e-932a-65464aaf9c88/ARVftr2Y47.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></dotlottie-player>
+        <dotlottie-player class="lottie" src="./images/lottie.json" background="transparent" speed="1" style="width: 150px;" loop autoplay preload></dotlottie-player>
       </div>
     </div>
 
@@ -213,8 +229,8 @@
           m_viewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
           m_viewer.setAttribute('camera-controls', '');
 
-          // m_viewer.setAttribute('src', `https://electrosudno.ru/models/testModel/S2.gltf`);
-          m_viewer.setAttribute('src', `https://garagetest.ru/models/testModel/S2.gltf`);
+          // m_viewer.setAttribute('src', `https://electrosudno.ru/models/sinichka/AR/S2.gltf`);
+          m_viewer.setAttribute('src', `https://garagetest.ru/models/sinichka/AR/S2.gltf`);
 
           document.getElementById('div_mv').appendChild(m_viewer);
           // if (modelViewer.canActivateAR) {

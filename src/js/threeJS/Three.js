@@ -115,9 +115,9 @@ function Electrosudno() {
     let gltfLoader = new GLTFLoader()
     gltfLoader.setDRACOLoader(dracoLoader)
 
-    // ./models/sinichka/S2.gltf
+    // ./models/sinichka/scene/S2.gltf
 
-    gltfLoader.load("./models/sinichka/S2.gltf", (gltf) => {
+    gltfLoader.load("./models/sinichka/scene/S2.gltf", (gltf) => {
         console.log(gltf);
         let current_object = gltf.scene;
 
@@ -205,7 +205,7 @@ function Electrosudno() {
     })
 
     let cameraPosX;
-    let cameraPosY = 0;
+    let cameraPosY = 1.5;
     let cameraPosZ = 0;
     let maxDistanceOrbit;
     let enableZoomOrbit;
