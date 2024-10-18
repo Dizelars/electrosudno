@@ -171,7 +171,7 @@ function App() {
     const mouseTrigger = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop');
     const mouseTriggerText = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop span');
     const mouseArrow = document.querySelector('.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_arrow');
-    // const progressStories = document.querySelector('.video_content .video_progress_container');
+    const progressStories = document.querySelector('.video_content .video_progress_container');
     const endButton = document.querySelector(".video_content .leave_button");
     const reloadBtn = document.querySelector('.reload_button');
 
@@ -206,35 +206,35 @@ function App() {
       }
 
       function fadeVideo(lastVideo) {
-        // lastVideo.addEventListener("timeupdate", function() {
-        //   const currentTime = lastVideo.currentTime;
-        //   const cardElem = infoElem.querySelector('.card');
+        lastVideo.addEventListener("timeupdate", function() {
+          const currentTime = lastVideo.currentTime;
+          const cardElem = infoElem.querySelector('.card');
 
-        //   if (currentTime >= 5.6 && currentTime < 6) {
-        //     cardElem.style.visibility = 'hidden';
-        //     progressStories.style.display = 'none';
-        //     mouseTrigger.style.display = 'none';
-        //     endButton.style.display = 'none';
-        //     reloadBtn.style.display = 'none';
-        //   } else if (currentTime < 10) {
-        //     videoContent.style.opacity = 1;
-        //   } else if (currentTime >= 11 && currentTime < 11.25) {
-        //     videoContent.style.opacity = 0.9;
-        //   } else if (currentTime >= 11.5 && currentTime < 11.75) {
-        //     videoContent.style.opacity = 0.6;
-        //   } else if (currentTime >= 12 && currentTime < 12.5) {
-        //     videoContent.style.opacity = 0.3;
-        //   } else if (currentTime >= 13) {
-        //     videoContent.style.opacity = 0;
-        //   }
-        // });
+          if (currentTime >= 5.6 && currentTime < 6) {
+            cardElem.style.visibility = 'hidden';
+            progressStories.style.display = 'none';
+            mouseTrigger.style.display = 'none';
+            endButton.style.display = 'none';
+            reloadBtn.style.display = 'none';
+          } else if (currentTime < 10) {
+            videoContent.style.opacity = 1;
+          } else if (currentTime >= 11 && currentTime < 11.25) {
+            videoContent.style.opacity = 0.9;
+          } else if (currentTime >= 11.5 && currentTime < 11.75) {
+            videoContent.style.opacity = 0.6;
+          } else if (currentTime >= 12 && currentTime < 12.5) {
+            videoContent.style.opacity = 0.3;
+          } else if (currentTime >= 13) {
+            videoContent.style.opacity = 0;
+          }
+        });
         function onlastVideoEndListener() {
           lastVideo.removeEventListener("ended", onlastVideoEndListener);
           finishVideosBlock();
           WheelContentSmooth();
         }
-        // lastVideo.addEventListener("ended", onlastVideoEndListener);
-        onlastVideoEndListener();
+        lastVideo.addEventListener("ended", onlastVideoEndListener);
+        // onlastVideoEndListener();
       }
 
       const firstVideo = document.querySelector('#progress_one');
@@ -386,15 +386,15 @@ function App() {
           mouseArrow.style.display = 'none';
           mouseTriggerText.innerHTML = 'Внимание на экран';
           allVideos.forEach((e, index) => {
-            // e.removeAttribute('loop');
-            // e.setAttribute('data-transit', '');
-            // e.addEventListener("ended", () => {
-            //   switchHandler("next");
-            // });
-            // if (index === allVideos.length - 1) {
-            //   fadeVideo(e);
-            // }
-            fadeVideo(e);
+            e.removeAttribute('loop');
+            e.setAttribute('data-transit', '');
+            e.addEventListener("ended", () => {
+              switchHandler("next");
+            });
+            if (index === allVideos.length - 1) {
+              fadeVideo(e);
+            }
+            // fadeVideo(e);
           });
         });
       });
@@ -699,8 +699,8 @@ function App() {
         mouseLogo.style.display = 'none';
         loopVideo = false;
         video.play();
-        // video.addEventListener("ended", onVideoEndListener);
-        onVideoEndListener()
+        video.addEventListener("ended", onVideoEndListener);
+        // onVideoEndListener()
       };
 
       if (newsId) {
@@ -891,6 +891,9 @@ function App() {
     const speckArrow = document.querySelector('.vectary .tech_speck .tech_speck-click .tech_speck-img');
 
     specClick.addEventListener('click', () => {
+      // setTimeout(() => {
+      //   specsBlock.classList.toggle('active');
+      // }, 500);
       specsBlock.classList.toggle('active');
       speckArrow.classList.toggle('active');
     });

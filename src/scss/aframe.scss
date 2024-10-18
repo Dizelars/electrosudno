@@ -50,6 +50,15 @@ a-scene {
   z-index: 1;
 }
 
+.aframeOne svg,
+.aframeTwo svg {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .card-content {
   z-index: 1;
 }

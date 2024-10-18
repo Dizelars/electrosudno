@@ -269,7 +269,8 @@
 @media (max-width: 540px) {
   .vectary .info_wrapper .info_position {
     // transform: translateY(78%);
-    transform: translateY(79.62%);
+    // transform: translateY(79.62%);
+    transform: translateY(79%);
     transition: all .5s ease;
   }
 
@@ -295,6 +296,10 @@
     width: 100%;
     max-width: unset;
   }
+
+  // .vectary .tech_speck {
+  //   transition: all .5s ease;
+  // }
 
   .vectary .tech_speck .dots.first {
     display: flex !important;
@@ -325,7 +330,23 @@
   .vectary .tech_speck .dots.third,
   .vectary .tech_speck .dots.fourth,
   .vectary .tech_speck .dots.last {
-    border-radius: 20px;
+    // border-radius: 20px;
+    border-radius: 10px;
+  }
+
+  .vectary .tech_speck .dots.second,
+  .vectary .tech_speck .dots.third,
+  .vectary .tech_speck .dots.fourth,
+  .vectary .tech_speck .dots.last {
+    opacity: 0;
+  }
+
+  // .vectary .info_wrapper .info_position.active .tech_speck .dots.first,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.second,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.third,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.fourth,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.last {
+    opacity: 1;
   }
 
   .vectary .tech_speck .dots.first,
@@ -337,12 +358,24 @@
   .vectary .tech_speck .dots.first,
   .vectary .tech_speck .dots.third,
   .vectary .tech_speck .dots.fourth {
+    border-bottom: unset;
+  }
+
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.first,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.third,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.fourth {
     border-bottom: 2px solid #b9b8c4;
   }
 
   .vectary .tech_speck .dots:not(.last):before,
   .vectary .tech_speck .dots:not(.last):after {
     content: '';
+    opacity: 0;
+  }
+
+  .vectary .info_wrapper .info_position.active .tech_speck .dots:not(.last):before,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots:not(.last):after {
+    opacity: 1;
   }
 
   .vectary .tech_speck .dots:not(.last):before {

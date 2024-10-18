@@ -1862,6 +1862,15 @@ a-scene {
   z-index: 1;
 }
 
+.aframeOne svg,
+.aframeTwo svg {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .card-content {
   z-index: 1;
 }
@@ -2166,7 +2175,7 @@ a-scene {
 }
 @media (max-width: 540px) {
   .vectary .info_wrapper .info_position {
-    transform: translateY(79.62%);
+    transform: translateY(79%);
     transition: all 0.5s ease;
   }
   .vectary .info_wrapper .info_position.active {
@@ -2211,7 +2220,19 @@ a-scene {
   .vectary .tech_speck .dots.third,
   .vectary .tech_speck .dots.fourth,
   .vectary .tech_speck .dots.last {
-    border-radius: 20px;
+    border-radius: 10px;
+  }
+  .vectary .tech_speck .dots.second,
+  .vectary .tech_speck .dots.third,
+  .vectary .tech_speck .dots.fourth,
+  .vectary .tech_speck .dots.last {
+    opacity: 0;
+  }
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.second,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.third,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.fourth,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.last {
+    opacity: 1;
   }
   .vectary .tech_speck .dots.first,
   .vectary .tech_speck .dots.third,
@@ -2221,11 +2242,21 @@ a-scene {
   .vectary .tech_speck .dots.first,
   .vectary .tech_speck .dots.third,
   .vectary .tech_speck .dots.fourth {
+    border-bottom: unset;
+  }
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.first,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.third,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots.fourth {
     border-bottom: 2px solid #b9b8c4;
   }
   .vectary .tech_speck .dots:not(.last):before,
   .vectary .tech_speck .dots:not(.last):after {
     content: "";
+    opacity: 0;
+  }
+  .vectary .info_wrapper .info_position.active .tech_speck .dots:not(.last):before,
+  .vectary .info_wrapper .info_position.active .tech_speck .dots:not(.last):after {
+    opacity: 1;
   }
   .vectary .tech_speck .dots:not(.last):before {
     bottom: -3px;
