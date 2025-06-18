@@ -40,6 +40,8 @@ section#pier-routes {
   justify-content: center;
 }
 
+// section#pier-routes 
+
 section#sinichka-section {
   height: calc(100vh - 40px);
 }
@@ -73,6 +75,13 @@ section#pier-description.fixed {
   z-index: 15;
 }
 
+@media (max-width: 1262px) {
+  section#pier-routes h3 {
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+  }
+}
+
 @media (max-width: 1200px) {
   section#pier-description,
   section#pier-routes {
@@ -81,10 +90,38 @@ section#pier-description.fixed {
   }
 }
 
+@media (max-width: 1128px) {
+  section#pier-routes h3 {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+  }
+}
+
+@media (max-width: 1060px) {
+  section#pier-routes h3 {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+  }
+}
+
 @media (max-height: 1000px) {
   section#pier-description,
   section#pier-routes {
     height: max-content;
+  }
+}
+
+@media (max-width: 990px) {
+  section#pier-routes h3 {
+    font-size: 1.6rem;
+    line-height: 1.7rem;
+  }
+}
+
+@media (max-width: 900px) {
+  section#pier-routes h3 {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
   }
 }
 

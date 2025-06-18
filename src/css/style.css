@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import './fonts.css';
 #hellopreloader_preload {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 99999;
   top: 0;
@@ -1374,6 +1374,7 @@ p, ol, ul {
 }
 
 .video_content {
+  display: none;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -2404,6 +2405,12 @@ section#pier-description.fixed {
   z-index: 15;
 }
 
+@media (max-width: 1262px) {
+  section#pier-routes h3 {
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+  }
+}
 @media (max-width: 1200px) {
   section#pier-description,
   section#pier-routes {
@@ -2411,10 +2418,34 @@ section#pier-description.fixed {
     display: block;
   }
 }
+@media (max-width: 1128px) {
+  section#pier-routes h3 {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+  }
+}
+@media (max-width: 1060px) {
+  section#pier-routes h3 {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+  }
+}
 @media (max-height: 1000px) {
   section#pier-description,
   section#pier-routes {
     height: max-content;
+  }
+}
+@media (max-width: 990px) {
+  section#pier-routes h3 {
+    font-size: 1.6rem;
+    line-height: 1.7rem;
+  }
+}
+@media (max-width: 900px) {
+  section#pier-routes h3 {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
   }
 }
 @media (min-height: 830px) and (max-width: 680px) {

@@ -1,12 +1,4 @@
 function AR() {
-    // function isUserOnTelegram() {
-    //     let isTelegram = navigator.userAgent.includes('Telegram');
-    //     alert(isTelegram);
-    //     return isTelegram;
-    // }
-
-    // isUserOnTelegram();
-
     const modelViewer = document.querySelector('#pageWithModel');
     const pulseBlock = document.querySelector('.pulse_media');
 
