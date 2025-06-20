@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta http-equiv="encoding" content="utf-8" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,199 +8,16 @@
     <meta name="robots" content="noindex,nofollow,noarchive">
     <meta name="yandex" content="noindex,nofollow,noarchive">
     <meta name="googlebot" content="noindex,nofollow,noarchive">
+    <link rel="icon" href="/favicon.ico">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://garagetest.ru/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://garagetest.ru/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://garagetest.ru/favicons/favicon-16x16.png">
-    <link rel="manifest" href="https://garagetest.ru/favicons/site.webmanifest">
-    <link rel="mask-icon" href="https://garagetest.ru/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <style>
-      @font-face {
-        font-family: "MoscowSans";
-        src: url("fonts/MoscowSans-Light.woff2") format("woff2"), 
-            url("fonts/MoscowSans-Light.woff") format("woff"), 
-            url("fonts/MoscowSans-Light.otf") format("otf"), 
-            url("fonts/MoscowSans-Light.ttf") format("ttf");
-        font-weight: 300;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "MoscowSans";
-        src: url("fonts/MoscowSans-Regular.woff2") format("woff2"), 
-            url("fonts/MoscowSans-Regular.woff") format("woff"), 
-            url("fonts/MoscowSansRegular.otf") format("otf"), 
-            url("fonts/MoscowSansRegular.ttf") format("ttf");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "MoscowSans";
-        src: url("fonts/MoscowSans-Medium.woff2") format("woff2"), 
-            url("fonts/MoscowSans-Medium.woff") format("woff"), 
-            url("fonts/MoscowSansMedium.otf") format("otf"), 
-            url("fonts/MoscowSansMedium.ttf") format("ttf");
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "MoscowSans";
-        src: url("fonts/MoscowSans-Bold.woff2") format("woff2"), 
-            url("fonts/MoscowSans-Bold.woff") format("woff"), 
-            url("fonts/MoscowSansBold.otf") format("otf"), 
-            url("fonts/MoscowSansBold.ttf") format("ttf");
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: 'MoscowSans';
-        src: url("fonts/MoscowSansExtraBold.woff2") format("woff2"), 
-            url("fonts/MoscowSansExtraBold.woff") format("woff"), 
-            url("fonts/MoscowSansExtraBold.otf") format("otf"), 
-            url("fonts/MoscowSansExtraBold.ttf") format("ttf");
-        font-weight: 800;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      * {
-          -webkit-box-sizing: border-box;
-                  box-sizing: border-box;
-      }
-
-      body {
-        background-color: #9794A6;
-        margin: 0;
-      }
-
-      .google_viewer {
-          display: none;
-      }
-
-      .backToPageBack {
-        position: absolute;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: black;
-        text-align: center;
-        min-width: 60px;
-        padding: 14px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .backToPageBack a {
-        font-family: 'MoscowSans', sans-serif;
-        font-weight: 300;
-        font-size: 16px;
-        display: block;
-        width: max-content;
-        color: #ffffff;
-        text-decoration: none;
-      }
-
-      .vectary_plug {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        max-width: max-content;
-        pointer-events: none;
-      }
-
-      .AR_loading {
-        position: absolute;
-        z-index: 2;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-        top: 88px;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-            -ms-transform: translateX(-50%);
-                transform: translateX(-50%);
-        width: 100%;
-        padding: 0 10px;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-      }
-
-      .AR_loading.AR_opened {
-        display: none;
-      }
-
-      .AR_loading .AR_loading_wrapper {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-        min-height: 130px;
-        padding: 20px;
-        gap: 10px;
-        max-width: 400px;
-        border-radius: 12px;
-        background: #ffffff;
-      }
-
-      .AR_loading .text {
-        font-family: 'MoscowSans', sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        text-align: center;
-        margin: 0;
-        color: #000000;
-      }
-
-      @media (max-width: 480px) {
-        .vectary_plug {
-          transform: translateX(-50%);
-        }
-
-        .vectary_plug.AR_opened {
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      @media (max-width: 375px) {
-        .AR_loading .AR_loading_wrapper {
-          padding: 5px;
-          gap: 5px;
-        }
-
-        .AR_loading .AR_loading_wrapper .lottie {
-          width: 100px !important;
-          height: 100px !important;
-        }
-
-        .AR_loading .text {
-          font-size: 14px;
-        }
-      }
+    @font-face{font-family:"MoscowSans";src:url("fonts/MoscowSans-Light.woff2") format("woff2"),url("fonts/MoscowSans-Light.woff") format("woff"),url("fonts/MoscowSans-Light.otf") format("otf"),url("fonts/MoscowSans-Light.ttf") format("ttf");font-weight:300;font-style:normal;font-display:swap}@font-face{font-family:"MoscowSans";src:url("fonts/MoscowSans-Regular.woff2") format("woff2"),url("fonts/MoscowSans-Regular.woff") format("woff"),url("fonts/MoscowSansRegular.otf") format("otf"),url("fonts/MoscowSansRegular.ttf") format("ttf");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:"MoscowSans";src:url("fonts/MoscowSans-Medium.woff2") format("woff2"),url("fonts/MoscowSans-Medium.woff") format("woff"),url("fonts/MoscowSansMedium.otf") format("otf"),url("fonts/MoscowSansMedium.ttf") format("ttf");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:"MoscowSans";src:url("fonts/MoscowSans-Bold.woff2") format("woff2"),url("fonts/MoscowSans-Bold.woff") format("woff"),url("fonts/MoscowSansBold.otf") format("otf"),url("fonts/MoscowSansBold.ttf") format("ttf");font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:'MoscowSans';src:url("fonts/MoscowSansExtraBold.woff2") format("woff2"),url("fonts/MoscowSansExtraBold.woff") format("woff"),url("fonts/MoscowSansExtraBold.otf") format("otf"),url("fonts/MoscowSansExtraBold.ttf") format("ttf");font-weight:800;font-style:normal;font-display:swap}*{-webkit-box-sizing:border-box;box-sizing:border-box}body{background-color:#9794a6;margin:0}.google_viewer{display:none}.backToPageBack{position:absolute;top:20px;left:50%;transform:translateX(-50%);background-color:black;text-align:center;min-width:60px;padding:14px 12px;border-radius:5px;cursor:pointer}.backToPageBack a{font-family:'MoscowSans',sans-serif;font-weight:300;font-size:16px;display:block;width:max-content;color:#fff;text-decoration:none}.vectary_plug{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;max-width:max-content;pointer-events:none}.AR_loading{position:absolute;z-index:2;-webkit-box-sizing:border-box;box-sizing:border-box;top:88px;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:100%;padding:0 10px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.AR_loading.AR_opened{display:none}.AR_loading .AR_loading_wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;min-height:130px;padding:20px;gap:10px;max-width:400px;border-radius:12px;background:#fff}.AR_loading .text{font-family:'MoscowSans',sans-serif;font-weight:500;font-size:16px;text-align:center;margin:0;color:#000}@media(max-width:480px){.vectary_plug{transform:translateX(-50%)}.vectary_plug.AR_opened{transform:translate(-50%,-50%)}}@media(max-width:375px){.AR_loading .AR_loading_wrapper{padding:5px;gap:5px}.AR_loading .AR_loading_wrapper .lottie{width:100px !important;height:100px !important}.AR_loading .text{font-size:14px}}
     </style>
     <title>AR</title>
   </head>
   <body>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <!-- <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>  -->
+    <script src="./libraries/lottie/lottie.js" type="module"></script>
     <div id="div_mv"></div>
 
     <div class="backToPageBack">
@@ -218,38 +35,10 @@
       </div>
     </div>
 
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script> -->
+    <script type="module" src="./libraries/model-viewer.js"></script>
     <script type="module">
-      document.addEventListener("DOMContentLoaded", () => {
-        const ARLoading = document.querySelector('.AR_loading');
-        const imagePrew = document.querySelector('.vectary_plug');
-
-        const m_viewer = document.createElement('model-viewer');
-        m_viewer.setAttribute('class', 'google_viewer');
-        m_viewer.setAttribute('ar', 'true');
-        m_viewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
-        m_viewer.setAttribute('camera-controls', '');
-
-        // m_viewer.setAttribute('src', `https://electrosudno.ru/models/sinichka/AR/S2.gltf`);
-        m_viewer.setAttribute('src', `https://garagetest.ru/models/sinichka/AR/S2.gltf`);
-
-        document.getElementById('div_mv').appendChild(m_viewer);
-        // if (modelViewer.canActivateAR) {
-          setTimeout(() => {
-            m_viewer.activateAR();
-            setTimeout(() => {
-              ARLoading.classList.add('AR_opened');
-              imagePrew.classList.add('AR_opened');
-            }, 10000);
-          }, 100);
-        // }
-
-        const backToPageBack = document.querySelector('.backToPageBack');
-        backToPageBack.addEventListener('click', () => {
-          // window.location.href = 'https://electrosudno.ru/?ar=true#sinichka-section';
-          window.location.href = 'https://garagetest.ru/?ar=true#sinichka-section';
-        });
-      });
+    document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector(".AR_loading"),t=document.querySelector(".vectary_plug"),o=document.createElement("model-viewer");o.setAttribute("class","google_viewer"),o.setAttribute("ar","true"),o.setAttribute("ar-modes","scene-viewer webxr quick-look"),o.setAttribute("camera-controls",""),o.setAttribute("src","https://electrosudno.ru/models/sinichka/AR/S2.gltf"),document.getElementById("div_mv").appendChild(o),setTimeout((()=>{o.activateAR(),setTimeout((()=>{e.classList.add("AR_opened"),t.classList.add("AR_opened")}),1e4)}),100);document.querySelector(".backToPageBack").addEventListener("click",(()=>{window.location.href="https://electrosudno.ru/?ar=true#sinichka-section"}))}));
     </script>
   </body>
 </html>

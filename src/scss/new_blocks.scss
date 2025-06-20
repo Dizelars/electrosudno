@@ -40,8 +40,6 @@ section#pier-routes {
   justify-content: center;
 }
 
-// section#pier-routes 
-
 section#sinichka-section {
   height: calc(100vh - 40px);
 }
@@ -53,12 +51,22 @@ footer#footer.video_active {
   display: none;
 }
 
+section#pier-routes .card-img {
+  margin: 18px 0;
+}
+
+section#pier-routes .card-label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
 section#pier-description.fixed {
   position: fixed;
   top: 0;
   z-index: -1;
 }
-
 
 #pier-description .container {
   padding-bottom: 180px;
@@ -75,10 +83,19 @@ section#pier-description.fixed {
   z-index: 15;
 }
 
-@media (max-width: 1262px) {
+// @media (max-width: 1262px) {
+@media (max-width: 1388px) {
   section#pier-routes h3 {
     font-size: 1.3rem;
     line-height: 1.4rem;
+  }
+}
+
+// @media (max-width: 1128px) {
+@media (max-width: 1252px) {
+  section#pier-routes h3 {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
   }
 }
 
@@ -90,17 +107,24 @@ section#pier-description.fixed {
   }
 }
 
-@media (max-width: 1128px) {
-  section#pier-routes h3 {
-    font-size: 1.2rem;
-    line-height: 1.3rem;
-  }
-}
-
-@media (max-width: 1060px) {
+// @media (max-width: 1060px) {
+@media (max-width: 1184px) {
   section#pier-routes h3 {
     font-size: 1.1rem;
     line-height: 1.2rem;
+  }
+}
+
+@media (max-width: 1115px) {
+  section#pier-routes .card-label {
+    align-items: flex-start;
+    max-width: 216px;
+  }
+}
+
+@media (max-width: 1024px) {
+  section#pier-routes .card-img {
+    margin: 16px 0;
   }
 }
 
@@ -111,17 +135,28 @@ section#pier-description.fixed {
   }
 }
 
-@media (max-width: 990px) {
-  section#pier-routes h3 {
-    font-size: 1.6rem;
-    line-height: 1.7rem;
-  }
-}
+// @media (max-width: 990px) {
+//   section#pier-routes h3 {
+//     font-size: 1.6rem;
+//     line-height: 1.7rem;
+//   }
+// }
 
 @media (max-width: 900px) {
+  section#pier-routes .card-label {
+    align-items: center;
+    max-width: unset;
+  }
+
   section#pier-routes h3 {
     font-size: 1.25rem;
     line-height: 1.25rem;
+  }
+}
+
+@media (max-width: 406px) {
+  section#pier-routes .card-label {
+    align-items: flex-start;
   }
 }
 

@@ -6,7 +6,6 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  //max-width: 1340px;
   max-width: 1920px;
   margin: 0 auto;
   z-index: 2;
@@ -31,18 +30,10 @@
   width: 100%;
   height: 5px;
   border-radius: 2px;
-  //opacity: 0.5;
   background: #9794A6;
   transition: background-color .4s; /* Добавляем переход для background-color */
   margin: 0 8px;
 }
-
-//.video_progress_container .progress-container.last {
-//  //margin-left: 8px;
-//  //margin-right: 20px;
-//  //max-width: 316px;
-//  //max-width: 270px;
-//}
 
 .progress-bar {
   height: 100%;
@@ -52,28 +43,12 @@
   transition: width .4s;
 }
 
-//.progress_icon,
-//.progress_icon-first {
-//  position: relative;
-//  max-width: 40px;
-//  width: 100%;
-//  height: 40px;
-//  z-index: 1;
-//  border-radius: 100%;
-//  //opacity: 0.5;
-//  background: #9794A6;
-//}
-
 .progress_icon,
 .progress_icon-first {
   position: relative;
-  //max-width: 50px;
-  //width: 100%;
-  //height: 50px;
   padding: 30px;
   z-index: 1;
   border-radius: 10px;
-  //opacity: 0.5;
   background: transparent;
   border: 2px solid #9794A6;
 }
@@ -96,16 +71,6 @@
   transition: all .5s ease;
 }
 
-//.progress_icon.last {
-//  display: none;
-//}
-
-//.progress_icon-first,
-//.progress_icon.filled {
-//    background-color: #FFF;
-//    opacity: 1;
-//}
-
 .progress_icon-first,
 .progress_icon.filled {
   background-color: #FFF;
@@ -122,29 +87,13 @@
   margin-right: 20px;
 }
 
-
-
-
-//.video_content {
-//  position: relative;
-//  display: block;
-//}
-
-//.site_content {
-//  display: none;
-//}
-
 .video_content {
-  //height: 2000vh;
-  //opacity: 1;
-
-  display: none;
-
+  // display: none;
   position: fixed;
   width: 100%;
   height: 100%;
   z-index: 16;
-  //overflow: hidden; /* Скрыть видео, которые не воспроизводятся */
+  // overflow: hidden; /* Скрыть видео, которые не воспроизводятся */
   transition: opacity .5s;
   background: url("/public/images/firstCadr.jpg") no-repeat center/cover;
 }
@@ -162,21 +111,6 @@
 }
 
 // Колесо прокрутеи
-
-//.video_content .mouse_prev .mouse_prev-wrapper_desctop {
-//  position: absolute;
-//  left: 50%;
-//  transform: translateX(-50%);
-//  bottom: 74px;
-//  width: 25px;
-//  height: 40px;
-//  //background-color: black;
-//  opacity: 0.8;
-//  background: #9794A6;
-//  border: 2px solid white;
-//  border-radius: 20px;
-//}
-
 .video_content .mouse_prev .mouse_prev-wrapper_mobile,
 .video_content .mouse_prev .mouse_prev-wrapper_desctop {
   position: fixed;
@@ -214,17 +148,6 @@
   transform: translateX(-50%);
   animation: mouse_arrow 1.1s linear infinite;
 }
-//
-//.video_content .mouse_prev .mouse_prev-wrapper_desctop .mouse_prev_dot {
-//  position: absolute;
-//  bottom: 10px;
-//  left: 50%;
-//  transform: translateX(-50%);
-//  width: 2px;
-//  height: 2px;
-//  border-radius: 100%;
-//  background-color: #FFFFFF;
-//}
 
 @keyframes mouse_arrow {
   0% {
@@ -240,7 +163,6 @@
 
 
 // Код для проблеска света
-
 .autoflash{
   position: relative;
   overflow: hidden;
@@ -285,7 +207,6 @@
 
 
 // Кнопка причалить, начало и узнать больше
-
 .video_content .leave_button {
   display: none;
   //right: 20px;
@@ -358,7 +279,6 @@
 
 
 // Карточки с информацией
-
 .video_content .info_block,
 .video_content .mouse_prev {
   position: fixed;
@@ -383,8 +303,6 @@
   border-radius: 20px;
   background: linear-gradient(292deg, rgba(161, 159, 174, 0.50) 0%, rgba(172, 170, 186, 0.50) 100%);
   backdrop-filter: blur(10px);
-  //bottom: 144px;
-  //bottom: 220px;
   bottom: 260px;
   left: 50%;
   transform: translateX(-50%);
@@ -460,8 +378,6 @@
   }
   100% {
     opacity: 1;
-    //transform: translate(-50%, 144px);
-    //transform: translate(-50%, 220px);
     transform: translate(-50%, 260px);
   }
 }
@@ -487,20 +403,6 @@
   display: block !important;
   z-index: 100 !important;
 }
-
-
-//@media (max-width: 1920px) {
-//  .video_content .reload_button {
-//    left: 20px;
-//  }
-//}
-//
-//@media (max-width: 1670px) {
-//  .video_content .reload_button {
-//    top: 70px;
-//    bottom: unset;
-//  }
-//}
 
 @media (min-height: 850px) and (max-width: 680px) {
   .video_content .video-background-wrapper:before {
@@ -572,32 +474,7 @@
       transform: translate(-50%, 190px);
     }
   }
-
-  //.video_content .mouse_prev .mouse_prev-wrapper_mobile {
-  //  display: block;
-  //}
 }
-
-//@media only screen and (min-width: 700px) and (max-width: 1200px) and (orientation: landscape) {
-//  .video_content:before {
-//    content: '';
-//    position: absolute;
-//    top: 0;
-//    left: 0;
-//    right: 0;
-//    width: 100%;
-//    height: 130px;
-//    z-index: 1;
-//    background: linear-gradient(180deg, #000 80%, rgba(34, 34, 34, 0.00) 100%);
-//  }
-//
-//  .video_content .video-background, .video_content .video-background-wrapper {
-//    transform: scale(1.065);
-//    position: absolute;
-//    bottom: 0;
-//    height: unset;
-//  }
-//}
 
 @media (max-width: 640px) {
   .progress_icon,
@@ -660,23 +537,6 @@
 }
 
 @media (max-width: 440px) {
-  //.video_progress_container,
-  //.video_content .mouse_prev .mouse_prev-wrapper_mobile {
-  //  display: none;
-  //}
-
-  //.progress_icon-first {
-  //  margin-left: 10px;
-  //}
-  //
-  //.progress_icon:last-child {
-  //  margin-right: 10px;
-  //}
-  //
-  //.video_progress_container .progress-container {
-  //  margin: 0 4px;
-  //}
-
   .video_content .info_block .card {
     padding: 20px;
   }

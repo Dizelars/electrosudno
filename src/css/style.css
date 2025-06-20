@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import './fonts.css';
 #hellopreloader_preload {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 99999;
   top: 0;
@@ -1374,7 +1374,6 @@ p, ol, ul {
 }
 
 .video_content {
-  display: none;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -2384,6 +2383,17 @@ footer#footer.video_active {
   display: none;
 }
 
+section#pier-routes .card-img {
+  margin: 18px 0;
+}
+
+section#pier-routes .card-label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
 section#pier-description.fixed {
   position: fixed;
   top: 0;
@@ -2405,10 +2415,16 @@ section#pier-description.fixed {
   z-index: 15;
 }
 
-@media (max-width: 1262px) {
+@media (max-width: 1388px) {
   section#pier-routes h3 {
     font-size: 1.3rem;
     line-height: 1.4rem;
+  }
+}
+@media (max-width: 1252px) {
+  section#pier-routes h3 {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
   }
 }
 @media (max-width: 1200px) {
@@ -2418,16 +2434,21 @@ section#pier-description.fixed {
     display: block;
   }
 }
-@media (max-width: 1128px) {
-  section#pier-routes h3 {
-    font-size: 1.2rem;
-    line-height: 1.3rem;
-  }
-}
-@media (max-width: 1060px) {
+@media (max-width: 1184px) {
   section#pier-routes h3 {
     font-size: 1.1rem;
     line-height: 1.2rem;
+  }
+}
+@media (max-width: 1115px) {
+  section#pier-routes .card-label {
+    align-items: flex-start;
+    max-width: 216px;
+  }
+}
+@media (max-width: 1024px) {
+  section#pier-routes .card-img {
+    margin: 16px 0;
   }
 }
 @media (max-height: 1000px) {
@@ -2436,16 +2457,19 @@ section#pier-description.fixed {
     height: max-content;
   }
 }
-@media (max-width: 990px) {
-  section#pier-routes h3 {
-    font-size: 1.6rem;
-    line-height: 1.7rem;
-  }
-}
 @media (max-width: 900px) {
+  section#pier-routes .card-label {
+    align-items: center;
+    max-width: unset;
+  }
   section#pier-routes h3 {
     font-size: 1.25rem;
     line-height: 1.25rem;
+  }
+}
+@media (max-width: 406px) {
+  section#pier-routes .card-label {
+    align-items: flex-start;
   }
 }
 @media (min-height: 830px) and (max-width: 680px) {

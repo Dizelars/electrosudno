@@ -2,7 +2,7 @@
 <html lang="ru" class="smooth" prefix="og: http://ogp.me/ns#">
 <head>
   <!-- Yandex.Metrika counter -->
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
       (function(m, e, t, r, i, k, a) {
           m[i] = m[i] || function() {
               (m[i].a = m[i].a || []).push(arguments);
@@ -23,18 +23,18 @@
           webvisor: true
       });
   </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/94995468" style="position:absolute; left:-9999px;" alt="" /></div></noscript> -->
+  <noscript><div><img src="https://mc.yandex.ru/watch/94995468" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#000000"/>
   
-  <meta name="robots" content="noindex,nofollow,noarchive">
+  <!-- <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="yandex" content="noindex,nofollow,noarchive">
-  <meta name="googlebot" content="noindex,nofollow,noarchive">
+  <meta name="googlebot" content="noindex,nofollow,noarchive"> -->
 
-  <!-- <meta name="title" content="Электросудно"/>
+  <meta name="title" content="Электросудно"/>
   <meta name="description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
   <meta name="keywords" content="электросудно, речной, транспорт, экскурсия"/>
 
@@ -49,7 +49,7 @@
   <meta property="twitter:title" content="Электросудно"/>
   <meta property="twitter:description" content="Интерактивная экскурсия по инфраструктуре регулярных городских речных маршрутов"/>
   <meta property="twitter:image" content="https://electrosudno.ru/seo.png"/>
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
   <title>Электросудно</title>
   <script src="./libraries/aframe.js"></script>
@@ -315,8 +315,7 @@
     </div>
 
     <div class="site_content js-number-block">
-      <!-- fixed -->
-      <section id="pier-description" class="bg-grey ">
+      <section id="pier-description" class="bg-grey fixed">
         <div class="container grid-12 col-gap-10 pt-100 d-flex-col-tab gap10-tab">
           <div class="col-6">
             <div class="grid-12-rows row-gap-10 col-gap-10 d-flex-col-mob gap10-mob">
@@ -371,8 +370,7 @@
         </div>
       </section>
 
-      <!-- video_active -->
-      <section class="sinichka_fixed  bg-grey pb-70" id="sinichka-section">
+      <section class="sinichka_fixed video_active bg-grey pb-70" id="sinichka-section">
         <video class="section-video" playsinline preload muted></video>
 
         <div class="vectary">
@@ -403,7 +401,7 @@
           <div class="qrCode-popup popup_design">
             <div class="qrCode-popup_wrapper popup_wrapper">
               <p class="title">Дополненная реальность</p>
-              <img class="qr_code" src="%PUBLIC_URL%/images/qr/qr-sinichka.svg" alt="QR-код">
+              <img class="qr_code" src="%PUBLIC_URL%/images/qr/electrosudno/qr-sinichka.svg" alt="QR-код">
               <p class="description">
                 Наведите камеру на&nbsp;QR-код.
               </p>
@@ -427,7 +425,7 @@
 
         <!-- https://electrosudno.ru/models/sinichka/AR/S2.gltf -->
         <!-- https://garagetest.ru/models/sinichka/AR/S2.gltf -->
-        <model-viewer id="pageWithModel" class="google_viewer" camera-controls ar ar-modes="scene-viewer webxr quick-look" src="https://garagetest.ru/models/sinichka/AR/S2.gltf" alt="AR 3D-model"></model-viewer>
+        <model-viewer id="pageWithModel" class="google_viewer" camera-controls ar ar-modes="scene-viewer webxr quick-look" src="https://electrosudno.ru/models/sinichka/AR/S2.gltf" alt="AR 3D-model"></model-viewer>
           <div class="container">
               <div class="info_wrapper">
                   <div class="info_position">
@@ -464,36 +462,43 @@
       </section>
 
       <!-- Секция с двумя маршрутами -->
-       <!-- video_active -->
-      <section id="pier-routes" class="bg-grey pos-rel ">
+      <section id="pier-routes" class="bg-grey pos-rel video_active">
         <div class="container pb-70 pt-20">
           <h1 class="h1 text-uppercase mb-40">Маршруты</h1>
           <div class="card-flex-wrapper">
             <div class="card bg-grey-grad">
-              <p class="route-number mt-0 mb-10">№1</p>
-              <h3 class="text-uppercase">Киевский — Парк «Фили»</h3>
-              <img class="card-img img-responsive" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="kievsky route">
-                <p class="mb-0">Первый регулярный речной маршрут Киевский&nbsp;&mdash; Парк «Фили» улучшил транспортное обслуживание тех москвичей, которых река разделяет со&nbsp;станциями метро и&nbsp;МЦК</p>
+              <!-- <p class="route-number mt-0 mb-10">№1</p> -->
+              <div class="card-label route-number mb-10">
+                <img src="%PUBLIC_URL%/images/route_1.svg" alt="Маршрут №1">
+                <h3 class="text-uppercase">Киевский — Парк «Фили»</h3>
+              </div>
+              <img class="card-img img-responsive" data-route="kievsky" src="%PUBLIC_URL%/images/kievsky-route_active.svg" alt="Киевский — Парк «Фили»">
+              <p class="mb-0 mt-0">Первый регулярный речной маршрут Киевский&nbsp;&mdash; Парк «Фили» улучшил транспортное обслуживание тех москвичей, которых река разделяет со&nbsp;станциями метро и&nbsp;МЦК</p>
             </div>
             <div class="card bg-grey-grad">
-              <p class="route-number mt-0 mb-10">№2</p>
-              <h3 class="text-uppercase">ЗИЛ — Печатники</h3>
-              <img class="card-img img-responsive d-block d-none-mob" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled_new.svg" alt="avtozavodsky route">
-              <img class="card-img img-responsive d-none d-block-mob mt-20" data-route="avtozavodsky_vert" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled_new.svg" alt="avtozavodsky route">
-              <p class="mb-0">Второй регулярный речной маршрут &laquo;ЗИЛ&nbsp;&mdash; Печатники&raquo; связал между собой районы юга и&nbsp;юго&ndash;востока столицы и&nbsp;предоставил жителям еще&nbsp;один комфортный вариант передвижения по&nbsp;городу</p>
+              <!-- <p class="route-number mt-0 mb-10">№2</p> -->
+              <div class="card-label route-number mb-10">
+                <img src="%PUBLIC_URL%/images/route_2.svg" alt="Маршрут №2">
+                <h3 class="text-uppercase">ЗИЛ — Печатники</h3>
+              </div>
+              <img class="card-img img-responsive d-block d-none-mob" data-route="avtozavodsky" src="%PUBLIC_URL%/images/avtozavodsky-route_disabled_new.svg" alt="ЗИЛ — Печатники">
+              <img class="card-img img-responsive d-none d-block-mob mt-20" data-route="avtozavodsky_vert" src="%PUBLIC_URL%/images/avtozavodsky-route_vert_disabled_new.svg" alt="ЗИЛ — Печатники">
+              <p class="mb-0 mt-0">Второй регулярный речной маршрут &laquo;ЗИЛ&nbsp;&mdash; Печатники&raquo; связал между собой районы юга и&nbsp;юго&ndash;востока столицы и&nbsp;предоставил жителям еще&nbsp;один комфортный вариант передвижения по&nbsp;городу</p>
             </div>
             <div class="card bg-grey-grad">
-              <p class="route-number mt-0 mb-10">№3</p>
-              <h3 class="text-uppercase">Новоспасский — ЗИЛ</h3>
-              <img class="card-img img-responsive" data-route="avtozavodsky" src="%PUBLIC_URL%/images/novospasskiy-route.svg" alt="novospasskiy route">
-              <p class="mb-0">Второй регулярный речной маршрут &laquo;ЗИЛ&nbsp;&mdash; Печатники&raquo; связал между собой районы юга и&nbsp;юго&ndash;востока столицы и&nbsp;предоставил жителям еще&nbsp;один комфортный вариант передвижения по&nbsp;городу</p>
+              <!-- <p class="route-number mt-0 mb-10">№3</p> -->
+              <div class="card-label route-number mb-10">
+                <img src="%PUBLIC_URL%/images/route_3.svg" alt="Маршрут №3">
+                <h3 class="text-uppercase">Новоспасский — ЗИЛ</h3>
+              </div>
+              <img class="card-img img-responsive" data-route="avtozavodsky" src="%PUBLIC_URL%/images/novospasskiy-route.svg" alt="Новоспасский — ЗИЛ">
+              <p class="mb-0 mt-0">Третий регулярный речной маршрут &laquo;Новоспасский&nbsp;&mdash; ЗИЛ&raquo; связал между собой 4&nbsp;района центра и&nbsp;юга столицы. У&nbsp;пассажиров появилась возможность делать быстрые пересадки и&nbsp;экономить время в&nbsp;пути, выбирая новые варианты передвижения по&nbsp;реке</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- video_active -->
-      <section id="pier-faq" class="bg-grey ">
+      <section id="pier-faq" class="bg-grey video_active">
         <div class="container pb-100 pt-20">
           <h1 class="h1 text-uppercase mb-40">Справочная информация</h1>
           <div class="card-flex-wrapper">
@@ -532,8 +537,7 @@
         </div>
       </section>
 
-      <!-- video_active -->
-      <footer id="footer" class="bg-dark-grey ">
+      <footer id="footer" class="bg-dark-grey video_active">
         <div class="container pt-50 pb-50">
           <div class="grid-12 d-flex-tab d-flex-col-mob pt-30-mob px-10-mob">
             <div class="col-4 mb-40-mob">
@@ -916,31 +920,18 @@
               const duration = 1000; // Длительность анимации в миллисекундах
               const video = section.querySelector('.section-video');
 
-              // if (video) {
-              //   video.currentTime = 0;
-              //   video.classList.add('section-video_active');
-              //   video.play();
-              //
-              //   const sectionVideoEndListenerOne = () => {
-              //     video.classList.remove('section-video_active');
-              //     video.removeEventListener("ended", sectionVideoEndListenerOne);
-              //   };
-              //
-              //   video.addEventListener("ended", sectionVideoEndListenerOne);
-              // }
+              if (video && (currentPosition < section.offsetTop)) {
+                  video.currentTime = 0;
+                  video.classList.add('section-video_active');
+                  video.play();
 
-                if (video && (currentPosition < section.offsetTop)) {
-                    video.currentTime = 0;
-                    video.classList.add('section-video_active');
-                    video.play();
+                  const sectionVideoEndListenerOne = () => {
+                      video.classList.remove('section-video_active');
+                      video.removeEventListener("ended", sectionVideoEndListenerOne);
+                  };
 
-                    const sectionVideoEndListenerOne = () => {
-                        video.classList.remove('section-video_active');
-                        video.removeEventListener("ended", sectionVideoEndListenerOne);
-                    };
-
-                    video.addEventListener("ended", sectionVideoEndListenerOne);
-                }
+                  video.addEventListener("ended", sectionVideoEndListenerOne);
+              }
 
               // Функция для анимации, использующая requestAnimationFrame
               function step(timestamp) {
@@ -1035,7 +1026,6 @@
       });
     });
   </script>
-
   <script type="module" src="./libraries/model-viewer.js"></script>
 </body>
 </html>

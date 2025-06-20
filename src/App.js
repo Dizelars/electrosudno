@@ -2,98 +2,9 @@ import {useEffect} from "react";
 import Electrosudno from "./js/threeJS/Three.js";
 import AR from "./js/threeJS/AR.js";
 
-// const IMAGE_WIDTH_OFFSET = 180;
-// const IMAGE_WIDTH_MOBILE_OFFSET = IMAGE_WIDTH_OFFSET / 2;
-
-// Маршруты
-// const ROUTES = [
-//   {
-//     name: 'kievsky',
-//     circles: [
-//       { bottom: '29.9%', right: '19.1%', hoverImgSrc: '/images/kievskii.jpg' },
-//       { bottom: '72.5%', right: '60.8%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-//       { bottom: '41%', right: '40%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-//       { bottom: '50%', right: '30.5%', hoverImgSrc: '/images/city_centr.jpg '},
-//       { bottom: '56%', right: '26%', hoverImgSrc: '/images/city_bagration.jpg '},
-//       { bottom: '55%', right: '15.5%', hoverImgSrc: '/images/trehgornii.jpg '},
-//     ],
-//   },
-//   {
-//     name: 'avtozavodsky',
-//     circles: [
-//       { bottom: '32.5%', right: '10.8%', hoverImgSrc: '/images/kievskii.jpg' },
-//       { bottom: '28.6%', right: '31%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-//       { bottom: '40.1%', right: '42%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-//       { bottom: '30.5%', right: '56.4%', hoverImgSrc: '/images/city_centr.jpg '},
-//       { bottom: '53%', right: '87.3%', hoverImgSrc: '/images/city_bagration.jpg '},
-//       { bottom: '61%', right: '90.8%', hoverImgSrc: '/images/trehgornii.jpg '},
-//     ],
-//   },
-//   {
-//     name: 'avtozavodsky_vert',
-//     circles: [
-//       { bottom: '6.8%', right: '67.8%', hoverImgSrc: '/images/kievskii.jpg' },
-//       { bottom: '28.6%', right: '73.2%', hoverImgSrc: '/images/serdce_stolici.jpg '},
-//       { bottom: '40.4%', right: '60%', hoverImgSrc: '/images/kutuzovskii.jpg' },
-//       { bottom: '55.2%', right: '70.4%', hoverImgSrc: '/images/city_centr.jpg '},
-//       { bottom: '87.4%', right: '44.4%', hoverImgSrc: '/images/city_bagration.jpg '},
-//       { bottom: '92.5%', right: '35.5%', hoverImgSrc: '/images/trehgornii.jpg '},
-//     ],
-//   }
-// ];
-
-// const createVideoSource = (el, i, resolution, fileType) => {
-//   const source = document.createElement("source");
-//   source.setAttribute("src", `/${i + 1}${fileType}${resolution ? "_mob" : ""}.mp4`);
-//   source.setAttribute("type", "video/mp4");
-//   el.appendChild(source);
-// };
-
-// const initVideos = () => {
-//   const isiPad = window.innerWidth < 1200;
-//   const isMobile = window.innerWidth < 700;
-//   // const isVertical = window.innerHeight > window.innerWidth;
-//
-//   if (isiPad && isMobile) {
-//     document.querySelectorAll(".video-background").forEach((el, i) => {
-//       createVideoSource(el, i, isMobile, "long");
-//     });
-//   } else if (!isiPad && !isMobile) {
-//     document.querySelectorAll(".bg-video").forEach((el, i) => {
-//       createVideoSource(el, i, isMobile, "video");
-//     });
-//   }
-//
-//   document.querySelectorAll(".section-video").forEach((el, i) => {
-//     createVideoSource(el, i, isiPad, "doors");
-//   });
-// };
-
 const urlParams = new URLSearchParams(window.location.search);
 const newsId = urlParams.get("ar");
 let hellopreloader = document.getElementById("hellopreloader_preload");
-// console.log(newsId)
-
-// if (newsId == true) {
-//   checkURLMobile();
-// }
-
-// function checkURLMobile() {
-//   video.removeEventListener("ended", onVideoEndListener);
-//   videoContent.style.display = "none";
-//   siteContent.style.display = "block";
-//   bodyOverflow.style.overflow = 'auto';
-//   firstSection.classList.remove('fixed');
-//   htmlSmooth.classList.remove('smooth');
-//   setTimeout(() => {
-//     WheelContentSmooth();
-//   }, 500);
-//   setTimeout(() => {
-//     contentNone.forEach((section) => {
-//       section.classList.remove('video_active');
-//     });
-//   }, 600);
-// }
 
 const createVideoSource = (el, i, fileType) => {
   const source = document.createElement("source");
@@ -370,8 +281,6 @@ function App() {
         }
       };
 
-
-
       // Пропустить превью с видео
       // const leavePrev = document.querySelector(".video_content .leave_button");
       const endButtons = document.querySelectorAll(".video_content .leave_button");
@@ -596,69 +505,6 @@ function App() {
         }
 
         updateVideoTime();
-
-        // if (currentTime >= 10.15 && currentTime < 10.4) {
-        //   playVideoFromStart();
-        // }
-        // else if (currentTime >= 11 && currentTime < 16.5) {
-        //   newActiveContent = infoElemContent.ejection;
-        // } else if (currentTime >= 17.5 && currentTime < 28.5) {
-        //   newActiveContent = infoElemContent.snow;
-        // } else if (currentTime >= 29.5 && currentTime < 34.5) {
-        //   newActiveContent = infoElemContent.capacity;
-        // } else if (currentTime >= 35.5 && currentTime < 40) {
-        //   newActiveContent = infoElemContent.moorings;
-        // } else if (currentTime >= 40) {
-        //   cardElem.style.visibility = 'hidden';
-        //   leavePrev.style.display = "none";
-        // } else if (currentTime >= 44.5 && currentTime < 45) {
-        //   videoContent.style.opacity = 0.9;
-        // } else if (currentTime >= 45 && currentTime < 45.5) {
-        //   videoContent.style.opacity = 0.6;
-        // } else if (currentTime >= 45.6 && currentTime < 46) {
-        //   videoContent.style.opacity = 0.3;
-        // } else if (currentTime >= 46) {
-        //   videoContent.style.opacity = 0;
-        // }
-
-        // if (newActiveContent !== currentActiveContent) {
-        //   if (newActiveContent) {
-        //     const { src, text, title } = newActiveContent;
-        //
-        //     // Анимация ухода текущего контента
-        //     if (currentActiveContent) {
-        //       const card = infoElem.querySelector('.card');
-        //       card.classList.remove('animateUp');
-        //       card.classList.add('animateDown');
-        //       setTimeout(() => {
-        //         updateInfoElement(src, text, title);
-        //         card.classList.remove('animateDown');
-        //         setTimeout(() => {
-        //           card.classList.add('animateUp');
-        //         }, 50);
-        //       }, 500);
-        //     } else {
-        //       // Первый контент (без анимации ухода)
-        //       updateInfoElement(src, text, title);
-        //       const card = infoElem.querySelector('.card');
-        //       card.classList.add('animateUp');
-        //     }
-        //   } else {
-        //     // Анимация ухода текущего контента при очистке
-        //     if (currentActiveContent) {
-        //       const card = infoElem.querySelector('.card');
-        //       card.classList.remove('animateUp');
-        //       card.classList.add('animateDown');
-        //       setTimeout(() => {
-        //         clearInfoElement();
-        //         card.classList.remove('animateDown');
-        //       }, 500);
-        //     } else {
-        //       clearInfoElement();
-        //     }
-        //   }
-        //   currentActiveContent = newActiveContent;
-        // }
       });
       function updateInfoElement(src, text, title) {
         infoElem.style.display = "block";
@@ -733,158 +579,6 @@ function App() {
     });
 
 
-    // const mainContent = document.querySelector('#main');
-    // const htmlAframe = document.querySelector('html');
-    // const rollup_AR = document.querySelector('#vectary_rollupAR');
-    // const arButton = document.getElementById('ARButton');
-    // const arWrapper = document.querySelector('.vectaryVR');
-    // const iframeWrapper = document.querySelector('.iframe_wrapper');
-    // const sinichka = document.querySelector('#sinichka-section');
-    // // const ARid = document.querySelector('#AR');
-    // arButton.addEventListener('click', () => {
-    //   rollup_AR.style.display = 'block';
-    //   mainContent.style.display = 'none';
-    //   htmlAframe.classList.add('position');
-    //   arWrapper.style.height = '100%';
-    //   arWrapper.style.pointerEvents = 'auto';
-    //   // arWrapper.style.display = 'block';
-    //   iframeWrapper.innerHTML = `
-    //   <iframe id="AR" src="https://app.vectary.com/viewer-ar/v1/?model=ea4bb1c6-3de2-4370-86a4-4755859608d1&allowScaling=1&domain=ar&lang=ru" width="100%" height="100%"></iframe>
-    //   `;
-    //   // ARid.style.display = 'block';
-    // });
-    //
-    // rollup_AR.addEventListener('click', () => {
-    //   rollup_AR.style.display = 'none';
-    //   mainContent.style.display = 'block';
-    //   htmlAframe.classList.remove('position');
-    //   arWrapper.style.height = '0';
-    //   arWrapper.style.pointerEvents = 'none';
-    //   // arWrapper.style.display = 'none';
-    //   iframeWrapper.innerHTML = ``;
-    //   // ARid.style.display = 'none';
-    //   scrollToSection(sinichka);
-    // });
-
-    // const Briff = document.querySelector('.briffAR');
-    // const closeBriff = document.querySelector('.closeAR');
-    // closeBriff.addEventListener('click', () => {
-    //   Briff.style.display = "none";
-    // });
-
-
-    // Логика страницы после блоков видео
-    // const routeImages = document.querySelectorAll('img[data-route]:not(.img-disabled)');
-    // const modal = document.getElementById('modal');
-    // const modalExits = modal.querySelectorAll('.modal-exit');
-    // const modalBody = document.querySelector('.modal-body');
-    // const routeBtn = document.querySelector('.btn[data-route]');
-    // const cardFaqs = document.querySelectorAll('.card-faq');
-
-    // добавление кружка-станции
-    // const handleAddCircle = ({ bottom, right, hoverImgSrc }, index) => {
-    //   const isMobile = window.innerWidth <= 440;
-    //   const circleEl = document.createElement('div');
-    //   circleEl.classList.add('circle', 'pos-abs', 'cursor-pointer');
-    //   circleEl.style.bottom = bottom;
-    //   circleEl.style.right = right;
-    //
-    //   const hoverImg = document.createElement('img');
-    //   hoverImg.classList.add('pos-abs', 'circle-hover-img');
-    //   hoverImg.src = hoverImgSrc;
-    //
-    //   hoverImg.style.setProperty('bottom', `calc(${bottom} + 3%`);
-    //   const hoverImgRight = isMobile ? `calc(${right} - ${IMAGE_WIDTH_MOBILE_OFFSET}px` : `calc(${right} - ${IMAGE_WIDTH_OFFSET}px`;
-    //   hoverImg.style.setProperty('right', hoverImgRight);
-    //   modalBody.appendChild(hoverImg);
-    //
-    //   circleEl.addEventListener('mouseover', (e) => {
-    //     e.preventDefault();
-    //     hoverImg.classList.add('opacity-1');
-    //   })
-    //
-    //   circleEl.addEventListener('mouseleave', (e) => {
-    //     e.preventDefault();
-    //     hoverImg.classList.remove('opacity-1');
-    //   })
-    //
-    //   // всплытие иконки первой станции при открытии маршрута
-    //   if (index === 0) {
-    //     setTimeout(() => {
-    //       hoverImg.classList.add('opacity-1');
-    //       setTimeout(() => {
-    //         hoverImg.classList.remove('opacity-1');
-    //       }, 2000);
-    //     }, 1000);
-    //   }
-    //
-    //   modalBody.appendChild(circleEl);
-    // }
-
-    // Открытие маршрута в модалке
-    // const handleOpenRoute = ({ src, routeName }) => {
-    //   modalBody.innerHTML = '';
-    //
-    //   const routeImg = document.createElement('img');
-    //   routeImg.src = src;
-    //   routeImg.classList.add('img-responsive');
-    //   modalBody.appendChild(routeImg);
-    //   const currRoute = ROUTES.find((route) => route.name === routeName);
-    //   currRoute.circles.forEach((circle, index) => {
-    //     handleAddCircle(circle, index);
-    //   });
-    // }
-
-
-    // const bodyNoScroll = document.querySelector('body');
-    // Листнеры на картинках с маршрутами
-    // routeImages.forEach((routeEl) => {
-    //   routeEl.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     handleOpenRoute({ src: e.target.src, routeName: routeEl.dataset.route })
-    //     modal.classList.add('open');
-    //     bodyNoScroll.style.overflow = 'hidden';
-    //   })
-    // });
-
-    // Закрытие модалки маршрута
-    // modalExits.forEach((modalExit) => {
-    //   modalExit.addEventListener('click', (e) => {
-    //     console.log('click exit');
-    //     e.preventDefault();
-    //     modal.classList.remove('open');
-    //     bodyNoScroll.style.overflow = 'auto';
-    //   })
-    // });
-
-    // Листнер на кнопке с маршрутами
-    // routeBtn.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   const routeName = e.target.dataset.route;
-    //   const src = document.querySelector(`img[data-route='${routeName}'`).src;
-    //   handleOpenRoute({ src, routeName });
-    // });
-
-    // Переворачивание карточки справочная информация
-    // cardFaqs.forEach((cardFaq) => {
-    //   cardFaq.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     const frontSide = cardFaq.querySelector('.card-body-active');
-    //     const backSide = cardFaq.querySelector('.card-body-disabled');
-    //
-    //     if (!backSide || !frontSide) {
-    //       return;
-    //     }
-    //
-    //     frontSide.classList.remove('card-body-active');
-    //     frontSide.classList.add('card-body-disabled');
-    //
-    //     backSide.classList.remove('card-body-disabled');
-    //     backSide.classList.add('card-body-active');
-    //   });
-    // })
-
-
     // Выезжающее описание на синичке в вектари (на мобилке)
     const specsBlock = document.querySelector('.vectary .info_wrapper .info_position');
     const specClick = document.querySelector('.vectary .tech_speck .tech_speck-click');
@@ -948,7 +642,6 @@ function App() {
     function easeInOutQuad(t) {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     }
-
 
 
     // aframe
