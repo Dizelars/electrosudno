@@ -395,12 +395,12 @@ function App() {
         capacity: {
           src: "/images/icons/capacity.svg",
           text: "Вместимость:",
-          title: "50 комфортных мест",
+          title: "до 56 комфортных мест",
         },
         moorings: {
           src: "/images/icons/moorings.svg",
-          text: "Планируемое количество</br>плавучих причалов:",
-          title: "23 шт.",
+          text: "Количество плавучих причалов:",
+          title: "24 шт.",
         }
       }
       const video = document.querySelector(".video_content .video-background");
